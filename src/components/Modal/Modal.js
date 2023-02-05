@@ -14,15 +14,20 @@ import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { ModalWrapper, Overlay } from './Modal.styled';
 import { RemoveScroll } from 'react-remove-scroll';
+import { MdClose } from 'react-icons/md';
+
+import { colors } from '../../styles/stylesLayout';
 
 const modalRoot = document.querySelector('#modal-root');
 
 const Modal = ({ children, onClose }) => {
   useEffect(() => {
     function keyDown(e) {
-      if (e.code === 'Escape' || e.currentTarget === e.target) {
-        onClose();
+      console.log(e.currentTarget);
+      if (e.code !== 'Escape') {
+        return;
       }
+      onClose();
     }
     window.addEventListener('keydown', keyDown);
     return () => {
@@ -32,8 +37,12 @@ const Modal = ({ children, onClose }) => {
 
   return createPortal(
     <RemoveScroll>
-      <Overlay onClick={onClose}>
+      <Overlay>
         <ModalWrapper>
+          <button onClick={onClose}>
+            <MdClose size={24} color={colors.black} />
+          </button>
+
           <p>{children}</p>
         </ModalWrapper>
       </Overlay>

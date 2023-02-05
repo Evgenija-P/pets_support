@@ -5,9 +5,17 @@ import Modal from '../components/Modal/Modal';
 const OurFriendsPage = () => {
   const [showModal, setShowModal] = useState(false);
 
-  function toggleModal() {
+  function toggleModal(e) {
+    // if (e.currentTarget === e.target) {
     setShowModal(!showModal);
+    //   console.log('изменили состояние');
+    // }
+    // console.log('open modal');
+    // if (e.currentTarget !== e.target) {
+    //   console.log('не совпадают события');
+    // }
   }
+
   return (
     <div>
       <Helmet>
