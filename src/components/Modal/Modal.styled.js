@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { colors } from '../../styles/stylesLayout';
+import { media, colors } from '../../styles/stylesLayout';
 
 export const Overlay = styled.div`
   position: fixed;
@@ -18,29 +18,25 @@ export const Overlay = styled.div`
   z-index: 100;
 `;
 
-export const ModalWrapper = styled.div`
-  overflow: auto;
-  width: 280px;
-  padding: 40px 20px;
-  min-height: 530px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 20px;
-  background: ${colors.white};
-  z-index: 1000;
-`;
-
 export const CloseButton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  /* border: solid 5px red; */
-
   background: ${colors.background};
-
   position: absolute;
   top: 20px;
   right: 20px;
+
+  ${media.tablet} {
+    width: 44px;
+    height: 44px;
+  }
+
+  ${media.tablet} {
+    top: 24px;
+    right: 24px;
+  }
 `;
