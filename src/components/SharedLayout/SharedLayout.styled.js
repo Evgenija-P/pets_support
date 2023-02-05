@@ -5,6 +5,15 @@ export const Container = styled.div`
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 16px;
+
+  ${media.tablet} {
+
+	max-width: 767px;
+}
+  ${media.mobile} {
+
+	max-width: 767px;
+}
 `;
 
 export const Header = styled.header`
@@ -13,9 +22,10 @@ export const Header = styled.header`
   justify-content: space-between;
   margin-top: 20px;
 
+
     ${media.mobile} {
 		height: 48px;
-   
+   align-items: flex-start;
   }
 `;
 
@@ -23,7 +33,7 @@ export const LogNav = styled.div`
   display: flex;
   align-items: flex-start;
  
-    ${media.mobile && media.tablet} {
+    ${media.mobileAndTablet} {
 align-items: center;  
   }
 `;

@@ -1,6 +1,7 @@
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { GrFormClose } from 'react-icons/gr';
 import useMatchMedia from '../../hooks/use-match-media';
+import Logo from '../Logo';
 
 import { useState } from 'react';
 import {
@@ -9,10 +10,11 @@ import {
   NavLinkMenu,
   NavLinkMenuBurger,
   NavMobile,
+  HeaderBurger,
 } from './Navigation.styled';
 
 const Burger = {
-	transform: "translateX(0%)"
+  transform: 'translateY(0%)',
 };
 
 const Navigation = () => {
@@ -31,21 +33,30 @@ const Navigation = () => {
                 <GiHamburgerMenu size={30} color={'#000'} />
               )}
             </NavLinkMenuBurger>
-				  </Button>
-				  {nav ? (
-					  <NavMobile style={Burger}>
-						  <NavLinkMenu to="/news">News</NavLinkMenu>
-            <NavLinkMenu to="/notices">Find pet</NavLinkMenu>
-            <NavLinkMenu to="/friends">Our friends</NavLinkMenu>
-          </NavMobile>
-						  ) : (
-						  <NavMobile>
-							   <NavLinkMenu to="/news">News</NavLinkMenu>
-            <NavLinkMenu to="/notices">Find pet</NavLinkMenu>
-            <NavLinkMenu to="/friends">Our friends</NavLinkMenu>
-          </NavMobile>
-							)}
-         
+          </Button>
+          {nav ? (
+            <NavMobile style={Burger}>
+              <HeaderBurger>
+                <Logo />
+                <GrFormClose size={30} color={'#000'} />
+              </HeaderBurger>
+              <NavLinkMenu to="/news" onClick={() => setNav(!nav)}>
+                News
+              </NavLinkMenu>
+              <NavLinkMenu to="/notices" onClick={() => setNav(!nav)}>
+                Find pet
+              </NavLinkMenu>
+              <NavLinkMenu to="/friends" onClick={() => setNav(!nav)}>
+                Our friends
+              </NavLinkMenu>
+            </NavMobile>
+          ) : (
+            <NavMobile>
+              <NavLinkMenu to="/news">News</NavLinkMenu>
+              <NavLinkMenu to="/notices">Find pet</NavLinkMenu>
+              <NavLinkMenu to="/friends">Our friends</NavLinkMenu>
+            </NavMobile>
+          )}
         </Nav>
       ) : (
         <Nav>

@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { NavLink } from "react-router-dom";
+import { media } from '../../styles/stylesLayout';
 
 export const Nav = styled.nav`
 display: flex;
@@ -11,7 +12,7 @@ export const NavMobile = styled.div`
 display: flex;
     flex-direction: column;
     position: fixed;
-    top: 50px;
+    top: 0;
     right: 0;
     z-index: 5;
 align-items: center;
@@ -20,19 +21,30 @@ align-items: center;
 
     padding: 60px 20px;
 
-    transform: translateX(100%);
+    transform: translateY(-100%);
 
     transition: 250ms;
     transition-property: transform;
     transition-timing-function: ease;
-
+background-color: #fdf7f2;
     overflow: auto;
 
 `;
 
+export const HeaderBurger = styled.div`
+display: flex;
+ top: 0;
+    right: 0;
+    z-index: 5;
+ width: 100%;
+justify-content: space-between;
 
+${media.mobile} {
+
+	width: 90%;
+}
+`;
 export const NavLinkMenuBurger = styled.div`
-
 
 
 `;
@@ -51,6 +63,13 @@ text-decoration: none;
 
    text-decoration-line: underline;
   }
+ ${media.tablet} {
+ font-size: 48px;
+line-height: 66px;
+letter-spacing: 0.04em;
+margin-top: 60px;
+  }
+
 `;
 
 export const Button = styled.div`
