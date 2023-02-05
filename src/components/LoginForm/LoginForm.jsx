@@ -1,7 +1,7 @@
-import { Formik, Form,} from "formik"
+import { Formik} from "formik"
 import { Link } from 'react-router-dom';
 
-import { Container ,Input } from "./LoginForm.styled";
+import { Container, WraperForm, Title, Input,Button, Text} from "./LoginForm.styled";
 
 
 const LoginForm = () => {
@@ -23,29 +23,30 @@ const initialValues = {
     
     return (
         <Container>
-            <h1>Login</h1>
+            <Title>Login</Title>
             <Formik
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
             >
-                <Form autoComplete="off">
-                <label htmlFor="login">  
-                    <Input type="text" name="login" placeholder="Email"/>            
-                </label>                    
-           
-                <label htmlFor="password">
-                    <Input type="password" name="password" placeholder="Password"/>
-                </label>
+                <WraperForm autoComplete="off">
+                    <label htmlFor="login">  
+                        <Input type="text" name="login" placeholder="Email"/>            
+                    </label>                    
             
-                    <button type="submit">Login</button>
-                    <div>
-                        <p> Don't have an account?
-                             <span>
-                            <Link to='/register'>Register</Link>
-                        </span>
-                        </p>                                             
-                    </div>
-                </Form>
+                    <label htmlFor="password">
+                        <Input type="password" name="password" placeholder="Password"/>
+                    </label>
+                
+                    <Button type="submit">Login</Button>
+                    <Text>
+                        <p> Don't have an account? 
+                            <span>
+                                <Link to='/register'>Register</Link>
+                            </span>
+                        </p> 
+                         
+                    </Text>
+                </WraperForm>
              </Formik>
         </Container>
     )
