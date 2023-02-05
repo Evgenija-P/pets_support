@@ -14,10 +14,8 @@ import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { ModalWrapper, Overlay, CloseButton } from './Modal.styled';
 import { RemoveScroll } from 'react-remove-scroll';
-import { MdClose } from 'react-icons/md';
 import { ReactComponent as IconClose } from '../../img/icons/close_menu.svg';
 
-import { colors } from '../../styles/stylesLayout';
 
 const modalRoot = document.querySelector('#modal-root');
 
