@@ -7,7 +7,9 @@ import useAuth from '../../hooks/useAuth';
 import RestrictedRoute from '../RestrictedRoute';
 import PrivateRoute from '../PrivateRoute';
 
-const NoticesCategoriesList = lazy(() => import('../NoticesCategoriesList'));
+const NoticesCategoriesList = lazy(() =>
+  import('../NoticesElements/NoticesCategoriesList')
+);
 
 const RegisterPage = lazy(() => import('../../pages/Register'));
 const LoginPage = lazy(() => import('../../pages/Login'));
