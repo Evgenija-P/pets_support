@@ -18,7 +18,6 @@ export const NavMobile = styled.div`
     height: 100%;
 
     padding: 60px 20px;
-    background-color: $bg-hero-modal;
 
     transform: translateX(100%);
 
@@ -31,7 +30,7 @@ export const NavMobile = styled.div`
 `;
 
 
-export const Bar = styled.div`
+export const NavLinkMenuBurger = styled.div`
 
 
 
@@ -54,13 +53,6 @@ text-decoration: none;
 `;
 
 export const Button = styled.div`
-  padding: 25px 0 25px 25px;
-
-  @media screen and (min-width: $tablet) {
-    margin-right: 32px;
-  }
-  @media screen and (min-width: $desktop) {
-    display: none;
-  }
+margin-left: 20px;
 
 `;
