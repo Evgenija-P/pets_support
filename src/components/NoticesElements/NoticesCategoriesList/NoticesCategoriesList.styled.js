@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { media, colors, fontWeights } from '../../../styles/stylesLayout';
+import {  colors, fontWeights } from '../../../styles/stylesLayout';
 
 export const NoticesList = styled.div`
   display: flex;
