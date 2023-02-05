@@ -7,14 +7,30 @@ align-items: center;
 `;
 
 
-export const NavDesk = styled.div`
+export const NavMobile = styled.div`
 
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 5;
 
+    width: 100%;
+    height: 100%;
+
+    padding: 60px 20px;
+
+    transform: translateX(100%);
+
+    transition: 250ms;
+    transition-property: transform;
+    transition-timing-function: ease;
+
+    overflow: auto;
 
 `;
 
 
-export const Bar = styled.div`
+export const NavLinkMenuBurger = styled.div`
 
 
 
@@ -34,4 +50,9 @@ text-decoration: none;
 
    text-decoration-line: underline;
   }
+`;
+
+export const Button = styled.div`
+margin-left: 20px;
+
 `;
