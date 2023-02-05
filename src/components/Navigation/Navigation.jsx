@@ -11,6 +11,10 @@ import {
   NavMobile,
 } from './Navigation.styled';
 
+const Burger = {
+	transform: "translateX(0%)"
+};
+
 const Navigation = () => {
   const { isTablet, isMobile } = useMatchMedia();
   const [nav, setNav] = useState(false);
@@ -27,12 +31,21 @@ const Navigation = () => {
                 <GiHamburgerMenu size={30} color={'#000'} />
               )}
             </NavLinkMenuBurger>
-          </Button>
-          <NavMobile>
-            <NavLinkMenu to="/news">News</NavLinkMenu>
+				  </Button>
+				  {nav ? (
+					  <NavMobile style={Burger}>
+						  <NavLinkMenu to="/news">News</NavLinkMenu>
             <NavLinkMenu to="/notices">Find pet</NavLinkMenu>
             <NavLinkMenu to="/friends">Our friends</NavLinkMenu>
           </NavMobile>
+						  ) : (
+						  <NavMobile>
+							   <NavLinkMenu to="/news">News</NavLinkMenu>
+            <NavLinkMenu to="/notices">Find pet</NavLinkMenu>
+            <NavLinkMenu to="/friends">Our friends</NavLinkMenu>
+          </NavMobile>
+							)}
+         
         </Nav>
       ) : (
         <Nav>

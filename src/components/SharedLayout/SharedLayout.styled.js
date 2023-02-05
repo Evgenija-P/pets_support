@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { media} from '../../styles/stylesLayout';
+import { media } from '../../styles/stylesLayout';
 
 export const Container = styled.div`
   max-width: 1280px;
@@ -23,10 +23,7 @@ export const LogNav = styled.div`
   display: flex;
   align-items: flex-start;
  
-    ${media.mobile} {
-   align-items: center;
-  }
-     ${media.tablet} {
-   align-items: center;
+    ${media.mobile && media.tablet} {
+align-items: center;  
   }
 `;

@@ -8,12 +8,13 @@ align-items: center;
 
 
 export const NavMobile = styled.div`
-
+display: flex;
+    flex-direction: column;
     position: fixed;
-    top: 0;
+    top: 50px;
     right: 0;
     z-index: 5;
-
+align-items: center;
     width: 100%;
     height: 100%;
 
