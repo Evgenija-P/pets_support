@@ -13,6 +13,7 @@
 import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { ModalWrapper, Overlay } from './Modal.styled';
+import { RemoveScroll } from 'react-remove-scroll';
 
 const modalRoot = document.querySelector('#modal-root');
 
@@ -30,11 +31,13 @@ const Modal = ({ children, onClose }) => {
   }, [onClose]);
 
   return createPortal(
-    <Overlay onClick={onClose}>
-      <ModalWrapper>
-        <p>{children}</p>
-      </ModalWrapper>
-    </Overlay>,
+    <RemoveScroll>
+      <Overlay onClick={onClose}>
+        <ModalWrapper>
+          <p>{children}</p>
+        </ModalWrapper>
+      </Overlay>
+    </RemoveScroll>,
     modalRoot
   );
 };
