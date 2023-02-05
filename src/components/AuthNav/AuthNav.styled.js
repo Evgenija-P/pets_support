@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 import { NavLink } from "react-router-dom";
+import { media } from '../../styles/stylesLayout';
+
 
 export const User = styled.div`
 display: flex;
@@ -9,12 +11,16 @@ display: flex;
 align-items: center;
 justify-content: center;
 	border-radius: 40px;
-width: 164px;
-height: 44px;
+width: 100%;
+
 background: #F59256;
 :last-child{
 	margin-left: 20px;
 }
+ ${media.mobile} {
+		
+   
+  }
 `;
 
 export const ButtonReg = styled.div`
@@ -24,7 +30,7 @@ justify-content: center;
 	border: 2px solid #F59256;
 	border-radius: 40px;
 width: 100%;
-height: 44px;
+
 background: #FFF;
 :last-child{
 	margin-left: 20px;
@@ -36,9 +42,10 @@ display: flex;
 align-items: center;
 justify-content: center;
 color: #fff;
+padding: 10px 28px;
+
 text-decoration: none;
-width: 100%;
-height: 100%;
+
 `;
 
 export const NavLinkReg = styled(NavLink)`
@@ -47,6 +54,7 @@ align-items: center;
 justify-content: center;
 color: #000;
 text-decoration: none;
+padding: 10px 28px;
 width: 100%;
 height: 100%;
 
