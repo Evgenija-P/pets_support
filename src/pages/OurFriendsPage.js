@@ -1,12 +1,21 @@
-import { Helmet } from "react-helmet";
+import { Helmet } from 'react-helmet';
+import React, { useState } from 'react';
+import Modal from '../components/Modal/Modal';
 
 const OurFriendsPage = () => {
-	return (
-		<div>
-			<Helmet>
-				<title>OurFriendsPage</title>
-			</Helmet>
-		</div>
-	);
+  const [showModal, setShowModal] = useState(false);
+
+  function toggleModal() {
+    setShowModal(!showModal);
+  }
+  return (
+    <div>
+      <Helmet>
+        <title>OurFriendsPage</title>
+      </Helmet>
+      <button onClick={toggleModal}>Click me!!!</button>
+      {showModal && <Modal onClose={toggleModal}>children</Modal>}
+    </div>
+  );
 };
 export default OurFriendsPage;
