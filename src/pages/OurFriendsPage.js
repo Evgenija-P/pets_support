@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet';
 import React, { useState } from 'react';
-import Modal from '../components/Modal/Modal.jsx';
+import Modal from '../components/Modal';
 
 const OurFriendsPage = () => {
   const [showModal, setShowModal] = useState(true);
