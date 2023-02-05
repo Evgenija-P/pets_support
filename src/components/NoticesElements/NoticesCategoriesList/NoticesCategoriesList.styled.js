@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { media, colors, fontWeights } from '../../../styles/stylesLayout';
+import { colors, fontWeights } from '../../../styles/stylesLayout';
 
 export const NoticesList = styled.div`
   display: flex;
@@ -7,9 +7,7 @@ export const NoticesList = styled.div`
   gap: 32px;
 `;
 
-export const NoticesItem = styled.div`
-  box-shadow: 7px 4px 15px 0px ${colors.shadow};
-`;
+export const NoticesItem = styled.div``;
 
 export const NoticesTop = styled.div`
   position: relative;
@@ -38,6 +36,7 @@ export const NoticesDescription = styled.div`
   border-radius: 0px 0px 20px 20px;
 
   background-color: ${colors.white};
+  box-shadow: 7px 4px 15px 0px ${colors.shadow};
 `;
 
 export const NoticesTitle = styled.h2`
