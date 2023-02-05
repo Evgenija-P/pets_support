@@ -23,7 +23,7 @@ const modalRoot = document.querySelector('#modal-root');
 const Modal = ({ children, onClose }) => {
   useEffect(() => {
     function keyDown(e) {
-      console.log(e.currentTarget);
+      console.log(e.code);
       if (e.code !== 'Escape') {
         return;
       }
@@ -35,14 +35,18 @@ const Modal = ({ children, onClose }) => {
     };
   }, [onClose]);
 
+  function handleOverlayClick(e) {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+    return;
+  }
+
   return createPortal(
     <RemoveScroll>
-      <Overlay>
+      <Overlay onClick={handleOverlayClick}>
         <ModalWrapper>
-          <button onClick={onClose}>
-            <MdClose size={24} color={colors.black} />
-          </button>
-
+          <MdClose size={24} color={colors.black} onClick={onClose} />
           <p>{children}</p>
         </ModalWrapper>
       </Overlay>

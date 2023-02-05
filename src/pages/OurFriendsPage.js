@@ -1,19 +1,12 @@
 import { Helmet } from 'react-helmet';
 import React, { useState } from 'react';
-import Modal from '../components/Modal/Modal';
+import Modal from '../components/Modal/Modal.jsx';
 
 const OurFriendsPage = () => {
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(true);
 
   function toggleModal(e) {
-    // if (e.currentTarget === e.target) {
     setShowModal(!showModal);
-    //   console.log('изменили состояние');
-    // }
-    // console.log('open modal');
-    // if (e.currentTarget !== e.target) {
-    //   console.log('не совпадают события');
-    // }
   }
 
   return (
