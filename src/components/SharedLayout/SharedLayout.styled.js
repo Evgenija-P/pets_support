@@ -5,15 +5,6 @@ export const Container = styled.div`
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 16px;
-
-  ${media.tablet} {
-
-	max-width: 767px;
-}
-  ${media.mobile} {
-
-	max-width: 767px;
-}
 `;
 
 export const Header = styled.header`
