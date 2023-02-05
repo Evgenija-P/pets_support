@@ -12,9 +12,10 @@
 
 import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { ModalWrapper, Overlay } from './Modal.styled';
+import { ModalWrapper, Overlay, CloseButton } from './Modal.styled';
 import { RemoveScroll } from 'react-remove-scroll';
 import { MdClose } from 'react-icons/md';
+import { ReactComponent as IconClose } from '../../img/icons/close_menu.svg';
 
 import { colors } from '../../styles/stylesLayout';
 
@@ -46,7 +47,9 @@ const Modal = ({ children, onClose }) => {
     <RemoveScroll>
       <Overlay onClick={handleOverlayClick}>
         <ModalWrapper>
-          <MdClose size={24} color={colors.black} onClick={onClose} />
+          <CloseButton type="button" onClick={onClose}>
+            <IconClose />
+          </CloseButton>
           <p>{children}</p>
         </ModalWrapper>
       </Overlay>

@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { media, colors } from '../../styles/stylesLayout';
+import { colors } from '../../styles/stylesLayout';
 
 export const Overlay = styled.div`
   position: fixed;
@@ -15,7 +15,6 @@ export const Overlay = styled.div`
   transition-property: opacity;
   transition-duration: 250ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  /* overflow: scroll; */
   z-index: 100;
 `;
 
@@ -31,4 +30,17 @@ export const ModalWrapper = styled.div`
   border-radius: 20px;
   background: ${colors.white};
   z-index: 1000;
+`;
+
+export const CloseButton = styled.div`
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  /* border: solid 5px red; */
+
+  background: ${colors.background};
+
+  position: absolute;
+  top: 20px;
+  right: 20px;
 `;
