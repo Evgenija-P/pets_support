@@ -54,13 +54,6 @@ export const Title = styled.h1`
   }
 `;
 
-// export const WraperForm = styled(Form)`
-//   /* display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   flex-direction: column; */
-// `;
-
 export const FieldLogin = styled.div`
   margin-bottom: 16px;
 `;

@@ -1,5 +1,8 @@
 import { Formik, Form, ErrorMessage } from "formik"
 import * as yup from 'yup';
+import { useDispatch } from 'react-redux';
+
+import {logIn}  from "../../redux/auth/operations";
 
 import {
     Container,
@@ -13,6 +16,9 @@ import {
     ErrorText
     
 } from "./LoginForm.styled";
+
+
+
 
 const regexPassword = /^\S*$/
 
@@ -33,16 +39,23 @@ const FormError = ({ name }) => {
 
 const LoginForm = () => {
 
+    const dispatch = useDispatch();
+
     const initialValues = {
         email:"",
         password:""
-        }
+    }
+    
+    const handleSubmit = async (values, actions) => {
+        const { resetForm } = actions; 
+        const form = ({ 'email': values.email, 'password': values.password }); 
+        const { error } = await dispatch(logIn(form));
 
-    const handleSubmit = (valuse, actions) => {
-       const { resetForm} = actions
-        resetForm()
-       
-        console.log(valuse)
+        if (!error) {
+        resetForm() 
+        }
+                               
+        console.log(values)
         //  console.log(actions)
      }
         
@@ -55,7 +68,7 @@ const LoginForm = () => {
                 validationSchema={loginSchema}
             >
                 
-                <Form autoComplete="off">
+                <Form autoComplete="on">
                     <FieldLogin>
                         <label htmlFor="email">  
                             <Input id="loginEmail" type="email" name="email" placeholder="Email" />
