@@ -1,30 +1,30 @@
 import { Helmet } from 'react-helmet';
 
-import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-
-import getNoticesByCategory from '../servises/fetchNotices/fetchNoticesByCategory';
+// import { useEffect, useState } from 'react';
+// import { useLocation } from 'react-router-dom';
 
 import SectionContainer from '../components/SectionContainer';
 import NoticesCategoriesNav from '../components/NoticesElements/NoticesCategoriesNav/NoticesCategoriesNav';
 import NoticesSearch from '../components/NoticesElements/NoticesSearch/NoticesSearch';
 // import AddNoticeButton from '../components/NoticesElements/AddNoticeButton/AddNoticeButton';
-import NoticesCategoriesList from '../components/NoticesElements/NoticesCategoriesList/NoticesCategoriesList';
+// import NoticesCategoriesList from '../components/NoticesElements/NoticesCategoriesList/NoticesCategoriesList';
 
 const NoticesPage = () => {
-  const [notices, setNotices] = useState([]);
-  const { pathname: category } = useLocation();
+  // const [notices, setNotices] = useState([]);
+  // const { pathname: category } = useLocation();
 
-  useEffect(() => {
-    const fetchNotices = async () => {
-      const { message } = await getNoticesByCategory(category);
-      setNotices(message);
-      try {
-      } catch (error) {}
-    };
+  // useEffect(() => {
+  //   console.log(category);
 
-    fetchNotices();
-  }, [category]);
+  //   const fetchNotices = async () => {
+  //     const { message: result } = await getNoticesByCategory(category);
+  //     setNotices(result);
+  //     try {
+  //     } catch (error) {}
+  //   };
+
+  //   fetchNotices();
+  // }, [category]);
 
   return (
     <>
@@ -36,8 +36,6 @@ const NoticesPage = () => {
         <NoticesSearch />
 
         <NoticesCategoriesNav />
-
-        <NoticesCategoriesList notices={notices} />
       </SectionContainer>
     </>
   );

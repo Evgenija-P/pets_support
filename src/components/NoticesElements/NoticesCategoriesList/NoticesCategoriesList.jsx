@@ -1,8 +1,8 @@
 import {
   NoticesList,
   NoticesItem,
-  NoticesImage,
   NoticesTop,
+  NoticesImage,
   NoticesBadge,
   NoticesDescription,
   NoticesTitle,
@@ -19,8 +19,8 @@ const NoticesCategoriesList = ({ notices }) => {
       {notices.map(
         ({
           _id,
-          petImageURL,
           categoryName,
+          petImageURL,
           title,
           breed,
           location,
@@ -30,7 +30,6 @@ const NoticesCategoriesList = ({ notices }) => {
           <NoticesItem key={_id}>
             <NoticesTop>
               <NoticesBadge>{categoryName}</NoticesBadge>
-
               <NoticesImage
                 src={petImageURL ? petImageURL : notFoundNoticesImage}
                 alt={title}

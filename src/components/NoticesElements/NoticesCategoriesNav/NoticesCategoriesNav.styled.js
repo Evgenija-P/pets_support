@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { media, colors, fontWeights } from '../../../styles/stylesLayout';
 
-export const NoticesCategoriesList = styled.ul`
+export const NoticesCategoriesListLink = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 12px;

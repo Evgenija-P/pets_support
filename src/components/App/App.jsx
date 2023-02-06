@@ -7,8 +7,8 @@ import useAuth from '../../hooks/useAuth';
 import RestrictedRoute from '../RestrictedRoute';
 import PrivateRoute from '../PrivateRoute';
 
-const NoticesCategoriesList = lazy(() =>
-  import('../NoticesElements/NoticesCategoriesList')
+const NoticesCategoriesNav = lazy(() =>
+  import('../NoticesElements/NoticesCategoriesNav')
 );
 
 const RegisterPage = lazy(() => import('../../pages/Register'));
@@ -34,29 +34,35 @@ const App = () => {
           path="/news"
           element={<RestrictedRoute component={<NewsPage />} />}
         />
+
         <Route
           path="/notices"
-          element={<RestrictedRoute component={<NoticesPage />} />}
+          element={
+            <RestrictedRoute
+              component={<NoticesPage />}
+              redirectTo="/notices/sell"
+            />
+          }
         >
           <Route
             path="sell"
-            element={<RestrictedRoute component={<NoticesCategoriesList />} />}
+            element={<RestrictedRoute component={<NoticesCategoriesNav />} />}
           />
           <Route
             path="lost-found"
-            element={<RestrictedRoute component={<NoticesCategoriesList />} />}
+            element={<RestrictedRoute component={<NoticesCategoriesNav />} />}
           />
           <Route
             path="for-free"
-            element={<RestrictedRoute component={<NoticesCategoriesList />} />}
+            element={<RestrictedRoute component={<NoticesCategoriesNav />} />}
           />
           <Route
             path="favorite"
-            element={<RestrictedRoute component={<NoticesCategoriesList />} />}
+            element={<RestrictedRoute component={<NoticesCategoriesNav />} />}
           />
           <Route
             path="own"
-            element={<RestrictedRoute component={<NoticesCategoriesList />} />}
+            element={<RestrictedRoute component={<NoticesCategoriesNav />} />}
           />
         </Route>
 
