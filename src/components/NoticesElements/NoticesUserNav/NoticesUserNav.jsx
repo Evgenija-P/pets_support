@@ -1,46 +1,51 @@
-// import {
-//   NoticesCategoriesList,
-//   NoticesCategoriesButton,
-// } from './NoticesUserNav.styled';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
-// const NoticesCategoriesNav = ({ categories }) => {
-//   return (
-//     <NoticesCategoriesList>
-//       {categories.map(category => (
-//         <li key={category}>
-//           <NoticesCategoriesButton category={category} name={category}>
-//             {category}
-//           </NoticesCategoriesButton>
-//         </li>
-//       ))}
-//     </NoticesCategoriesList>
-//   );
-// };
+import getNoticesByCategory from '../../../servises/fetchNotices/fetchNoticesByCategory';
 
-// export default NoticesCategoriesNav;
+import NoticesCategoriesList from '../NoticesCategoriesList/NoticesCategoriesList';
 
-import { NavLink } from 'react-router-dom';
+import {
+  NoticesCategoriesListLink,
+  NoticesCategoriesLink,
+} from '../NoticesCategoriesNav/NoticesCategoriesNav.styled';
 
-const NoticesUserNav = () => {
+const NoticesAuthNav = () => {
+  const [notices, setNotices] = useState([]);
+  const { pathname: category } = useLocation();
+
+  useEffect(() => {
+    const fetchNotices = async () => {
+      const { message: result } = await getNoticesByCategory(category);
+      setNotices(result);
+      try {
+      } catch (error) {}
+    };
+
+    fetchNotices();
+  }, [category]);
+
   return (
     <>
-      <div>
-        <NavLink to="/notices/sell">
-          <p>sell</p>
-        </NavLink>
-      </div>
-      <div>
-        <NavLink to="/notices/lost-found">
-          <p>lost/found</p>
-        </NavLink>
-      </div>
-      <div>
-        <NavLink to="/notices/for-free">
-          <p>in good hands</p>
-        </NavLink>
-      </div>
+      <NoticesCategoriesListLink>
+        <li>
+          <NoticesCategoriesLink to="/notices/sell">Sell</NoticesCategoriesLink>
+        </li>
+        <li>
+          <NoticesCategoriesLink to="/notices/lost-found">
+            Lost / Found
+          </NoticesCategoriesLink>
+        </li>
+        <li>
+          <NoticesCategoriesLink to="/notices/for-free">
+            In good hands
+          </NoticesCategoriesLink>
+        </li>
+      </NoticesCategoriesListLink>
+
+      <NoticesCategoriesList notices={notices} />
     </>
   );
 };
 
-export default NoticesUserNav;
+export default NoticesAuthNav;
