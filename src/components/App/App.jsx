@@ -7,6 +7,10 @@ import useAuth from '../../hooks/useAuth';
 import RestrictedRoute from '../RestrictedRoute';
 import PrivateRoute from '../PrivateRoute';
 
+const NoticesCategoriesList = lazy(() =>
+  import('../NoticesElements/NoticesCategoriesList')
+);
+
 const RegisterPage = lazy(() => import('../../pages/Register'));
 const LoginPage = lazy(() => import('../../pages/Login'));
 const NewsPage = lazy(() => import('../../pages/NewsPage'));
@@ -33,7 +37,21 @@ const App = () => {
         <Route
           path="/notices"
           element={<RestrictedRoute component={<NoticesPage />} />}
-        />
+        >
+          <Route
+            path="sell"
+            element={<RestrictedRoute component={<NoticesCategoriesList />} />}
+          />
+          <Route
+            path="lost-found"
+            element={<RestrictedRoute component={<NoticesCategoriesList />} />}
+          />
+          <Route
+            path="for-free"
+            element={<RestrictedRoute component={<NoticesCategoriesList />} />}
+          />
+        </Route>
+
         <Route
           path="/friends"
           element={<RestrictedRoute component={<OurFriendsPage />} />}
@@ -48,9 +66,7 @@ const App = () => {
         />
         <Route
           path="/user"
-          element={
-            <PrivateRoute component={<UserPage />} />
-          }
+          element={<PrivateRoute component={<UserPage />} />}
         />
         <Route path="*" element={<NotFoundPage />} />
       </Route>

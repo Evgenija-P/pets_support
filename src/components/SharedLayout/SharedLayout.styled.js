@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { media} from '../../styles/stylesLayout';
+import { media } from '../../styles/stylesLayout';
 
 export const Container = styled.div`
   max-width: 1280px;
@@ -13,9 +13,10 @@ export const Header = styled.header`
   justify-content: space-between;
   margin-top: 20px;
 
+
     ${media.mobile} {
 		height: 48px;
-   
+   align-items: flex-start;
   }
 `;
 
@@ -23,10 +24,7 @@ export const LogNav = styled.div`
   display: flex;
   align-items: flex-start;
  
-    ${media.mobile} {
-   align-items: center;
-  }
-     ${media.tablet} {
-   align-items: center;
+    ${media.mobileAndTablet} {
+align-items: center;  
   }
 `;
