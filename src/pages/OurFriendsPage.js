@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Modal from '../components/Modal';
 
 const OurFriendsPage = () => {
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   function toggleModal(e) {
     setShowModal(!showModal);
@@ -17,7 +17,7 @@ const OurFriendsPage = () => {
       <button onClick={toggleModal}>Click me!!!</button>
 
       {showModal && (
-        <Modal onClose={toggleModal} title={'add pets'} type={'general'}>
+        <Modal onClose={toggleModal} title={'add pets'} type={'notice'}>
           children
         </Modal>
       )}

@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { media, colors } from '../../../styles/stylesLayout';
 
-export const ModalWrapperNotice = styled.div`
+export const ModalWrapperInfo = styled.div`
   overflow: auto;
   width: 280px;
   padding: 60px 20px 40px;
