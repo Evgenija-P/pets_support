@@ -17,7 +17,7 @@ const OurFriendsPage = () => {
       <button onClick={toggleModal}>Click me!!!</button>
 
       {showModal && (
-        <Modal onClose={toggleModal} title={'add pets'} type={'general'}>
+        <Modal onClose={toggleModal} title={'add pets'} type={'user'}>
           children
         </Modal>
       )}
