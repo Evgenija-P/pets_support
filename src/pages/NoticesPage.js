@@ -14,7 +14,6 @@ import NoticesCategoriesList from '../components/NoticesElements/NoticesCategori
 const NoticesPage = () => {
   const [notices, setNotices] = useState([]);
   const { pathname: category } = useLocation();
-  console.log(category);
 
   useEffect(() => {
     const fetchNotices = async () => {
@@ -36,17 +35,7 @@ const NoticesPage = () => {
       <SectionContainer title="Find your favorite pet">
         <NoticesSearch />
 
-        <NoticesCategoriesNav
-          categories={[
-            'Lost / Found',
-            'In good hands',
-            'Sell',
-            'Favorite ads',
-            'My ads',
-          ]}
-        />
-
-        {/* <AddNoticeButton /> */}
+        <NoticesCategoriesNav />
 
         <NoticesCategoriesList notices={notices} />
       </SectionContainer>

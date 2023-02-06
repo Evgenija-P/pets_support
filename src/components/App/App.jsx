@@ -50,6 +50,14 @@ const App = () => {
             path="for-free"
             element={<RestrictedRoute component={<NoticesCategoriesList />} />}
           />
+          <Route
+            path="favorite"
+            element={<RestrictedRoute component={<NoticesCategoriesList />} />}
+          />
+          <Route
+            path="own"
+            element={<RestrictedRoute component={<NoticesCategoriesList />} />}
+          />
         </Route>
 
         <Route

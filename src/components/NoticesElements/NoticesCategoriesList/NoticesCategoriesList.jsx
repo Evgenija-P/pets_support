@@ -1,6 +1,7 @@
 import {
   NoticesList,
   NoticesItem,
+  NoticesImage,
   NoticesTop,
   NoticesBadge,
   NoticesDescription,
@@ -10,29 +11,47 @@ import {
   NoticesButton,
 } from './NoticesCategoriesList.styled';
 
+import notFoundNoticesImage from '../../../img/notFoundNoticesImage.jpg';
+
 const NoticesCategoriesList = ({ notices }) => {
   return (
     <NoticesList>
-      {notices.map(({ _id, title, breed, location, age, price }) => (
-        <NoticesItem key={_id}>
-          <NoticesTop>
-            <NoticesBadge>In good hands</NoticesBadge>
-          </NoticesTop>
+      {notices.map(
+        ({
+          _id,
+          petImageURL,
+          categoryName,
+          title,
+          breed,
+          location,
+          age,
+          price,
+        }) => (
+          <NoticesItem key={_id}>
+            <NoticesTop>
+              <NoticesBadge>{categoryName}</NoticesBadge>
 
-          <NoticesDescription>
-            <NoticesTitle>{title}</NoticesTitle>
+              <NoticesImage
+                src={petImageURL ? petImageURL : notFoundNoticesImage}
+                alt={title}
+              />
+            </NoticesTop>
 
-            <NoticesTags>
-              <NoticesTag>Breed: {breed}</NoticesTag>
-              <NoticesTag>Place: {location}</NoticesTag>
-              <NoticesTag>Age: {age}</NoticesTag>
-              <NoticesTag>Price: {price}$</NoticesTag>
-            </NoticesTags>
+            <NoticesDescription>
+              <NoticesTitle>{title}</NoticesTitle>
 
-            <NoticesButton>Learn More</NoticesButton>
-          </NoticesDescription>
-        </NoticesItem>
-      ))}
+              <NoticesTags>
+                <NoticesTag>Breed: {breed}</NoticesTag>
+                <NoticesTag>Place: {location}</NoticesTag>
+                <NoticesTag>Age: {age}</NoticesTag>
+                <NoticesTag>Price: {price}$</NoticesTag>
+              </NoticesTags>
+
+              <NoticesButton>Learn More</NoticesButton>
+            </NoticesDescription>
+          </NoticesItem>
+        )
+      )}
     </NoticesList>
   );
 };

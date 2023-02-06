@@ -1,45 +1,33 @@
-// import {
-//   NoticesCategoriesList,
-//   NoticesCategoriesButton,
-// } from './NoticesCategoriesNav.styled';
-
-// const NoticesCategoriesNav = ({ categories }) => {
-//   return (
-//     <NoticesCategoriesList>
-//       {categories.map(category => (
-//         <li key={category}>
-//           <NoticesCategoriesButton category={category} name={category}>
-//             {category}
-//           </NoticesCategoriesButton>
-//         </li>
-//       ))}
-//     </NoticesCategoriesList>
-//   );
-// };
-
-// export default NoticesCategoriesNav;
-
-import { NavLink } from 'react-router-dom';
+import {
+  NoticesCategoriesList,
+  NoticesCategoriesLink,
+} from './NoticesCategoriesNav.styled';
 
 const NoticesCategoriesNav = () => {
   return (
-    <>
-      <div>
-        <NavLink to="/notices/sell">
-          <p>sell</p>
-        </NavLink>
-      </div>
-      <div>
-        <NavLink to="/notices/lost-found">
-          <p>lost/found</p>
-        </NavLink>
-      </div>
-      <div>
-        <NavLink to="/notices/for-free">
-          <p>in good hands</p>
-        </NavLink>
-      </div>
-    </>
+    <NoticesCategoriesList>
+      <li>
+        <NoticesCategoriesLink to="/notices/sell">Sell</NoticesCategoriesLink>
+      </li>
+      <li>
+        <NoticesCategoriesLink to="/notices/lost-found">
+          Lost / Found
+        </NoticesCategoriesLink>
+      </li>
+      <li>
+        <NoticesCategoriesLink to="/notices/for-free">
+          In good hands
+        </NoticesCategoriesLink>
+      </li>
+      <li>
+        <NoticesCategoriesLink to="/notices/favorite">
+          Favorite ads
+        </NoticesCategoriesLink>
+      </li>
+      <li>
+        <NoticesCategoriesLink to="/notices/own">My ads</NoticesCategoriesLink>
+      </li>
+    </NoticesCategoriesList>
   );
 };
 

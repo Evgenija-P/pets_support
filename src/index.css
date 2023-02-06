@@ -12,6 +12,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   margin-bottom: 100px;
 
+  box-sizing: border-box;
   background-color: #fdf7f2;
 }
 
