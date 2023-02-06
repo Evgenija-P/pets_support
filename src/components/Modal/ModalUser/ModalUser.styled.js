@@ -3,9 +3,6 @@ import { media, colors, fontWeights } from '../../../styles/stylesLayout';
 
 export const ModalWrapperUser = styled.div`
   overflow: auto;
-  width: 608px;
-  padding: 60px 75px 40px;
-  min-height: 449px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -13,6 +10,12 @@ export const ModalWrapperUser = styled.div`
   border-radius: 20px;
   background: ${colors.white};
   z-index: 1000;
+
+  ${media.tablet} {
+    width: 608px;
+    padding: 60px 75px 40px;
+    min-height: 449px;
+  }
 
   ${media.desktop} {
     width: 618px;
@@ -38,7 +41,7 @@ export const CloseButton = styled.div`
     height: 44px;
   }
 
-  ${media.tablet} {
+  ${media.desktop} {
     top: 24px;
     right: 24px;
   }
