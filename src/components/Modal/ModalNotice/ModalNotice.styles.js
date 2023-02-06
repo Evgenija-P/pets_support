@@ -17,6 +17,7 @@ export const ModalWrapperNotice = styled.div`
   ${media.tabletAndDesktop} {
     width: 608px;
     padding: 40px 80px;
+    min-height: 570px;
   }
 `;
 

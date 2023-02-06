@@ -1,12 +1,14 @@
-import { Helmet } from "react-helmet";
+import { Helmet } from 'react-helmet';
+import LoginForm from '../components/LoginForm';
 
 const Login = () => {
-	return (
-		<div>
-			<Helmet>
-				<title>Login</title>
-			</Helmet>
-		</div>
-	);
+  return (
+    <>
+      <Helmet>
+        <title>Login</title>
+      </Helmet>
+      <LoginForm />
+    </>
+  );
 };
 export default Login;

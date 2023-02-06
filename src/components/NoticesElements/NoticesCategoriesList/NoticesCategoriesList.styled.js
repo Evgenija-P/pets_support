@@ -1,29 +1,54 @@
 import styled from '@emotion/styled';
-import {  colors, fontWeights } from '../../../styles/stylesLayout';
+import { media, colors, fontWeights } from '../../../styles/stylesLayout';
 
-export const NoticesList = styled.div`
-  display: flex;
-  flex-direction: column;
+export const NoticesList = styled.ul`
+  display: grid;
+  grid-template-columns: repeat(1, minmax(50px, 1fr));
   gap: 32px;
+
+  margin: 30px 0px;
+
+  ${media.tablet} {
+    grid-template-columns: repeat(2, minmax(50px, 1fr));
+  }
+
+  ${media.tabletAndDesktop} {
+    margin: 60px 0px;
+  }
+
+  ${media.desktop} {
+    grid-template-columns: repeat(4, minmax(50px, 1fr));
+  }
 `;
 
 export const NoticesItem = styled.div`
+  border-radius: 0px 0px 20px 20px;
   box-shadow: 7px 4px 15px 0px ${colors.shadow};
+
+  overflow: hidden;
 `;
 
 export const NoticesTop = styled.div`
   position: relative;
 
   width: 100%;
+`;
+
+export const NoticesImage = styled.img`
+  display: block;
+
+  width: 100%;
   height: 288px;
+
+  object-fit: cover;
 `;
 
 export const NoticesBadge = styled.span`
   position: absolute;
+  top: 20px;
 
   display: flex;
   align-items: center;
-  justify-content: center;
 
   width: 158px;
   height: 28px;
@@ -31,12 +56,14 @@ export const NoticesBadge = styled.span`
 
   border-radius: 0px 20px 20px 0px;
   background-color: ${colors.white};
+
+  font-weight: ${fontWeights.bold};
+  font-size: 12px;
+  letter-spacing: 0.04em;
 `;
 
 export const NoticesDescription = styled.div`
   padding: 20px 16px 32px 16px;
-  border-radius: 0px 0px 20px 20px;
-
   background-color: ${colors.white};
 `;
 
@@ -83,7 +110,7 @@ export const NoticesButton = styled.button`
   color: ${colors.accent};
 
   &:hover,
-  &focus {
+  &:focus {
     border-color: ${colors.accentButton};
     outline-color: ${colors.accentButton};
     color: ${colors.accentButton};
