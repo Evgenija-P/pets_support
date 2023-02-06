@@ -1,9 +1,10 @@
 import { Route, Routes } from 'react-router-dom';
 import NotFoundPage from '../../pages/NotFoundPage';
 import SharedLayout from '../SharedLayout';
-// import { useDispatch } from 'react-redux';
-import { lazy } from 'react';
+import { useDispatch } from 'react-redux';
+import { lazy, useEffect } from 'react';
 import useAuth from '../../hooks/useAuth';
+import { refreshUser }  from '../../redux/auth/operations';
 import RestrictedRoute from '../RestrictedRoute';
 import PrivateRoute from '../PrivateRoute';
 
@@ -19,11 +20,12 @@ const OurFriendsPage = lazy(() => import('../../pages/OurFriendsPage'));
 const UserPage = lazy(() => import('../../pages/UserPage'));
 
 const App = () => {
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  
   const { isRefreshing } = useAuth();
-  //   useEffect(() => {
-  //     dispatch(refreshUser());
-  //   }, [dispatch]);
+    useEffect(() => {
+      dispatch(refreshUser());
+    }, [dispatch]);
 
   return isRefreshing ? (
     'Идем на сервер'
