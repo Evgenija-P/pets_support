@@ -10,7 +10,7 @@ body {
   font-family: 'Manrope', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  margin-bottom: 100px;
+  /* margin-bottom: 100px; */
 
   box-sizing: border-box;
   background-color: #fdf7f2;

@@ -1,7 +1,9 @@
 import styled from '@emotion/styled';
 import { media, colors } from '../../styles/stylesLayout';
 
-export const Container = styled.section``;
+export const Container = styled.section`
+  margin: 60px 0px;
+`;
 
 export const SectionTitle = styled.h1`
   font-weight: 700;
@@ -9,7 +11,10 @@ export const SectionTitle = styled.h1`
   text-align: center;
   color: ${colors.black};
 
+  margin-bottom: 28px;
+
   ${media.tabletAndDesktop} {
     font-size: 48px;
+    margin-bottom: 40px;
   }
 `;
