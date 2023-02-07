@@ -4,6 +4,8 @@ import useMatchMedia from '../../hooks/use-match-media';
 import Logo from '../Logo';
 import AppBar from '../AppBar';
 
+import NoticesCategoriesNav from '../NoticesElements/NoticesCategoriesNav';
+
 import { useState } from 'react';
 import {
   Button,
@@ -43,7 +45,7 @@ const Navigation = () => {
             <NavLinkMenu to="/news" onClick={() => setNav(!nav)}>
               News
             </NavLinkMenu>
-            <NavLinkMenu to="/notices" onClick={() => setNav(!nav)}>
+            <NavLinkMenu to="/notices/sell" onClick={() => setNav(!nav)}>
               Find pet
             </NavLinkMenu>
             <NavLinkMenu to="/friends" onClick={() => setNav(!nav)}>
@@ -53,7 +55,12 @@ const Navigation = () => {
         ) : (
           <NavMobile>
             <NavLinkMenu to="/news">News</NavLinkMenu>
-            <NavLinkMenu to="/notices">Find pet</NavLinkMenu>
+            <NavLinkMenu
+              to="/notices/sell"
+              component={<NoticesCategoriesNav />}
+            >
+              Find pet
+            </NavLinkMenu>
             <NavLinkMenu to="/friends">Our friends</NavLinkMenu>
           </NavMobile>
         )}
@@ -81,7 +88,11 @@ const Navigation = () => {
             <NavLinkMenu to="/news" onClick={() => setNav(!nav)}>
               News
             </NavLinkMenu>
-            <NavLinkMenu to="/notices" onClick={() => setNav(!nav)}>
+            <NavLinkMenu
+              to="/notices/sell"
+              component={<NoticesCategoriesNav />}
+              onClick={() => setNav(!nav)}
+            >
               Find pet
             </NavLinkMenu>
             <NavLinkMenu to="/friends" onClick={() => setNav(!nav)}>
@@ -91,7 +102,12 @@ const Navigation = () => {
         ) : (
           <NavMobile>
             <NavLinkMenu to="/news">News</NavLinkMenu>
-            <NavLinkMenu to="/notices">Find pet</NavLinkMenu>
+            <NavLinkMenu
+              to="/notices/sell"
+              component={<NoticesCategoriesNav />}
+            >
+              Find pet
+            </NavLinkMenu>
             <NavLinkMenu to="/friends">Our friends</NavLinkMenu>
           </NavMobile>
         )}
@@ -120,7 +136,11 @@ const Navigation = () => {
                 <NavLinkMenu to="/news" onClick={() => setNav(!nav)}>
                   News
                 </NavLinkMenu>
-                <NavLinkMenu to="/notices" onClick={() => setNav(!nav)}>
+                <NavLinkMenu
+                  to="/notices/sell"
+                  component={<NoticesCategoriesNav />}
+                  onClick={() => setNav(!nav)}
+                >
                   Find pet
                 </NavLinkMenu>
                 <NavLinkMenu to="/friends" onClick={() => setNav(!nav)}>
@@ -130,7 +150,12 @@ const Navigation = () => {
             ) : (
               <NavMobile>
                 <NavLinkMenu to="/news">News</NavLinkMenu>
-                <NavLinkMenu to="/notices">Find pet</NavLinkMenu>
+                <NavLinkMenu
+                  to="/notices/sell"
+                  component={<NoticesCategoriesNav />}
+                >
+                  Find pet
+                </NavLinkMenu>
                 <NavLinkMenu to="/friends">Our friends</NavLinkMenu>
               </NavMobile>
             )}
@@ -138,7 +163,12 @@ const Navigation = () => {
         ) : (
           <Nav>
             <NavLinkMenu to="/news">News</NavLinkMenu>
-            <NavLinkMenu to="/notices">Find pet</NavLinkMenu>
+            <NavLinkMenu
+              to="/notices/sell"
+              component={<NoticesCategoriesNav />}
+            >
+              Find pet
+            </NavLinkMenu>
             <NavLinkMenu to="/friends">Our friends</NavLinkMenu>
           </Nav>
         )}

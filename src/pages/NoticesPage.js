@@ -6,10 +6,9 @@ import { useLocation } from 'react-router-dom';
 import getNoticesByCategory from '../servises/fetchNotices';
 
 import SectionContainer from '../components/SectionContainer';
-import NoticesCategoriesNav from '../components/NoticesElements/NoticesCategoriesNav/NoticesCategoriesNav';
-import NoticesSearch from '../components/NoticesElements/NoticesSearch/NoticesSearch';
-import AddNoticeButton from '../components/NoticesElements/AddNoticeButton/AddNoticeButton';
-import NoticesCategoriesList from '../components/NoticesElements/NoticesCategoriesList/NoticesCategoriesList';
+import NoticesCategoriesNav from '../components/NoticesElements/NoticesCategoriesNav';
+import NoticesCategoriesList from '../components/NoticesElements/NoticesCategoriesList/';
+import NoticesSearch from '../components/NoticesElements/NoticesSearch';
 
 const NoticesPage = () => {
   const [notices, setNotices] = useState([]);
@@ -38,6 +37,8 @@ const NoticesPage = () => {
         <NoticesSearch />
 
         <NoticesCategoriesNav />
+
+        <NoticesCategoriesList notices={notices} />
       </SectionContainer>
     </>
   );
