@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet";
+import UserInformation from "../components/UserInformation/UserInformatiom";
 
 const UserPage = () => {
 	return (
@@ -6,6 +7,8 @@ const UserPage = () => {
 			<Helmet>
 				<title>UserPage</title>
 			</Helmet>
+			<UserInformation/>
+		
 		</div>
 	);
 };

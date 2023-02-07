@@ -66,7 +66,8 @@ const App = () => {
         />
         <Route
           path="/user"
-          element={<PrivateRoute component={<UserPage />} />}
+            // element={<PrivateRoute component={<UserPage />} />}
+            element={<UserPage />}
         />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
