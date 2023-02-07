@@ -5,7 +5,7 @@ import { register, logIn, logOut, refreshUser } from './operations';
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    user: { name: null, email: null, city: null, phone: null },
+    user: {},
     token: null,
     isLoggedIn: false,
     isRefreshing: false,
@@ -14,14 +14,14 @@ const authSlice = createSlice({
     builder
       .addCase(register.pending, (state, action) => state)
       .addCase(register.fulfilled, (state, action) => {
-        state.user = action.payload.user;
+        state.user = action.payload.data;
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
       .addCase(register.rejected, (state, action) => state)
 
       .addCase(logIn.fulfilled, (state, action) => {
-        state.user = action.payload.user;
+        state.user = action.payload.data;
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
@@ -30,13 +30,13 @@ const authSlice = createSlice({
       })
 
       .addCase(logOut.fulfilled, state => {
-        state.user = { name: null, email: null, city: null, phone: null };
+        state.user = {};
         state.token = null;
         state.isLoggedIn = false;
       })
 
       .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = action.payload;
+        state.user = action.payload.data;
         state.isLoggedIn = true;
       }),
 });
