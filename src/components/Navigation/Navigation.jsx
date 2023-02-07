@@ -1,8 +1,8 @@
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { GrFormClose } from 'react-icons/gr';
 import useMatchMedia from '../../hooks/use-match-media';
-import Logo from '../Logo';
 import AppBar from '../AppBar';
+import Logo from '../Logo';
 
 import NoticesCategoriesNav from '../NoticesElements/NoticesCategoriesNav';
 
