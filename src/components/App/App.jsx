@@ -1,13 +1,13 @@
-import { Route, Routes } from 'react-router-dom';
-import NotFoundPage from '../../pages/NotFoundPage';
-import SharedLayout from '../SharedLayout';
-import { useDispatch } from 'react-redux';
 import { lazy, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
-import { refreshUser } from '../../redux/auth/operations';
-import RestrictedRoute from '../RestrictedRoute';
-import PrivateRoute from '../PrivateRoute';
 import HomePage from '../../pages/HomePage';
+import NotFoundPage from '../../pages/NotFoundPage';
+import { refreshUser } from '../../redux/auth/operations';
+import PrivateRoute from '../PrivateRoute';
+import RestrictedRoute from '../RestrictedRoute';
+import SharedLayout from '../SharedLayout';
 
 const NoticesCategoriesNav = lazy(() =>
   import('../NoticesElements/NoticesCategoriesNav')
@@ -60,11 +60,15 @@ const App = () => {
         />
         <Route
           path="/register"
-          element={<RestrictedRoute component={<RegisterPage />} />}
+          element={
+            <RestrictedRoute component={<RegisterPage />} redirectTo="/user" />
+          }
         />
         <Route
           path="/login"
-          element={<RestrictedRoute component={<LoginPage />} />}
+          element={
+            <RestrictedRoute component={<LoginPage />} redirectTo="/user" />
+          }
         />
         <Route
           path="/user"
