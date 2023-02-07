@@ -1,7 +1,9 @@
 import { Helmet } from 'react-helmet';
 
-// import { useEffect, useState } from 'react';
-// import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+
+import getNoticesByCategory from '../servises/fetchNotices';
 
 import SectionContainer from '../components/SectionContainer';
 import NoticesCategoriesNav from '../components/NoticesElements/NoticesCategoriesNav/NoticesCategoriesNav';
@@ -19,18 +21,18 @@ import { useLocation } from 'react-router-dom';
 // import { setCategory } from '../redux/notices/noticesSlice';
 import Spinner from '../components/Spinner';
 const NoticesPage = () => {
-  // const [notices, setNotices] = useState([]);
-  // const { pathname: category } = useLocation();
+  const [notices, setNotices] = useState([]);
+  const { pathname: category } = useLocation();
 
-  // useEffect(() => {
-  //   console.log(category);
+  useEffect(() => {
+    console.log(category);
 
-  //   const fetchNotices = async () => {
-  //     const { message: result } = await getNoticesByCategory(category);
-  //     setNotices(result);
-  //     try {
-  //     } catch (error) {}
-  //   };
+    const fetchNotices = async () => {
+      const { message: result } = await getNoticesByCategory(category);
+      setNotices(result);
+      try {
+      } catch (error) {}
+    };
 
   //   fetchNotices();
   // }, [category]);

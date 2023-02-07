@@ -1,10 +1,3 @@
-import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-
-import getNoticesByCategory from '../../../servises/fetchNotices/fetchNoticesByCategory';
-
-import NoticesCategoriesList from '../NoticesCategoriesList/NoticesCategoriesList';
-
 import {
   NoticesCategoriesListLink,
   NoticesCategoriesLink,

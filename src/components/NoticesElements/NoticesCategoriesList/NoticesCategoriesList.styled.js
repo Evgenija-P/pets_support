@@ -1,6 +1,9 @@
 import styled from '@emotion/styled';
 import { media, colors, fontWeights } from '../../../styles/stylesLayout';
 
+import noticesFavoriteIcon from '../../../img/icons/noticesFavoriteIcon.svg';
+import noticesFavoriteIconActive from '../../../img/icons/noticesFavoriteIconActive.svg';
+
 export const NoticesList = styled.ul`
   display: grid;
   grid-template-columns: repeat(1, minmax(50px, 1fr));
@@ -30,8 +33,25 @@ export const NoticesItem = styled.div`
 
 export const NoticesTop = styled.div`
   position: relative;
-
   width: 100%;
+
+  button {
+    position: absolute;
+    top: 20px;
+    right: 12px;
+
+    width: 44px;
+    height: 44px;
+
+    background-color: ${colors.white};
+    border: none;
+    border-radius: 44px;
+
+    opacity: 60%;
+    backdrop-filter: blur(5px);
+
+    cursor: pointer;
+  }
 `;
 
 export const NoticesImage = styled.img`
@@ -55,11 +75,43 @@ export const NoticesBadge = styled.span`
   padding: 8px 20px;
 
   border-radius: 0px 20px 20px 0px;
-  background-color: ${colors.white};
+
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(5px);
 
   font-weight: ${fontWeights.bold};
   font-size: 12px;
   letter-spacing: 0.04em;
+
+  ${media.tabletAndDesktop} {
+    font-size: 16px;
+  }
+`;
+
+export const NoticesButtonFavorite = styled.button`
+  position: absolute;
+  top: 12px;
+  right: 12px;
+
+  display: flex;
+  align-items: center;
+
+  width: 44px;
+  height: 44px;
+
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(5px);
+
+  cursor: pointer;
+
+  background-image: url(${noticesFavoriteIcon});
+  background-repeat: no-repeat;
+  background-position: center;
+
+  &:hover,
+  &:focus {
+    background-image: url(${noticesFavoriteIconActive});
+  }
 `;
 
 export const NoticesDescription = styled.div`

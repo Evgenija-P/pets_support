@@ -1,4 +1,4 @@
-import App from './components/App';
+import App from './components/App/App.jsx';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
@@ -11,7 +11,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter basename="/pets_support">
+        <BrowserRouter>
           <App />
         </BrowserRouter>
       </PersistGate>
