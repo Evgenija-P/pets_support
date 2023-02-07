@@ -18,14 +18,8 @@ const UserInformation = () => {
     const [change, setChange] = useState(false);
 
     const handleSubmit = (e) => {
-        console.log(e);
         setChange(false);
-   
     }
-
-
-    console.log(change)
-
 
     return (
         <div>
