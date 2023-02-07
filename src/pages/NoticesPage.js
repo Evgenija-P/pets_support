@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet';
 
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-
+import useAuth from '../hooks/useAuth';
 // import getNoticesByCategory from '../servises/fetchNotices';
 
 import SectionContainer from '../components/SectionContainer';
@@ -47,11 +47,15 @@ const NoticesPage = () => {
   // useEffect(() => {
   //   dispatch(fetchFavoriteNotices());
   // }, [dispatch]);
+  const { isLoggedIn } = useAuth();
 
   useEffect(() => {
-    dispatch(fetchFavoriteNotices({ category: '/notices/favorite' }));
+    if (isLoggedIn) {
+      dispatch(fetchFavoriteNotices({ category: '/notices/favorite' }));
+    }
+
     dispatch(fetchNotices({ category }));
-  }, [dispatch, category]);
+  }, [dispatch, category, isLoggedIn]);
 
   return (
     <>
