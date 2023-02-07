@@ -1,12 +1,13 @@
-import { Route, Routes } from 'react-router-dom';
-import NotFoundPage from '../../pages/NotFoundPage';
-import SharedLayout from '../SharedLayout';
-import { useDispatch } from 'react-redux';
 import { lazy, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
-import { refreshUser }  from '../../redux/auth/operations';
-import RestrictedRoute from '../RestrictedRoute';
+import HomePage from '../../pages/HomePage';
+import NotFoundPage from '../../pages/NotFoundPage';
+import { refreshUser } from '../../redux/auth/operations';
 import PrivateRoute from '../PrivateRoute';
+import RestrictedRoute from '../RestrictedRoute';
+import SharedLayout from '../SharedLayout';
 
 const NoticesCategoriesNav = lazy(() =>
   import('../NoticesElements/NoticesCategoriesNav')
@@ -21,17 +22,18 @@ const UserPage = lazy(() => import('../../pages/UserPage'));
 
 const App = () => {
   const dispatch = useDispatch();
-  
+
   const { isRefreshing } = useAuth();
-    useEffect(() => {
-      dispatch(refreshUser());
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
 
   return isRefreshing ? (
     'Идем на сервер'
   ) : (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
+        <Route index element={<HomePage />} />
         <Route
           path="/news"
           element={<RestrictedRoute component={<NewsPage />} />}
@@ -39,31 +41,10 @@ const App = () => {
 
         <Route
           path="/notices"
-          element={
-            <RestrictedRoute
-              component={<NoticesPage />}
-              redirectTo="/notices/sell"
-            />
-          }
+          element={<RestrictedRoute component={<NoticesPage />} />}
         >
           <Route
-            path="sell"
-            element={<RestrictedRoute component={<NoticesCategoriesNav />} />}
-          />
-          <Route
-            path="lost-found"
-            element={<RestrictedRoute component={<NoticesCategoriesNav />} />}
-          />
-          <Route
-            path="for-free"
-            element={<RestrictedRoute component={<NoticesCategoriesNav />} />}
-          />
-          <Route
-            path="favorite"
-            element={<RestrictedRoute component={<NoticesCategoriesNav />} />}
-          />
-          <Route
-            path="own"
+            path=":categoryName"
             element={<RestrictedRoute component={<NoticesCategoriesNav />} />}
           />
         </Route>
@@ -74,11 +55,15 @@ const App = () => {
         />
         <Route
           path="/register"
-          element={<RestrictedRoute component={<RegisterPage />} />}
+          element={
+            <RestrictedRoute component={<RegisterPage />} redirectTo="/user" />
+          }
         />
         <Route
           path="/login"
-          element={<RestrictedRoute component={<LoginPage />} />}
+          element={
+            <RestrictedRoute component={<LoginPage />} redirectTo="/user" />
+          }
         />
         <Route
           path="/user"

@@ -4,6 +4,7 @@ import {
   NoticesTop,
   NoticesImage,
   NoticesBadge,
+  NoticesButtonFavorite,
   NoticesDescription,
   NoticesTitle,
   NoticesTags,
@@ -29,11 +30,15 @@ const NoticesCategoriesList = ({ notices }) => {
         }) => (
           <NoticesItem key={_id}>
             <NoticesTop>
-              <NoticesBadge>{categoryName}</NoticesBadge>
+              <NoticesBadge>
+                <span>{categoryName}</span>
+              </NoticesBadge>
               <NoticesImage
                 src={petImageURL ? petImageURL : notFoundNoticesImage}
                 alt={title}
               />
+
+              <NoticesButtonFavorite></NoticesButtonFavorite>
             </NoticesTop>
 
             <NoticesDescription>
@@ -43,7 +48,10 @@ const NoticesCategoriesList = ({ notices }) => {
                 <NoticesTag>Breed: {breed}</NoticesTag>
                 <NoticesTag>Place: {location}</NoticesTag>
                 <NoticesTag>Age: {age}</NoticesTag>
-                <NoticesTag>Price: {price}$</NoticesTag>
+
+                {categoryName === 'sell' && (
+                  <NoticesTag>Price: {price}$</NoticesTag>
+                )}
               </NoticesTags>
 
               <NoticesButton>Learn More</NoticesButton>

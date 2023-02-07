@@ -1,8 +1,10 @@
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { GrFormClose } from 'react-icons/gr';
 import useMatchMedia from '../../hooks/use-match-media';
-import Logo from '../Logo';
 import AppBar from '../AppBar';
+import Logo from '../Logo';
+
+import NoticesCategoriesNav from '../NoticesElements/NoticesCategoriesNav';
 
 import { useState } from 'react';
 import {
@@ -53,7 +55,9 @@ const Navigation = () => {
         ) : (
           <NavMobile>
             <NavLinkMenu to="/news">News</NavLinkMenu>
-            <NavLinkMenu to="/notices">Find pet</NavLinkMenu>
+            <NavLinkMenu to="/notices" component={<NoticesCategoriesNav />}>
+              Find pet
+            </NavLinkMenu>
             <NavLinkMenu to="/friends">Our friends</NavLinkMenu>
           </NavMobile>
         )}
@@ -81,7 +85,11 @@ const Navigation = () => {
             <NavLinkMenu to="/news" onClick={() => setNav(!nav)}>
               News
             </NavLinkMenu>
-            <NavLinkMenu to="/notices" onClick={() => setNav(!nav)}>
+            <NavLinkMenu
+              to="/notices"
+              component={<NoticesCategoriesNav />}
+              onClick={() => setNav(!nav)}
+            >
               Find pet
             </NavLinkMenu>
             <NavLinkMenu to="/friends" onClick={() => setNav(!nav)}>
@@ -91,7 +99,9 @@ const Navigation = () => {
         ) : (
           <NavMobile>
             <NavLinkMenu to="/news">News</NavLinkMenu>
-            <NavLinkMenu to="/notices">Find pet</NavLinkMenu>
+            <NavLinkMenu to="/notices" component={<NoticesCategoriesNav />}>
+              Find pet
+            </NavLinkMenu>
             <NavLinkMenu to="/friends">Our friends</NavLinkMenu>
           </NavMobile>
         )}
@@ -120,7 +130,11 @@ const Navigation = () => {
                 <NavLinkMenu to="/news" onClick={() => setNav(!nav)}>
                   News
                 </NavLinkMenu>
-                <NavLinkMenu to="/notices" onClick={() => setNav(!nav)}>
+                <NavLinkMenu
+                  to="/notices"
+                  component={<NoticesCategoriesNav />}
+                  onClick={() => setNav(!nav)}
+                >
                   Find pet
                 </NavLinkMenu>
                 <NavLinkMenu to="/friends" onClick={() => setNav(!nav)}>
@@ -130,7 +144,9 @@ const Navigation = () => {
             ) : (
               <NavMobile>
                 <NavLinkMenu to="/news">News</NavLinkMenu>
-                <NavLinkMenu to="/notices">Find pet</NavLinkMenu>
+                <NavLinkMenu to="/notices" component={<NoticesCategoriesNav />}>
+                  Find pet
+                </NavLinkMenu>
                 <NavLinkMenu to="/friends">Our friends</NavLinkMenu>
               </NavMobile>
             )}
@@ -138,7 +154,9 @@ const Navigation = () => {
         ) : (
           <Nav>
             <NavLinkMenu to="/news">News</NavLinkMenu>
-            <NavLinkMenu to="/notices">Find pet</NavLinkMenu>
+            <NavLinkMenu to="/notices" component={<NoticesCategoriesNav />}>
+              Find pet
+            </NavLinkMenu>
             <NavLinkMenu to="/friends">Our friends</NavLinkMenu>
           </Nav>
         )}

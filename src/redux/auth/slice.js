@@ -43,5 +43,5 @@ const authSlice = createSlice({
         state.user = action.payload;
         state.isLoggedIn = true;
       }),
-})
+});
 export const authReducer = authSlice.reducer;
