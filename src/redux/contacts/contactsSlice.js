@@ -7,6 +7,7 @@ const contactsInitialState = {
   contactList: [],
   isLoading: false,
   error: null,
+  category: null,
 };
 
 const extraActions = [fetchContacts, addContact, deleteContact];
@@ -33,23 +34,23 @@ const handleDeleteContactSuccses = (state, action) => {
 export const contactsSlice = createSlice({
   name: 'contacts',
   initialState: contactsInitialState,
-  // reducers: {
-  //   // fetchingInProgress(state) {
-  //   //   state.isLoading = true;
-  //   // },
-  //   // fetchingSuccess(state, action) {
-  //   //   state.isLoading = false;
-  //   //   state.error = null;
-  //   //   state.contactList = action.payload;
-  //   // },
-  //   // fetchingError(state, action) {
-  //   //   state.isLoading = false;
-  //   //   state.error = action.payload;
-  //   // },
-  //   setFilter(state, action) {
-  //     state.filter = action.payload;
-  //   },
-  // },
+  reducers: {
+    //   // fetchingInProgress(state) {
+    //   //   state.isLoading = true;
+    //   // },
+    //   // fetchingSuccess(state, action) {
+    //   //   state.isLoading = false;
+    //   //   state.error = null;
+    //   //   state.contactList = action.payload;
+    //   // },
+    //   // fetchingError(state, action) {
+    //   //   state.isLoading = false;
+    //   //   state.error = action.payload;
+    //   // },
+    setCategory(state, action) {
+      state.category = action.payload;
+    },
+  },
   // extraReducers: {
   //   [fetchContacts.pending]: handlePending,
   //   [fetchContacts.fulfilled](state, action) {
@@ -95,5 +96,5 @@ export const contactsSlice = createSlice({
       });
   },
 });
-// export const { setFilter } = contactsSlice.actions;
+export const { setCategory } = contactsSlice.actions;
 export const contactsReducer = contactsSlice.reducer;

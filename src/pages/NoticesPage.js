@@ -12,6 +12,8 @@ import { fetchContacts } from '../redux/contacts/operations ';
 import { selectContactsObj } from '../redux/contacts/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { setCategory } from '../redux/contacts/contactsSlice';
 const NoticesPage = () => {
   // const [notices, setNotices] = useState([]);
   // const { pathname: category } = useLocation();
@@ -34,9 +36,15 @@ const NoticesPage = () => {
   // Получаем части состояния
   const { contactList, isLoading, error } = useSelector(selectContactsObj);
   // Вызываем операцию
+  const { pathname: category } = useLocation();
+  // const [state, setstate] = useState(initialState);
+
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
+  useEffect(() => {
+    dispatch(setCategory(category));
+  }, [category, dispatch]);
 
   return (
     <>
