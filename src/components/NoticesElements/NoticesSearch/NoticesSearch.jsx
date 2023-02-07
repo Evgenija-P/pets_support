@@ -4,7 +4,7 @@ import {
   SearchFormButton,
 } from './NoticesSearch.styled';
 
-import { FaSearch } from 'react-icons/fa';
+import { ReactComponent as SearchIcon } from '../../../img/icons/search.svg';
 
 const NoticesSearch = () => {
   return (
@@ -12,7 +12,7 @@ const NoticesSearch = () => {
       <SearchForm>
         <SearchInput type="text" placeholder="Search"></SearchInput>
         <SearchFormButton>
-          <FaSearch />
+          <SearchIcon />
         </SearchFormButton>
       </SearchForm>
     </>

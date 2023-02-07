@@ -2,13 +2,17 @@ import styled from '@emotion/styled';
 import { media, colors, fontWeights } from '../../../styles/stylesLayout';
 
 export const SearchForm = styled.form`
-  width: 100%;
+  width: 280px;
   height: 100%;
 
+  margin: 0 auto;
   position: relative;
 
   display: flex;
-  justify-content: center;
+
+  ${media.tabletAndDesktop} {
+    width: 608px;
+  }
 `;
 
 export const SearchInput = styled.input`
@@ -56,22 +60,27 @@ export const SearchInput = styled.input`
 
 export const SearchFormButton = styled.button`
   position: absolute;
-  left: 70%;
+  left: 80%;
   top: 10%;
 
   display: block;
   width: 48px;
   height: 48px;
+  border-radius: 40px;
   border: 0;
-  background-size: 100%;
-  /* background-repeat: no-repeat;
-  background-position: center; */
   opacity: 0.6;
-  /* transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1); */
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
   cursor: pointer;
   outline: none;
   background-color: ${colors.white};
+
   :hover {
     opacity: 1;
+  }
+
+  ${media.tabletAndDesktop} {
+    left: 90%;
+    top: 10%;
   }
 `;
