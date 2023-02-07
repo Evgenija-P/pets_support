@@ -45,7 +45,7 @@ const Navigation = () => {
             <NavLinkMenu to="/news" onClick={() => setNav(!nav)}>
               News
             </NavLinkMenu>
-            <NavLinkMenu to="/notices/sell" onClick={() => setNav(!nav)}>
+            <NavLinkMenu to="/notices" onClick={() => setNav(!nav)}>
               Find pet
             </NavLinkMenu>
             <NavLinkMenu to="/friends" onClick={() => setNav(!nav)}>
@@ -55,10 +55,7 @@ const Navigation = () => {
         ) : (
           <NavMobile>
             <NavLinkMenu to="/news">News</NavLinkMenu>
-            <NavLinkMenu
-              to="/notices/sell"
-              component={<NoticesCategoriesNav />}
-            >
+            <NavLinkMenu to="/notices" component={<NoticesCategoriesNav />}>
               Find pet
             </NavLinkMenu>
             <NavLinkMenu to="/friends">Our friends</NavLinkMenu>
@@ -89,7 +86,7 @@ const Navigation = () => {
               News
             </NavLinkMenu>
             <NavLinkMenu
-              to="/notices/sell"
+              to="/notices"
               component={<NoticesCategoriesNav />}
               onClick={() => setNav(!nav)}
             >
@@ -102,10 +99,7 @@ const Navigation = () => {
         ) : (
           <NavMobile>
             <NavLinkMenu to="/news">News</NavLinkMenu>
-            <NavLinkMenu
-              to="/notices/sell"
-              component={<NoticesCategoriesNav />}
-            >
+            <NavLinkMenu to="/notices" component={<NoticesCategoriesNav />}>
               Find pet
             </NavLinkMenu>
             <NavLinkMenu to="/friends">Our friends</NavLinkMenu>
@@ -137,7 +131,7 @@ const Navigation = () => {
                   News
                 </NavLinkMenu>
                 <NavLinkMenu
-                  to="/notices/sell"
+                  to="/notices"
                   component={<NoticesCategoriesNav />}
                   onClick={() => setNav(!nav)}
                 >
@@ -150,10 +144,7 @@ const Navigation = () => {
             ) : (
               <NavMobile>
                 <NavLinkMenu to="/news">News</NavLinkMenu>
-                <NavLinkMenu
-                  to="/notices/sell"
-                  component={<NoticesCategoriesNav />}
-                >
+                <NavLinkMenu to="/notices" component={<NoticesCategoriesNav />}>
                   Find pet
                 </NavLinkMenu>
                 <NavLinkMenu to="/friends">Our friends</NavLinkMenu>
@@ -163,10 +154,7 @@ const Navigation = () => {
         ) : (
           <Nav>
             <NavLinkMenu to="/news">News</NavLinkMenu>
-            <NavLinkMenu
-              to="/notices/sell"
-              component={<NoticesCategoriesNav />}
-            >
+            <NavLinkMenu to="/notices" component={<NoticesCategoriesNav />}>
               Find pet
             </NavLinkMenu>
             <NavLinkMenu to="/friends">Our friends</NavLinkMenu>
