@@ -6,6 +6,7 @@ import { lazy } from 'react';
 import useAuth from '../../hooks/useAuth';
 import RestrictedRoute from '../RestrictedRoute';
 import PrivateRoute from '../PrivateRoute';
+import HomePage from '../../pages/HomePage';
 
 const NoticesCategoriesList = lazy(() =>
   import('../NoticesElements/NoticesCategoriesList')
@@ -30,6 +31,7 @@ const App = () => {
   ) : (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
+        <Route index element={<HomePage />} />
         <Route
           path="/news"
           element={<RestrictedRoute component={<NewsPage />} />}
