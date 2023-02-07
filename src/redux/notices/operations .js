@@ -70,3 +70,38 @@ export const deleteNotices = createAsyncThunk(
     }
   }
 );
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+export const addToFavoriteNotices = createAsyncThunk(
+  'notices/addToFavoriteNotices',
+  async (noticeId, thunkAPI) => {
+    try {
+      const response = await axios.post(`/notices/${noticeId}/favorite`);
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+export const removeFromFavoriteNotices = createAsyncThunk(
+  'notices/removeFromFavoriteNotices',
+  async (noticeId, thunkAPI) => {
+    try {
+      const response = await axios.patch(`/notices/${noticeId}/favorite`);
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+// export const removeFromFavoriteNotices = createAsyncThunk(
+//   'notices/removeFromFavoriteNotices',
+//   async (noticeId, thunkAPI) => {
+//     try {
+//       const response = await axios.patch(`/notices/${noticeId}/favorite`);
+//       return response.data;
+//     } catch (e) {
+//       return thunkAPI.rejectWithValue(e.message);
+//     }
+//   }
+// );

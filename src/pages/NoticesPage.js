@@ -13,7 +13,8 @@ import { selectNoticesObj } from '../redux/notices/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { setCategory } from '../redux/notices/noticesSlice';
+// import { setCategory } from '../redux/notices/noticesSlice';
+import Spinner from '../components/Spinner';
 const NoticesPage = () => {
   // const [notices, setNotices] = useState([]);
   // const { pathname: category } = useLocation();
@@ -34,7 +35,7 @@ const NoticesPage = () => {
   const dispatch = useDispatch();
 
   // Получаем части состояния
-  const { notiesList, isLoading, error } = useSelector(selectNoticesObj);
+  const { isLoading, error } = useSelector(selectNoticesObj);
   // Вызываем операцию
   const { pathname: category } = useLocation();
   // const [state, setstate] = useState(initialState);
@@ -44,7 +45,7 @@ const NoticesPage = () => {
   // }, [dispatch]);
   useEffect(() => {
     dispatch(fetchNotices({ category }));
-  }, [category]);
+  }, [dispatch, category]);
 
   return (
     <>
@@ -59,6 +60,7 @@ const NoticesPage = () => {
         {/* {isLoading && <Loader />} */}
         {error && <p>{error}</p>}
         <div>{isLoading && 'Request in progress...'}</div>
+        {isLoading && <Spinner />}
         <div>{!error && !isLoading && 'Data recived...'}</div>
         {!error && !isLoading && <NoticesCategoriesListSecond />}
         {/* <NoticesCategoriesListSecond /> */}
