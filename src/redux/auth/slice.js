@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { toast } from 'react-hot-toast';
 import { register, logIn, logOut, refreshUser } from './operations';
-
 const initialState = {
   user: {
     _id: '',
@@ -44,6 +43,4 @@ const authSlice = createSlice({
         state.user = action.payload;
         state.isLoggedIn = true;
       }),
-});
-
 export const authReducer = authSlice.reducer;

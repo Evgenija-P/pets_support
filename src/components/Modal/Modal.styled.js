@@ -35,7 +35,7 @@ export const CloseButton = styled.div`
     height: 44px;
   }
 
-  ${media.tablet} {
+  ${media.desktop} {
     top: 24px;
     right: 24px;
   }

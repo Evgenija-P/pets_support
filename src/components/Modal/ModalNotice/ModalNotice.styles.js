@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
 import { media, colors, fontWeights } from '../../../styles/stylesLayout';
 
-export const ModalWrapperGeneral = styled.div`
+export const ModalWrapperNotice = styled.div`
   overflow: auto;
   width: 280px;
   padding: 40px 20px;
-  min-height: 530px;
+  min-height: 813px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -14,13 +14,14 @@ export const ModalWrapperGeneral = styled.div`
   background: ${colors.white};
   z-index: 1000;
 
-  ${media.tablet} {
+  ${media.tabletAndDesktop} {
     width: 608px;
     padding: 40px 80px;
+    min-height: 570px;
   }
 `;
 
-export const ModalTitleGeneral = styled.p`
+export const ModalTitleNotice = styled.p`
   font-size: 24px;
   line-height: 1.37;
   font-weight: ${fontWeights.medium};
@@ -28,8 +29,7 @@ export const ModalTitleGeneral = styled.p`
   color: ${colors.black};
   margin-bottom: 20px;
 
-  ${media.tablet} {
-    margin-bottom: 40px;
+  ${media.tabletAndDesktop} {
     font-size: 36px;
     font-weight: 600;
   }

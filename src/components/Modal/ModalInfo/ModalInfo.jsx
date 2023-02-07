@@ -1,18 +1,17 @@
 import React from 'react';
 import { ReactComponent as IconClose } from '../../../img/icons/close_menu.svg';
-import { ModalWrapperGeneral, ModalTitleGeneral } from './ModalGeneral.styles';
+import { ModalWrapperInfo } from './ModalInfo.styled';
 import { CloseButton } from '../Modal.styled';
 
-const ModalGeneral = ({ children, onClose, title }) => {
+const ModalInfo = ({ children, onClose }) => {
   return (
-    <ModalWrapperGeneral>
+    <ModalWrapperInfo>
       <CloseButton type="button" onClick={onClose}>
         <IconClose />
       </CloseButton>
-      {title ? <ModalTitleGeneral>{title}</ModalTitleGeneral> : null}
       <div>{children}</div>
-    </ModalWrapperGeneral>
+    </ModalWrapperInfo>
   );
 };
 
-export default ModalGeneral;
+export default ModalInfo;

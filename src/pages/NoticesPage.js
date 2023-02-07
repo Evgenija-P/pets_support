@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet';
 
 // import { useEffect, useState } from 'react';
-// import getNoticesByCategory from '../servises/fetchNotices/fetchNoticesByCategory';
+// import { useLocation } from 'react-router-dom';
 
 import SectionContainer from '../components/SectionContainer';
 import NoticesCategoriesNav from '../components/NoticesElements/NoticesCategoriesNav/NoticesCategoriesNav';
@@ -11,18 +11,20 @@ import NoticesSearch from '../components/NoticesElements/NoticesSearch/NoticesSe
 
 const NoticesPage = () => {
   // const [notices, setNotices] = useState([]);
+  // const { pathname: category } = useLocation();
 
   // useEffect(() => {
+  //   console.log(category);
+
   //   const fetchNotices = async () => {
-  //     const { message } = await getNoticesByCategory('for-free');
-  //     setNotices(message);
+  //     const { message: result } = await getNoticesByCategory(category);
+  //     setNotices(result);
   //     try {
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
+  //     } catch (error) {}
   //   };
+
   //   fetchNotices();
-  // }, []);
+  // }, [category]);
 
   return (
     <>
@@ -33,18 +35,7 @@ const NoticesPage = () => {
       <SectionContainer title="Find your favorite pet">
         <NoticesSearch />
 
-        <NoticesCategoriesNav
-          categories={[
-            'Lost / Found',
-            'In good hands',
-            'Sell',
-            'Favorite ads',
-            'My ads',
-          ]}
-        />
-        {/* <AddNoticeButton /> */}
-
-        {/* <NoticesCategoriesList notices={notices} /> */}
+        <NoticesCategoriesNav />
       </SectionContainer>
     </>
   );
