@@ -4,7 +4,7 @@ import SharedLayout from '../SharedLayout';
 import { useDispatch } from 'react-redux';
 import { lazy, useEffect } from 'react';
 import useAuth from '../../hooks/useAuth';
-import { refreshUser }  from '../../redux/auth/operations';
+import { refreshUser } from '../../redux/auth/operations';
 import RestrictedRoute from '../RestrictedRoute';
 import PrivateRoute from '../PrivateRoute';
 
@@ -21,11 +21,11 @@ const UserPage = lazy(() => import('../../pages/UserPage'));
 
 const App = () => {
   const dispatch = useDispatch();
-  
-  const { isRefreshing } = useAuth();
-    useEffect(() => {
-      dispatch(refreshUser());
-    }, [dispatch]);
+
+  const { isRefreshing, isLoggedIn } = useAuth();
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
 
   return isRefreshing ? (
     'Идем на сервер'
@@ -40,10 +40,17 @@ const App = () => {
         <Route
           path="/notices"
           element={
-            <RestrictedRoute
-              component={<NoticesPage />}
-              redirectTo="/notices/sell"
-            />
+            isLoggedIn ? (
+              <PrivateRoute
+                component={<NoticesPage />}
+                // redirectTo="/notices/sell"
+              />
+            ) : (
+              <RestrictedRoute
+                component={<NoticesPage />}
+                // redirectTo="/notices/sell"
+              />
+            )
           }
         >
           <Route
@@ -60,13 +67,22 @@ const App = () => {
           />
           <Route
             path="favorite"
-            element={<RestrictedRoute component={<NoticesCategoriesNav />} />}
+            element={
+              <PrivateRoute
+                redirectTo="/login"
+                component={<NoticesCategoriesNav />}
+              />
+            }
           />
           <Route
             path="own"
-            element={<RestrictedRoute component={<NoticesCategoriesNav />} />}
+            element={
+              <PrivateRoute
+                redirectTo="/login"
+                component={<NoticesCategoriesNav />}
+              />
+            }
           />
-          
         </Route>
 
         <Route

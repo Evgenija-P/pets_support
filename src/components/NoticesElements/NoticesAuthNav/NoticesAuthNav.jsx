@@ -14,16 +14,16 @@ const NoticesAuthNav = () => {
   const [notices, setNotices] = useState([]);
   const { pathname: category } = useLocation();
 
-  useEffect(() => {
-    const fetchNotices = async () => {
-      const { message: result } = await getNoticesByCategory(category);
-      setNotices(result);
-      try {
-      } catch (error) {}
-    };
+  // useEffect(() => {
+  //   const fetchNotices = async () => {
+  //     const { message: result } = await getNoticesByCategory(category);
+  //     setNotices(result);
+  //     try {
+  //     } catch (error) {}
+  //   };
 
-    fetchNotices();
-  }, [category]);
+  //   fetchNotices();
+  // }, [category]);
 
   return (
     <>
