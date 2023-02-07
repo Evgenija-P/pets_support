@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet';
 import React, { useState } from 'react';
 import Modal from '../components/Modal';
+import FriendsList from '../components/Friends/FriendsList/FriendsList';
 // import datas from '../data/sponsors.json';
 
 const OurFriendsPage = () => {
@@ -18,6 +19,7 @@ const OurFriendsPage = () => {
         <title>OurFriendsPage</title>
       </Helmet>
       <button onClick={toggleModal}>Click me!!!</button>
+      <FriendsList />
       {/* <div>
         {datas.map(({ title, address, email }) => (
           <li>{title}</li>
