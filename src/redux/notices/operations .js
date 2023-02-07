@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+// import { useSelector } from 'react-redux';
+// import { selectCategory } from './selectors';
 // import { toast } from 'react-toastify';
 // import {
 //   fetchingInProgress,
@@ -7,11 +9,13 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 //   fetchingError,
 // } from './contactsSlice';
 // axios.defaults.baseURL = 'https://6369457128cd16bba719a127.mockapi.io/api/v1';
-export const fetchContacts = createAsyncThunk(
-  'contacts/fetchAll',
-  async (_, thunkAPI) => {
+
+export const fetchNotices = createAsyncThunk(
+  'notices/fetchAll',
+  async ({ category = '/notices' }, thunkAPI) => {
     try {
-      const response = await axios.get('/notices');
+      console.log('category', category);
+      const response = await axios.get(category);
       return response.data.message;
     } catch (e) {
       // При ошибке запроса возвращаем промис
@@ -20,8 +24,8 @@ export const fetchContacts = createAsyncThunk(
     }
   }
 );
-export const addContact = createAsyncThunk(
-  'contacts/addContact',
+export const addNotices = createAsyncThunk(
+  'notices/addNotices',
   async ({ name, number }, thunkAPI) => {
     try {
       const response = await axios.post('/notices', { name, number });
@@ -43,11 +47,11 @@ export const addContact = createAsyncThunk(
     }
   }
 );
-export const deleteContact = createAsyncThunk(
-  'contacts/deleteContact',
-  async (contactId, thunkAPI) => {
+export const deleteNotices = createAsyncThunk(
+  'notices/deleteNotices',
+  async (noticeId, thunkAPI) => {
     try {
-      const response = await axios.delete(`/contacts/${contactId}`);
+      const response = await axios.delete(`/notices/${noticeId}`);
       // toast.error(
       //   ` Contact ${response.data.name} succesfuly deleted from  phonebook .`,
       //   {

@@ -8,12 +8,12 @@ import NoticesCategoriesNav from '../components/NoticesElements/NoticesCategorie
 import NoticesSearch from '../components/NoticesElements/NoticesSearch/NoticesSearch';
 // import AddNoticeButton from '../components/NoticesElements/AddNoticeButton/AddNoticeButton';
 import NoticesCategoriesListSecond from '../components/NoticesElements/NoticesCategoriesListSecond';
-import { fetchContacts } from '../redux/contacts/operations ';
-import { selectContactsObj } from '../redux/contacts/selectors';
+import { fetchNotices } from '../redux/notices/operations ';
+import { selectNoticesObj } from '../redux/notices/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { setCategory } from '../redux/contacts/contactsSlice';
+import { setCategory } from '../redux/notices/noticesSlice';
 const NoticesPage = () => {
   // const [notices, setNotices] = useState([]);
   // const { pathname: category } = useLocation();
@@ -34,17 +34,17 @@ const NoticesPage = () => {
   const dispatch = useDispatch();
 
   // Получаем части состояния
-  const { contactList, isLoading, error } = useSelector(selectContactsObj);
+  const { notiesList, isLoading, error } = useSelector(selectNoticesObj);
   // Вызываем операцию
   const { pathname: category } = useLocation();
   // const [state, setstate] = useState(initialState);
 
+  // useEffect(() => {
+  //   dispatch(fetchContacts());
+  // }, [dispatch]);
   useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
-  useEffect(() => {
-    dispatch(setCategory(category));
-  }, [category, dispatch]);
+    dispatch(fetchNotices({ category }));
+  }, [category]);
 
   return (
     <>
@@ -59,7 +59,7 @@ const NoticesPage = () => {
         {/* {isLoading && <Loader />} */}
         {error && <p>{error}</p>}
         <div>{isLoading && 'Request in progress...'}</div>
-        <div>{'Data recived...'}</div>
+        <div>{!error && !isLoading && 'Data recived...'}</div>
         {!error && !isLoading && <NoticesCategoriesListSecond />}
         {/* <NoticesCategoriesListSecond /> */}
       </SectionContainer>

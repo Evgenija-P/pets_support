@@ -1,28 +1,28 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { fetchContacts, addContact, deleteContact } from './operations ';
+import { fetchNotices, addNotices, deleteNotices } from './operations ';
 // import { nanoid } from 'nanoid';
 // import { persistReducer } from 'redux-persist';
 // import storage from 'redux-persist/lib/storage';
-const contactsInitialState = {
-  contactList: [],
+const noticesInitialState = {
+  noticesList: [],
   isLoading: false,
   error: null,
-  category: null,
+  category: '/notices',
 };
 
-const extraActions = [fetchContacts, addContact, deleteContact];
+const extraActions = [fetchNotices, addNotices, deleteNotices];
 const getActions = type => extraActions.map(extraAction => extraAction[type]);
-const handleFetchContactsSuccses = (state, action) => {
-  state.contactList = action.payload;
+const handleFetchNoticesSuccses = (state, action) => {
+  state.noticesList = action.payload;
 };
-const handleAddContactSuccses = (state, action) => {
-  state.contactList.push(action.payload);
+const handleAddNoticesSuccses = (state, action) => {
+  state.noticesList.push(action.payload);
 };
-const handleDeleteContactSuccses = (state, action) => {
-  const index = state.contactList.findIndex(
-    contact => contact.id === action.payload.id
+const handleDeleteNoticesSuccses = (state, action) => {
+  const index = state.noticesList.findIndex(
+    notices => notices.id === action.payload.id
   );
-  state.contactList.splice(index, 1);
+  state.noticesList.splice(index, 1);
 };
 // const handlePending = state => {
 //   state.isLoading = true;
@@ -31,9 +31,9 @@ const handleDeleteContactSuccses = (state, action) => {
 //   state.isLoading = false;
 //   state.error = action.payload;
 // };
-export const contactsSlice = createSlice({
-  name: 'contacts',
-  initialState: contactsInitialState,
+export const noticesSlice = createSlice({
+  name: 'notices',
+  initialState: noticesInitialState,
   reducers: {
     //   // fetchingInProgress(state) {
     //   //   state.isLoading = true;
@@ -41,7 +41,7 @@ export const contactsSlice = createSlice({
     //   // fetchingSuccess(state, action) {
     //   //   state.isLoading = false;
     //   //   state.error = null;
-    //   //   state.contactList = action.payload;
+    //   //   state.noticesList = action.payload;
     //   // },
     //   // fetchingError(state, action) {
     //   //   state.isLoading = false;
@@ -52,37 +52,37 @@ export const contactsSlice = createSlice({
     },
   },
   // extraReducers: {
-  //   [fetchContacts.pending]: handlePending,
-  //   [fetchContacts.fulfilled](state, action) {
+  //   [fetchnoticess.pending]: handlePending,
+  //   [fetchnoticess.fulfilled](state, action) {
   //     state.isLoading = false;
   //     state.error = null;
-  //     state.contactList = action.payload;
+  //     state.noticesList = action.payload;
   //   },
-  //   [fetchContacts.rejected]: handleRejected,
-  //   [addContact.pending]: handlePending,
-  //   [addContact.fulfilled](state, action) {
+  //   [fetchnoticess.rejected]: handleRejected,
+  //   [addnotices.pending]: handlePending,
+  //   [addnotices.fulfilled](state, action) {
   //     state.isLoading = false;
   //     state.error = null;
-  //     state.contactList.push(action.payload);
+  //     state.noticesList.push(action.payload);
   //   },
-  //   [addContact.rejected]: handleRejected,
-  //   [deleteContact.pending]: handlePending,
-  //   [deleteContact.fulfilled](state, action) {
+  //   [addnotices.rejected]: handleRejected,
+  //   [deletenotices.pending]: handlePending,
+  //   [deletenotices.fulfilled](state, action) {
   //     state.isLoading = false;
   //     state.error = null;
-  //     const index = state.contactList.findIndex(
-  //       contact => contact.id === action.payload.id
+  //     const index = state.noticesList.findIndex(
+  //       notices => notices.id === action.payload.id
   //     );
-  //     state.contactList.splice(index, 1);
+  //     state.noticesList.splice(index, 1);
   //   },
-  //   [deleteContact.rejected]: handleRejected,
+  //   [deletenotices.rejected]: handleRejected,
   // },
   ///////////////////////////////////////////////
   extraReducers: builder => {
     builder
-      .addCase(fetchContacts.fulfilled, handleFetchContactsSuccses)
-      .addCase(addContact.fulfilled, handleAddContactSuccses)
-      .addCase(deleteContact.fulfilled, handleDeleteContactSuccses)
+      .addCase(fetchNotices.fulfilled, handleFetchNoticesSuccses)
+      .addCase(addNotices.fulfilled, handleAddNoticesSuccses)
+      .addCase(deleteNotices.fulfilled, handleDeleteNoticesSuccses)
       .addMatcher(isAnyOf(...getActions('pending')), state => {
         state.isLoading = true;
       })
@@ -96,5 +96,5 @@ export const contactsSlice = createSlice({
       });
   },
 });
-export const { setCategory } = contactsSlice.actions;
-export const contactsReducer = contactsSlice.reducer;
+export const { setCategory } = noticesSlice.actions;
+export const noticesReducer = noticesSlice.reducer;

@@ -16,13 +16,13 @@ import notFoundNoticesImage from '../../../img/notFoundNoticesImage.jpg';
 import { useSelector, useDispatch } from 'react-redux';
 
 import {
-  selectContacts,
+  selectNotices,
   // selectFilter,
   // selectVisibleContacts,
-} from '../../../redux/contacts/selectors';
+} from '../../../redux/notices/selectors';
 
 const NoticesCategoriesListSecond = () => {
-  const notices = useSelector(selectContacts);
+  const notices = useSelector(selectNotices);
   return (
     <NoticesList>
       {notices.map(

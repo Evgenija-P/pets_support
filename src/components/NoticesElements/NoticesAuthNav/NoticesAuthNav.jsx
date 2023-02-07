@@ -11,8 +11,8 @@ import {
 } from '../NoticesCategoriesNav/NoticesCategoriesNav.styled';
 
 const NoticesAuthNav = () => {
-  const [notices, setNotices] = useState([]);
-  const { pathname: category } = useLocation();
+  // const [notices, setNotices] = useState([]);
+  // const { pathname: category } = useLocation();
 
   // useEffect(() => {
   //   const fetchNotices = async () => {
@@ -52,8 +52,8 @@ const NoticesAuthNav = () => {
           </NoticesCategoriesLink>
         </li>
       </NoticesCategoriesListLink>
-
-      <NoticesCategoriesList notices={notices} />
+      {/* 
+      <NoticesCategoriesList notices={notices} /> */}
     </>
   );
 };

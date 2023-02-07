@@ -1,11 +1,11 @@
 // import { createSelector } from '@reduxjs/toolkit';
 // import { selectFilter } from '../filters/selectors';
-export const selectContactsObj = state => state.contacts;
-export const selectContacts = state => state.contacts.contactList;
+export const selectNoticesObj = state => state.notices;
+export const selectNotices = state => state.notices.noticesList;
 
-export const selectIsLoading = state => state.contacts.isLoading;
-export const selectError = state => state.contacts.error;
-
+export const selectIsLoading = state => state.notices.isLoading;
+export const selectError = state => state.notices.error;
+export const selectCategory = state => state.notices.category;
 // export const selectVisibleContacts = createSelector(
 //   [selectContacts, selectFilter],
 //   (contactList, filterContact) => {
