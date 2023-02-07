@@ -4,6 +4,8 @@ import useMatchMedia from '../../hooks/use-match-media';
 import Logo from '../Logo';
 import AppBar from '../AppBar';
 
+import NoticesCategoriesNav from '../NoticesElements/NoticesCategoriesNav';
+
 import { useState } from 'react';
 import {
   Button,
@@ -20,132 +22,159 @@ const Burger = {
 
 const Navigation = () => {
   const { isTablet, isMobile } = useMatchMedia();
-	const [nav, setNav] = useState(false);
-	
-	if (isTablet) {
-		return (
-			<Nav>
-				<Button>
-					<NavLinkMenuBurger onClick={() => setNav(!nav)}>
-						<GiHamburgerMenu size={30} color={'#000'} />
-					</NavLinkMenuBurger>
-				</Button>
-				{nav ? (
-					<NavMobile style={Burger}>
-						<HeaderBurger>
-							<Logo />
-							<GrFormClose
-								size={40}
-								color={'#000'}
-								onClick={() => setNav(!nav)}
-							/>
-						</HeaderBurger>
-						<NavLinkMenu to="/news" onClick={() => setNav(!nav)}>
-							News
-						</NavLinkMenu>
-						<NavLinkMenu to="/notices" onClick={() => setNav(!nav)}>
-							Find pet
-						</NavLinkMenu>
-						<NavLinkMenu to="/friends" onClick={() => setNav(!nav)}>
-							Our friends
-						</NavLinkMenu>
-					</NavMobile>
-				) : (
-					<NavMobile>
-						<NavLinkMenu to="/news">News</NavLinkMenu>
-						<NavLinkMenu to="/notices">Find pet</NavLinkMenu>
-						<NavLinkMenu to="/friends">Our friends</NavLinkMenu>
-					</NavMobile>
-				)}
-			</Nav>
-		);
-	} else if (isMobile) {
-		return (
-			<Nav>
-				<Button>
-					<NavLinkMenuBurger onClick={() => setNav(!nav)}>
-						<GiHamburgerMenu size={30} color={'#000'} />
-					</NavLinkMenuBurger>
-				</Button>
-				{nav ? (
-					<NavMobile style={Burger}>
-						<HeaderBurger>
-							<Logo />
-							<GrFormClose
-								size={40}
-								color={'#000'}
-								onClick={() => setNav(!nav)}
-							/>
-						</HeaderBurger>
-						<AppBar />
-						<NavLinkMenu to="/news" onClick={() => setNav(!nav)}>
-							News
-						</NavLinkMenu>
-						<NavLinkMenu to="/notices" onClick={() => setNav(!nav)}>
-							Find pet
-						</NavLinkMenu>
-						<NavLinkMenu to="/friends" onClick={() => setNav(!nav)}>
-							Our friends
-						</NavLinkMenu>
-					</NavMobile>
-				) : (
-					<NavMobile>
-						<NavLinkMenu to="/news">News</NavLinkMenu>
-						<NavLinkMenu to="/notices">Find pet</NavLinkMenu>
-						<NavLinkMenu to="/friends">Our friends</NavLinkMenu>
-					</NavMobile>
-				)}
-			</Nav>
-		)
-	} else {
+  const [nav, setNav] = useState(false);
 
-		return (
-			<>
-				{isTablet || isMobile ? (
-					<Nav>
-						<Button>
-							<NavLinkMenuBurger onClick={() => setNav(!nav)}>
-								<GiHamburgerMenu size={30} color={'#000'} />
-							</NavLinkMenuBurger>
-						</Button>
-						{nav ? (
-							<NavMobile style={Burger}>
-								<HeaderBurger>
-									<Logo />
-									<GrFormClose
-										size={40}
-										color={'#000'}
-										onClick={() => setNav(!nav)}
-									/>
-								</HeaderBurger>
-								<NavLinkMenu to="/news" onClick={() => setNav(!nav)}>
-									News
-								</NavLinkMenu>
-								<NavLinkMenu to="/notices" onClick={() => setNav(!nav)}>
-									Find pet
-								</NavLinkMenu>
-								<NavLinkMenu to="/friends" onClick={() => setNav(!nav)}>
-									Our friends
-								</NavLinkMenu>
-							</NavMobile>
-						) : (
-							<NavMobile>
-								<NavLinkMenu to="/news">News</NavLinkMenu>
-								<NavLinkMenu to="/notices">Find pet</NavLinkMenu>
-								<NavLinkMenu to="/friends">Our friends</NavLinkMenu>
-							</NavMobile>
-						)}
-					</Nav>
-				) : (
-					<Nav>
-						<NavLinkMenu to="/news">News</NavLinkMenu>
-						<NavLinkMenu to="/notices">Find pet</NavLinkMenu>
-						<NavLinkMenu to="/friends">Our friends</NavLinkMenu>
-					</Nav>
-				)}
-			</>
-		);
-	}
+  if (isTablet) {
+    return (
+      <Nav>
+        <Button>
+          <NavLinkMenuBurger onClick={() => setNav(!nav)}>
+            <GiHamburgerMenu size={30} color={'#000'} />
+          </NavLinkMenuBurger>
+        </Button>
+        {nav ? (
+          <NavMobile style={Burger}>
+            <HeaderBurger>
+              <Logo />
+              <GrFormClose
+                size={40}
+                color={'#000'}
+                onClick={() => setNav(!nav)}
+              />
+            </HeaderBurger>
+            <NavLinkMenu to="/news" onClick={() => setNav(!nav)}>
+              News
+            </NavLinkMenu>
+            <NavLinkMenu to="/notices/sell" onClick={() => setNav(!nav)}>
+              Find pet
+            </NavLinkMenu>
+            <NavLinkMenu to="/friends" onClick={() => setNav(!nav)}>
+              Our friends
+            </NavLinkMenu>
+          </NavMobile>
+        ) : (
+          <NavMobile>
+            <NavLinkMenu to="/news">News</NavLinkMenu>
+            <NavLinkMenu
+              to="/notices/sell"
+              component={<NoticesCategoriesNav />}
+            >
+              Find pet
+            </NavLinkMenu>
+            <NavLinkMenu to="/friends">Our friends</NavLinkMenu>
+          </NavMobile>
+        )}
+      </Nav>
+    );
+  } else if (isMobile) {
+    return (
+      <Nav>
+        <Button>
+          <NavLinkMenuBurger onClick={() => setNav(!nav)}>
+            <GiHamburgerMenu size={30} color={'#000'} />
+          </NavLinkMenuBurger>
+        </Button>
+        {nav ? (
+          <NavMobile style={Burger}>
+            <HeaderBurger>
+              <Logo />
+              <GrFormClose
+                size={40}
+                color={'#000'}
+                onClick={() => setNav(!nav)}
+              />
+            </HeaderBurger>
+            <AppBar />
+            <NavLinkMenu to="/news" onClick={() => setNav(!nav)}>
+              News
+            </NavLinkMenu>
+            <NavLinkMenu
+              to="/notices/sell"
+              component={<NoticesCategoriesNav />}
+              onClick={() => setNav(!nav)}
+            >
+              Find pet
+            </NavLinkMenu>
+            <NavLinkMenu to="/friends" onClick={() => setNav(!nav)}>
+              Our friends
+            </NavLinkMenu>
+          </NavMobile>
+        ) : (
+          <NavMobile>
+            <NavLinkMenu to="/news">News</NavLinkMenu>
+            <NavLinkMenu
+              to="/notices/sell"
+              component={<NoticesCategoriesNav />}
+            >
+              Find pet
+            </NavLinkMenu>
+            <NavLinkMenu to="/friends">Our friends</NavLinkMenu>
+          </NavMobile>
+        )}
+      </Nav>
+    );
+  } else {
+    return (
+      <>
+        {isTablet || isMobile ? (
+          <Nav>
+            <Button>
+              <NavLinkMenuBurger onClick={() => setNav(!nav)}>
+                <GiHamburgerMenu size={30} color={'#000'} />
+              </NavLinkMenuBurger>
+            </Button>
+            {nav ? (
+              <NavMobile style={Burger}>
+                <HeaderBurger>
+                  <Logo />
+                  <GrFormClose
+                    size={40}
+                    color={'#000'}
+                    onClick={() => setNav(!nav)}
+                  />
+                </HeaderBurger>
+                <NavLinkMenu to="/news" onClick={() => setNav(!nav)}>
+                  News
+                </NavLinkMenu>
+                <NavLinkMenu
+                  to="/notices/sell"
+                  component={<NoticesCategoriesNav />}
+                  onClick={() => setNav(!nav)}
+                >
+                  Find pet
+                </NavLinkMenu>
+                <NavLinkMenu to="/friends" onClick={() => setNav(!nav)}>
+                  Our friends
+                </NavLinkMenu>
+              </NavMobile>
+            ) : (
+              <NavMobile>
+                <NavLinkMenu to="/news">News</NavLinkMenu>
+                <NavLinkMenu
+                  to="/notices/sell"
+                  component={<NoticesCategoriesNav />}
+                >
+                  Find pet
+                </NavLinkMenu>
+                <NavLinkMenu to="/friends">Our friends</NavLinkMenu>
+              </NavMobile>
+            )}
+          </Nav>
+        ) : (
+          <Nav>
+            <NavLinkMenu to="/news">News</NavLinkMenu>
+            <NavLinkMenu
+              to="/notices/sell"
+              component={<NoticesCategoriesNav />}
+            >
+              Find pet
+            </NavLinkMenu>
+            <NavLinkMenu to="/friends">Our friends</NavLinkMenu>
+          </Nav>
+        )}
+      </>
+    );
+  }
 };
 
 export default Navigation;
