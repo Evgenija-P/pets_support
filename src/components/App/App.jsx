@@ -39,12 +39,7 @@ const App = () => {
 
         <Route
           path="/notices"
-          element={
-            <RestrictedRoute
-              redirectTo="/notices/sell"
-              component={<NoticesPage />}
-            />
-          }
+          element={<RestrictedRoute component={<NoticesPage />} />}
         >
           <Route
             path=":categoryName"
