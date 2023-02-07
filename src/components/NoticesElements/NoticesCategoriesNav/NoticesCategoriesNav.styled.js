@@ -3,6 +3,19 @@ import { NavLink } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { media, colors, fontWeights } from '../../../styles/stylesLayout';
 
+export const NoticesCategoriesContainer = styled.ul`
+  margin-top: 30px;
+
+  ${media.tabletAndDesktop} {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: 60px;
+  }
+`;
+
 export const NoticesCategoriesListLink = styled.ul`
   display: flex;
   flex-wrap: wrap;
@@ -32,7 +45,8 @@ export const NoticesCategoriesLink = styled(NavLink)`
   }
 
   &:hover,
-  &:focus {
+  &:focus,
+  &.active {
     background-color: ${colors.accent};
     color: ${colors.white};
   }

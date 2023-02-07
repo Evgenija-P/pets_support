@@ -4,7 +4,7 @@ import SharedLayout from '../SharedLayout';
 import { useDispatch } from 'react-redux';
 import { lazy, useEffect } from 'react';
 import useAuth from '../../hooks/useAuth';
-import { refreshUser }  from '../../redux/auth/operations';
+import { refreshUser } from '../../redux/auth/operations';
 import RestrictedRoute from '../RestrictedRoute';
 import PrivateRoute from '../PrivateRoute';
 
@@ -21,11 +21,11 @@ const UserPage = lazy(() => import('../../pages/UserPage'));
 
 const App = () => {
   const dispatch = useDispatch();
-  
+
   const { isRefreshing } = useAuth();
-    useEffect(() => {
-      dispatch(refreshUser());
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
 
   return isRefreshing ? (
     'Идем на сервер'
@@ -41,29 +41,13 @@ const App = () => {
           path="/notices"
           element={
             <RestrictedRoute
-              component={<NoticesPage />}
               redirectTo="/notices/sell"
+              component={<NoticesPage />}
             />
           }
         >
           <Route
-            path="sell"
-            element={<RestrictedRoute component={<NoticesCategoriesNav />} />}
-          />
-          <Route
-            path="lost-found"
-            element={<RestrictedRoute component={<NoticesCategoriesNav />} />}
-          />
-          <Route
-            path="for-free"
-            element={<RestrictedRoute component={<NoticesCategoriesNav />} />}
-          />
-          <Route
-            path="favorite"
-            element={<RestrictedRoute component={<NoticesCategoriesNav />} />}
-          />
-          <Route
-            path="own"
+            path=":categoryName"
             element={<RestrictedRoute component={<NoticesCategoriesNav />} />}
           />
         </Route>

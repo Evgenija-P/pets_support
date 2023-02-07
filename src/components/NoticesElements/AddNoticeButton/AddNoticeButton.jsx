@@ -1,9 +1,14 @@
 import { Button } from './AddNoticeButton.styled';
 
+import addNoticeIcon from '../../../img/icons/addNoticeIcon.svg';
+
 const AddNoticeButton = () => {
   return (
     <Button>
-      Add pet <span></span>
+      <span>
+        <img src={addNoticeIcon} alt={addNoticeIcon} />
+      </span>
+      Add pet
     </Button>
   );
 };
