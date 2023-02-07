@@ -66,14 +66,7 @@ const App = () => {
             path="own"
             element={<RestrictedRoute component={<NoticesCategoriesNav />} />}
           />
-          <Route
-            path="favorite"
-            element={<RestrictedRoute component={<NoticesCategoriesList />} />}
-          />
-          <Route
-            path="own"
-            element={<RestrictedRoute component={<NoticesCategoriesList />} />}
-          />
+          
         </Route>
 
         <Route

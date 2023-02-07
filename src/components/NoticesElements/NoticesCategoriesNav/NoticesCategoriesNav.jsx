@@ -5,7 +5,7 @@ import useAuth from '../../../hooks/useAuth';
 const NoticesCategoriesNav = () => {
   const { isLoggedIn } = useAuth();
 
-  return <div>{isLoggedIn ? <NoticesAuthNav /> : <NoticesUserNav />}</div>;
+  return <div>{isLoggedIn ? <NoticesUserNav /> : <NoticesAuthNav />}</div>;
 };
 
 export default NoticesCategoriesNav;
