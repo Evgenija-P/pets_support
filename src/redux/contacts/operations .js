@@ -11,8 +11,8 @@ export const fetchContacts = createAsyncThunk(
   'contacts/fetchAll',
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get('/contacts');
-      return response.data;
+      const response = await axios.get('/notices');
+      return response.data.message;
     } catch (e) {
       // При ошибке запроса возвращаем промис
       // который будет отклонен с текстом ошибки
@@ -24,7 +24,7 @@ export const addContact = createAsyncThunk(
   'contacts/addContact',
   async ({ name, number }, thunkAPI) => {
     try {
-      const response = await axios.post('/contacts', { name, number });
+      const response = await axios.post('/notices', { name, number });
       // toast.success(
       //   `🦄 Contact ${response.data.name} succesfuly addet to phonebook .`,
       //   {

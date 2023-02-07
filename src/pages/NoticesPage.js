@@ -7,7 +7,7 @@ import SectionContainer from '../components/SectionContainer';
 import NoticesCategoriesNav from '../components/NoticesElements/NoticesCategoriesNav/NoticesCategoriesNav';
 import NoticesSearch from '../components/NoticesElements/NoticesSearch/NoticesSearch';
 // import AddNoticeButton from '../components/NoticesElements/AddNoticeButton/AddNoticeButton';
-// import NoticesCategoriesList from '../components/NoticesElements/NoticesCategoriesList/NoticesCategoriesList';
+import NoticesCategoriesListSecond from '../components/NoticesElements/NoticesCategoriesListSecond';
 import { fetchContacts } from '../redux/contacts/operations ';
 import { selectContactsObj } from '../redux/contacts/selectors';
 import { useDispatch, useSelector } from 'react-redux';
@@ -51,6 +51,9 @@ const NoticesPage = () => {
         {/* {isLoading && <Loader />} */}
         {error && <p>{error}</p>}
         <div>{isLoading && 'Request in progress...'}</div>
+        <div>{'Data recived...'}</div>
+        {!error && !isLoading && <NoticesCategoriesListSecond />}
+        {/* <NoticesCategoriesListSecond /> */}
       </SectionContainer>
     </>
   );
