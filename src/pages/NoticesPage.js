@@ -8,7 +8,10 @@ import NoticesCategoriesNav from '../components/NoticesElements/NoticesCategorie
 import NoticesSearch from '../components/NoticesElements/NoticesSearch/NoticesSearch';
 // import AddNoticeButton from '../components/NoticesElements/AddNoticeButton/AddNoticeButton';
 import NoticesCategoriesListSecond from '../components/NoticesElements/NoticesCategoriesListSecond';
-import { fetchNotices } from '../redux/notices/operations ';
+import {
+  fetchNotices,
+  fetchFavoriteNotices,
+} from '../redux/notices/operations ';
 import { selectNoticesObj } from '../redux/notices/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
@@ -41,9 +44,11 @@ const NoticesPage = () => {
   // const [state, setstate] = useState(initialState);
 
   // useEffect(() => {
-  //   dispatch(fetchContacts());
+  //   dispatch(fetchFavoriteNotices());
   // }, [dispatch]);
+
   useEffect(() => {
+    dispatch(fetchFavoriteNotices({ category: '/notices/favorite' }));
     dispatch(fetchNotices({ category }));
   }, [dispatch, category]);
 

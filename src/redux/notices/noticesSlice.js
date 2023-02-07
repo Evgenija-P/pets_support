@@ -5,12 +5,16 @@ import {
   deleteNotices,
   addToFavoriteNotices,
   removeFromFavoriteNotices,
+  fetchFavoriteNotices,
 } from './operations ';
 // import { nanoid } from 'nanoid';
 // import { persistReducer } from 'redux-persist';
 // import storage from 'redux-persist/lib/storage';
 const noticesInitialState = {
   noticesList: [],
+  favoriteNoticesList: [],
+  page: 1,
+  totalHits: 0,
   isLoading: false,
   error: null,
   category: '/notices',
@@ -22,6 +26,7 @@ const extraActions = [
   deleteNotices,
   addToFavoriteNotices,
   removeFromFavoriteNotices,
+  fetchFavoriteNotices,
 ];
 const getActions = type => extraActions.map(extraAction => extraAction[type]);
 const handleFetchNoticesSuccses = (state, action) => {
@@ -36,9 +41,19 @@ const handleDeleteNoticesSuccses = (state, action) => {
   );
   state.noticesList.splice(index, 1);
 };
-const handleAddToFavoriteNoticesSuccses = (state, action) => {};
+const handleAddToFavoriteNoticesSuccses = (state, action) => {
+  state.favoriteNoticesList.push(action.payload);
+};
 
-const handleRemoveFromFavoriteNoticesSuccses = (state, action) => {};
+const handleRemoveFromFavoriteNoticesSuccses = (state, action) => {
+  const index = state.favoriteNoticesList.findIndex(
+    notices => notices._id === action.payload._id
+  );
+  state.favoriteNoticesList.splice(index, 1);
+};
+const handleFetchFavoriteNoticesSuccses = (state, action) => {
+  state.favoriteNoticesList = action.payload;
+};
 
 export const noticesSlice = createSlice({
   name: 'notices',
@@ -62,6 +77,10 @@ export const noticesSlice = createSlice({
       .addCase(
         removeFromFavoriteNotices.fulfilled,
         handleRemoveFromFavoriteNoticesSuccses
+      )
+      .addCase(
+        fetchFavoriteNotices.fulfilled,
+        handleFetchFavoriteNoticesSuccses
       )
       .addMatcher(isAnyOf(...getActions('pending')), state => {
         state.isLoading = true;
