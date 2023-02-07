@@ -4,20 +4,6 @@ import {
 } from '../NoticesCategoriesNav/NoticesCategoriesNav.styled';
 
 const NoticesAuthNav = () => {
-  const [notices, setNotices] = useState([]);
-  const { pathname: category } = useLocation();
-
-  useEffect(() => {
-    const fetchNotices = async () => {
-      const { message: result } = await getNoticesByCategory(category);
-      setNotices(result);
-      try {
-      } catch (error) {}
-    };
-
-    fetchNotices();
-  }, [category]);
-
   return (
     <>
       <NoticesCategoriesListLink>
