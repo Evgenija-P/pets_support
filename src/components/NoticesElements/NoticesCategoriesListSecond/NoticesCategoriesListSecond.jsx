@@ -10,28 +10,28 @@ import {
   NoticesTag,
   NoticesButton,
 } from './NoticesCategoriesListSecond.styled';
-import GalleryPagination from '../../GalleryPagination';
+// import GalleryPagination from '../../GalleryPagination';
 import notFoundNoticesImage from '../../../img/notFoundNoticesImage.jpg';
-import { PER_PAGE } from '../../../redux/notices/operations ';
+// import { PER_PAGE } from '../../../redux/notices/operations ';
 // import { useSelector, useDispatch } from 'react-redux';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import useAuth from '../../../hooks/useAuth.js';
 import {
   selectNotices,
   selectFavoriteNotices,
-  selectNoticesObj,
+  // selectNoticesObj,
 } from '../../../redux/notices/selectors';
 // import { setPage } from '../../../redux/notices/noticesSlice';
 import { selectUser } from '../../../redux/auth/selectors.js';
-import { fetchNotices } from '../../../redux/notices/operations ';
+// import { fetchNotices } from '../../../redux/notices/operations ';
 
 const NoticesCategoriesListSecond = () => {
   const noticesRaw = useSelector(selectNotices);
   const favorite = useSelector(selectFavoriteNotices);
   const user = useSelector(selectUser);
-  const { category } = useSelector(selectNoticesObj);
-  const dispatch = useDispatch();
-  const { page: currentPage, totalHits } = useSelector(selectNoticesObj);
+  // const { category } = useSelector(selectNoticesObj);
+  // const dispatch = useDispatch();
+  // const { page: currentPage, totalHits } = useSelector(selectNoticesObj);
 
   const userFavoriteNotices = () => {
     const noticesWithFavorite = noticesRaw.map(notice => {
@@ -62,13 +62,13 @@ const NoticesCategoriesListSecond = () => {
   const notices = isOwnerNotices();
   const isLogined = useAuth();
 
-  const OnPagination = page => {
-    // dispatch(setPage(page));
-    console.log('current page', currentPage);
-    dispatch(fetchNotices({ category, page }));
-  };
+  // const OnPagination = page => {
+  //   // dispatch(setPage(page));
+  //   console.log('current page', currentPage);
+  //   dispatch(fetchNotices({ category, page }));
+  // };
 
-  const countPages = Math.ceil(totalHits / PER_PAGE);
+  // const countPages = Math.ceil(totalHits / PER_PAGE);
   return (
     <NoticesList>
       {notices.map(
@@ -100,7 +100,9 @@ const NoticesCategoriesListSecond = () => {
                 <NoticesTag>Breed: {breed}</NoticesTag>
                 <NoticesTag>Place: {location}</NoticesTag>
                 <NoticesTag>Age: {age}</NoticesTag>
-                <NoticesTag>Price: {price}$</NoticesTag>
+                {categoryName === 'sell' && (
+                  <NoticesTag>Price: {price}$</NoticesTag>
+                )}
                 {favorite && isLogined && <NoticesTag>Favorite </NoticesTag>}
                 {isOwner && isLogined && <NoticesTag>Owner </NoticesTag>}
               </NoticesTags>
@@ -109,16 +111,6 @@ const NoticesCategoriesListSecond = () => {
             </NoticesDescription>
           </NoticesItem>
         )
-      )}
-      {countPages > 1 && (
-        <GalleryPagination
-          onPagination={page => {
-            OnPagination(page);
-            console.log('Pagination presed');
-          }}
-          countPages={countPages}
-          currentPage={Number(currentPage)}
-        />
       )}
     </NoticesList>
   );

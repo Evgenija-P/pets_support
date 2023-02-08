@@ -26,6 +26,12 @@ export const NoticesItem = styled.div`
   box-shadow: 7px 4px 15px 0px ${colors.shadow};
 
   overflow: hidden;
+  object-fit: cover;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover {
+    transform: scale(1.03);
+    cursor: zoom-in;
+  }
 `;
 
 export const NoticesTop = styled.div`
