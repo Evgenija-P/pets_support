@@ -22,6 +22,7 @@ export const FriendsItemWrapper = styled.div`
 
   :hover,
   :focus {
+    transform: scale(1.05);
   }
 `;
 
