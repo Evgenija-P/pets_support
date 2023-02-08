@@ -20,7 +20,7 @@ const FriendsList = () => {
       const res = await fetch(`${BASE_URL}/sponsors`);
       const result = await res.json();
       if (result.data.sponsors) {
-        toast.success('Congratulations!', optionsToast);
+        toast.error('ваш текст', optionsToast);
         setIsLoading(false);
         setFriendsItems(result.data.sponsors);
 
