@@ -1,45 +1,23 @@
-// import {
-//   NoticesCategoriesList,
-//   NoticesCategoriesButton,
-// } from './NoticesCategoriesNav.styled';
+import useAuth from '../../../hooks/useAuth';
 
-// const NoticesCategoriesNav = ({ categories }) => {
-//   return (
-//     <NoticesCategoriesList>
-//       {categories.map(category => (
-//         <li key={category}>
-//           <NoticesCategoriesButton category={category} name={category}>
-//             {category}
-//           </NoticesCategoriesButton>
-//         </li>
-//       ))}
-//     </NoticesCategoriesList>
-//   );
-// };
+import NoticesAuthNav from '../NoticesAuthNav';
+import NoticesUserNav from '../NoticesUserNav';
+import AddNoticeButton from '../AddNoticeButton';
 
-// export default NoticesCategoriesNav;
+import { NoticesCategoriesContainer } from './NoticesCategoriesNav.styled';
 
-import { NavLink } from 'react-router-dom';
+const NoticesCategoriesNav = ({ notices }) => {
+  const { isLoggedIn } = useAuth();
 
-const NoticesCategoriesNav = () => {
   return (
-    <>
-      <div>
-        <NavLink to="/notices/sell">
-          <p>sell</p>
-        </NavLink>
-      </div>
-      <div>
-        <NavLink to="/notices/lost-found">
-          <p>lost/found</p>
-        </NavLink>
-      </div>
-      <div>
-        <NavLink to="/notices/for-free">
-          <p>in good hands</p>
-        </NavLink>
-      </div>
-    </>
+    <NoticesCategoriesContainer>
+      <AddNoticeButton />
+      {isLoggedIn ? (
+        <NoticesAuthNav notices={notices} />
+      ) : (
+        <NoticesUserNav notices={notices} />
+      )}
+    </NoticesCategoriesContainer>
   );
 };
 

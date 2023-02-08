@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
-import { media } from '../../styles/stylesLayout';
+import { colors, media } from '../../styles/stylesLayout';
 
 export const Nav = styled.nav`
   display: flex;
@@ -57,16 +57,19 @@ export const NavLinkMenu = styled(NavLink)`
     line-height: 66px;
     letter-spacing: 0.04em;
     margin-top: 60px;
-	margin-left: 0;
-   
+    margin-left: 0;
   }
 
   ${media.mobile} {
     font-size: 32px;
-    line-height: 44px; 
+    line-height: 44px;
     margin-top: 40px;
     letter-spacing: 0.04em;
-	margin-left: 0;
+    margin-left: 0;
+  }
+
+  &.active {
+    color: ${colors.accent};
   }
 `;
 
