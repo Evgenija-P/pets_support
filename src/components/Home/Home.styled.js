@@ -120,7 +120,7 @@ export const ImgHpFigureL = styled.div`
 `;
 
 export const Cont = styled.div`
-  min-height: 768px;
+  min-height: 100vh;
   position: relative;
   margin-top: 60px;
 
