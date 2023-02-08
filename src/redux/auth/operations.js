@@ -3,6 +3,7 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'http://localhost:3001/api';
 
+
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
@@ -28,12 +29,19 @@ export const logIn = createAsyncThunk(
   'auth/login',
   async (credentials, thunkAPI) => {
     try {
-      //const resl = await axios.post('/users/login', credentials);
       const res = await axios.post('/users/signin', credentials);
       setAuthHeader(res.data.token);
+      console.log(res.data);
       return res.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+    } catch ({ response }) {
+      // console.log(response);
+      const error = {
+        status: response.status,
+        statusText: response.statusText,
+        message: response.data.message,
+      };
+      console.log(error);
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
