@@ -1,13 +1,18 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+export const PER_PAGE = 20;
 
 export const fetchNotices = createAsyncThunk(
   'notices/fetchAll',
-  async ({ category = '/notices' }, thunkAPI) => {
+  async ({ category = '/notices', page = 1 }, thunkAPI) => {
+    const params = {
+      per_page: PER_PAGE,
+      page,
+    };
     try {
       // console.log('categoryaaa', category);
-      const response = await axios.get(category);
-      return response.data.message;
+      const response = await axios.get(category, { params });
+      return response.data;
     } catch (e) {
       // При ошибке запроса возвращаем промис
       // который будет отклонен с текстом ошибки
