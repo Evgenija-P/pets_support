@@ -10,15 +10,17 @@ body {
   font-family: 'Manrope', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* margin-bottom: 100px; */
 
-  box-sizing: border-box;
   background-color: #fdf7f2;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 h1,
@@ -50,4 +52,15 @@ svg {
 
 ul {
   list-style: none;
+}
+
+a {
+  text-decoration: none;
+  font-style: normal;
+  color: inherit;
+  display: block;
+}
+
+button {
+  cursor: pointer;
 }

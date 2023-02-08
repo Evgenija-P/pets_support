@@ -2,20 +2,31 @@ import styled from '@emotion/styled';
 import { media, colors, fontWeights } from '../../../styles/stylesLayout';
 
 export const SearchForm = styled.form`
-  display: flex;
-  justify-content: center;
+  position: relative;
+
+  margin: 0px auto;
+
+  width: 280px;
+  height: 100%;
+
+  ${media.tabletAndDesktop} {
+    width: 608px;
+  }
 `;
 
 export const SearchInput = styled.input`
-  width: 100%;
-  height: 40px;
+  display: inline-block;
 
+  width: 100%;
+  height: 44px;
   padding: 8px 12px;
-  border-radius: 40px;
-  border: 2px solid ${colors.white};
+  border-radius: 44px;
 
   background-color: ${colors.white};
   box-shadow: 7px 4px 15px 0px ${colors.shadow};
+
+  border: none;
+  outline: none;
 
   font-size: 16px;
   line-height: 0.75;
@@ -34,7 +45,6 @@ export const SearchInput = styled.input`
   }
 
   ::placeholder {
-    font-family: 'Manrope';
     font-weight: ${fontWeights.medium};
     font-size: 16px;
     line-height: 0.75;
@@ -44,5 +54,28 @@ export const SearchInput = styled.input`
     ${media.tabletAndDesktop} {
       font-size: 20px;
     }
+  }
+`;
+
+export const SearchFormButton = styled.button`
+  position: absolute;
+  top: 8px;
+  right: 20px;
+
+  width: 32px;
+  height: 32px;
+
+  border-radius: 32px;
+  border: none;
+  outline: none;
+
+  background-color: transparent;
+
+  cursor: pointer;
+
+  fill: ${colors.black};
+
+  :hover {
+    fill: ${colors.accent};
   }
 `;

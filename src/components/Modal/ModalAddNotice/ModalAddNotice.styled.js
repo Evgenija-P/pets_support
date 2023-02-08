@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { media, colors, fontWeights } from '../../../styles/stylesLayout';
 
-export const ModalWrapperNotice = styled.div`
+export const ModalWrapperNotices = styled.div`
   overflow: auto;
   width: 280px;
   padding: 40px 20px;
@@ -17,11 +17,10 @@ export const ModalWrapperNotice = styled.div`
   ${media.tabletAndDesktop} {
     width: 608px;
     padding: 40px 80px;
-    min-height: 570px;
   }
 `;
 
-export const ModalTitleNotice = styled.p`
+export const ModalTitleAddNotices = styled.p`
   font-size: 24px;
   line-height: 1.37;
   font-weight: ${fontWeights.medium};
@@ -30,6 +29,7 @@ export const ModalTitleNotice = styled.p`
   margin-bottom: 20px;
 
   ${media.tabletAndDesktop} {
+    margin-bottom: 40px;
     font-size: 36px;
     font-weight: 600;
   }
