@@ -14,7 +14,7 @@ import {
 import notFoundNoticesImage from '../../../img/notFoundNoticesImage.jpg';
 // import { PER_PAGE } from '../../../redux/notices/operations ';
 // import { useSelector, useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import useAuth from '../../../hooks/useAuth.js';
 import {
   selectNotices,
@@ -24,13 +24,18 @@ import {
 // import { setPage } from '../../../redux/notices/noticesSlice';
 import { selectUser } from '../../../redux/auth/selectors.js';
 // import { fetchNotices } from '../../../redux/notices/operations ';
+import {
+  addToFavoriteNotices,
+  removeFromFavoriteNotices,
+} from '../../../redux/notices/operations ';
 
 const NoticesCategoriesListSecond = () => {
   const noticesRaw = useSelector(selectNotices);
   const favorite = useSelector(selectFavoriteNotices);
   const user = useSelector(selectUser);
+
   // const { category } = useSelector(selectNoticesObj);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   // const { page: currentPage, totalHits } = useSelector(selectNoticesObj);
 
   const userFavoriteNotices = () => {
@@ -108,6 +113,16 @@ const NoticesCategoriesListSecond = () => {
               </NoticesTags>
 
               <NoticesButton>Learn More</NoticesButton>
+              <NoticesButton
+                onClick={() => dispatch(addToFavoriteNotices(_id))}
+              >
+                add to favorite
+              </NoticesButton>
+              <NoticesButton
+                onClick={() => dispatch(removeFromFavoriteNotices(_id))}
+              >
+                remove from favorite
+              </NoticesButton>
             </NoticesDescription>
           </NoticesItem>
         )

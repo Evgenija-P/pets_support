@@ -44,15 +44,21 @@ const handleDeleteNoticesSuccses = (state, action) => {
   state.noticesList.splice(index, 1);
 };
 const handleAddToFavoriteNoticesSuccses = (state, action) => {
-  state.favoriteNoticesList.push(action.payload);
+  state.favoriteNoticesList.push(action.payload.message);
 };
 
 const handleRemoveFromFavoriteNoticesSuccses = (state, action) => {
-  const index = state.favoriteNoticesList.findIndex(
-    notices => notices._id === action.payload._id
-  );
-  state.favoriteNoticesList.splice(index, 1);
+  state.favoriteNoticesList = state.favoriteNoticesList.map(favorite => {
+    if (
+      action.payload.message.favoriteList.find(
+        responeFavorite => responeFavorite === favorite._id
+      )
+    ) {
+      return favorite;
+    }
+  });
 };
+
 const handleFetchFavoriteNoticesSuccses = (state, action) => {
   state.favoriteNoticesList = action.payload;
 };
