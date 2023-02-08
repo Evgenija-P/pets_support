@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/pets_support/static/css/main.07aad790.css",
-    "main.js": "/pets_support/static/js/main.2a822efb.js",
-    "static/js/903.727c46d6.chunk.js": "/pets_support/static/js/903.727c46d6.chunk.js",
+    "main.js": "/pets_support/static/js/main.b2cce2e3.js",
+    "static/js/79.f8c30676.chunk.js": "/pets_support/static/js/79.f8c30676.chunk.js",
     "static/js/291.d1aba468.chunk.js": "/pets_support/static/js/291.d1aba468.chunk.js",
     "static/js/322.84b8a0c6.chunk.js": "/pets_support/static/js/322.84b8a0c6.chunk.js",
-    "static/js/36.5a8a14e2.chunk.js": "/pets_support/static/js/36.5a8a14e2.chunk.js",
+    "static/js/826.e82aa626.chunk.js": "/pets_support/static/js/826.e82aa626.chunk.js",
     "static/js/753.09759836.chunk.js": "/pets_support/static/js/753.09759836.chunk.js",
     "static/js/75.5137c8b1.chunk.js": "/pets_support/static/js/75.5137c8b1.chunk.js",
     "static/js/986.19b1924d.chunk.js": "/pets_support/static/js/986.19b1924d.chunk.js",
@@ -14,18 +14,16 @@
     "static/media/hp-figure-desktop.png": "/pets_support/static/media/hp-figure-desktop.29b6383148228479d0bd.png",
     "static/media/hp-figure-little-desktop.png": "/pets_support/static/media/hp-figure-little-desktop.5b70fedb07e42cdae7ef.png",
     "static/media/notFoundNoticesImage.jpg": "/pets_support/static/media/notFoundNoticesImage.67b4247e533524e9292b.jpg",
-    "static/media/noticesFavoriteIconActive.svg": "/pets_support/static/media/noticesFavoriteIconActive.cdbc257a18ea8d686876054c13beda2b.svg",
-    "static/media/noticesFavoriteIcon.svg": "/pets_support/static/media/noticesFavoriteIcon.3e1613decf72f9dd6fee2bb8685ae2c5.svg",
     "index.html": "/pets_support/index.html",
     "static/media/searchIButtonIcon.svg": "/pets_support/static/media/searchIButtonIcon.c5d78e4f4df9eaf60c0cb698cb86be03.svg",
     "static/media/addNoticeIcon.svg": "/pets_support/static/media/addNoticeIcon.e8d0628a1c3e012892b19d6a6f82becf.svg",
     "static/media/close_menu.svg": "/pets_support/static/media/close_menu.83d26970ecb6bec9b0eb04bec91afacb.svg",
     "main.07aad790.css.map": "/pets_support/static/css/main.07aad790.css.map",
-    "main.2a822efb.js.map": "/pets_support/static/js/main.2a822efb.js.map",
-    "903.727c46d6.chunk.js.map": "/pets_support/static/js/903.727c46d6.chunk.js.map",
+    "main.b2cce2e3.js.map": "/pets_support/static/js/main.b2cce2e3.js.map",
+    "79.f8c30676.chunk.js.map": "/pets_support/static/js/79.f8c30676.chunk.js.map",
     "291.d1aba468.chunk.js.map": "/pets_support/static/js/291.d1aba468.chunk.js.map",
     "322.84b8a0c6.chunk.js.map": "/pets_support/static/js/322.84b8a0c6.chunk.js.map",
-    "36.5a8a14e2.chunk.js.map": "/pets_support/static/js/36.5a8a14e2.chunk.js.map",
+    "826.e82aa626.chunk.js.map": "/pets_support/static/js/826.e82aa626.chunk.js.map",
     "753.09759836.chunk.js.map": "/pets_support/static/js/753.09759836.chunk.js.map",
     "75.5137c8b1.chunk.js.map": "/pets_support/static/js/75.5137c8b1.chunk.js.map",
     "986.19b1924d.chunk.js.map": "/pets_support/static/js/986.19b1924d.chunk.js.map",
@@ -33,6 +31,6 @@
   },
   "entrypoints": [
     "static/css/main.07aad790.css",
-    "static/js/main.2a822efb.js"
+    "static/js/main.b2cce2e3.js"
   ]
 }
