@@ -44,19 +44,11 @@ const handleDeleteNoticesSuccses = (state, action) => {
   state.noticesList.splice(index, 1);
 };
 const handleAddToFavoriteNoticesSuccses = (state, action) => {
-  state.favoriteNoticesList.push(action.payload.message);
+  state.favoriteNoticesList = action.payload;
 };
 
 const handleRemoveFromFavoriteNoticesSuccses = (state, action) => {
-  state.favoriteNoticesList = state.favoriteNoticesList.map(favorite => {
-    if (
-      action.payload.message.favoriteList.find(
-        responeFavorite => responeFavorite === favorite._id
-      )
-    ) {
-      return favorite;
-    }
-  });
+  state.favoriteNoticesList = action.payload;
 };
 
 const handleFetchFavoriteNoticesSuccses = (state, action) => {

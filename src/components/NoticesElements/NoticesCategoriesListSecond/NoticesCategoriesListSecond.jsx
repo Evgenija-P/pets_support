@@ -38,22 +38,22 @@ const NoticesCategoriesListSecond = () => {
   const dispatch = useDispatch();
   // const { page: currentPage, totalHits } = useSelector(selectNoticesObj);
 
-  const userFavoriteNotices = () => {
-    const noticesWithFavorite = noticesRaw.map(notice => {
-      if (favorite.find(fav => fav._id === notice._id)) {
-        // console.log('favorite', notice._id);
-        return { ...notice, favorite: true };
-      }
-      return { ...notice, favorite: false };
-    });
-    // console.log('favoriteList', noticesWithFavorite);
-    return noticesWithFavorite;
-  };
+  // const userFavoriteNotices = () => {
+  //   const noticesWithFavorite = noticesRaw.map(notice => {
+  //     if (favorite.find(fav => fav === notice._id)) {
+  //       // console.log('favorite', notice._id);
+  //       return { ...notice, favorite: true };
+  //     }
+  //     return { ...notice, favorite: false };
+  //   });
+  //   // console.log('favoriteList', noticesWithFavorite);
+  //   return noticesWithFavorite;
+  // };
 
-  const noticesWithFavorite = userFavoriteNotices();
+  // const noticesWithFavorite = userFavoriteNotices();
 
   const isOwnerNotices = () => {
-    const noticesOwn = noticesWithFavorite.map(notice => {
+    const noticesOwn = noticesRaw.map(notice => {
       // console.log('user._id', user);
       if (notice.owner === user._id) {
         // console.log('owner', notice.owner);
