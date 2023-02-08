@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import NoticesCategoriesListSecond from '../../NoticesElements/NoticesCategoriesListSecond';
 import { fetchNotices } from '../../../redux/notices/operations ';
@@ -17,12 +17,16 @@ import Spinner from '../../Spinner';
 const NoticesGallary = () => {
   const { isLoading, error } = useSelector(selectNoticesObj);
 
-  const { pathname: category } = useLocation();
+  //   const { pathname: category } = useLocation();
 
   const { isLoggedIn } = useAuth();
   //  const { category } = useSelector(selectNoticesObj);
   const dispatch = useDispatch();
-  const { page: currentPage, totalHits } = useSelector(selectNoticesObj);
+  const {
+    page: currentPage,
+    totalHits,
+    category,
+  } = useSelector(selectNoticesObj);
   useEffect(() => {
     if (isLoggedIn) {
       dispatch(fetchFavorite({ category: '/notices/favorite' }));

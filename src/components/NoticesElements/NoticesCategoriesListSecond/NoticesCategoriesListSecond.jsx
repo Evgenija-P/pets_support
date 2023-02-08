@@ -28,7 +28,7 @@ import {
   addToFavorite,
   removeFromFavorite,
 } from '../../../redux/favorite/operations ';
-
+import { deleteNotices } from '../../../redux/notices/operations ';
 const NoticesCategoriesListSecond = () => {
   const noticesRaw = useSelector(selectNotices);
   // const favorite = useSelector(selectFavoriteNotices);
@@ -102,6 +102,7 @@ const NoticesCategoriesListSecond = () => {
               <NoticesTitle>{title}</NoticesTitle>
 
               <NoticesTags>
+                <NoticesTag>id: {_id}</NoticesTag>
                 <NoticesTag>Breed: {breed}</NoticesTag>
                 <NoticesTag>Place: {location}</NoticesTag>
                 <NoticesTag>Age: {age}</NoticesTag>
@@ -113,12 +114,23 @@ const NoticesCategoriesListSecond = () => {
               </NoticesTags>
 
               <NoticesButton>Learn More</NoticesButton>
-              <NoticesButton onClick={() => dispatch(addToFavorite(_id))}>
-                add to favorite
-              </NoticesButton>
-              <NoticesButton onClick={() => dispatch(removeFromFavorite(_id))}>
-                remove from favorite
-              </NoticesButton>
+              {!favorite && isLogined && (
+                <NoticesButton onClick={() => dispatch(addToFavorite(_id))}>
+                  add to favorite
+                </NoticesButton>
+              )}
+              {favorite && isLogined && (
+                <NoticesButton
+                  onClick={() => dispatch(removeFromFavorite(_id))}
+                >
+                  remove from favorite
+                </NoticesButton>
+              )}
+              {isOwner && isLogined && (
+                <NoticesButton onClick={() => dispatch(deleteNotices(_id))}>
+                  delete
+                </NoticesButton>
+              )}
             </NoticesDescription>
           </NoticesItem>
         )
