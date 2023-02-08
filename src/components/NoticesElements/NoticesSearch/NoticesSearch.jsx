@@ -4,18 +4,16 @@ import {
   SearchFormButton,
 } from './NoticesSearch.styled';
 
-import { ReactComponent as SearchIcon } from '../../../img/icons/search.svg';
+import { ReactComponent as SearchIButtonIcon } from '../../../img/icons/searchIButtonIcon.svg';
 
 const NoticesSearch = () => {
   return (
-    <>
-      <SearchForm>
-        <SearchInput type="text" placeholder="Search"></SearchInput>
-        <SearchFormButton>
-          <SearchIcon />
-        </SearchFormButton>
-      </SearchForm>
-    </>
+    <SearchForm>
+      <SearchInput type="text" placeholder="Search"></SearchInput>
+      <SearchFormButton type="submit">
+        <SearchIButtonIcon />
+      </SearchFormButton>
+    </SearchForm>
   );
 };
 
