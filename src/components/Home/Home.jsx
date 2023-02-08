@@ -1,26 +1,14 @@
-import {
-  Cont,
-  ImgCircle,
-  ImgFigureB,
-  ImgHeart,
-  ImgHpDesk,
-  ImgHpFigureL,
-  Title,
-} from './Home.styled';
+import { Cont, ImgHpDesk, MainBack, Title } from './Home.styled';
 
 const Home = () => {
   return (
-    <>
-      <Cont>
-        <Title>Take good care of</Title>
-        <Title>your small pets</Title>
+    <Cont>
+      <Title>Take good care of</Title>
+      <Title>your small pets</Title>
+      <MainBack>
         <ImgHpDesk></ImgHpDesk>
-        <ImgHpFigureL></ImgHpFigureL>
-        <ImgCircle></ImgCircle>
-        <ImgHeart></ImgHeart>
-        <ImgFigureB></ImgFigureB>
-      </Cont>
-    </>
+      </MainBack>
+    </Cont>
   );
 };
 
