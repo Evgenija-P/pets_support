@@ -2,8 +2,10 @@ import {
   NoticesList,
   NoticesItem,
   NoticesTop,
+  NoticesNav,
   NoticesImage,
   NoticesBadge,
+  NoticesButtonFavorite,
   NoticesDescription,
   NoticesTitle,
   NoticesTags,
@@ -23,6 +25,7 @@ import {
 } from '../../../redux/notices/selectors';
 // import { setPage } from '../../../redux/notices/noticesSlice';
 import { selectUser } from '../../../redux/auth/selectors.js';
+import { display, height } from '@mui/system';
 // import { fetchNotices } from '../../../redux/notices/operations ';
 import {
   addToFavorite,
@@ -91,7 +94,11 @@ const NoticesCategoriesListSecond = () => {
         }) => (
           <NoticesItem key={_id}>
             <NoticesTop>
-              <NoticesBadge>{categoryName}</NoticesBadge>
+              <NoticesNav>
+                <NoticesBadge>{categoryName}</NoticesBadge>
+                <NoticesButtonFavorite></NoticesButtonFavorite>
+              </NoticesNav>
+
               <NoticesImage
                 src={petImageURL ? petImageURL : notFoundNoticesImage}
                 alt={title}
