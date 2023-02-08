@@ -23,9 +23,10 @@ import {
   // selectFavoriteNotices,
   // selectNoticesObj,
 } from '../../../redux/notices/selectors';
+import { selectFavoriteList } from '../../../redux/favorite/selectors';
 // import { setPage } from '../../../redux/notices/noticesSlice';
 import { selectUser } from '../../../redux/auth/selectors.js';
-import { display, height } from '@mui/system';
+// import { display, height } from '@mui/system';
 // import { fetchNotices } from '../../../redux/notices/operations ';
 import {
   addToFavorite,
@@ -34,29 +35,30 @@ import {
 import { deleteNotices } from '../../../redux/notices/operations ';
 const NoticesCategoriesListSecond = () => {
   const noticesRaw = useSelector(selectNotices);
-  // const favorite = useSelector(selectFavoriteNotices);
+  const favorite = useSelector(selectFavoriteList);
   const user = useSelector(selectUser);
 
   // const { category } = useSelector(selectNoticesObj);
   const dispatch = useDispatch();
   // const { page: currentPage, totalHits } = useSelector(selectNoticesObj);
 
-  // const userFavoriteNotices = () => {
-  //   const noticesWithFavorite = noticesRaw.map(notice => {
-  //     if (favorite.find(fav => fav === notice._id)) {
-  //       // console.log('favorite', notice._id);
-  //       return { ...notice, favorite: true };
-  //     }
-  //     return { ...notice, favorite: false };
-  //   });
-  //   // console.log('favoriteList', noticesWithFavorite);
-  //   return noticesWithFavorite;
-  // };
+  const userFavoriteNotices = () => {
+    const noticesWithFavorite = noticesRaw.map(notice => {
+      // console.log('favorite', favorite);
+      if (favorite.find(fav => fav === notice._id)) {
+        console.log('favorite', notice._id);
+        return { ...notice, favorite: true };
+      }
+      return { ...notice, favorite: false };
+    });
+    // console.log('favoriteList', noticesWithFavorite);
+    return noticesWithFavorite;
+  };
 
-  // const noticesWithFavorite = userFavoriteNotices();
+  const noticesWithFavorite = userFavoriteNotices();
 
   const isOwnerNotices = () => {
-    const noticesOwn = noticesRaw.map(notice => {
+    const noticesOwn = noticesWithFavorite.map(notice => {
       // console.log('user._id', user);
       if (notice.owner === user._id) {
         // console.log('owner', notice.owner);
@@ -77,6 +79,15 @@ const NoticesCategoriesListSecond = () => {
   // };
 
   // const countPages = Math.ceil(totalHits / PER_PAGE);
+  const onFavoriteToggle = (_id, favorite) => {
+    console.log('favoriteToggle', _id, favorite);
+    if (favorite) {
+      dispatch(removeFromFavorite(_id));
+      return;
+    }
+    dispatch(addToFavorite(_id));
+  };
+
   return (
     <NoticesList>
       {notices.map(
@@ -96,7 +107,9 @@ const NoticesCategoriesListSecond = () => {
             <NoticesTop>
               <NoticesNav>
                 <NoticesBadge>{categoryName}</NoticesBadge>
-                <NoticesButtonFavorite></NoticesButtonFavorite>
+                <NoticesButtonFavorite
+                  onClick={() => onFavoriteToggle(_id, favorite)}
+                ></NoticesButtonFavorite>
               </NoticesNav>
 
               <NoticesImage

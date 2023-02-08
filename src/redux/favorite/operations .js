@@ -3,11 +3,11 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 export const fetchFavorite = createAsyncThunk(
   'favorite/fetchFavorite',
-  async ({ category }, thunkAPI) => {
+  async (_, thunkAPI) => {
     try {
-      const response = await axios.get(category);
-      // console.log('reresponse.data.messagesponse ', response.data.message);
-      return response.data.message.favoriteList;
+      const response = await axios.get('/notices/favorite');
+      console.log('fetchFavorite ', response.data.favoriteList);
+      return response.data.favoriteList;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }

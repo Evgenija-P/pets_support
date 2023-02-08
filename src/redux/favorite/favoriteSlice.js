@@ -32,7 +32,7 @@ const handleFetchFavoriteSuccses = (state, action) => {
 };
 
 export const favoriteSlice = createSlice({
-  name: 'favorit',
+  name: 'favorite',
   initialState: favoriteInitialState,
   // reducers: {
   //   setCategory(state, action) {

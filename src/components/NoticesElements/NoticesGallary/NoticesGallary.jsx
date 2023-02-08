@@ -12,24 +12,23 @@ import { PER_PAGE } from '../../../redux/notices/operations ';
 import useMatchMedia from '../../../hooks/use-match-media';
 // import { setPage } from '../../../redux/notices/noticesSlice';
 // import { selectUser } from '../../../redux/auth/selectors.js';
-
+import { useLocation } from 'react-router-dom';
+// import { setCategory } from '../../../redux/notices/noticesSlice';
 import Spinner from '../../Spinner';
 const NoticesGallary = () => {
   const { isLoading, error } = useSelector(selectNoticesObj);
 
-  //   const { pathname: category } = useLocation();
+  const { pathname: category } = useLocation();
+  const dispatch = useDispatch();
+  //   dispatch(setCategory(category));
 
   const { isLoggedIn } = useAuth();
-  //  const { category } = useSelector(selectNoticesObj);
-  const dispatch = useDispatch();
-  const {
-    page: currentPage,
-    totalHits,
-    category,
-  } = useSelector(selectNoticesObj);
+
+  const { page: currentPage, totalHits } = useSelector(selectNoticesObj);
+
   useEffect(() => {
     if (isLoggedIn) {
-      dispatch(fetchFavorite({ category: '/notices/favorite' }));
+      dispatch(fetchFavorite());
     }
 
     dispatch(fetchNotices({ category }));
@@ -37,7 +36,7 @@ const NoticesGallary = () => {
 
   const OnPagination = page => {
     // dispatch(setPage(page));
-    console.log('current page', currentPage);
+    // console.log('current page', currentPage);
     dispatch(fetchNotices({ category, page }));
   };
   const { isDesktop } = useMatchMedia();
