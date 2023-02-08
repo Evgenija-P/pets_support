@@ -71,7 +71,7 @@ const NoticesPage = () => {
         {error && <p>{error}</p>}
         <div>{isLoading && 'Request in progress...'}</div>
         {isLoading && <Spinner />}
-        <div>{!error && !isLoading && 'Data recived...'}</div>
+        {/* <div>{!error && !isLoading && 'Data recived...'}</div> */}
         {!error && !isLoading && <NoticesCategoriesListSecond />}
         {/* <NoticesCategoriesListSecond /> */}
       </SectionContainer>

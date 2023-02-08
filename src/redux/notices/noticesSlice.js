@@ -30,7 +30,9 @@ const extraActions = [
 ];
 const getActions = type => extraActions.map(extraAction => extraAction[type]);
 const handleFetchNoticesSuccses = (state, action) => {
-  state.noticesList = action.payload;
+  state.noticesList = action.payload.message;
+  state.totalHits = action.payload.totalHits;
+  state.page = action.payload.page;
 };
 const handleAddNoticesSuccses = (state, action) => {
   state.noticesList.push(action.payload);
@@ -61,6 +63,9 @@ export const noticesSlice = createSlice({
   reducers: {
     setCategory(state, action) {
       state.category = action.payload;
+    },
+    setPage(state, action) {
+      state.page = action.payload;
     },
   },
 
@@ -95,5 +100,5 @@ export const noticesSlice = createSlice({
       });
   },
 });
-export const { setCategory } = noticesSlice.actions;
+export const { setCategory, setPage } = noticesSlice.actions;
 export const noticesReducer = noticesSlice.reducer;
