@@ -18,7 +18,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import useAuth from '../../../hooks/useAuth.js';
 import {
   selectNotices,
-  selectFavoriteNotices,
+  // selectFavoriteNotices,
   // selectNoticesObj,
 } from '../../../redux/notices/selectors';
 // import { setPage } from '../../../redux/notices/noticesSlice';
@@ -31,7 +31,7 @@ import {
 
 const NoticesCategoriesListSecond = () => {
   const noticesRaw = useSelector(selectNotices);
-  const favorite = useSelector(selectFavoriteNotices);
+  // const favorite = useSelector(selectFavoriteNotices);
   const user = useSelector(selectUser);
 
   // const { category } = useSelector(selectNoticesObj);

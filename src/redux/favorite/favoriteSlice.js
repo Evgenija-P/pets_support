@@ -18,7 +18,6 @@ const noticesInitialState = {
   isLoading: false,
   error: null,
   category: '/notices',
-  search: '',
 };
 
 const extraActions = [
