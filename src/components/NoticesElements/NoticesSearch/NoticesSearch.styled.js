@@ -61,7 +61,7 @@ export const SearchInput = styled.input`
 export const SearchFormButton = styled.button`
   position: absolute;
   left: 80%;
-  top: 10%;
+  top: 13%;
 
   display: block;
   width: 48px;
@@ -81,6 +81,6 @@ export const SearchFormButton = styled.button`
 
   ${media.tabletAndDesktop} {
     left: 90%;
-    top: 10%;
+    top: 13%;
   }
 `;
