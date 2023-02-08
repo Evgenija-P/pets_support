@@ -35,22 +35,6 @@ const FriendsItem = ({ items }) => {
         </FriendsItemWrapper>
       ))}
     </>
-    // <FriendsItemWrapper>
-    //   <FriendsURL href={`${data.url}`} target="_blank">
-    //     <FriendsItemTitle>{data.title}</FriendsItemTitle>
-    //   </FriendsURL>
-    //   <FriendsWrapper>
-    //     <FriendsImgWrapper>
-    //       <FriendsImg src={`${data.imageUrl}`} alt={data.title} />
-    //     </FriendsImgWrapper>
-    //     <FriendsAbout
-    //       adress={data.address}
-    //       workDays={data.workDays}
-    //       phone={data.phone}
-    //       email={data.email}
-    //     />
-    //   </FriendsWrapper>
-    // </FriendsItemWrapper>
   );
 };
 
