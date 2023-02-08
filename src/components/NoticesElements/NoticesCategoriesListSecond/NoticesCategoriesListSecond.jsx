@@ -87,7 +87,7 @@ const NoticesCategoriesListSecond = () => {
                 <NoticesTag>Age: {age}</NoticesTag>
                 <NoticesTag>Price: {price}$</NoticesTag>
                 {favorite && isLogined && <NoticesTag>Favorite </NoticesTag>}
-                {isOwner && isLogined && <NoticesTag>Favorite </NoticesTag>}
+                {isOwner && isLogined && <NoticesTag>Owner </NoticesTag>}
               </NoticesTags>
 
               <NoticesButton>Learn More</NoticesButton>
