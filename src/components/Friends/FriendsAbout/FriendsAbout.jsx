@@ -6,7 +6,7 @@ import {
   FriendsAboutItem,
 } from './FriendsAbout.sryled';
 
-const FriendsAbout = ({ adress, workDays, phone, email }) => {
+const FriendsAbout = ({ item }) => {
   const [onOpen, setOnOpen] = useState(false);
 
   return (
@@ -20,18 +20,18 @@ const FriendsAbout = ({ adress, workDays, phone, email }) => {
             setOnOpen(false);
           }}
         >
-          {workDays === undefined || workDays === null ? (
+          {item.workDays === undefined || item.workDays === null ? (
             <>
               <p>Time: </p>
               <p>------------</p>
             </>
           ) : (
             <>
-              {workDays[0].isOpen ? (
+              {item.workDays[0] && item.workDays[0].isOpen ? (
                 <>
                   <p>Time:</p>
                   <p>
-                    {workDays[0].from}-{workDays[0].to}
+                    {item.workDays[0].from}-{item.workDays[0].to}
                   </p>
                 </>
               ) : (
@@ -40,19 +40,19 @@ const FriendsAbout = ({ adress, workDays, phone, email }) => {
                   <p>Closed</p>
                 </>
               )}
+              {!onOpen || <FriendsWorkDays workDays={item.workDays} />}
             </>
           )}
-          {!onOpen || <FriendsWorkDays workDays={workDays} />}
         </FriendsAboutItem>
 
         <FriendsAboutItem>
-          Address: <p>{adress}</p>
+          Address: <p>{item.adress}</p>
         </FriendsAboutItem>
         <FriendsAboutItem>
-          Email: <p> {email}</p>
+          Email: <p> {item.email}</p>
         </FriendsAboutItem>
         <FriendsAboutItem>
-          Phone: <p>{phone}</p>
+          Phone: <p>{item.phone}</p>
         </FriendsAboutItem>
       </FriendsAboutList>
     </FriendsWrapperAbout>
