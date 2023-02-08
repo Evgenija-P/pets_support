@@ -5,7 +5,7 @@ export const ModalWrapperNotice = styled.div`
   overflow: auto;
   width: 280px;
   padding: 40px 20px;
-  min-height: 813px;
+  min-height: 530px;
   position: absolute;
   top: 50%;
   left: 50%;
