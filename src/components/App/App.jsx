@@ -23,7 +23,7 @@ const UserPage = lazy(() => import('../../pages/UserPage'));
 const App = () => {
   const dispatch = useDispatch();
 
-  const { isRefreshing } = useAuth();
+  const { isRefreshing, isLoggedIn } = useAuth();
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
@@ -41,11 +41,49 @@ const App = () => {
 
         <Route
           path="/notices"
-          element={<RestrictedRoute component={<NoticesPage />} />}
+          element={
+            isLoggedIn ? (
+              <PrivateRoute
+                component={<NoticesPage />}
+                // redirectTo="/notices/sell"
+              />
+            ) : (
+              <RestrictedRoute
+                component={<NoticesPage />}
+                // redirectTo="/notices/sell"
+              />
+            )
+          }
         >
           <Route
-            path=":categoryName"
+            path="sell"
             element={<RestrictedRoute component={<NoticesCategoriesNav />} />}
+          />
+          <Route
+            path="lost-found"
+            element={<RestrictedRoute component={<NoticesCategoriesNav />} />}
+          />
+          <Route
+            path="for-free"
+            element={<RestrictedRoute component={<NoticesCategoriesNav />} />}
+          />
+          <Route
+            path="favorite"
+            element={
+              <PrivateRoute
+                redirectTo="/login"
+                component={<NoticesCategoriesNav />}
+              />
+            }
+          />
+          <Route
+            path="own"
+            element={
+              <PrivateRoute
+                redirectTo="/login"
+                component={<NoticesCategoriesNav />}
+              />
+            }
           />
         </Route>
 
