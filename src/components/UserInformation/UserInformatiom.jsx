@@ -1,21 +1,27 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useState } from 'react';
- 
-const initialValues = {
-    name: 'Ivan',
-    email: 'Ivan@mail.com',
-    birthday: '1312',
-    phone: '+3802919302',
-    city: 'Kyiv'
-}
+import { useDispatch, useSelector } from 'react-redux';
+
+import { selectUser } from '../../redux/auth/selectors'
+import {logOut} from '../../redux/auth/operations'
  
 
-   
-    
+
 
 
 const UserInformation = () => {
     const [change, setChange] = useState(false);
+    const user = useSelector(selectUser);
+    const dispatch = useDispatch();
+
+   
+    const initialValues = {
+    name: user.name,
+    email: user.email,
+    birthday: user.birthday,
+    phone: user.phone,
+    city: user.city
+}
 
     const handleSubmit = (e) => {
         setChange(false);
@@ -35,7 +41,7 @@ const UserInformation = () => {
 
                         {change === 'name' ? <label>
                             Name:
-                            <Field name='name' />
+                            <Field name='name'/>
                             <button type='submit'>Change</button>
                         </label> : <div>
                             <p>{`Name: ${initialValues.name}`}</p>
@@ -46,7 +52,7 @@ const UserInformation = () => {
                             <Field name='email' />
                             <button type='submit'>Change</button>
                         </label> : <div>
-                            <p>{`Name: ${initialValues.email}`}</p>
+                            <p>{`Email: ${initialValues.email}`}</p>
                             <button type='button' onClick={() => setChange('email')}>Change</button></div>}
                         
                          {change === 'birthday' ? <label>
@@ -54,27 +60,27 @@ const UserInformation = () => {
                             <Field name='birthday' />
                             <button type='submit'>Change</button>
                         </label> : <div>
-                            <p>{`Name: ${initialValues.birthday}`}</p>
+                            <p>{`Birthday: ${initialValues.birthday}`}</p>
                             <button type='button' onClick={() => setChange('birthday')}>Change</button></div>}
                         
                           {change === 'phone' ? <label>
-                            Birthday:
+                            Phone:
                             <Field name='phone' />
                             <button type='submit'>Change</button>
                         </label> : <div>
-                            <p>{`Name: ${initialValues.phone}`}</p>
+                            <p>{`Phone: ${initialValues.phone}`}</p>
                             <button type='button' onClick={() => setChange('phone')}>Change</button></div>}
                         
                         {change === 'city' ? <label>
-                            Birthday:
+                            City:
                             <Field name='city' />
                             <button type='submit'>Change</button>
                         </label> : <div>
-                            <p>{`Name: ${initialValues.city}`}</p>
+                            <p>{`City: ${initialValues.city}`}</p>
                             <button type='button' onClick={() => setChange('city')}>Change</button></div>} 
                     </Form>
                 </Formik>
-                <button type='submit'>Log out</button>
+                <button type='button' onClick={() => dispatch(logOut())}>Log out</button>
             </div>
         </div>
     );
