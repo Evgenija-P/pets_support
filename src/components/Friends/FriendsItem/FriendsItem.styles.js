@@ -6,40 +6,33 @@ export const FriendsItemWrapper = styled.div`
   gap: 12px;
   flex-direction: column;
   padding: 12px 4px;
+  margin-bottom: 12px;
   width: 280px;
   height: 192px;
   border-radius: 20px;
   background: ${colors.white};
-  /* border: 1px red solid; */
+
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
 
   ${media.tabletAndDesktop} {
     width: 336px;
     height: 246px;
-    gap: 32px;
-    flex-direction: wrap;
+    margin-bottom: 32px;
+  }
+
+  :hover,
+  :focus {
   }
 `;
 
 export const FriendsWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: top;
+  justify-content: space-around;
+  align-items: center;
   background: ${colors.white};
-  /* border: 1px green solid; */
 `;
 
-export const FriendsImgWrapper = styled.div`
-  width: 110px;
-  height: 76px;
-  background: ${colors.white};
-  /* border: 1px orange solid; */
-
-  ${media.tabletAndDesktop} {
-    width: 120px;
-    height: 85px;
-  }
-`;
+export const FriendsImgWrapper = styled.div``;
 
 export const FriendsItemTitle = styled.p`
   font-size: 12px;
@@ -56,11 +49,11 @@ export const FriendsItemTitle = styled.p`
 `;
 
 export const FriendsImg = styled.img`
-  width: 90%;
+  max-width: 110px;
+
   display: block;
   margin: 0 auto;
-  /* background: ${colors.white};
-  border: 1px blue solid; */
+  /* border: 1px blue solid; */
 `;
 
 export const FriendsURL = styled.a`

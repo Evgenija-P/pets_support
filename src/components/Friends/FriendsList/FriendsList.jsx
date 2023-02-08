@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import BASE_URL from '../../../servises/api';
 import FriendsItem from '../FriendsItem/FriendsItem';
+import { FriendsContainer, FriendsTitle } from './FriendsList.styles';
 import Spinner from '../../Spinner/Spinner';
 
 const FriendsList = () => {
@@ -31,7 +32,16 @@ const FriendsList = () => {
 
   return (
     <>
-      {isLoading ? <Spinner /> : <FriendsItem items={friendsItems} />}
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <>
+          <FriendsTitle>Our friends</FriendsTitle>
+          <FriendsContainer>
+            <FriendsItem items={friendsItems} />
+          </FriendsContainer>
+        </>
+      )}
       {error && <p>{error}</p>}
     </>
   );

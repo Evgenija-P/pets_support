@@ -2,10 +2,12 @@ import styled from '@emotion/styled';
 import { colors, fontWeights } from '../../../styles/stylesLayout';
 
 export const FriendsWrapperAbout = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   width: 150px;
   height: 140px;
   background: ${colors.white};
-  /* border: 1px blue solid; */
 `;
 
 export const FriendsAboutList = styled.ul`
