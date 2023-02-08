@@ -25,9 +25,9 @@ import {
 import { selectUser } from '../../../redux/auth/selectors.js';
 // import { fetchNotices } from '../../../redux/notices/operations ';
 import {
-  addToFavoriteNotices,
-  removeFromFavoriteNotices,
-} from '../../../redux/notices/operations ';
+  addToFavorite,
+  removeFromFavorite,
+} from '../../../redux/favorite/operations ';
 
 const NoticesCategoriesListSecond = () => {
   const noticesRaw = useSelector(selectNotices);
@@ -113,14 +113,10 @@ const NoticesCategoriesListSecond = () => {
               </NoticesTags>
 
               <NoticesButton>Learn More</NoticesButton>
-              <NoticesButton
-                onClick={() => dispatch(addToFavoriteNotices(_id))}
-              >
+              <NoticesButton onClick={() => dispatch(addToFavorite(_id))}>
                 add to favorite
               </NoticesButton>
-              <NoticesButton
-                onClick={() => dispatch(removeFromFavoriteNotices(_id))}
-              >
+              <NoticesButton onClick={() => dispatch(removeFromFavorite(_id))}>
                 remove from favorite
               </NoticesButton>
             </NoticesDescription>

@@ -44,39 +44,39 @@ export const deleteNotices = createAsyncThunk(
   }
 );
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
-export const fetchFavoriteNotices = createAsyncThunk(
-  'notices/fetchFavoriteNotices',
-  async ({ category }, thunkAPI) => {
-    try {
-      const response = await axios.get(category);
-      // console.log('reresponse.data.messagesponse ', response.data.message);
-      return response.data.message.favoriteList;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
-    }
-  }
-);
+// export const fetchFavoriteNotices = createAsyncThunk(
+//   'notices/fetchFavoriteNotices',
+//   async ({ category }, thunkAPI) => {
+//     try {
+//       const response = await axios.get(category);
+//       // console.log('reresponse.data.messagesponse ', response.data.message);
+//       return response.data.message.favoriteList;
+//     } catch (e) {
+//       return thunkAPI.rejectWithValue(e.message);
+//     }
+//   }
+// );
 
-export const addToFavoriteNotices = createAsyncThunk(
-  'notices/addToFavoriteNotices',
-  async (noticeId, thunkAPI) => {
-    try {
-      const response = await axios.post(`/notices/${noticeId}/favorite`);
-      console.log('addToFavoriteNotices', response.data.message.favoriteList);
-      return response.data.message.favoriteList;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
-    }
-  }
-);
-export const removeFromFavoriteNotices = createAsyncThunk(
-  'notices/removeFromFavoriteNotices',
-  async (noticeId, thunkAPI) => {
-    try {
-      const response = await axios.patch(`/notices/${noticeId}/favorite`);
-      return response.data.message.favoriteList;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
-    }
-  }
-);
+// export const addToFavoriteNotices = createAsyncThunk(
+//   'notices/addToFavoriteNotices',
+//   async (noticeId, thunkAPI) => {
+//     try {
+//       const response = await axios.post(`/notices/${noticeId}/favorite`);
+//       console.log('addToFavoriteNotices', response.data.message.favoriteList);
+//       return response.data.message.favoriteList;
+//     } catch (e) {
+//       return thunkAPI.rejectWithValue(e.message);
+//     }
+//   }
+// );
+// export const removeFromFavoriteNotices = createAsyncThunk(
+//   'notices/removeFromFavoriteNotices',
+//   async (noticeId, thunkAPI) => {
+//     try {
+//       const response = await axios.patch(`/notices/${noticeId}/favorite`);
+//       return response.data.message.favoriteList;
+//     } catch (e) {
+//       return thunkAPI.rejectWithValue(e.message);
+//     }
+//   }
+// );

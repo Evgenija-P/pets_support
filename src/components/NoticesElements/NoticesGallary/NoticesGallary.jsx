@@ -2,10 +2,8 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import NoticesCategoriesListSecond from '../../NoticesElements/NoticesCategoriesListSecond';
-import {
-  fetchNotices,
-  fetchFavoriteNotices,
-} from '../../../redux/notices/operations ';
+import { fetchNotices } from '../../../redux/notices/operations ';
+import { fetchFavorite } from '../../../redux/favorite/operations ';
 import { selectNoticesObj } from '../../../redux/notices/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import GalleryPagination from '../../GalleryPagination';
@@ -27,7 +25,7 @@ const NoticesGallary = () => {
   const { page: currentPage, totalHits } = useSelector(selectNoticesObj);
   useEffect(() => {
     if (isLoggedIn) {
-      dispatch(fetchFavoriteNotices({ category: '/notices/favorite' }));
+      dispatch(fetchFavorite({ category: '/notices/favorite' }));
     }
 
     dispatch(fetchNotices({ category }));
