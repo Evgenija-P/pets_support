@@ -3,12 +3,22 @@ import { toast } from 'react-toastify';
 import { optionsToast } from '../../../styles/stylesLayout';
 
 import BASE_URL from '../../../servises/api';
-import FriendsItem from '../FriendsItem/FriendsItem';
+// import FriendsItem from '../FriendsItem/FriendsItem';
 import {
   FriendsContainer,
   FriendsTitle,
   FriendsError,
+  FriendsItemWrapper,
+  FriendsWrapper,
+  FriendsImgWrapper,
+  FriendsImg,
+  FriendsItemTitle,
+  FriendsURL,
 } from './FriendsList.styles';
+import { nanoid } from 'nanoid';
+import FriendsAbout from '../FriendsAbout/FriendsAbout';
+import defaultImage from '../../../img/default.jpg';
+
 import Spinner from '../../Spinner/Spinner';
 
 const FriendsList = () => {
@@ -45,7 +55,22 @@ const FriendsList = () => {
         <>
           <FriendsTitle>Our friends</FriendsTitle>
           <FriendsContainer>
-            <FriendsItem items={friendsItems} />
+            {friendsItems.map(item => (
+              <FriendsItemWrapper key={nanoid()}>
+                <FriendsURL href={`${item.url}`} target="_blank">
+                  <FriendsItemTitle>{item.title}</FriendsItemTitle>
+                </FriendsURL>
+                <FriendsWrapper>
+                  <FriendsImgWrapper>
+                    <FriendsImg
+                      src={item.imageUrl ? `${item.imageUrl}` : defaultImage}
+                      alt={item.title}
+                    />
+                  </FriendsImgWrapper>
+                  <FriendsAbout item={item} />
+                </FriendsWrapper>
+              </FriendsItemWrapper>
+            ))}
           </FriendsContainer>
         </>
       )}

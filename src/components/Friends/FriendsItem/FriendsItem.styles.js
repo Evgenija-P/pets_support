@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { media, colors, fontWeights } from '../../../styles/stylesLayout';
 
-export const FriendsItemWrapper = styled.div`
+export const FriendsItemWrapper = styled.li`
   display: flex;
   gap: 12px;
   flex-direction: column;
@@ -26,15 +26,15 @@ export const FriendsItemWrapper = styled.div`
   }
 `;
 
-export const FriendsWrapper = styled.div`
+export const FriendsWrapper = styled.ul`
   display: flex;
   justify-content: space-around;
   align-items: center;
   background: ${colors.white};
 `;
 
-export const FriendsImgWrapper = styled.div`
-  width: 170px;
+export const FriendsImgWrapper = styled.li`
+  width: 110px;
 `;
 
 export const FriendsItemTitle = styled.p`
@@ -52,7 +52,7 @@ export const FriendsItemTitle = styled.p`
 `;
 
 export const FriendsImg = styled.img`
-  max-width: 110px;
+  max-width: 95px;
 
   display: block;
   margin: 0 auto;

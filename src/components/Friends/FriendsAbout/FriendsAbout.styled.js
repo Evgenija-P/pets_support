@@ -1,11 +1,10 @@
 import styled from '@emotion/styled';
 import { colors, fontWeights, media } from '../../../styles/stylesLayout';
 
-export const FriendsWrapperAbout = styled.div`
+export const FriendsWrapperAbout = styled.li`
   display: flex;
-  /* justify-content: space-around; */
   align-items: center;
-  width: 190px;
+  width: 170px;
   height: 140px;
   background: ${colors.white};
 
@@ -17,20 +16,21 @@ export const FriendsWrapperAbout = styled.div`
 
 export const FriendsAboutList = styled.ul`
   font-family: 'Manrope';
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  /* gap: 4px; */
+  width: 170px;
+  height: 160px;
   margin-top: 10px;
   font-size: 12px;
   font-weight: ${fontWeights.medium};
   line-height: 1.33;
   color: ${colors.black};
-  border: 1px red solid;
 
   ${media.tabletAndDesktop} {
     margin-top: 16px;
   }
+`;
+
+export const AboutItem = styled.li`
+  margin-bottom: 4px;
 `;
 
 export const Active = styled.span`
