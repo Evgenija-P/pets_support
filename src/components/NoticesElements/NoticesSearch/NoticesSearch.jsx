@@ -5,7 +5,7 @@ import {
   FormErrorMessage,
 } from './NoticesSearch.styled';
 import { Formik, ErrorMessage } from 'formik';
-import * as yup from 'yup';
+// import * as yup from 'yup';
 import { ReactComponent as SearchIButtonIcon } from '../../../img/icons/searchIButtonIcon.svg';
 // import { setSearch } from '../../../redux/notices/noticesSlice';
 import { useSelector, useDispatch } from 'react-redux';
@@ -19,16 +19,16 @@ const NoticesSearch = () => {
   const { isLoading, search: searchState } = useSelector(selectNoticesObj);
   const dispatch = useDispatch();
 
-  const schema = yup.object().shape({
-    search: yup
-      .string()
-      .max(20)
-      .matches(
-        /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/,
-        'Search may contain only letters, apostrophe, dash and spaces. '
-      )
-      .required(),
-  });
+  // const schema = yup.object().shape({
+  //   search: yup
+  //     .string()
+  //     .max(20)
+  //     .matches(
+  //       /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/,
+  //       'Search may contain only letters, apostrophe, dash and spaces. '
+  //     )
+  //     .required(),
+  // });
   const { pathname: category } = useLocation();
 
   const heandleSubmitForm = (values, { resetForm }) => {
