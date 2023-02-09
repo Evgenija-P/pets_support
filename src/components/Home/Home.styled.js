@@ -38,7 +38,7 @@ export const ImgHpDesk = styled.div`
 `;
 
 export const Cont = styled.div`
-  min-height: 100vh;
+  min-height: calc(100vh - 131px);
   position: relative;
   margin-top: 60px;
 `;
