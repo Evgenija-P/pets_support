@@ -12,7 +12,7 @@ import {
   NoticesTag,
   NoticesButton,
 } from './NoticesCategoriesListSecond.styled';
-// import GalleryPagination from '../../GalleryPagination';
+
 import notFoundNoticesImage from '../../../img/notFoundNoticesImage.jpg';
 // import { PER_PAGE } from '../../../redux/notices/operations ';
 // import { useSelector, useDispatch } from 'react-redux';
@@ -21,13 +21,14 @@ import useAuth from '../../../hooks/useAuth.js';
 import {
   selectNotices,
   // selectFavoriteNotices,
-  // selectNoticesObj,
+  selectNoticesObj,
 } from '../../../redux/notices/selectors';
 import { selectFavoriteList } from '../../../redux/favorite/selectors';
-// import { setPage } from '../../../redux/notices/noticesSlice';
+import { deletefavoriteNotice } from '../../../redux/notices/noticesSlice';
 import { selectUser } from '../../../redux/auth/selectors.js';
 // import { display, height } from '@mui/system';
 // import { fetchNotices } from '../../../redux/notices/operations ';
+// import { useLocation } from 'react-router-dom';
 import {
   addToFavorite,
   removeFromFavorite,
@@ -46,7 +47,7 @@ const NoticesCategoriesListSecond = () => {
     const noticesWithFavorite = noticesRaw.map(notice => {
       // console.log('favorite', favorite);
       if (favorite.find(fav => fav === notice._id)) {
-        console.log('favorite', notice._id);
+        // console.log('favorite', notice._id);
         return { ...notice, favorite: true };
       }
       return { ...notice, favorite: false };
@@ -79,10 +80,15 @@ const NoticesCategoriesListSecond = () => {
   // };
 
   // const countPages = Math.ceil(totalHits / PER_PAGE);
+  const { category } = useSelector(selectNoticesObj);
   const onFavoriteToggle = (_id, favorite) => {
-    console.log('favoriteToggle', _id, favorite);
     if (favorite) {
       dispatch(removeFromFavorite(_id));
+      if (category === '/notices/favorite') {
+        // console.log('/notices/favorite', _id);
+        dispatch(deletefavoriteNotice(_id));
+      }
+
       return;
     }
     dispatch(addToFavorite(_id));
@@ -107,9 +113,11 @@ const NoticesCategoriesListSecond = () => {
             <NoticesTop>
               <NoticesNav>
                 <NoticesBadge>{categoryName}</NoticesBadge>
-                <NoticesButtonFavorite
-                  onClick={() => onFavoriteToggle(_id, favorite)}
-                ></NoticesButtonFavorite>
+                {isLogined && (
+                  <NoticesButtonFavorite
+                    onClick={() => onFavoriteToggle(_id, favorite)}
+                  ></NoticesButtonFavorite>
+                )}
               </NoticesNav>
 
               <NoticesImage

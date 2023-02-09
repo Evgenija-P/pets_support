@@ -10,27 +10,26 @@ import GalleryPagination from '../../GalleryPagination';
 // import notFoundNoticesImage from '../../../img/notFoundNoticesImage.jpg';
 import { PER_PAGE } from '../../../redux/notices/operations ';
 import useMatchMedia from '../../../hooks/use-match-media';
-// import { setPage } from '../../../redux/notices/noticesSlice';
+import { setCategory } from '../../../redux/notices/noticesSlice';
 // import { selectUser } from '../../../redux/auth/selectors.js';
 import { useLocation } from 'react-router-dom';
-// import { setCategory } from '../../../redux/notices/noticesSlice';
+
 import Spinner from '../../Spinner';
 const NoticesGallary = () => {
   const { isLoading, error } = useSelector(selectNoticesObj);
 
   const { pathname: category } = useLocation();
-  const dispatch = useDispatch();
-  //   dispatch(setCategory(category));
 
   const { isLoggedIn } = useAuth();
 
   const { page: currentPage, totalHits } = useSelector(selectNoticesObj);
 
+  const dispatch = useDispatch();
   useEffect(() => {
     if (isLoggedIn) {
       dispatch(fetchFavorite());
     }
-
+    dispatch(setCategory(category));
     dispatch(fetchNotices({ category }));
   }, [dispatch, category, isLoggedIn]);
 

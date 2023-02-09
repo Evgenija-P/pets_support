@@ -6,7 +6,7 @@ export const fetchFavorite = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get('/notices/favorite');
-      console.log('fetchFavorite ', response.data.favoriteList);
+      // console.log('fetchFavorite ', response.data.favoriteList);
       return response.data.favoriteList;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -19,7 +19,7 @@ export const addToFavorite = createAsyncThunk(
   async (noticeId, thunkAPI) => {
     try {
       const response = await axios.post(`/notices/${noticeId}/favorite`);
-      console.log('addToFavorite', response.data.message.favoriteList);
+      // console.log('addToFavorite', response.data.message.favoriteList);
       return response.data.message.favoriteList;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

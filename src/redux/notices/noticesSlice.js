@@ -40,7 +40,7 @@ const handleAddNoticesSuccses = (state, action) => {
 };
 const handleDeleteNoticesSuccses = (state, action) => {
   const index = state.noticesList.findIndex(
-    notices => notices.id === action.payload.id
+    notices => notices._id === action.payload._id
   );
   state.noticesList.splice(index, 1);
 };
@@ -65,6 +65,12 @@ export const noticesSlice = createSlice({
     },
     setPage(state, action) {
       state.page = action.payload;
+    },
+    deletefavoriteNotice(state, action) {
+      const index = state.noticesList.findIndex(
+        notices => notices.id === action.payload
+      );
+      state.noticesList.splice(index, 1);
     },
   },
 
@@ -99,5 +105,6 @@ export const noticesSlice = createSlice({
       });
   },
 });
-export const { setCategory, setPage } = noticesSlice.actions;
+export const { setCategory, setPage, deletefavoriteNotice } =
+  noticesSlice.actions;
 export const noticesReducer = noticesSlice.reducer;
