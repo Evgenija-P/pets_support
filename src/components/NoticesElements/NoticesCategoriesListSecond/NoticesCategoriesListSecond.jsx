@@ -25,7 +25,7 @@ import {
 } from '../../../redux/notices/selectors';
 // import { setPage } from '../../../redux/notices/noticesSlice';
 import { selectUser } from '../../../redux/auth/selectors.js';
-import { display, height } from '@mui/system';
+// import { display, height } from '@mui/system';
 // import { fetchNotices } from '../../../redux/notices/operations ';
 
 const NoticesCategoriesListSecond = () => {
