@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
+import { optionsToast } from '../../../styles/stylesLayout';
 
 import BASE_URL from '../../../servises/api';
 import FriendsItem from '../FriendsItem/FriendsItem';
-import { FriendsContainer, FriendsTitle } from './FriendsList.styles';
+import {
+  FriendsContainer,
+  FriendsTitle,
+  FriendsError,
+} from './FriendsList.styles';
 import Spinner from '../../Spinner/Spinner';
 
 const FriendsList = () => {
@@ -25,7 +31,8 @@ const FriendsList = () => {
       }
       return result;
     } catch (e) {
-      setError(e.message);
+      setError('Oh! Something wrong! Please try again in a few minutes');
+      toast.error('Oh! Something wrong!', optionsToast);
       console.log(e.message);
     }
   };
@@ -42,7 +49,7 @@ const FriendsList = () => {
           </FriendsContainer>
         </>
       )}
-      {error && <p>{error}</p>}
+      {error && <FriendsError>{error}</FriendsError>}
     </>
   );
 };

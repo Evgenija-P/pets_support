@@ -3,9 +3,9 @@ import { colors, fontWeights, media } from '../../../styles/stylesLayout';
 
 export const FriendsWrapperAbout = styled.div`
   display: flex;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   align-items: center;
-  width: 150px;
+  min-width: 150px;
   height: 140px;
   background: ${colors.white};
 
@@ -30,7 +30,7 @@ export const FriendsAboutList = styled.ul`
   }
 `;
 
-export const FriendsAboutItem = styled.li`
+export const Active = styled.span`
   :hover,
   :focus {
     cursor: pointer;
