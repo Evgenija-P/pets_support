@@ -85,7 +85,7 @@ const NoticesCategoriesListSecond = () => {
     if (favorite) {
       dispatch(removeFromFavorite(_id));
       if (category === '/notices/favorite') {
-        // console.log('/notices/favorite', _id);
+        // console.log('delete/notices/favorite', _id);
         dispatch(deletefavoriteNotice(_id));
       }
 

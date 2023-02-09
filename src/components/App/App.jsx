@@ -32,7 +32,7 @@ const App = () => {
   }, [dispatch]);
 
   return isRefreshing ? (
-    <Spinner/>
+    <Spinner />
   ) : (
     <>
       {' '}
