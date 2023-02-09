@@ -2,11 +2,14 @@ import { Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 
 // import Spinner from '../Spinner';
-import { useDispatch, useSelector } from 'react-redux';
 import {
-  selectIsRefreshing,
-  selectIsLoading,
-} from '../../redux/auth/selectors';
+  useDispatch,
+  // useSelector
+} from 'react-redux';
+// import {
+//   selectIsRefreshing,
+//   selectIsLoading,
+// } from '../../redux/auth/selectors';
 // import { toast } from 'react-toastify';
 import { logIn } from '../../redux/auth/operations';
 
@@ -45,8 +48,8 @@ const FormError = ({ name }) => {
 };
 
 const LoginForm = () => {
-  const isRefreshing = useSelector(selectIsRefreshing);
-  const isLoading = useSelector(selectIsLoading);
+  // const isRefreshing = useSelector(selectIsRefreshing);
+  // const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
 
   const initialValues = {
