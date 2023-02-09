@@ -1,11 +1,18 @@
-import { Formik, Form, ErrorMessage } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
-import { useDispatch } from 'react-redux';
 
+import Spinner from '../Spinner';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  selectIsRefreshing,
+  // selectIsLoading,
+} from '../../redux/auth/selectors';
+// import { toast } from 'react-toastify';
 import { logIn } from '../../redux/auth/operations';
 
 import {
   Container,
+  FormLogin,
   FieldLogin,
   FieldPass,
   Title,
@@ -38,6 +45,8 @@ const FormError = ({ name }) => {
 };
 
 const LoginForm = () => {
+  const isRefreshing = useSelector(selectIsRefreshing);
+  // const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
 
   const initialValues = {
@@ -59,51 +68,53 @@ const LoginForm = () => {
   };
 
   return (
-    <Container>
-      <Title>Login</Title>
-      <Formik
-        initialValues={initialValues}
-        onSubmit={handleSubmit}
-        validationSchema={loginSchema}
-      >
-        <Form autoComplete="on">
-          <FieldLogin>
-            <label htmlFor="email">
-              <Input
-                id="loginEmail"
-                type="email"
-                name="email"
-                placeholder="Email"
-              />
-              <FormError name="email" />
-            </label>
-          </FieldLogin>
+    <>
+      {isRefreshing ? (
+        <Spinner />
+      ) : (
+        <Container>
+          <Formik
+            initialValues={initialValues}
+            onSubmit={handleSubmit}
+            validationSchema={loginSchema}
+          >
+            <FormLogin autoComplete="on">
+              <Title>Login</Title>
+              <FieldLogin>
+                <label htmlFor="email">
+                  <Input
+                    id="loginEmail"
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                  />
+                  <FormError name="email" />
+                </label>
+              </FieldLogin>
 
-          <FieldPass>
-            <label htmlFor="password">
-              <Input
-                id="password"
-                type="password"
-                name="password"
-                placeholder="Password"
-              />
-              <FormError name="password" />
-            </label>
-          </FieldPass>
+              <FieldPass>
+                <label htmlFor="password">
+                  <Input
+                    id="password"
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                  />
+                  <FormError name="password" />
+                </label>
+              </FieldPass>
 
-          <Button type="submit">Login</Button>
-          <Text>
-            <p>
-              {' '}
-              Don't have an account?
-              <span>
-                <Link to="/register">Register</Link>
-              </span>
-            </p>
-          </Text>
-        </Form>
-      </Formik>
-    </Container>
+              <Button type="submit">Login</Button>
+              <Text>
+                <span>
+                  Don't have an account? <Link to="/register">Register</Link>
+                </span>
+              </Text>
+            </FormLogin>
+          </Formik>
+        </Container>
+      )}
+    </>
   );
 };
 
