@@ -13,6 +13,8 @@ import {
   NoticesButton,
 } from './NoticesCategoriesListSecond.styled';
 
+import LearnMoreButton from '../NoticesDetailsCard/NoticesButton/NoticesButton';
+
 import notFoundNoticesImage from '../../../img/notFoundNoticesImage.jpg';
 // import { PER_PAGE } from '../../../redux/notices/operations ';
 // import { useSelector, useDispatch } from 'react-redux';
@@ -141,7 +143,9 @@ const NoticesCategoriesListSecond = () => {
                 {isOwner && isLogined && <NoticesTag>Owner </NoticesTag>}
               </NoticesTags>
 
-              <NoticesButton>Learn More</NoticesButton>
+              <LearnMoreButton />
+
+              {/* <NoticesButton>Learn More</NoticesButton> */}
               {!favorite && isLogined && (
                 <NoticesButton onClick={() => dispatch(addToFavorite(_id))}>
                   add to favorite

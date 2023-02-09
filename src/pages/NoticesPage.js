@@ -69,6 +69,7 @@ const NoticesPage = () => {
 
         <NoticesCategoriesNav />
         <NoticesGallary />
+
         {/* {isLoading && <Loader />} */}
         {/* {error && <p>{error}</p>}
         <div>{isLoading && 'Request in progress...'}</div> */}
