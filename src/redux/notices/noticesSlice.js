@@ -72,6 +72,9 @@ export const noticesSlice = createSlice({
       );
       state.noticesList.splice(index, 1);
     },
+    setSearch(state, action) {
+      state.search = action.payload;
+    },
   },
 
   ///////////////////////////////////////////////

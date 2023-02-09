@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
 import { media, colors, fontWeights } from '../../../styles/stylesLayout';
+import { Form, Field } from 'formik';
 
-export const SearchForm = styled.form`
+export const SearchForm = styled(Form)`
   position: relative;
 
   margin: 0px auto;
@@ -14,7 +15,7 @@ export const SearchForm = styled.form`
   }
 `;
 
-export const SearchInput = styled.input`
+export const SearchInput = styled(Field)`
   display: inline-block;
 
   width: 100%;
@@ -78,4 +79,11 @@ export const SearchFormButton = styled.button`
   :hover {
     fill: ${colors.accent};
   }
+`;
+export const FormErrorMessage = styled.span`
+  color: red;
+  /* background-color: rgb(63, 81, 181); */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
 `;
