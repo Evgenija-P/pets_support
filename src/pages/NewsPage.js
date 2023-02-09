@@ -13,6 +13,7 @@ const NewsPage = () => {
       <SectionContainer title="News">
         <NoticesSearch />
         <NewsList />
+        <p>!!!!!!</p>
       </SectionContainer>
     </>
   );
