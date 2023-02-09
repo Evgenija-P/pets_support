@@ -34,6 +34,7 @@ const handleFetchNoticesSuccses = (state, action) => {
   state.noticesList = action.payload.message;
   state.totalHits = action.payload.totalHits;
   state.page = action.payload.page;
+  state.search = action.payload.search;
 };
 const handleAddNoticesSuccses = (state, action) => {
   state.noticesList.push(action.payload);
@@ -71,6 +72,9 @@ export const noticesSlice = createSlice({
         notices => notices.id === action.payload
       );
       state.noticesList.splice(index, 1);
+    },
+    setSearch(state, action) {
+      state.search = action.payload;
     },
   },
 
