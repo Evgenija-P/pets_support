@@ -23,9 +23,15 @@ export const fetchNotices = createAsyncThunk(
 );
 export const addNotices = createAsyncThunk(
   'notices/addNotices',
-  async ({ name, number }, thunkAPI) => {
+  async ({ formData }, thunkAPI) => {
+    const params = {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    };
+    // const formData = {};
     try {
-      const response = await axios.post('/notices', { name, number });
+      const response = await axios.post('/notices', formData, { params });
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

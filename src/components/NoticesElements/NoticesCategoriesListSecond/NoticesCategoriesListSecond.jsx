@@ -37,22 +37,18 @@ import { deleteNotices } from '../../../redux/notices/operations ';
 const NoticesCategoriesListSecond = () => {
   const noticesRaw = useSelector(selectNotices);
   const favorite = useSelector(selectFavoriteList);
-  const user = useSelector(selectUser);
-
-  // const { category } = useSelector(selectNoticesObj);
+  const { _id: user } = useSelector(selectUser);
   const dispatch = useDispatch();
-  // const { page: currentPage, totalHits } = useSelector(selectNoticesObj);
-
+  const isLogined = useAuth();
+  const { category } = useSelector(selectNoticesObj);
   const userFavoriteNotices = () => {
     const noticesWithFavorite = noticesRaw.map(notice => {
-      // console.log('favorite', favorite);
       if (favorite.find(fav => fav === notice._id)) {
-        // console.log('favorite', notice._id);
         return { ...notice, favorite: true };
       }
       return { ...notice, favorite: false };
     });
-    // console.log('favoriteList', noticesWithFavorite);
+
     return noticesWithFavorite;
   };
 
@@ -60,32 +56,20 @@ const NoticesCategoriesListSecond = () => {
 
   const isOwnerNotices = () => {
     const noticesOwn = noticesWithFavorite.map(notice => {
-      // console.log('user._id', user);
       if (notice.owner === user._id) {
-        // console.log('owner', notice.owner);
         return { ...notice, isOwner: true };
       }
       return { ...notice, isOwner: false };
     });
-    // console.log('ownerList', noticesOwn);
+
     return noticesOwn;
   };
   const notices = isOwnerNotices();
-  const isLogined = useAuth();
 
-  // const OnPagination = page => {
-  //   // dispatch(setPage(page));
-  //   console.log('current page', currentPage);
-  //   dispatch(fetchNotices({ category, page }));
-  // };
-
-  // const countPages = Math.ceil(totalHits / PER_PAGE);
-  const { category } = useSelector(selectNoticesObj);
   const onFavoriteToggle = (_id, favorite) => {
     if (favorite) {
       dispatch(removeFromFavorite(_id));
       if (category === '/notices/favorite') {
-        // console.log('delete/notices/favorite', _id);
         dispatch(deletefavoriteNotice(_id));
       }
 

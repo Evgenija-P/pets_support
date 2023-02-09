@@ -4,17 +4,6 @@ import {
 } from '../NoticesCategoriesNav/NoticesCategoriesNav.styled';
 
 const NoticesAuthNav = () => {
-  // useEffect(() => {
-  //   const fetchNotices = async () => {
-  //     const { message: result } = await getNoticesByCategory(category);
-  //     setNotices(result);
-  //     try {
-  //     } catch (error) {}
-  //   };
-
-  //   fetchNotices();
-  // }, [category]);
-
   return (
     <>
       <NoticesCategoriesListLink>
@@ -42,8 +31,6 @@ const NoticesAuthNav = () => {
           </NoticesCategoriesLink>
         </li>
       </NoticesCategoriesListLink>
-      {/* 
-      <NoticesCategoriesList notices={notices} /> */}
     </>
   );
 };

@@ -34,7 +34,6 @@ const App = () => {
     'Идем на сервер'
   ) : (
     <>
-      {' '}
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<HomePage />} />
