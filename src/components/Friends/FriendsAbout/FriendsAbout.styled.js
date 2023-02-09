@@ -16,6 +16,7 @@ export const FriendsWrapperAbout = styled.div`
 `;
 
 export const FriendsAboutList = styled.ul`
+  font-family: 'Manrope';
   display: flex;
   flex-direction: column;
   justify-content: space-between;
