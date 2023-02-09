@@ -5,7 +5,7 @@ export const FriendsWrapperAbout = styled.div`
   display: flex;
   /* justify-content: space-around; */
   align-items: center;
-  min-width: 150px;
+  width: 190px;
   height: 140px;
   background: ${colors.white};
 
@@ -18,12 +18,14 @@ export const FriendsWrapperAbout = styled.div`
 export const FriendsAboutList = styled.ul`
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  justify-content: space-between;
+  /* gap: 4px; */
   margin-top: 10px;
   font-size: 12px;
   font-weight: ${fontWeights.medium};
   line-height: 1.33;
   color: ${colors.black};
+  border: 1px red solid;
 
   ${media.tabletAndDesktop} {
     margin-top: 16px;
