@@ -40,7 +40,7 @@ export const FriendsContainer = styled.ul`
     font-size: 16px;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 32px;
+    gap: 26px;
   }
 `;
 
