@@ -34,6 +34,7 @@ const handleFetchNoticesSuccses = (state, action) => {
   state.noticesList = action.payload.message;
   state.totalHits = action.payload.totalHits;
   state.page = action.payload.page;
+  state.search = action.payload.search;
 };
 const handleAddNoticesSuccses = (state, action) => {
   state.noticesList.push(action.payload);
