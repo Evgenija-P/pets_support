@@ -23,6 +23,10 @@ export const FriendsContainer = styled.ul`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  font-size: 12px;
+  line-height: 1.37;
+  font-weight: ${fontWeights.bold};
+  color: ${colors.black};
 
   ${media.tabletAndDesktop} {
     flex-direction: row;
@@ -36,22 +40,18 @@ export const FriendsError = styled.p`
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 26px;
-  line-height: 1.38;
-  font-weight: ${fontWeights.bold};
   text-align: center;
-  color: ${colors.black};
 
   ${media.tabletAndDesktop} {
     font-size: 40px;
   }
 `;
 
-export const FriendsItemWrapper = styled.li`
+export const FriendsItem = styled.li`
   display: flex;
-  gap: 12px;
   flex-direction: column;
   padding: 12px 4px;
-  margin-bottom: 12px;
+
   width: 280px;
   height: 192px;
   border-radius: 20px;
@@ -71,21 +71,21 @@ export const FriendsItemWrapper = styled.li`
   }
 `;
 
-export const FriendsWrapper = styled.ul`
+export const FriendsData = styled.div`
+  margin-top: 12px;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background: ${colors.white};
 `;
 
-export const FriendsImgWrapper = styled.li`
-  width: 110px;
+export const FriendsImg = styled.img`
+  max-width: 95px;
+  display: block;
+  margin: 0 auto;
 `;
 
-export const FriendsItemTitle = styled.p`
-  font-size: 12px;
-  line-height: 1.37;
-  font-weight: ${fontWeights.bold};
+export const FriendsItemTitle = styled.a`
+  list-style: none;
   text-align: center;
   color: ${colors.accent};
 
@@ -94,16 +94,4 @@ export const FriendsItemTitle = styled.p`
     font-size: 36px;
     font-weight: 600;
   } */
-`;
-
-export const FriendsImg = styled.img`
-  max-width: 95px;
-
-  display: block;
-  margin: 0 auto;
-  /* border: 1px blue solid; */
-`;
-
-export const FriendsURL = styled.a`
-  list-style: none;
 `;
