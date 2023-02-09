@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { nanoid } from 'nanoid';
 import { toast } from 'react-toastify';
 import { optionsToast } from '../../../styles/stylesLayout';
 
 import BASE_URL from '../../../servises/api';
-
+import FriendsAbout from '../FriendsAbout/FriendsAbout';
+import defaultImage from '../../../img/default.jpg';
+import Spinner from '../../Spinner/Spinner';
 import {
   FriendsContainer,
   FriendsTitle,
@@ -13,11 +16,6 @@ import {
   FriendsImg,
   FriendsItemTitle,
 } from './FriendsList.styles';
-import { nanoid } from 'nanoid';
-import FriendsAbout from '../FriendsAbout/FriendsAbout';
-import defaultImage from '../../../img/default.jpg';
-
-import Spinner from '../../Spinner/Spinner';
 
 const FriendsList = () => {
   const [isLoading, setIsLoading] = useState(false);

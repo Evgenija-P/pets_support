@@ -4,7 +4,7 @@ import { FriendsWrapperAbout, Active, AboutItem } from './FriendsAbout.styled';
 
 const FriendsAbout = ({ item }) => {
   const { phone, email, workDays, address, addressUrl } = item;
-  const [onOpen, setOnOpen] = useState(true);
+  const [onOpen, setOnOpen] = useState(false);
   const telNumber = 'tel:' + phone;
   const emailAdres = `mailto:` + email;
 

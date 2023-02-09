@@ -21,16 +21,26 @@ export const FriendsTitle = styled.h1`
 export const FriendsContainer = styled.ul`
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
+  gap: 12px;
   font-size: 12px;
   line-height: 1.37;
   font-weight: ${fontWeights.bold};
   color: ${colors.black};
 
-  ${media.tabletAndDesktop} {
+  ${media.tablet} {
+    font-size: 14px;
     flex-direction: row;
     flex-wrap: wrap;
+    gap: 32px;
+  }
+
+  ${media.desktop} {
+    font-size: 16px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 32px;
   }
 `;
 
@@ -59,10 +69,15 @@ export const FriendsItem = styled.li`
 
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
 
-  ${media.tabletAndDesktop} {
+  ${media.tablet} {
     width: 336px;
     height: 246px;
-    margin-bottom: 32px;
+    padding: 16px 4px;
+  }
+
+  ${media.desktop} {
+    width: 395px;
+    height: 287px;
   }
 
   :hover,
@@ -72,7 +87,6 @@ export const FriendsItem = styled.li`
 `;
 
 export const FriendsData = styled.div`
-  margin-top: 12px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -82,16 +96,25 @@ export const FriendsImg = styled.img`
   max-width: 95px;
   display: block;
   margin: 0 auto;
+
+  ${media.tablet} {
+    max-width: 110px;
+  }
+
+  ${media.desktop} {
+    max-width: 130px;
+  }
 `;
 
 export const FriendsItemTitle = styled.a`
+  font-size: 12px;
   list-style: none;
   text-align: center;
   color: ${colors.accent};
+  margin-bottom: 12px;
 
-  /* ${media.tabletAndDesktop} {
-    margin-bottom: 40px;
-    font-size: 36px;
-    font-weight: 600;
-  } */
+  ${media.tabletAndDesktop} {
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
 `;
