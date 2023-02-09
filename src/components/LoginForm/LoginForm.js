@@ -5,7 +5,7 @@ import Spinner from '../Spinner';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectIsRefreshing,
-  selectIsLoading,
+  // selectIsLoading,
 } from '../../redux/auth/selectors';
 // import { toast } from 'react-toastify';
 import { logIn } from '../../redux/auth/operations';
@@ -46,7 +46,7 @@ const FormError = ({ name }) => {
 
 const LoginForm = () => {
   const isRefreshing = useSelector(selectIsRefreshing);
-  const isLoading = useSelector(selectIsLoading);
+  // const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
 
   const initialValues = {

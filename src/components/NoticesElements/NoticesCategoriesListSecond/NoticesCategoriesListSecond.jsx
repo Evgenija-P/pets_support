@@ -37,7 +37,7 @@ import { deleteNotices } from '../../../redux/notices/operations ';
 const NoticesCategoriesListSecond = () => {
   const noticesRaw = useSelector(selectNotices);
   const favorite = useSelector(selectFavoriteList);
-  const user = useSelector(selectUser);
+  const { _id: user } = useSelector(selectUser);
 
   // const { category } = useSelector(selectNoticesObj);
   const dispatch = useDispatch();
@@ -61,7 +61,7 @@ const NoticesCategoriesListSecond = () => {
   const isOwnerNotices = () => {
     const noticesOwn = noticesWithFavorite.map(notice => {
       // console.log('user._id', user);
-      if (notice.owner === user._id) {
+      if (notice.owner === user) {
         // console.log('owner', notice.owner);
         return { ...notice, isOwner: true };
       }
