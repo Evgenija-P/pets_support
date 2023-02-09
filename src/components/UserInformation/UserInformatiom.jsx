@@ -1,9 +1,11 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field, ErrorMessage, useFormik } from 'formik';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { selectUser } from '../../redux/auth/selectors'
-import {logOut} from '../../redux/auth/operations'
+import { logOut, addAvatar, updateUserInformation } from '../../redux/auth/operations'
+import imgPlug from '../../img/no-foto.png'
+import{Title, Container} from './UserInformation.styled'
  
 
 
@@ -14,34 +16,53 @@ const UserInformation = () => {
     const user = useSelector(selectUser);
     const dispatch = useDispatch();
 
-   
-    const initialValues = {
-    name: user.name,
-    email: user.email,
-    birthday: user.birthday,
-    phone: user.phone,
-    city: user.city
-}
 
-    const handleSubmit = (e) => {
+
+
+    const initialValues = {
+        name: user.name,
+        email: user.email,
+        birthday: user.birthday,
+        phone: user.phone,
+        city: user.city
+    }
+    const handleSubmit = ({name, email, birthday, phone, city}) => {
+        const data = {
+            name,
+            email,
+            birthday,
+            phone,
+            city,
+        }
+        dispatch(updateUserInformation(data))
         setChange(false);
     }
+    
+    const handleChange = (e) => {
+        const avatar = e.target.files[0];
+        const formData = new FormData();
+        formData.append('avatar', avatar);
+        dispatch(addAvatar(formData));
+    }
+    
 
     return (
-        <div>
+        <Container>
             <h1>My information: </h1>
             <div>
                 <img
-                    src="photo.jpg"
+                    src={!user.avatarURL ? imgPlug : user.avatarURL}
                     alt="Avatar"
+                    width="233"
+                    height="233"
                 />
-                <button type='submit'>Edit photo</button>
+                <input type="file" onChange={handleChange}/>
                 <Formik initialValues={initialValues} onSubmit={handleSubmit}>
                     <Form autoComplete='off'>
 
                         {change === 'name' ? <label>
                             Name:
-                            <Field name='name'/>
+                            <Field type='text' name='name'/>
                             <button type='submit'>Change</button>
                         </label> : <div>
                             <p>{`Name: ${initialValues.name}`}</p>
@@ -49,7 +70,7 @@ const UserInformation = () => {
                         
                         {change === 'email' ? <label>
                             Email:
-                            <Field name='email' />
+                            <Field type='email' name='email' />
                             <button type='submit'>Change</button>
                         </label> : <div>
                             <p>{`Email: ${initialValues.email}`}</p>
@@ -57,7 +78,7 @@ const UserInformation = () => {
                         
                          {change === 'birthday' ? <label>
                             Birthday:
-                            <Field name='birthday' />
+                            <Field type='text' name='birthday' />
                             <button type='submit'>Change</button>
                         </label> : <div>
                             <p>{`Birthday: ${initialValues.birthday}`}</p>
@@ -65,7 +86,7 @@ const UserInformation = () => {
                         
                           {change === 'phone' ? <label>
                             Phone:
-                            <Field name='phone' />
+                            <Field type='text' name='phone' />
                             <button type='submit'>Change</button>
                         </label> : <div>
                             <p>{`Phone: ${initialValues.phone}`}</p>
@@ -73,7 +94,7 @@ const UserInformation = () => {
                         
                         {change === 'city' ? <label>
                             City:
-                            <Field name='city' />
+                            <Field type='text' name='city' />
                             <button type='submit'>Change</button>
                         </label> : <div>
                             <p>{`City: ${initialValues.city}`}</p>
@@ -82,7 +103,7 @@ const UserInformation = () => {
                 </Formik>
                 <button type='button' onClick={() => dispatch(logOut())}>Log out</button>
             </div>
-        </div>
+        </Container>
     );
 };
 
