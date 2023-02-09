@@ -10,6 +10,7 @@ import { refreshUser } from '../../redux/auth/operations';
 import PrivateRoute from '../PrivateRoute';
 import RestrictedRoute from '../RestrictedRoute';
 import SharedLayout from '../SharedLayout';
+import Spinner from '../Spinner';
 
 const NoticesCategoriesNav = lazy(() =>
   import('../NoticesElements/NoticesCategoriesNav')
@@ -31,7 +32,7 @@ const App = () => {
   }, [dispatch]);
 
   return isRefreshing ? (
-    'Идем на сервер'
+    <Spinner/>
   ) : (
     <>
       {' '}

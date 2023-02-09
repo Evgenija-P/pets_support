@@ -1,4 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
+
 import axios from 'axios';
 
 axios.defaults.baseURL = 'https://petly-brs3.onrender.com/api';
@@ -18,8 +20,15 @@ export const register = createAsyncThunk(
       const res = await axios.post('/users/signup', credentials);
       setAuthHeader(res.data.token);
       return res.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+    } catch ({ response }) {
+      console.log(response);
+      const error = {
+        status: response.status,
+        statusText: response.statusText,
+        message: response.data.message,
+      };
+      toast.error(error.message);
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
@@ -30,16 +39,16 @@ export const logIn = createAsyncThunk(
     try {
       const res = await axios.post('/users/signin', credentials);
       setAuthHeader(res.data.token);
-      console.log(res.data);
+
       return res.data;
     } catch ({ response }) {
-      // console.log(response);
+      console.log(response);
       const error = {
         status: response.status,
         statusText: response.statusText,
         message: response.data.message,
       };
-      console.log(error);
+      toast.error(error.message);
       return thunkAPI.rejectWithValue(error);
     }
   }
