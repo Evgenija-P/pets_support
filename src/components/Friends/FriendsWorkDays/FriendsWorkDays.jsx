@@ -1,9 +1,12 @@
-// import {} from './FriendsWorkDays.sryled';
 import { nanoid } from 'nanoid';
 import { WorkDaysList, WorkDaysItem, Worky } from './FriendsWorkDays.styled';
 
 const FriendsWorkDays = ({ workDays }) => {
   const days = ['MN', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
+  if (!Array.isArray(workDays)) {
+    return;
+  }
+
   const newWeek =
     workDays &&
     workDays.map((day, index) => {

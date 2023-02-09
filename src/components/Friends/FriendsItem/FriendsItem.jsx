@@ -2,6 +2,7 @@ import React from 'react';
 
 import { nanoid } from 'nanoid';
 import FriendsAbout from '../FriendsAbout/FriendsAbout';
+import defaultImage from '../../../img/default.jpg';
 
 import {
   FriendsItemWrapper,
@@ -23,14 +24,12 @@ const FriendsItem = ({ items }) => {
           </FriendsURL>
           <FriendsWrapper>
             <FriendsImgWrapper>
-              <FriendsImg src={`${item.imageUrl}`} alt={item.title} />
+              <FriendsImg
+                src={item.imageUrl ? `${item.imageUrl}` : defaultImage}
+                alt={item.title}
+              />
             </FriendsImgWrapper>
-            <FriendsAbout
-              adress={item.address}
-              // workDays={item.workDays}
-              phone={item.phone}
-              email={item.email}
-            />
+            <FriendsAbout item={item} />
           </FriendsWrapper>
         </FriendsItemWrapper>
       ))}
