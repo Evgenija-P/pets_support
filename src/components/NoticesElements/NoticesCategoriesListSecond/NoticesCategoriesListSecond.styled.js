@@ -1,15 +1,18 @@
 import styled from '@emotion/styled';
 import { media, colors, fontWeights } from '../../../styles/stylesLayout';
 
+import noticesFavoriteIcon from '../../../img/icons/noticesFavoriteIcon.svg';
+import noticesFavoriteIconActive from '../../../img/icons/noticesFavoriteIconActive.svg';
+
 export const NoticesList = styled.ul`
   display: grid;
-  grid-template-columns: repeat(1, minmax(50px, 1fr));
+  grid-template-columns: repeat(1, minmax(200px, 1fr));
   gap: 32px;
 
   margin: 30px 0px;
 
   ${media.tablet} {
-    grid-template-columns: repeat(2, minmax(50px, 1fr));
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
   }
 
   ${media.tabletAndDesktop} {
@@ -17,11 +20,11 @@ export const NoticesList = styled.ul`
   }
 
   ${media.desktop} {
-    grid-template-columns: repeat(4, minmax(50px, 1fr));
+    grid-template-columns: repeat(4, minmax(200px, 1fr));
   }
 `;
 
-export const NoticesItem = styled.div`
+export const NoticesItem = styled.li`
   border-radius: 0px 0px 20px 20px;
   box-shadow: 7px 4px 15px 0px ${colors.shadow};
 
@@ -30,14 +33,59 @@ export const NoticesItem = styled.div`
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover {
     transform: scale(1.03);
-    cursor: zoom-in;
   }
 `;
 
 export const NoticesTop = styled.div`
   position: relative;
-
   width: 100%;
+`;
+
+export const NoticesNav = styled.div`
+  position: absolute;
+  top: 12px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 95%;
+`;
+
+export const NoticesBadge = styled.div`
+  width: 158px;
+  padding: 8px 20px;
+
+  border-radius: 0px 20px 20px 0px;
+  background: rgba(255, 255, 255, 0.6);
+
+  font-weight: ${fontWeights.bold};
+  font-size: 12px;
+  letter-spacing: 0.04em;
+`;
+
+export const NoticesButtonFavorite = styled.button`
+  display: flex;
+  align-items: center;
+
+  width: 44px;
+  height: 44px;
+
+  border: none;
+  outline: none;
+  border-radius: 44px;
+
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(5px);
+
+  background-image: url(${noticesFavoriteIcon});
+  background-repeat: no-repeat;
+  background-position: center;
+
+  &:hover,
+  &:focus {
+    background-image: url(${noticesFavoriteIconActive});
+  }
 `;
 
 export const NoticesImage = styled.img`
@@ -45,27 +93,7 @@ export const NoticesImage = styled.img`
 
   width: 100%;
   height: 288px;
-
   object-fit: cover;
-`;
-
-export const NoticesBadge = styled.span`
-  position: absolute;
-  top: 20px;
-
-  display: flex;
-  align-items: center;
-
-  width: 158px;
-  height: 28px;
-  padding: 8px 20px;
-
-  border-radius: 0px 20px 20px 0px;
-  background-color: ${colors.white};
-
-  font-weight: ${fontWeights.bold};
-  font-size: 12px;
-  letter-spacing: 0.04em;
 `;
 
 export const NoticesDescription = styled.div`
@@ -91,16 +119,15 @@ export const NoticesTags = styled.div`
 `;
 
 export const NoticesTag = styled.span`
-  display: block;
+  display: inline-block;
 
   font-weight: ${fontWeights.medium};
   font-size: 16px;
-  line-height: 22px;
 `;
 
 export const NoticesButton = styled.button`
-  width: 248px;
-  height: 38px;
+  width: 100%;
+  padding: 8px 28px;
 
   border-radius: 40px;
   border: 2px solid ${colors.accent};
@@ -108,11 +135,10 @@ export const NoticesButton = styled.button`
 
   font-weight: ${fontWeights.medium};
   font-size: 16px;
-  line-height: 22px;
+  line-height: 1.375;
   letter-spacing: 0.04em;
 
   text-align: center;
-
   color: ${colors.accent};
 
   &:hover,

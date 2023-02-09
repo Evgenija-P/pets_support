@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 // import { useLocation } from 'react-router-dom';
 // import useAuth from '../hooks/useAuth';
 // import getNoticesByCategory from '../servises/fetchNotices';
-
+// import { useLocation } from 'react-router-dom';
 import SectionContainer from '../components/SectionContainer';
 import NoticesCategoriesNav from '../components/NoticesElements/NoticesCategoriesNav/NoticesCategoriesNav';
 import NoticesSearch from '../components/NoticesElements/NoticesSearch/NoticesSearch';
@@ -16,9 +16,9 @@ import NoticesGallary from '../components/NoticesElements/NoticesGallary';
 //   fetchFavoriteNotices,
 // } from '../redux/notices/operations ';
 // import { selectNoticesObj } from '../redux/notices/selectors';
-// import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 
-// // import { setCategory } from '../redux/notices/noticesSlice';
+// import { setCategory } from '../redux/notices/noticesSlice';
 // import Spinner from '../components/Spinner';
 const NoticesPage = () => {
   // const [notices, setNotices] = useState([]);

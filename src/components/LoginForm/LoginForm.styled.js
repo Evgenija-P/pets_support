@@ -1,15 +1,43 @@
 import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 import { media, colors, fontWeights } from '../../styles/stylesLayout';
-import { Field } from 'formik';
+import { Form, Field } from 'formik';
+
+import mobileBackground from '../../img/Auth/bg-auth-mobile.png';
+import tabletBackground from '../../img/Auth/bg-auth-tablet.png';
+import desktopBackground from '../../img/Auth/bg-auth-desctop.png';
 
 export const Container = styled.div`
+  padding-top: 42px;
+
+  background-image: url(${mobileBackground});
+  background-position: center bottom;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: calc(100vh - 74px);
+
+  ${media.tablet} {
+    padding-top: 204px;
+
+    background-image: url(${tabletBackground});
+    height: calc(100vh - 96px);
+  }
+
+  ${media.desktop} {
+    padding-top: 80px;
+
+    background-image: url(${desktopBackground});
+    height: calc(100vh - 88px);
+  }
+`;
+
+export const FormLogin = styled(Form)`
   width: 280px;
   padding-inline: 0px;
-  padding-top: 42px;
+
   padding-bottom: 0px;
-  /* border-radius: 40px; */
-  background-color: ${colors.background};
+
+  background-color: transparent;
   margin-inline: auto;
   box-sizing: border-box;
 
@@ -185,7 +213,7 @@ export const Button = styled.button`
   }
 `;
 
-export const Text = styled.div`
+export const Text = styled.p`
   box-sizing: border-box;
 
   display: flex;
@@ -203,6 +231,7 @@ export const Text = styled.div`
 `;
 
 export const Link = styled(NavLink)`
+  display: inline-block;
   color: ${colors.blue};
   text-decoration: none;
 `;
