@@ -26,6 +26,7 @@ export const ImgHpDesk = styled.div`
   z-index: 1;
 
   background: url(${backImgHpDesk}) no-repeat;
+  background-size: contain;
   background-position-x: right;
   background-position-y: bottom;
 
@@ -53,19 +54,20 @@ export const MainBack = styled.div`
   z-index: 1;
 
   background: url(${main}) no-repeat;
+  background-size: contain;
   background-position-x: right;
   background-position-y: bottom;
 
   ${media.tablet} {
     background: url(${backMobileTablet2}) no-repeat;
+    background-size: contain;
     background-position-x: center;
     background-position-y: center;
-    background-size: cover;
   }
   ${media.mobile} {
     background: url(${backImgHpTablet}) no-repeat;
+    background-size: contain;
     background-position-x: center;
     background-position-y: center;
-    background-size: contain;
   }
 `;
