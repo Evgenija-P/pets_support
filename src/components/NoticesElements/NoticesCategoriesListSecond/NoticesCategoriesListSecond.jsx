@@ -10,7 +10,7 @@ import {
   NoticesTitle,
   NoticesTags,
   NoticesTag,
-  NoticesButton,
+  // NoticesButton,
 } from './NoticesCategoriesListSecond.styled';
 import {
   getOwnerNotices,
@@ -38,6 +38,9 @@ import {
   removeFromFavorite,
 } from '../../../redux/favorite/operations ';
 //import { deleteNotices } from '../../../redux/notices/operations ';
+
+import LearnMoreButton from '../NoticesDetailsCard/NoticesButton/NoticesButton';
+
 const NoticesCategoriesListSecond = () => {
   const notices = useSelector(selectNotices);
   const favorite = useSelector(selectFavoriteList);
@@ -93,7 +96,6 @@ const NoticesCategoriesListSecond = () => {
 
             <NoticesDescription>
               <NoticesTitle>{title}</NoticesTitle>
-
               <NoticesTags>
                 {/* <NoticesTag>id: {_id}</NoticesTag> */}
                 <NoticesTag>Breed: {breed}</NoticesTag>
@@ -106,7 +108,9 @@ const NoticesCategoriesListSecond = () => {
                 {isOwner && isLogined && <NoticesTag>Owner </NoticesTag>} */}
               </NoticesTags>
 
-              <NoticesButton>Learn More</NoticesButton>
+              <LearnMoreButton />
+
+              {/* <NoticesButton>Learn More</NoticesButton> */}
               {/* {!favorite && isLogined && (
                 <NoticesButton onClick={() => dispatch(addToFavorite(_id))}>
                   add to favorite
