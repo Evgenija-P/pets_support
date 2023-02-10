@@ -1,8 +1,11 @@
 import styled from '@emotion/styled';
-import { colors } from '../../../styles/stylesLayout';
+import { colors, fontWeights } from '../../../styles/stylesLayout';
 
 export const WorkDaysList = styled.ul`
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 120px;
   height: 160px;
   padding: 12px;
@@ -10,16 +13,14 @@ export const WorkDaysList = styled.ul`
   background: ${colors.white};
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 `;
 
 export const WorkDaysItem = styled.li`
-  color: ${colors.black};
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 100%;
+
+  font-weight: ${fontWeights.medium};
 `;
 
 export const Worky = styled.p``;

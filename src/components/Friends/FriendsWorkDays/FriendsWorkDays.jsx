@@ -18,12 +18,17 @@ const FriendsWorkDays = ({ workDays }) => {
       {newWeek.map(item => (
         <WorkDaysItem key={nanoid()}>
           {item.isOpen ? (
-            <Worky>
-              {item.day}
-              {item.from}-{item.to}
-            </Worky>
+            <>
+              <Worky>{item.day}</Worky>
+              <Worky>
+                {item.from}-{item.to}
+              </Worky>
+            </>
           ) : (
-            <Worky>{item.day} Closed</Worky>
+            <>
+              <Worky>{item.day} </Worky>
+              <Worky>Closed </Worky>
+            </>
           )}
         </WorkDaysItem>
       ))}
