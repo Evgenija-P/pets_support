@@ -21,6 +21,8 @@ export const ModalWrapperInfo = styled.div`
   }
 
   ${media.desktop} {
+    width: 704px;
+    padding: 32px 20px;
     min-height: 548px;
   }
 `;

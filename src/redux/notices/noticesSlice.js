@@ -3,6 +3,7 @@ import {
   fetchNotices,
   addNotices,
   deleteNotices,
+
   // addToFavoriteNotices,
   // removeFromFavoriteNotices,
   // fetchFavoriteNotices,
@@ -26,6 +27,7 @@ const extraActions = [
   fetchNotices,
   addNotices,
   deleteNotices,
+
   // addToFavoriteNotices,
   // removeFromFavoriteNotices,
   // fetchFavoriteNotices,
