@@ -17,7 +17,7 @@ const noticesInitialState = {
   totalHits: 0,
   isLoading: false,
   error: null,
-  category: '/notices',
+  category: '/notices/',
   search: '',
 };
 

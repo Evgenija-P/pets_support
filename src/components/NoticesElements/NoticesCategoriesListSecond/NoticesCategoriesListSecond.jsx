@@ -62,7 +62,7 @@ const NoticesCategoriesListSecond = () => {
     return noticesOwn;
   };
   const notices = isOwnerNotices();
-  const isLogined = useAuth();
+  // const isLogined = useAuth();
   const { category } = useSelector(selectNoticesObj);
   const onFavoriteToggle = (_id, favorite) => {
     if (favorite) {
@@ -111,35 +111,35 @@ const NoticesCategoriesListSecond = () => {
               <NoticesTitle>{title}</NoticesTitle>
 
               <NoticesTags>
-                <NoticesTag>id: {_id}</NoticesTag>
+                {/* <NoticesTag>id: {_id}</NoticesTag> */}
                 <NoticesTag>Breed: {breed}</NoticesTag>
                 <NoticesTag>Place: {location}</NoticesTag>
                 <NoticesTag>Age: {age}</NoticesTag>
                 {categoryName === 'sell' && (
                   <NoticesTag>Price: {price}$</NoticesTag>
                 )}
-                {favorite && isLogined && <NoticesTag>Favorite </NoticesTag>}
-                {isOwner && isLogined && <NoticesTag>Owner </NoticesTag>}
+                {/* {favorite && isLogined && <NoticesTag>Favorite </NoticesTag>}
+                {isOwner && isLogined && <NoticesTag>Owner </NoticesTag>} */}
               </NoticesTags>
 
               <NoticesButton>Learn More</NoticesButton>
-              {!favorite && isLogined && (
+              {/* {!favorite && isLogined && (
                 <NoticesButton onClick={() => dispatch(addToFavorite(_id))}>
                   add to favorite
                 </NoticesButton>
-              )}
-              {favorite && isLogined && (
+              )} */}
+              {/* {favorite && isLogined && (
                 <NoticesButton
                   onClick={() => dispatch(removeFromFavorite(_id))}
                 >
                   remove from favorite
                 </NoticesButton>
-              )}
-              {isOwner && isLogined && (
+              )} */}
+              {/* {isOwner && isLogined && (
                 <NoticesButton onClick={() => dispatch(deleteNotices(_id))}>
                   delete
                 </NoticesButton>
-              )}
+              )} */}
             </NoticesDescription>
           </NoticesItem>
         )
