@@ -2,9 +2,9 @@ import { NoticesButton } from './NoticesButton.styled';
 import React, { useState } from 'react';
 
 import Modal from '../../../Modal';
-import NoticesDetailsCard from '../NoticesDetaisCard';
+import NoticesDetailsCard from '../NoticesDetailsCard/NoticesDetaisCard';
 
-const LearnMoreButton = noticesId => {
+const LearnMoreButton = () => {
   const [showModal, setShowModal] = useState(false);
 
   function toggleModal(e) {

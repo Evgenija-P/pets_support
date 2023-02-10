@@ -1,4 +1,4 @@
-import defaultPhoto from '../../../img/default.jpg';
+import defaultPhoto from '../../../../img/default.jpg';
 import {
   NoticesInfoContainer,
   NoticesBox,
@@ -9,7 +9,7 @@ import {
   NoticesTag,
   ButtonBlock,
   NoticesButton,
-} from './NoticeDetailsCard.styled';
+} from './NoticeInfoCard.styled';
 // import notFoundNoticesImage from '../../../img/notFoundNoticesImage.jpg';
 
 const NoticeInfoCard = ({

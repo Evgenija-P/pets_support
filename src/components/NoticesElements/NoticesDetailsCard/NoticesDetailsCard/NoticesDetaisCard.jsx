@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
-import BASE_URL from '../../../servises/api';
-import Spinner from '../../Spinner/Spinner';
+import BASE_URL from '../../../../servises/api';
+import Spinner from '../../../Spinner/Spinner';
 
-import NoticeInfoCard from './NoticeInfoCard';
+import NoticeInfoCard from '../NoticeInfoCard/NoticeInfoCard';
 
 const NoticesDetailsCard = noticeId => {
   const [isLoading, setIsLoading] = useState(false);

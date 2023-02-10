@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { media, colors, fontWeights } from '../../../styles/stylesLayout';
+import { media, colors, fontWeights } from '../../../../styles/stylesLayout';
 
 export const NoticesInfoContainer = styled.div`
   width: 280px;
@@ -83,8 +83,8 @@ export const ButtonBlock = styled.div`
   margin-top: 40px;
 
   ${media.tabletAndDesktop} {
-    /* display: flex;
-    justify-content: flex-end; */
+    display: flex;
+    justify-content: flex-end;
     margin-top: 32px;
   }
 `;
@@ -92,7 +92,7 @@ export const ButtonBlock = styled.div`
 export const NoticesButton = styled.button`
   width: 240px;
   height: 40px;
-  margin-left: 12px;
+  margin-top: 12px;
 
   border-radius: 40px;
   border: 2px solid ${colors.accent};
@@ -115,4 +115,9 @@ export const NoticesButton = styled.button`
   }
 
   cursor: pointer;
+
+  ${media.tabletAndDesktop} {
+    margin-left: 12px;
+    margin-top: 0px;
+  }
 `;
