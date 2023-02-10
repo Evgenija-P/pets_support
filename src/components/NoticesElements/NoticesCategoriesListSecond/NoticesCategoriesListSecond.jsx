@@ -5,12 +5,14 @@ import {
   NoticesNav,
   NoticesImage,
   NoticesBadge,
-  NoticesButtonFavorite,
+  // NoticesButtonFavorite,
   NoticesDescription,
   NoticesTitle,
   NoticesTags,
   NoticesTag,
-  // NoticesButton,
+  NoticesButton,
+  NoticesFavorite,
+  NoticesButtonFavoriteV2,
 } from './NoticesCategoriesListSecond.styled';
 import {
   getOwnerNotices,
@@ -39,7 +41,7 @@ import {
 } from '../../../redux/favorite/operations ';
 //import { deleteNotices } from '../../../redux/notices/operations ';
 
-import LearnMoreButton from '../NoticesDetailsCard/NoticesButton/NoticesButton';
+// import LearnMoreButton from '../NoticesDetailsCard/NoticesButton/NoticesButton';
 
 const NoticesCategoriesListSecond = () => {
   const notices = useSelector(selectNotices);
@@ -82,10 +84,14 @@ const NoticesCategoriesListSecond = () => {
             <NoticesTop>
               <NoticesNav>
                 <NoticesBadge>{categoryName}</NoticesBadge>
-
-                <NoticesButtonFavorite
+                {/* <NoticesButtonFavorite
                   onClick={() => onFavoriteToggle(_id, favorite)}
-                ></NoticesButtonFavorite>
+                ></NoticesButtonFavorite> */}
+                <NoticesButtonFavoriteV2
+                  onClick={() => onFavoriteToggle(_id, favorite)}
+                >
+                  <NoticesFavorite isfavorite={favorite.toString()} />
+                </NoticesButtonFavoriteV2>
               </NoticesNav>
 
               <NoticesImage
@@ -93,7 +99,6 @@ const NoticesCategoriesListSecond = () => {
                 alt={title}
               />
             </NoticesTop>
-
             <NoticesDescription>
               <NoticesTitle>{title}</NoticesTitle>
               <NoticesTags>
@@ -108,9 +113,9 @@ const NoticesCategoriesListSecond = () => {
                 {isOwner && isLogined && <NoticesTag>Owner </NoticesTag>} */}
               </NoticesTags>
 
-              <LearnMoreButton />
+              {/* <LearnMoreButton /> */}
 
-              {/* <NoticesButton>Learn More</NoticesButton> */}
+              <NoticesButton>Learn More</NoticesButton>
               {/* {!favorite && isLogined && (
                 <NoticesButton onClick={() => dispatch(addToFavorite(_id))}>
                   add to favorite
