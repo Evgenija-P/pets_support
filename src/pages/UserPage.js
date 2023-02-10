@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet';
 
-import PetsUserList from '../components/PetsElements/PetsList';
+import PetsUserList from '../components/PetsUserList';
 
 const UserPage = () => {
   return (
