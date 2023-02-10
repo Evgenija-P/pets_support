@@ -1,3 +1,6 @@
+import { Suspense } from 'react';
+import { Outlet } from 'react-router-dom';
+
 import { Helmet } from 'react-helmet';
 import SectionContainer from '../components/SectionContainer';
 import NoticesCategoriesNav from '../components/NoticesElements/NoticesCategoriesNav/NoticesCategoriesNav';
@@ -15,6 +18,10 @@ const NoticesPage = () => {
         <NoticesCategoriesNav />
         <NoticesGallary />
       </SectionContainer>
+
+      <Suspense fallback={<p>Loading...</p>}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };

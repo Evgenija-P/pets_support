@@ -2,12 +2,12 @@ import styled from '@emotion/styled';
 import { media, colors, fontWeights } from '../../../../styles/stylesLayout';
 
 export const NoticesInfoContainer = styled.div`
-  width: 280px;
-  height: 100%;
+  /* width: 280px;
+  height: 100%; */
   /* padding: 60px 20px 40px 20px; */
 
   ${media.tabletAndDesktop} {
-    width: 540px;
+    /* width: 540px; */
     /* padding: 32px 20px 32px 20px; */
   }
 `;
@@ -17,6 +17,35 @@ export const NoticesBox = styled.div`
 
   ${media.tabletAndDesktop} {
     display: flex;
+  }
+`;
+
+export const NoticesCategory = styled.span`
+  position: absolute;
+  top: 80px;
+
+  display: flex;
+  align-items: center;
+
+  width: 158px;
+  height: 28px;
+  padding: 6px 20px;
+
+  border-radius: 0px 20px 20px 0px;
+
+  background: ${colors.accent};
+  backdrop-filter: blur(50px);
+
+  /* background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(50px); */
+
+  font-weight: ${fontWeights.bold};
+  font-size: 12px;
+  letter-spacing: 0.04em;
+
+  ${media.tabletAndDesktop} {
+    top: 52px;
+    font-size: 16px;
   }
 `;
 
@@ -55,6 +84,7 @@ export const NoticesTitle = styled.h2`
 
 export const NoticesTag = styled.h3`
   display: block;
+  margin-right: 20px;
 
   font-weight: 600;
   font-size: 14px;
@@ -79,8 +109,19 @@ export const NoticesText = styled.p`
   }
 `;
 
+export const NoticesComment = styled.p`
+  font-weight: ${fontWeights.medium};
+  font-size: 14px;
+  line-height: 19px;
+
+  ${media.tabletAndDesktop} {
+    font-size: 16px;
+    line-height: 22px;
+  }
+`;
+
 export const ButtonBlock = styled.div`
-  margin-top: 40px;
+  margin-top: 28px;
 
   ${media.tabletAndDesktop} {
     display: flex;
@@ -90,6 +131,10 @@ export const ButtonBlock = styled.div`
 `;
 
 export const NoticesButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   width: 240px;
   height: 40px;
   margin-top: 12px;
@@ -103,13 +148,13 @@ export const NoticesButton = styled.button`
   line-height: 22px;
   letter-spacing: 0.04em;
 
-  text-align: center;
+  /* text-align: center; */
 
   color: ${colors.black};
 
   &:hover,
   &:focus {
-    background-color: ${colors.accentButton};
+    background-color: ${colors.accent};
 
     color: ${colors.white};
   }
@@ -117,7 +162,13 @@ export const NoticesButton = styled.button`
   cursor: pointer;
 
   ${media.tabletAndDesktop} {
+    width: 160px;
     margin-left: 12px;
     margin-top: 0px;
   }
+`;
+
+export const HeartIcon = styled.div`
+  margin-left: 10px;
+  margin-top: 5px;
 `;

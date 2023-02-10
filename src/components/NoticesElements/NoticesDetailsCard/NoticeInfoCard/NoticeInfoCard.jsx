@@ -1,16 +1,20 @@
-import defaultPhoto from '../../../../img/default.jpg';
 import {
   NoticesInfoContainer,
   NoticesBox,
+  NoticesCategory,
   NoticesImage,
   NoticesInfo,
   NoticesTitle,
   NoticesText,
+  NoticesComment,
   NoticesTag,
   ButtonBlock,
   NoticesButton,
+  HeartIcon,
 } from './NoticeInfoCard.styled';
-// import notFoundNoticesImage from '../../../img/notFoundNoticesImage.jpg';
+
+import { ReactComponent as HeartFavorite } from '../../../../img/icons/heartFavorite.svg';
+import defaultPhoto from '../../../../img/default.jpg';
 
 const NoticeInfoCard = ({
   _id,
@@ -29,6 +33,9 @@ const NoticeInfoCard = ({
   return (
     <NoticesInfoContainer>
       <NoticesBox>
+        <NoticesCategory>
+          <span>{categoryName}</span>
+        </NoticesCategory>
         <NoticesImage
           src={petImageURL ? petImageURL : defaultPhoto}
           alt={title}
@@ -36,10 +43,10 @@ const NoticeInfoCard = ({
         <NoticesInfo>
           <NoticesTitle>Cute dog looking for a home {title}</NoticesTitle>
           <NoticesText>
-            <NoticesTag>Name: </NoticesTag> {name}
+            <NoticesTag>Name: </NoticesTag> Tim {name}
           </NoticesText>
           <NoticesText>
-            <NoticesTag>Birthday: </NoticesTag> {birthdate}
+            <NoticesTag>Birthday: </NoticesTag> 10 february {birthdate}
           </NoticesText>
           <NoticesText>
             <NoticesTag>Breed: </NoticesTag> {breed}
@@ -59,15 +66,20 @@ const NoticeInfoCard = ({
         </NoticesInfo>
       </NoticesBox>
 
-      <NoticesText>
-        Comments: Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-        Vero, fugiat minima! Quod repudiandae veniam a. Voluptatum, quam
-        delectus incidunt aspernatur laboriosam, obcaecati a id ut quidem quia
-        porro itaque odit. {comments}
-      </NoticesText>
+      <NoticesComment>
+        <strong>Comments: </strong> Lorem ipsum dolor, sit amet consectetur
+        adipisicing elit. Vero, fugiat minima! Quod repudiandae veniam a.
+        Voluptatum, quam delectus incidunt aspernatur laboriosam, obcaecati a id
+        ut quidem quia porro itaque odit. {comments}
+      </NoticesComment>
 
       <ButtonBlock>
-        <NoticesButton>Add to</NoticesButton>
+        <NoticesButton>
+          Add to
+          <HeartIcon>
+            <HeartFavorite />
+          </HeartIcon>
+        </NoticesButton>
         <NoticesButton>Contact</NoticesButton>
       </ButtonBlock>
     </NoticesInfoContainer>
