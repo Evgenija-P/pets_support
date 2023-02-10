@@ -36,6 +36,7 @@ import {
   removeFromFavorite,
 } from '../../../redux/favorite/operations ';
 import { deleteNotices } from '../../../redux/notices/operations ';
+
 const NoticesCategoriesListSecond = () => {
   const noticesRaw = useSelector(selectNotices);
   const favorite = useSelector(selectFavoriteList);

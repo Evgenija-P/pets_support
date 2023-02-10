@@ -3,11 +3,11 @@ import React, { useEffect, useState } from 'react';
 import BASE_URL from '../../../servises/api';
 import Spinner from '../../Spinner/Spinner';
 
-import NoticeDetailsCard from './NoticeDetailsCard';
+import NoticeInfoCard from './NoticeInfoCard';
 
-const NoticesDetailsCard = () => {
+const NoticesDetailsCard = noticeId => {
   const [isLoading, setIsLoading] = useState(false);
-  const [notices, setNotices] = useState([]);
+  const [noticeCard, setNoticeCard] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -15,13 +15,13 @@ const NoticesDetailsCard = () => {
     fetchNoticesDetails();
   }, []);
 
-  const fetchNoticesDetails = async () => {
+  const fetchNoticesDetails = async noticeId => {
     try {
-      const res = await fetch(`${BASE_URL}/notices`);
+      const res = await fetch(`${BASE_URL}/notices/sell/${noticeId}`);
       const result = await res.json();
       if (result) {
         setIsLoading(false);
-        setNotices(result);
+        setNoticeCard(result);
       }
       return result;
     } catch (e) {
@@ -32,7 +32,7 @@ const NoticesDetailsCard = () => {
 
   return (
     <>
-      {isLoading ? <Spinner /> : <NoticeDetailsCard items={notices} />}
+      {isLoading ? <Spinner /> : <NoticeInfoCard item={noticeCard} />}
       {error && <p>{error}</p>}
     </>
   );

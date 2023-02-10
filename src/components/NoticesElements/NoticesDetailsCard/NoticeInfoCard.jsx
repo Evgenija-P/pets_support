@@ -1,4 +1,3 @@
-// import BASE_URL from '../../../servises/api';
 import defaultPhoto from '../../../img/default.jpg';
 import {
   NoticesInfoContainer,
@@ -13,7 +12,7 @@ import {
 } from './NoticeDetailsCard.styled';
 // import notFoundNoticesImage from '../../../img/notFoundNoticesImage.jpg';
 
-const NoticeDetailsCard = ({
+const NoticeInfoCard = ({
   _id,
   petImageURL,
   birthdate,
@@ -75,4 +74,4 @@ const NoticeDetailsCard = ({
   );
 };
 
-export default NoticeDetailsCard;
+export default NoticeInfoCard;

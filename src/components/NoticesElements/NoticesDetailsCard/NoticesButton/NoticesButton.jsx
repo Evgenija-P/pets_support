@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Modal from '../../../Modal';
 import NoticesDetailsCard from '../NoticesDetaisCard';
 
-const LearnMoreButton = () => {
+const LearnMoreButton = noticesId => {
   const [showModal, setShowModal] = useState(false);
 
   function toggleModal(e) {
