@@ -13,9 +13,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <PersistGate
         loading={null}
         persistor={persistor}
-        basename="/pets_support"
       >
-        <BrowserRouter>
+        <BrowserRouter basename="/pets_support">
           <App />
         </BrowserRouter>
       </PersistGate>
