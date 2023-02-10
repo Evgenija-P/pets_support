@@ -12,11 +12,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectNoticesObj } from '../../../redux/notices/selectors';
 import { fetchNotices } from '../../../redux/notices/operations ';
 import { useLocation } from 'react-router-dom';
+import { setSearch } from '../../../redux/notices/noticesSlice';
 const NoticesSearch = () => {
-  const initialValues = {
-    search: '',
-  };
   const { isLoading, search: searchState } = useSelector(selectNoticesObj);
+  const initialValues = {
+    search: searchState,
+  };
+  // console.log('searchState ', searchState);
+  // const { isLoading, search: searchState } = useSelector(selectNoticesObj);
   const dispatch = useDispatch();
 
   // const schema = yup.object().shape({
@@ -33,18 +36,19 @@ const NoticesSearch = () => {
 
   const heandleSubmitForm = (values, { resetForm }) => {
     const { search } = values;
-    console.log(search);
-    console.log(category);
+    // console.log(search);
+    // console.log(category);
     const normalizedSearch = search.toLocaleLowerCase();
     if (normalizedSearch && normalizedSearch !== searchState) {
-      console.log(search);
+      // console.log(search);
+      dispatch(setSearch(normalizedSearch));
       dispatch(fetchNotices({ category, search: normalizedSearch }));
     }
   };
 
   const onChangeForm = event => {
     const search = event.target.value;
-    console.log('serch change', event.target.value);
+    // console.log('serch change', event.target.value);
     if (!search) {
       dispatch(fetchNotices({ category }));
     }
@@ -56,7 +60,7 @@ const NoticesSearch = () => {
       // validationSchema={schema}
       onSubmit={heandleSubmitForm}
       onChange={() => {
-        console.log('changing');
+        // console.log('changing');
       }}
     >
       <SearchForm onChange={onChangeForm}>
