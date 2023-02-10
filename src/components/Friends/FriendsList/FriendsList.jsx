@@ -57,10 +57,17 @@ const FriendsList = () => {
                   {item.title}
                 </FriendsItemTitle>
                 <FriendsData>
-                  <FriendsImg
-                    src={item.imageUrl ? `${item.imageUrl}` : defaultImage}
-                    alt={item.title}
-                  />
+                  <a
+                    href={`${item.url}`}
+                    target="_blank"
+                    without
+                    rel="noreferrer"
+                  >
+                    <FriendsImg
+                      src={item.imageUrl ? `${item.imageUrl}` : defaultImage}
+                      alt={item.title}
+                    />
+                  </a>
                   <FriendsAbout item={item} />
                 </FriendsData>
               </FriendsItem>

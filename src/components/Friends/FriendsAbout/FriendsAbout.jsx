@@ -22,7 +22,7 @@ const FriendsAbout = ({ item }) => {
           {workDays === undefined || workDays === null ? (
             <>
               <p>Time: </p>
-              <p>------------</p>
+              <p>Інформація відсутня</p>
             </>
           ) : (
             <Active>
@@ -47,7 +47,7 @@ const FriendsAbout = ({ item }) => {
           {address === undefined || address === null ? (
             <>
               <p>Addres: </p>
-              <p>------------</p>
+              <p>Інформація відсутня</p>
             </>
           ) : (
             <Active>
@@ -62,7 +62,7 @@ const FriendsAbout = ({ item }) => {
           {email === undefined || email === null ? (
             <>
               <p>Email: </p>
-              <p>------------</p>
+              <p>Інформація відсутня</p>
             </>
           ) : (
             <Active>
@@ -75,7 +75,7 @@ const FriendsAbout = ({ item }) => {
           {phone === undefined || phone === null ? (
             <>
               <p>Phone: </p>
-              <p>------------</p>
+              <p>Інформація відсутня</p>
             </>
           ) : (
             <Active>

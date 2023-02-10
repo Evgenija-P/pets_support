@@ -33,8 +33,8 @@ const NoticesSearch = () => {
 
   const heandleSubmitForm = (values, { resetForm }) => {
     const { search } = values;
-    console.log(search);
-    console.log(category);
+    // console.log(search);
+    // console.log(category);
     const normalizedSearch = search.toLocaleLowerCase();
     if (normalizedSearch && normalizedSearch !== searchState) {
       console.log(search);
@@ -44,7 +44,7 @@ const NoticesSearch = () => {
 
   const onChangeForm = event => {
     const search = event.target.value;
-    console.log('serch change', event.target.value);
+    // console.log('serch change', event.target.value);
     if (!search) {
       dispatch(fetchNotices({ category }));
     }
@@ -56,7 +56,7 @@ const NoticesSearch = () => {
       // validationSchema={schema}
       onSubmit={heandleSubmitForm}
       onChange={() => {
-        console.log('changing');
+        // console.log('changing');
       }}
     >
       <SearchForm onChange={onChangeForm}>
