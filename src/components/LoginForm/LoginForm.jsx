@@ -1,12 +1,14 @@
+// import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 
-import Spinner from '../Spinner';
-import { useDispatch, useSelector } from 'react-redux';
 import { selectIsLoading } from '../../redux/auth/selectors';
 
 import { logIn } from '../../redux/auth/operations';
-
+import Spinner from '../Spinner';
+// import { ImEye, ImEyeBlocked } from 'react-icons/im';
 import {
   Container,
   FormLogin,
@@ -42,6 +44,13 @@ const FormError = ({ name }) => {
 };
 
 const LoginForm = () => {
+// const[showPassword, setShowPassword] = useState(false);
+ 
+//   const handleShowPasswordClick = () => {
+//         setShowPassword((prevState)=> !prevState)    
+//     }
+
+
   const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
 
