@@ -63,7 +63,7 @@ export const FriendsItem = styled.li`
   padding: 12px 4px;
 
   width: 280px;
-  height: 192px;
+  height: 200px;
   border-radius: 20px;
   background: ${colors.white};
 
@@ -71,13 +71,13 @@ export const FriendsItem = styled.li`
 
   ${media.tablet} {
     width: 336px;
-    height: 246px;
+    height: 250px;
     padding: 16px 4px;
   }
 
   ${media.desktop} {
     width: 395px;
-    height: 287px;
+    height: 300px;
   }
 
   :hover,
@@ -93,7 +93,7 @@ export const FriendsData = styled.div`
 `;
 
 export const FriendsImg = styled.img`
-  max-width: 95px;
+  max-width: 90px;
   display: block;
   margin: 0 auto;
 

@@ -3,11 +3,13 @@ import { colors, fontWeights, media } from '../../../styles/stylesLayout';
 
 export const FriendsWrapperAbout = styled.div`
   display: flex;
-  width: 170px;
-  height: 160px;
+  width: 180px;
 
   line-height: 1.33;
   font-weight: ${fontWeights.medium};
+  ${media.tablet} {
+    width: 210px;
+  }
 `;
 
 export const AboutItem = styled.li`
