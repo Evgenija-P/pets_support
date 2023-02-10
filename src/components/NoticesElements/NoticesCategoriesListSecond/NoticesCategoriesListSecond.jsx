@@ -5,12 +5,14 @@ import {
   NoticesNav,
   NoticesImage,
   NoticesBadge,
-  NoticesButtonFavorite,
+  // NoticesButtonFavorite,
   NoticesDescription,
   NoticesTitle,
   NoticesTags,
   NoticesTag,
   NoticesButton,
+  NoticesFavorite,
+  NoticesButtonFavoriteV2,
 } from './NoticesCategoriesListSecond.styled';
 import {
   getOwnerNotices,
@@ -79,10 +81,14 @@ const NoticesCategoriesListSecond = () => {
             <NoticesTop>
               <NoticesNav>
                 <NoticesBadge>{categoryName}</NoticesBadge>
-
-                <NoticesButtonFavorite
+                {/* <NoticesButtonFavorite
                   onClick={() => onFavoriteToggle(_id, favorite)}
-                ></NoticesButtonFavorite>
+                ></NoticesButtonFavorite> */}
+                <NoticesButtonFavoriteV2
+                  onClick={() => onFavoriteToggle(_id, favorite)}
+                >
+                  <NoticesFavorite isfavorite={favorite.toString()} />
+                </NoticesButtonFavoriteV2>
               </NoticesNav>
 
               <NoticesImage

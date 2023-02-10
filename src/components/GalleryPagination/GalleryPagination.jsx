@@ -27,7 +27,10 @@ const theme = createTheme({
     secondary: {
       main: colors.accent,
     },
-
+    neutral: {
+      main: '#166adf',
+      contrastText: '#fff',
+    },
   },
 });
 
@@ -46,6 +49,7 @@ const GalleryPagination = ({ onPagination, countPages, currentPage }) => {
             shape="rounded"
             size="large"
             onChange={(e, page) => onPagination(page)}
+            color="primary"
           />
         </PagginationWrapper>
       </StyledEngineProvider>
