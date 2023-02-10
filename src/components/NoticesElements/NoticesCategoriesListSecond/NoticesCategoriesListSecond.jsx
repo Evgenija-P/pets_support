@@ -12,6 +12,8 @@ import {
   NoticesTag,
   NoticesButton,
 } from './NoticesCategoriesListSecond.styled';
+import moment from 'moment';
+
 import notFoundNoticesImage from '../../../img/notFoundNoticesImage.jpg';
 // import { PER_PAGE } from '../../../redux/notices/operations ';
 // import { useSelector, useDispatch } from 'react-redux';
@@ -61,7 +63,7 @@ const NoticesCategoriesListSecond = () => {
 
     return noticesOwn;
   };
-  const notices = isOwnerNotices();
+  const noticesByOwner = isOwnerNotices();
   // const isLogined = useAuth();
   const { category } = useSelector(selectNoticesObj);
   const onFavoriteToggle = (_id, favorite) => {
@@ -75,7 +77,21 @@ const NoticesCategoriesListSecond = () => {
     }
     dispatch(addToFavorite(_id));
   };
+  // moment().format('DD-MM-YYYY');
+  const getPetAge = () => {
+    const noticeWithPetAge = noticesByOwner.map(notice => {
+      const petAge = moment(notice.birthdate, 'DD-MM-YYYY')
+        .fromNow()
+        .split(' ')
+        .slice(0, 2)
+        .join(' ');
 
+      return { ...notice, age: petAge };
+    });
+    return noticeWithPetAge;
+  };
+  console.log('moment', moment('06-06-2021', 'DD-MM-YYYY').fromNow());
+  const notices = getPetAge();
   return (
     <NoticesList>
       {notices.map(
