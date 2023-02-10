@@ -12,8 +12,11 @@ import {
   NoticesTag,
   NoticesButton,
 } from './NoticesCategoriesListSecond.styled';
-import moment from 'moment';
-
+import {
+  getOwnerNotices,
+  getPetAge,
+  getUserFavoriteNotices,
+} from '../../../helpers/noticesHelpers';
 import notFoundNoticesImage from '../../../img/notFoundNoticesImage.jpg';
 // import { PER_PAGE } from '../../../redux/notices/operations ';
 // import { useSelector, useDispatch } from 'react-redux';
@@ -36,36 +39,15 @@ import {
 } from '../../../redux/favorite/operations ';
 //import { deleteNotices } from '../../../redux/notices/operations ';
 const NoticesCategoriesListSecond = () => {
-  const noticesRaw = useSelector(selectNotices);
+  const notices = useSelector(selectNotices);
   const favorite = useSelector(selectFavoriteList);
-  const { _id: user } = useSelector(selectUser);
+  const { _id } = useSelector(selectUser);
   const dispatch = useDispatch();
-  const userFavoriteNotices = () => {
-    const noticesWithFavorite = noticesRaw.map(notice => {
-      if (favorite.find(fav => fav === notice._id)) {
-        return { ...notice, favorite: true };
-      }
-      return { ...notice, favorite: false };
-    });
-
-    return noticesWithFavorite;
-  };
-
-  const noticesWithFavorite = userFavoriteNotices();
-
-  const isOwnerNotices = () => {
-    const noticesOwn = noticesWithFavorite.map(notice => {
-      if (notice.owner === user) {
-        return { ...notice, isOwner: true };
-      }
-      return { ...notice, isOwner: false };
-    });
-
-    return noticesOwn;
-  };
-  const noticesByOwner = isOwnerNotices();
-  // const isLogined = useAuth();
   const { category } = useSelector(selectNoticesObj);
+
+  const noticesUpdated = getPetAge(
+    getOwnerNotices(getUserFavoriteNotices(notices, favorite), _id)
+  );
   const onFavoriteToggle = (_id, favorite) => {
     if (favorite) {
       dispatch(removeFromFavorite(_id));
@@ -77,24 +59,10 @@ const NoticesCategoriesListSecond = () => {
     }
     dispatch(addToFavorite(_id));
   };
-  // moment().format('DD-MM-YYYY');
-  const getPetAge = () => {
-    const noticeWithPetAge = noticesByOwner.map(notice => {
-      const petAge = moment(notice.birthdate, 'DD-MM-YYYY')
-        .fromNow()
-        .split(' ')
-        .slice(0, 2)
-        .join(' ');
 
-      return { ...notice, age: petAge };
-    });
-    return noticeWithPetAge;
-  };
-  console.log('moment', moment('06-06-2021', 'DD-MM-YYYY').fromNow());
-  const notices = getPetAge();
   return (
     <NoticesList>
-      {notices.map(
+      {noticesUpdated.map(
         ({
           _id,
           categoryName,
