@@ -30,6 +30,10 @@ export const ImgHpDesk = styled.div`
   background-position-x: right;
   background-position-y: bottom;
 
+  ${media.desktopHeight} {
+    background-size: auto;
+  }
+
   ${media.tablet} {
     background: none;
   }
