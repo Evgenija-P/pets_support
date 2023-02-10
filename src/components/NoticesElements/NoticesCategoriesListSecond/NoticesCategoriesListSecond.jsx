@@ -33,7 +33,7 @@ import { selectFavoriteList } from '../../../redux/favorite/selectors';
 import { deletefavoriteNotice } from '../../../redux/notices/noticesSlice';
 import { selectUser } from '../../../redux/auth/selectors.js';
 // import { display, height } from '@mui/system';
-// import { fetchNotices } from '../../../redux/notices/operations ';
+import { getNoticesById } from '../../../redux/current/operations ';
 // import { useLocation } from 'react-router-dom';
 import {
   addToFavorite,
@@ -115,8 +115,16 @@ const NoticesCategoriesListSecond = () => {
 
               {/* <LearnMoreButton /> */}
 
-              <NoticesButton>Learn More</NoticesButton>
-              {/* {!favorite && isLogined && (
+              <NoticesButton
+                onClick={() => {
+                  console.log('LearnMore', _id, categoryName);
+                  dispatch(getNoticesById(`${category}/${_id}`));
+                }}
+              >
+                Learn More
+              </NoticesButton>
+
+              {/* {!favorite && (
                 <NoticesButton onClick={() => dispatch(addToFavorite(_id))}>
                   add to favorite
                 </NoticesButton>
