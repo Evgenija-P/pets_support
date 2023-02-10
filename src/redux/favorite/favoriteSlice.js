@@ -13,7 +13,6 @@ const favoriteInitialState = {
   // totalHits: 0,
   isLoading: false,
   error: null,
-  // category: '/notices',
 };
 
 const extraActions = [addToFavorite, removeFromFavorite, fetchFavorite];

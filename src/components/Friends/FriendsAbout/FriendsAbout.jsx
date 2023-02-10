@@ -1,18 +1,17 @@
 import { useState } from 'react';
 import FriendsWorkDays from '../FriendsWorkDays/FriendsWorkDays';
-import {
-  FriendsWrapperAbout,
-  FriendsAboutList,
-  FriendsAboutItem,
-} from './FriendsAbout.sryled';
+import { FriendsWrapperAbout, Active, AboutItem } from './FriendsAbout.styled';
 
 const FriendsAbout = ({ item }) => {
+  const { phone, email, workDays, address, addressUrl } = item;
   const [onOpen, setOnOpen] = useState(false);
+  const telNumber = 'tel:' + phone;
+  const emailAdres = `mailto:` + email;
 
   return (
     <FriendsWrapperAbout>
-      <FriendsAboutList>
-        <FriendsAboutItem
+      <ul>
+        <AboutItem
           onClick={() => {
             setOnOpen(true);
           }}
@@ -20,18 +19,18 @@ const FriendsAbout = ({ item }) => {
             setOnOpen(false);
           }}
         >
-          {item.workDays === undefined || item.workDays === null ? (
+          {workDays === undefined || workDays === null ? (
             <>
               <p>Time: </p>
-              <p>------------</p>
+              <p>Інформація відсутня</p>
             </>
           ) : (
-            <>
-              {item.workDays[0] && item.workDays[0].isOpen ? (
+            <Active>
+              {workDays[0] && workDays[0].isOpen ? (
                 <>
                   <p>Time:</p>
                   <p>
-                    {item.workDays[0].from}-{item.workDays[0].to}
+                    {workDays[0].from}-{workDays[0].to}
                   </p>
                 </>
               ) : (
@@ -40,21 +39,52 @@ const FriendsAbout = ({ item }) => {
                   <p>Closed</p>
                 </>
               )}
-              {!onOpen || <FriendsWorkDays workDays={item.workDays} />}
-            </>
+              {!onOpen || <FriendsWorkDays workDays={workDays} />}
+            </Active>
           )}
-        </FriendsAboutItem>
-
-        <FriendsAboutItem>
-          Address: <p>{item.adress}</p>
-        </FriendsAboutItem>
-        <FriendsAboutItem>
-          Email: <p> {item.email}</p>
-        </FriendsAboutItem>
-        <FriendsAboutItem>
-          Phone: <p>{item.phone}</p>
-        </FriendsAboutItem>
-      </FriendsAboutList>
+        </AboutItem>
+        <AboutItem>
+          {address === undefined || address === null ? (
+            <>
+              <p>Addres: </p>
+              <p>Інформація відсутня</p>
+            </>
+          ) : (
+            <Active>
+              <p>Addres: </p>
+              <a href={addressUrl} target="_blank" rel="noreferrer">
+                {address}
+              </a>
+            </Active>
+          )}
+        </AboutItem>
+        <AboutItem>
+          {email === undefined || email === null ? (
+            <>
+              <p>Email: </p>
+              <p>Інформація відсутня</p>
+            </>
+          ) : (
+            <Active>
+              <p>Email: </p>
+              <a href={emailAdres}>{email}</a>
+            </Active>
+          )}
+        </AboutItem>
+        <AboutItem>
+          {phone === undefined || phone === null ? (
+            <>
+              <p>Phone: </p>
+              <p>Інформація відсутня</p>
+            </>
+          ) : (
+            <Active>
+              <p>Phone: </p>
+              <a href={telNumber}>{phone}</a>
+            </Active>
+          )}
+        </AboutItem>
+      </ul>
     </FriendsWrapperAbout>
   );
 };

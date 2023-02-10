@@ -4,10 +4,14 @@ export const PER_PAGE = 20;
 
 export const fetchNotices = createAsyncThunk(
   'notices/fetchAll',
-  async ({ category = '/notices', page = 1 }, thunkAPI) => {
+  async (
+    { category = '/notices', search = '', page = 1, limit = PER_PAGE },
+    thunkAPI
+  ) => {
     const params = {
-      per_page: PER_PAGE,
+      limit,
       page,
+      search,
     };
     try {
       // console.log('categoryaaa', category);
