@@ -2,7 +2,7 @@ import Pagination from '@mui/material/Pagination';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { PagginationWrapper } from './GalleryPagination.styled';
-import { media, colors, fontWeights } from '../../styles/stylesLayout';
+// import { media, colors, fontWeights } from '../../styles/stylesLayout';
 const GalleryPagination = ({ onPagination, countPages, currentPage }) => {
   return (
     <PagginationWrapper>

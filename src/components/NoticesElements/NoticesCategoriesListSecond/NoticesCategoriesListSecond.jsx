@@ -16,7 +16,7 @@ import notFoundNoticesImage from '../../../img/notFoundNoticesImage.jpg';
 // import { PER_PAGE } from '../../../redux/notices/operations ';
 // import { useSelector, useDispatch } from 'react-redux';
 import { useSelector, useDispatch } from 'react-redux';
-import useAuth from '../../../hooks/useAuth.js';
+// import useAuth from '../../../hooks/useAuth.js';
 import {
   selectNotices,
   // selectFavoriteNotices,
@@ -32,7 +32,7 @@ import {
   addToFavorite,
   removeFromFavorite,
 } from '../../../redux/favorite/operations ';
-import { deleteNotices } from '../../../redux/notices/operations ';
+// import { deleteNotices } from '../../../redux/notices/operations ';
 const NoticesCategoriesListSecond = () => {
   const noticesRaw = useSelector(selectNotices);
   const favorite = useSelector(selectFavoriteList);
