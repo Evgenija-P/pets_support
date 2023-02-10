@@ -90,7 +90,6 @@ const NoticesCategoriesListSecond = () => {
                 alt={title}
               />
             </NoticesTop>
-
             <NoticesDescription>
               <NoticesTitle>{title}</NoticesTitle>
 
