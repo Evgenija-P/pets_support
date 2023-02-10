@@ -3,11 +3,8 @@ import * as yup from 'yup';
 
 import Spinner from '../Spinner';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  selectIsRefreshing,
-  // selectIsLoading,
-} from '../../redux/auth/selectors';
-// import { toast } from 'react-toastify';
+import { selectIsLoading } from '../../redux/auth/selectors';
+
 import { logIn } from '../../redux/auth/operations';
 
 import {
@@ -45,8 +42,7 @@ const FormError = ({ name }) => {
 };
 
 const LoginForm = () => {
-  const isRefreshing = useSelector(selectIsRefreshing);
-  // const isLoading = useSelector(selectIsLoading);
+  const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
 
   const initialValues = {
@@ -59,17 +55,16 @@ const LoginForm = () => {
     const form = { email: values.email, password: values.password };
     const { error } = await dispatch(logIn(form));
 
+    console.log(error);
+
     if (!error) {
       resetForm();
     }
-
-    console.log(values);
-    //  console.log(actions)
   };
 
   return (
     <>
-      {isRefreshing ? (
+      {isLoading ? (
         <Spinner />
       ) : (
         <Container>
@@ -105,6 +100,7 @@ const LoginForm = () => {
               </FieldPass>
 
               <Button type="submit">Login</Button>
+
               <Text>
                 <span>
                   Don't have an account? <Link to="/register">Register</Link>
