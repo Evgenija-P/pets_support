@@ -1,16 +1,26 @@
-import defaultPhoto from '../../../../img/default.jpg';
 import {
-  NoticesInfoContainer,
   NoticesBox,
+  NoticesCategory,
   NoticesImage,
   NoticesInfo,
   NoticesTitle,
   NoticesText,
+  NoticesComment,
   NoticesTag,
   ButtonBlock,
-  NoticesButton,
+  NoticesButtonFavorite,
+  NoticesButtonContact,
+  HeartIcon,
+  Tags,
+  Text,
+  Notices,
+  NoticesButtonDelete,
 } from './NoticeInfoCard.styled';
-// import notFoundNoticesImage from '../../../img/notFoundNoticesImage.jpg';
+
+import React from 'react';
+
+import { ReactComponent as HeartFavorite } from '../../../../img/icons/heartFavorite.svg';
+import defaultPhoto from '../../../../img/default.jpg';
 import { useDispatch } from 'react-redux';
 // import useAuth from '../../../../hooks/useAuth';
 // import {
@@ -44,61 +54,71 @@ const NoticeInfoCard = ({
 }) => {
   // const { _id: user } = useSelector(selectUser);
   const dispatch = useDispatch();
+  const callNumber = 'tel:' + phone;
+
   return (
-    <NoticesInfoContainer>
+    <>
       <NoticesBox>
+        <NoticesCategory>
+          <span>{categoryName}</span>
+        </NoticesCategory>
         <NoticesImage
           src={petImageURL ? petImageURL : defaultPhoto}
           alt={title}
         />
         <NoticesInfo>
-          <NoticesTitle>Cute dog looking for a home {title}</NoticesTitle>
-          <NoticesText>
-            <NoticesTag>Name: </NoticesTag> {name}
-          </NoticesText>
-          <NoticesText>
-            <NoticesTag>Birthday: </NoticesTag> {birthdate}
-          </NoticesText>
-          <NoticesText>
-            <NoticesTag>Breed: </NoticesTag> {breed}
-          </NoticesText>
-          <NoticesText>
-            <NoticesTag>Place: </NoticesTag> {location}
-          </NoticesText>
-          <NoticesText>
-            <NoticesTag>The sex: </NoticesTag> {sex}
-          </NoticesText>
-          <NoticesText>
-            <NoticesTag>Email: </NoticesTag> {email}
-          </NoticesText>
-          <NoticesText>
-            <NoticesTag>Phone: </NoticesTag> {phone}
-          </NoticesText>
+          <NoticesTitle>Cute pet looking for a home {title}</NoticesTitle>
+          <Notices>
+            <Tags>
+              <NoticesTag>Name: </NoticesTag>
+              <NoticesTag>Birthday: </NoticesTag>
+              <NoticesTag>Breed: </NoticesTag>
+              <NoticesTag>Place: </NoticesTag>
+              <NoticesTag>The sex: </NoticesTag>
+              <NoticesTag>Email: </NoticesTag>
+              <NoticesTag>Phone: </NoticesTag>
+            </Tags>
+
+            <Text>
+              <NoticesText>{name}</NoticesText>
+              <NoticesText>{birthdate}</NoticesText>
+              <NoticesText>{breed}</NoticesText>
+              <NoticesText>{location}</NoticesText>
+              <NoticesText>{sex}</NoticesText>
+              <NoticesText>{email}</NoticesText>
+              <NoticesText>{phone}</NoticesText>
+            </Text>
+          </Notices>
         </NoticesInfo>
       </NoticesBox>
 
-      <NoticesText>
-        Comments: Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-        Vero, fugiat minima! Quod repudiandae veniam a. Voluptatum, quam
-        delectus incidunt aspernatur laboriosam, obcaecati a id ut quidem quia
-        porro itaque odit. {comments}
-      </NoticesText>
+      <NoticesComment>
+        <strong>Comments: </strong> Lorem ipsum dolor, sit amet consectetur
+        adipisicing elit. Vero, fugiat minima! Quod repudiandae veniam a.
+        Voluptatum, quam delectus incidunt aspernatur laboriosam, obcaecati a id
+        ut quidem quia porro itaque odit. {comments}
+      </NoticesComment>
 
       <ButtonBlock>
         {own && (
-          <NoticesButton
+          <NoticesButtonDelete
             onClick={() => {
               dispatch(deleteNotices(_id));
               dispatch(setCurrentNotices());
             }}
           >
             Delete
-          </NoticesButton>
+          </NoticesButtonDelete>
         )}
-        <NoticesButton>Add to</NoticesButton>
-        <NoticesButton>Contact</NoticesButton>
+        <NoticesButtonFavorite>
+          Add to
+          <HeartIcon>
+            <HeartFavorite />
+          </HeartIcon>
+        </NoticesButtonFavorite>
+        <NoticesButtonContact href={callNumber}>Contact</NoticesButtonContact>
       </ButtonBlock>
-    </NoticesInfoContainer>
+    </>
   );
 };
 
