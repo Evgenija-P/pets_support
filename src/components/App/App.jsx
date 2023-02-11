@@ -35,10 +35,10 @@ const App = () => {
     <Spinner />
   ) : (
     <>
-      {' '}
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<HomePage />} />
+
           <Route
             path="/news"
             element={<RestrictedRoute component={<NewsPage />} />}
@@ -48,47 +48,15 @@ const App = () => {
             path="/notices"
             element={
               isLoggedIn ? (
-                <PrivateRoute
-                  component={<NoticesPage />}
-                  // redirectTo="/notices/sell"
-                />
+                <PrivateRoute component={<NoticesPage />} />
               ) : (
-                <RestrictedRoute
-                  component={<NoticesPage />}
-                  // redirectTo="/notices/sell"
-                />
+                <RestrictedRoute component={<NoticesPage />} />
               )
             }
           >
             <Route
-              path="sell"
+              path=":category"
               element={<RestrictedRoute component={<NoticesCategoriesNav />} />}
-            />
-            <Route
-              path="lost-found"
-              element={<RestrictedRoute component={<NoticesCategoriesNav />} />}
-            />
-            <Route
-              path="for-free"
-              element={<RestrictedRoute component={<NoticesCategoriesNav />} />}
-            />
-            <Route
-              path="favorite"
-              element={
-                <PrivateRoute
-                  redirectTo="/login"
-                  component={<NoticesCategoriesNav />}
-                />
-              }
-            />
-            <Route
-              path="own"
-              element={
-                <PrivateRoute
-                  redirectTo="/login"
-                  component={<NoticesCategoriesNav />}
-                />
-              }
             />
           </Route>
 
@@ -96,6 +64,7 @@ const App = () => {
             path="/friends"
             element={<RestrictedRoute component={<OurFriendsPage />} />}
           />
+
           <Route
             path="/register"
             element={
@@ -105,19 +74,23 @@ const App = () => {
               />
             }
           />
+
           <Route
             path="/login"
             element={
               <RestrictedRoute component={<LoginPage />} redirectTo="/user" />
             }
           />
+
           <Route
             path="/user"
             element={<PrivateRoute component={<UserPage />} />}
           />
+
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
+
       <ToastContainer transition={Flip} />
     </>
   );
