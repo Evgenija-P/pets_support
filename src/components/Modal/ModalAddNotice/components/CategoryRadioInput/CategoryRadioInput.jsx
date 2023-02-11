@@ -3,7 +3,7 @@ import { useField } from 'formik';
 import * as styled from './CategoryRadioInput.styled';
 
 const CategoryRadioInput = ({ ...props }) => {
-  const [field, meta] = useField(props);
+  const [field] = useField(props);
 
   return (
     <>
