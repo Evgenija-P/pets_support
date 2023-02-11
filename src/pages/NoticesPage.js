@@ -1,12 +1,12 @@
-import { Suspense } from 'react';
-import { Outlet } from 'react-router-dom';
+// import { Suspense } from 'react';
+// import { Outlet } from 'react-router-dom';
 
 import { Helmet } from 'react-helmet';
 import SectionContainer from '../components/SectionContainer';
 import NoticesCategoriesNav from '../components/NoticesElements/NoticesCategoriesNav/NoticesCategoriesNav';
 import NoticesSearch from '../components/NoticesElements/NoticesSearch/NoticesSearch';
 import NoticesGallary from '../components/NoticesElements/NoticesGallary';
-import NoticeInfoCard from '../components/NoticesElements/NoticesDetailsCard/NoticeInfoCard';
+import NoticesDetailsCard from '../components/NoticesElements/NoticesDetailsCard';
 import Modal from '../components/Modal/Modal';
 import { useSelector, useDispatch } from 'react-redux';
 //import useAuth from '../../../hooks/useAuth.js';
@@ -33,16 +33,16 @@ const NoticesPage = () => {
         {currentNotices && !isLoading && (
           <Modal
             // title={'notice'}
-            type={'notice'}
+            type={'info'}
             onClose={toggleModal}
-            children={<NoticeInfoCard {...currentNotices} />}
+            children={<NoticesDetailsCard {...currentNotices} />}
           ></Modal>
         )}
       </SectionContainer>
 
-      <Suspense fallback={<p>Loading...</p>}>
+      {/* <Suspense fallback={<p>Loading...</p>}>
         <Outlet />
-      </Suspense>
+      </Suspense> */}
     </>
   );
 };
