@@ -93,11 +93,13 @@ const NoticesCategoriesListSecond = () => {
                 {/* <NoticesButtonFavorite
                   onClick={() => onFavoriteToggle(_id, favorite)}
                 ></NoticesButtonFavorite> */}
-                <NoticesButtonFavoriteV2
-                  onClick={() => onFavoriteToggle(_id, favorite)}
-                >
-                  <NoticesFavorite isfavorite={favorite.toString()} />
-                </NoticesButtonFavoriteV2>
+                {isLoggedIn && (
+                  <NoticesButtonFavoriteV2
+                    onClick={() => onFavoriteToggle(_id, favorite)}
+                  >
+                    <NoticesFavorite isfavorite={favorite.toString()} />
+                  </NoticesButtonFavoriteV2>
+                )}
               </NoticesNav>
 
               <NoticesImage
