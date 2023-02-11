@@ -21,6 +21,7 @@ import { Overlay } from './Modal.styled';
 import ModalAddMyPet from './ModalAddMyPet/ModalAddMyPet';
 import ModalInfo from './ModalInfo/ModalInfo';
 import ModalNotice from './ModalNotice/ModalNotice';
+// import NoticeInfoCard from '../NoticesElements/NoticesDetailsCard/NoticeInfoCard';
 
 const modalRoot = document.querySelector('#modal-root');
 

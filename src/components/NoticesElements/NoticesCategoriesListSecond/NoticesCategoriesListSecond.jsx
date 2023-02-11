@@ -117,8 +117,8 @@ const NoticesCategoriesListSecond = () => {
 
               <NoticesButton
                 onClick={() => {
-                  console.log('LearnMore', _id, categoryName);
-                  dispatch(getNoticesById(`${category}/${_id}`));
+                  // console.log('LearnMore', _id, categoryName);
+                  dispatch(getNoticesById(`${categoryName}/${_id}`));
                 }}
               >
                 Learn More

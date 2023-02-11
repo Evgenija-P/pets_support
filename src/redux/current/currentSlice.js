@@ -17,23 +17,11 @@ const handleGetNoticesByIdSuccses = (state, action) => {
 export const currentSlice = createSlice({
   name: 'current',
   initialState: currentInitialState,
-  // reducers: {
-  //   setCategory(state, action) {
-  //     state.category = action.payload;
-  //   },
-  //   setPage(state, action) {
-  //     state.page = action.payload;
-  //   },
-  //   deletefavoriteNotice(state, action) {
-  //     const index = state.noticesList.findIndex(
-  //       notices => notices.id === action.payload
-  //     );
-  //     state.noticesList.splice(index, 1);
-  //   },
-  //   setSearch(state, action) {
-  //     state.search = action.payload;
-  //   },
-  // },
+  reducers: {
+    setCurrentNotices(state, action) {
+      state.currentNotices = null;
+    },
+  },
 
   extraReducers: builder => {
     builder
@@ -52,6 +40,5 @@ export const currentSlice = createSlice({
       });
   },
 });
-// export const { setCategory, setPage, deletefavoriteNotice, setSearch } =
-//   noticesSlice.actions;
+export const { setCurrentNotices } = currentSlice.actions;
 export const currentReducer = currentSlice.reducer;
