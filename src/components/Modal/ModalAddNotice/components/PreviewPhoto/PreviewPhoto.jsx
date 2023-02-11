@@ -11,10 +11,13 @@ const PreviewPhoto = ({ photo, onDeletePreview }) => {
   }
   return (
     <styled.Container>
-      <styled.Photo src={preview} />
-      <styled.DelBtn type="button" onClick={onDeletePreview}>
-        x
-      </styled.DelBtn>
+      <styled.Label>Load the pet's image</styled.Label>
+      <styled.Wrapper>
+        <styled.Photo src={preview} />
+        <styled.DelBtn type="button" onClick={onDeletePreview}>
+          x
+        </styled.DelBtn>
+      </styled.Wrapper>
     </styled.Container>
   );
 };

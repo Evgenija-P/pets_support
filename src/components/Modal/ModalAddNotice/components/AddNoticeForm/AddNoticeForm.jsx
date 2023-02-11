@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
+import { toast } from 'react-toastify';
 
 import TextInput from '../TextInput';
 import FileInput from '../FileInput';
@@ -9,6 +10,7 @@ import PreviewPhoto from '../PreviewPhoto';
 import NoticeCategories from '../NoticeCategories';
 import GenderSwitch from '../GenderSwitch';
 
+import { optionsToast } from '../.././../../../styles/stylesLayout';
 import addNoticeSchema from '../../../../../validationShemas/noticesSchema';
 import { addNotices } from '../../../../../redux/notices/operations ';
 import createFormData from '../../../../../helpers/createFormData';
@@ -45,8 +47,14 @@ const AddNoticeForm = ({ onClose }) => {
 
     dispatch(addNotices(formData))
       .unwrap()
-      .then(() => alert('Contact has added.'))
-      .catch(err => alert(err.message))
+      .then(() => toast.success('Notice was added.', optionsToast))
+      .catch(err => {
+        console.log(err);
+        toast.error(
+          'Error occured. Notice addition not completed.',
+          optionsToast
+        );
+      })
       .finally(() => {
         onClose();
       });
@@ -165,7 +173,8 @@ const AddNoticeForm = ({ onClose }) => {
                 </styled.SecondaryBtn>
 
                 <styled.PrimaryBtn type="submit" disabled={isNoticeAdding}>
-                  {isNoticeAdding ? 'Adding...' : 'Done'}
+                  done{' '}
+                  {isNoticeAdding && <styled.Loader size={25} color="white" />}
                 </styled.PrimaryBtn>
               </styled.BtnGroup>
             </div>

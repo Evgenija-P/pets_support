@@ -1,7 +1,10 @@
+import { useField } from 'formik';
 import GenderRadioInput from '../GenderRadioInput';
 import * as styled from './GenderSwitch.styled';
 
 const GenderSwitch = ({ gender }) => {
+  const [, meta] = useField({ name: 'sex' });
+
   return (
     <styled.Container>
       <styled.Label>
@@ -14,6 +17,7 @@ const GenderSwitch = ({ gender }) => {
           </styled.Item>
         ))}
       </styled.List>
+      {meta.error && meta.touched && <styled.Error>{meta.error}</styled.Error>}
     </styled.Container>
   );
 };
