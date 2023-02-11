@@ -25,7 +25,7 @@ const NoticesCategoriesNav = ({ notices }) => {
   return (
     <NoticesCategoriesContainer>
       <AddNoticeButton
-        onClick={isLoggedIn ? toggleAddNoticeModal : toggleUnauthorizedModal}
+        //onClick={isLoggedIn ? toggleAddNoticeModal : toggleUnauthorizedModal}
       />
       {isLoggedIn ? (
         <NoticesAuthNav notices={notices} />
