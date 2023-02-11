@@ -33,7 +33,7 @@ const PET_GENDER = ['male', 'female'];
 
 const AddNoticeForm = ({ onClose }) => {
   const dispatch = useDispatch();
-  const [isFirstStep, setIsFirstStep] = useState(true);
+  const [isFirstStep, setIsFirstStep] = useState(false);
   const currentValidationSchema = isFirstStep
     ? addNoticesSchema.firstStepValidation
     : addNoticesSchema.secondStepValidation;
