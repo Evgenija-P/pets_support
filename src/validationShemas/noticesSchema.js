@@ -1,11 +1,8 @@
 import * as yup from 'yup';
+import { dateRegexp, priceRegexp, cityRegexp } from '../helpers/regExpsHelpers';
 
 const FILE_MAX_SIZE = 8388608;
 const ACCEPTABLE_MIMETYPES = ['image/jpg', 'image/jpeg', 'image/png'];
-
-const DATE_REGEX =
-  /(^(0+?[1-9]|[12][0-9]|3[01])[-/.](0+?[1-9]|[1][0-12])[-/.]((19|20)\d\d))/;
-const PRICE_REGEX = /^[1-9]+[0-9]*$/;
 
 const addNoticeSchema = yup.object({
   title: yup.string().min(2).max(48).required(),
@@ -14,7 +11,7 @@ const addNoticeSchema = yup.object({
 
   birthdate: yup
     .string()
-    .matches(DATE_REGEX, "birthdate must be a 'DD.MM.YYYY' format."),
+    .matches(dateRegexp, "birthdate must be a 'DD.MM.YYYY' format."),
 
   breed: yup.string().min(2).max(24),
 
@@ -31,11 +28,14 @@ const addNoticeSchema = yup.object({
       value => (value ? ACCEPTABLE_MIMETYPES.includes(value.type) : true)
     ),
 
-  location: yup.string().required(),
+  location: yup
+    .string()
+    .matches(cityRegexp, "location must be a 'city,region' format.")
+    .required(),
 
   price: yup
     .string()
-    .matches(PRICE_REGEX, "price must be a 'Number' type.")
+    .matches(priceRegexp, "price must be a 'Number' type.")
     .when('categoryName', {
       is: 'sell',
       then: yup.string().required(),
