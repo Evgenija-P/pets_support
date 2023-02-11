@@ -1,80 +1,42 @@
 import styled from '@emotion/styled';
-import { NavLink } from "react-router-dom";
-import { media } from '../../styles/stylesLayout';
+import { NavLink } from 'react-router-dom';
+import { media, colors, fontWeights } from '../../styles/stylesLayout';
 
-
-export const User = styled.div`
+export const AuthNavList = styled.ul`
   display: flex;
   align-items: center;
-`;
-export const ButtonLog = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 40px;
-  width: 100%;
-
-  background: #f59256;
-  :last-child {
-    margin-left: 20px;
+  gap: 12px;
+  margin-left: auto;
+  margin-right: auto;
+  ${media.desktop} {
+    gap: 20px;
   }
-
 `;
 
-export const ButtonReg = styled.div`
+export const AuthNavLink = styled(NavLink)`
   display: flex;
   align-items: center;
   justify-content: center;
+  background: ${colors.white};
+  color: ${colors.black};
+  padding: 8px 28px;
+
+  border-radius: 40px;
   border: 2px solid #f59256;
-  border-radius: 40px;
-  width: 100%;
 
-  background: #fff;
-  :last-child {
-    margin-left: 20px;
-  }
-
-  ${media.mobile} {
-    height: 35px;
-    :last-child {
-      margin-left: 12px;
-    }
-  }
-`;
-
-export const NavLinkLog = styled(NavLink)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  padding: 10px 28px;
-
+  font-weight: ${fontWeights.medium};
+  font-size: 14px;
+  line-height: 1.36;
+  text-align: center;
   text-decoration: none;
-
-  ${media.mobile} {
-    padding: 8px 28px;
+  letter-spacing: 0.04em;
+  ${media.tabletAndDesktop} {
+    padding: 10px 28px;
+    font-size: 20px;
+    line-height: 1.35;
   }
-`;
-
-export const NavLinkReg = styled(NavLink)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #000;
-  text-decoration: none;
-  padding: 10px 28px;
-  ${media.mobile} {
-    padding: 8px 28px;
-  }
-`;
-
-export const Sp = styled.span`
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 27px;
-
-  ${media.mobile} {
-    font-size: 14px;
-    line-height: 19px;
+  &.active {
+    background: ${colors.accent};
+    color: ${colors.white};
   }
 `;

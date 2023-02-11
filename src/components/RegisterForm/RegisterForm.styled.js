@@ -3,9 +3,9 @@ import { media, colors, fontWeights } from '../../styles/stylesLayout';
 import { Form, Field } from 'formik';
 import { Link } from 'react-router-dom';
 import MaskedInput from 'react-text-mask';
-import mobileBackground from '../../img/Homepage/hp-figure-mobile.png';
-import tabletBackground from '../../img/Homepage/hp-figure-little-desktop.png';
-import desktopBackground from '../../img/Homepage/hp-figure-desktop.png';
+import mobileBackground from '../../img/Auth/bg-auth-mobile.png';
+import tabletBackground from '../../img/Auth/bg-auth-tablet.png';
+import desktopBackground from '../../img/Auth/bg-auth-desctop.png';
 
 export const FormContainer = styled.div`
   width: 100%;
@@ -36,7 +36,7 @@ export const Title = styled.h2`
     font-weight: ${fontWeights.medium};
   }
 `;
-export const Form1 = styled(Form)`
+export const FormRegister = styled(Form)`
   position: relative;
   width: 280px;
   display: flex;
@@ -62,9 +62,6 @@ export const Form1 = styled(Form)`
   }
   > div {
     position: relative;
-  }
-  :last-child {
-    font-size: 12px;
   }
 `;
 export const ShowPassword = styled.span`
@@ -153,13 +150,8 @@ export const Button = styled.button`
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-      120deg,
-      transparent,
-      rgba(255, 255, 255, 0.6),
-      transparent
-    );
-    transition: all 650ms;
+    background: ${colors.gradient};
+    transition: all 450ms;
   }
   :disabled {
     opacity: 0.5;
@@ -205,13 +197,8 @@ export const BackButton = styled.button`
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-      120deg,
-      transparent,
-      rgba(245, 146, 86, 0.9),
-      transparent
-    );
-    transition: all 650ms;
+    background: ${colors.gradient};
+    transition: all 450ms;
   }
   ${media.tabletAndDesktop} {
     width: 458px;
@@ -225,16 +212,21 @@ export const ErrBox = styled.div`
   left: 15px;
   color: red;
   font-size: 14px;
-  font-style: italic;
   ${media.tabletAndDesktop} {
-    left: 33px;
+    left: 25px;
   }
 `;
 export const StyledLink = styled(Link)`
   color: ${colors.blue};
-  transition: color ${colors.background};
+  margin-left: 4px;
   :hover,
   :focus {
     color: ${colors.accent};
   }
+`;
+export const BoxText = styled.div`
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-size: 12px;
 `;
