@@ -4,7 +4,7 @@ import { TbVenus } from 'react-icons/tb';
 import { TbMars } from 'react-icons/tb';
 
 const PetGenderRadioInput = ({ ...props }) => {
-  const [field, meta] = useField(props);
+  const [field] = useField(props);
 
   return (
     <>
