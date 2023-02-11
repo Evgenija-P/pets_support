@@ -1,5 +1,5 @@
+import { VscAdd } from 'react-icons/vsc';
 import { useField } from 'formik';
-
 import * as styled from './FileInput.styled';
 
 const FileInput = ({ ...props }) => {
@@ -9,9 +9,12 @@ const FileInput = ({ ...props }) => {
 
   return (
     <styled.Container>
-      <styled.Label htmlFor={props.id || props.name}></styled.Label>
+      <styled.Label>Load the pet's image</styled.Label>
+      <styled.UploadBtn htmlFor={props.id || props.name}>
+        <VscAdd size="50%" />
+      </styled.UploadBtn>
       <styled.Input value="" type="file" {...customField} {...props} />
-      {meta.touched && meta.error && <styled.Error>{meta.error}</styled.Error>}
+      {meta.error && meta.touched && <styled.Error>{meta.error}</styled.Error>}
     </styled.Container>
   );
 };

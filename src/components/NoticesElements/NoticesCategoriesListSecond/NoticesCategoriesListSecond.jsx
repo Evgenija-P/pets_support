@@ -19,7 +19,8 @@ import {
   getPetAge,
   getUserFavoriteNotices,
 } from '../../../helpers/noticesHelpers';
-// import toast, { Toaster } from 'react-hot-toast';
+import { toast } from 'react-toastify';
+import { optionsToast } from '../../../styles/stylesLayout';
 import notFoundNoticesImage from '../../../img/notFoundNoticesImage.jpg';
 // import { PER_PAGE } from '../../../redux/notices/operations ';
 // import { useSelector, useDispatch } from 'react-redux';
@@ -72,6 +73,10 @@ const NoticesCategoriesListSecond = () => {
     dispatch(addToFavorite(_id));
   };
 
+  const onFavoriteNotAuth = () => {
+    toast.warning('You need Login first....', optionsToast);
+  };
+
   return (
     <NoticesList>
       {noticesUpdated.map(
@@ -91,7 +96,11 @@ const NoticesCategoriesListSecond = () => {
             <NoticesTop>
               <NoticesNav>
                 <NoticesBadge>{categoryName}</NoticesBadge>
-                {!isLoggedIn && <NoticesButtonFavorite></NoticesButtonFavorite>}
+                {!isLoggedIn && (
+                  <NoticesButtonFavorite
+                    onClick={onFavoriteNotAuth}
+                  ></NoticesButtonFavorite>
+                )}
                 {isLoggedIn && (
                   <NoticesButtonFavoriteV2
                     onClick={() => onFavoriteToggle(_id, favorite)}
@@ -131,23 +140,23 @@ const NoticesCategoriesListSecond = () => {
                 Learn More
               </NoticesButton>
 
-              {/* {!favorite && (
+              {!favorite && isLoggedIn && (
                 <NoticesButton onClick={() => dispatch(addToFavorite(_id))}>
                   add to favorite
                 </NoticesButton>
-              )} */}
-              {/* {favorite && isLogined && (
+              )}
+              {favorite && isLoggedIn && (
                 <NoticesButton
                   onClick={() => dispatch(removeFromFavorite(_id))}
                 >
                   remove from favorite
                 </NoticesButton>
-              )} */}
-              {/* {isOwner && isLogined && (
-                <NoticesButton onClick={() => dispatch(deleteNotices(_id))}>
-                  delete
+              )}
+              {!isLoggedIn && (
+                <NoticesButton onClick={onFavoriteNotAuth}>
+                  add to favorite
                 </NoticesButton>
-              )} */}
+              )}
             </NoticesDescription>
           </NoticesItem>
         )

@@ -1,16 +1,27 @@
-import defaultPhoto from '../../../../img/default.jpg';
 import {
-  NoticesInfoContainer,
   NoticesBox,
+  NoticesCategory,
   NoticesImage,
   NoticesInfo,
   NoticesTitle,
   NoticesText,
+  NoticesComment,
   NoticesTag,
   ButtonBlock,
-  NoticesButton,
+  NoticesButtonFavorite,
+  NoticesButtonContact,
+  HeartIcon,
+  Tags,
+  Text,
+  Notices,
+  NoticesButtonDelete,
 } from './NoticeInfoCard.styled';
-// import notFoundNoticesImage from '../../../img/notFoundNoticesImage.jpg';
+import { toast } from 'react-toastify';
+import { optionsToast } from '../../../../styles/stylesLayout';
+import React from 'react';
+
+import { ReactComponent as HeartFavorite } from '../../../../img/icons/heartFavorite.svg';
+import defaultPhoto from '../../../../img/default.jpg';
 import { useDispatch } from 'react-redux';
 // import useAuth from '../../../../hooks/useAuth';
 // import {
@@ -25,13 +36,12 @@ import { useDispatch } from 'react-redux';
 // import { getNoticesById } from '../../../redux/current/operations ';
 // import { useLocation } from 'react-router-dom';
 import { deleteNotices } from '../../../../redux/notices/operations ';
+import { setCurrentNotices } from '../../../../redux/current/currentSlice';
+import useAuth from '../../../../hooks/useAuth';
 import {
   addToFavorite,
   removeFromFavorite,
 } from '../../../../redux/favorite/operations ';
-import { setCurrentNotices } from '../../../../redux/current/currentSlice';
-import React, { useEffect, useState } from 'react';
-
 const NoticeInfoCard = ({
   _id,
   petImageURL,
@@ -50,77 +60,94 @@ const NoticeInfoCard = ({
 }) => {
   // const { _id: user } = useSelector(selectUser);
   const dispatch = useDispatch();
-  const [FavotitefavoriteState, setFavotitestate] = useState(favorite);
-  const onFavoriteToggle = (_id, favorite) => {
-    if (favorite) {
-      dispatch(addToFavorite(_id));
-
-      return;
-    }
-
-    // dispatch(addToFavorite(_id));
+  const callNumber = 'tel:' + phone;
+  const { isLoggedIn } = useAuth();
+  const onFavoriteNotAuth = () => {
+    toast.warning('You need Login first....', optionsToast);
   };
   return (
-    <NoticesInfoContainer>
+    <>
       <NoticesBox>
+        <NoticesCategory>
+          <span>{categoryName}</span>
+        </NoticesCategory>
         <NoticesImage
           src={petImageURL ? petImageURL : defaultPhoto}
           alt={title}
         />
         <NoticesInfo>
-          <NoticesTitle>Cute dog looking for a home {title}</NoticesTitle>
-          <NoticesText>
-            <NoticesTag>Name: </NoticesTag> {name}
-          </NoticesText>
-          <NoticesText>
-            <NoticesTag>Birthday: </NoticesTag> {birthdate}
-          </NoticesText>
-          <NoticesText>
-            <NoticesTag>Breed: </NoticesTag> {breed}
-          </NoticesText>
-          <NoticesText>
-            <NoticesTag>Place: </NoticesTag> {location}
-          </NoticesText>
-          <NoticesText>
-            <NoticesTag>The sex: </NoticesTag> {sex}
-          </NoticesText>
-          <NoticesText>
-            <NoticesTag>Email: </NoticesTag> {email}
-          </NoticesText>
-          <NoticesText>
-            <NoticesTag>Phone: </NoticesTag> {phone}
-          </NoticesText>
+          <NoticesTitle>Cute pet looking for a home {title}</NoticesTitle>
+          <Notices>
+            <Tags>
+              <NoticesTag>Name: </NoticesTag>
+              <NoticesTag>Birthday: </NoticesTag>
+              <NoticesTag>Breed: </NoticesTag>
+              <NoticesTag>Place: </NoticesTag>
+              <NoticesTag>The sex: </NoticesTag>
+              <NoticesTag>Email: </NoticesTag>
+              <NoticesTag>Phone: </NoticesTag>
+            </Tags>
+
+            <Text>
+              <NoticesText>{name}</NoticesText>
+              <NoticesText>{birthdate}</NoticesText>
+              <NoticesText>{breed}</NoticesText>
+              <NoticesText>{location}</NoticesText>
+              <NoticesText>{sex}</NoticesText>
+              <NoticesText>{email}</NoticesText>
+              <NoticesText>{phone}</NoticesText>
+            </Text>
+          </Notices>
         </NoticesInfo>
       </NoticesBox>
 
-      <NoticesText>
-        Comments: Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-        Vero, fugiat minima! Quod repudiandae veniam a. Voluptatum, quam
-        delectus incidunt aspernatur laboriosam, obcaecati a id ut quidem quia
-        porro itaque odit. {comments}
-      </NoticesText>
+      <NoticesComment>
+        <strong>Comments: </strong> Lorem ipsum dolor, sit amet consectetur
+        adipisicing elit. Vero, fugiat minima! Quod repudiandae veniam a.
+        Voluptatum, quam delectus incidunt aspernatur laboriosam, obcaecati a id
+        ut quidem quia porro itaque odit. {comments}
+      </NoticesComment>
 
       <ButtonBlock>
         {own && (
-          <NoticesButton
+          <NoticesButtonDelete
             onClick={() => {
               dispatch(deleteNotices(_id));
               dispatch(setCurrentNotices());
             }}
           >
             Delete
-          </NoticesButton>
+          </NoticesButtonDelete>
         )}
-        <NoticesButton
-          onClick={() => {
-            dispatch(onFavoriteToggle(_id, favorite));
-          }}
-        >
-          Add to
-        </NoticesButton>
-        <NoticesButton>Contact</NoticesButton>
+        {!isLoggedIn && (
+          <NoticesButtonFavorite onClick={onFavoriteNotAuth}>
+            Add to
+            <HeartIcon>
+              <HeartFavorite />
+            </HeartIcon>
+          </NoticesButtonFavorite>
+        )}
+        {isLoggedIn && !favorite && (
+          <NoticesButtonFavorite onClick={() => dispatch(addToFavorite(_id))}>
+            Add to
+            <HeartIcon>
+              <HeartFavorite />
+            </HeartIcon>
+          </NoticesButtonFavorite>
+        )}
+        {isLoggedIn && favorite && (
+          <NoticesButtonFavorite
+            onClick={() => dispatch(removeFromFavorite(_id))}
+          >
+            Remove from
+            <HeartIcon>
+              <HeartFavorite />
+            </HeartIcon>
+          </NoticesButtonFavorite>
+        )}
+        <NoticesButtonContact href={callNumber}>Contact</NoticesButtonContact>
       </ButtonBlock>
-    </NoticesInfoContainer>
+    </>
   );
 };
 

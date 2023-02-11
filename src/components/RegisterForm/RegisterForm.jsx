@@ -9,6 +9,13 @@ import { selectIsLoading } from '../../redux/auth/selectors';
 import { register } from '../../redux/auth/operations';
 
 import {
+  emailRegex,
+  phoneRegexp,
+  cityRegexp,
+  userNameRegexp,
+  passwordRegexp,
+} from '../../helpers/regExpsHelpers';
+import {
   FormRegister,
   FormContainer,
   Input,
@@ -26,18 +33,18 @@ const phoneNumberMask = [
   '+',
   '3',
   '8',
-  '(',
-  /[0-9]/,
+  '0',
+  // '(',
   /\d/,
   /\d/,
-  ')',
+  // ')',
   /\d/,
   /\d/,
   /\d/,
-  '-',
+  // '-',
   /\d/,
   /\d/,
-  '-',
+  // '-',
   /\d/,
   /\d/,
 ];
@@ -46,33 +53,25 @@ const registerSchema = object().shape({
   password: string()
     .min(7, 'Too Short!')
     .max(32, 'Too Long!')
+    .matches(passwordRegexp, 'Invalid password')
     .required('Password is required'),
   confirmPassword: string()
     .required('Please confirm your password')
     .oneOf([ref('password')], 'Passwords does not match'),
   email: string()
-    .matches(
-      /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/,
-      'Invalid email'
-    )
+    .matches(emailRegex, 'Invalid email')
     .email('Invalid email')
     .required('Email is required'),
   name: string()
     .min(2, 'min 2 symbols')
-    .matches(/^[a-zA-Zа-яА-Я-`'іІїЇ]*$/, 'Only letters')
+    .matches(userNameRegexp, 'Only letters')
     .required('Name is required'),
   phone: string()
     .min(13, 'Too Short!')
-    .matches(
-      /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){12}(\s*)?$/,
-      'bad phone number'
-    )
+    .matches(phoneRegexp, 'bad phone number')
     .required('Phone is required'),
   city: string()
-    .matches(
-      /^(([a-zA-Zа-яА-Я]([-]?)){1,})([^-,?,\s,.,0-9,!])+(,)+((\s?[a-zA-Zа-яА-Я](([-]?){0,1})){1,})([^-,?,.,\s,0-9,!])$/,
-      'Error. Example: Brovary, Kyiv'
-    )
+    .matches(cityRegexp, 'Error. Example: Brovary, Kyiv')
     .required('City is required'),
 });
 

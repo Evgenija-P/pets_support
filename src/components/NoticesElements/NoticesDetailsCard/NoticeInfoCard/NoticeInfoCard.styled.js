@@ -1,22 +1,37 @@
 import styled from '@emotion/styled';
 import { media, colors, fontWeights } from '../../../../styles/stylesLayout';
 
-export const NoticesInfoContainer = styled.div`
-  width: 280px;
-  height: 100%;
-  /* padding: 60px 20px 40px 20px; */
-
-  ${media.tabletAndDesktop} {
-    width: 540px;
-    /* padding: 32px 20px 32px 20px; */
-  }
-`;
-
 export const NoticesBox = styled.div`
   margin-bottom: 28px;
 
   ${media.tabletAndDesktop} {
     display: flex;
+  }
+`;
+
+export const NoticesCategory = styled.span`
+  position: absolute;
+  top: 80px;
+
+  display: flex;
+  align-items: center;
+
+  width: 158px;
+  height: 28px;
+  padding: 6px 20px;
+
+  border-radius: 0px 20px 20px 0px;
+
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(50px);
+
+  font-weight: ${fontWeights.bold};
+  font-size: 12px;
+  letter-spacing: 0.04em;
+
+  ${media.tabletAndDesktop} {
+    top: 52px;
+    font-size: 16px;
   }
 `;
 
@@ -36,11 +51,11 @@ export const NoticesImage = styled.img`
 `;
 
 export const NoticesInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  margin-top: 16px;
+
   ${media.tabletAndDesktop} {
     margin-left: 20px;
+    margin-top: 0px;
   }
 `;
 
@@ -50,7 +65,29 @@ export const NoticesTitle = styled.h2`
   line-height: 1.35;
   letter-spacing: -0.01em;
 
-  margin-bottom: 20px;
+  margin-bottom: 8px;
+
+  ${media.tabletAndDesktop} {
+    margin-bottom: 12px;
+    margin-right: 50px;
+  }
+`;
+
+export const Notices = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const Tags = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+export const Text = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 `;
 
 export const NoticesTag = styled.h3`
@@ -67,8 +104,17 @@ export const NoticesTag = styled.h3`
 `;
 
 export const NoticesText = styled.div`
-  display: flex;
+  font-weight: ${fontWeights.medium};
+  font-size: 14px;
+  line-height: 19px;
 
+  ${media.tabletAndDesktop} {
+    font-size: 16px;
+    line-height: 22px;
+  }
+`;
+
+export const NoticesComment = styled.p`
   font-weight: ${fontWeights.medium};
   font-size: 14px;
   line-height: 19px;
@@ -81,18 +127,25 @@ export const NoticesText = styled.div`
 
 export const ButtonBlock = styled.div`
   margin-top: 40px;
+  display: flex;
+  flex-direction: column-reverse;
 
   ${media.tabletAndDesktop} {
     display: flex;
+    flex-direction: row;
     justify-content: flex-end;
+
     margin-top: 32px;
   }
 `;
 
-export const NoticesButton = styled.button`
+export const NoticesButtonContact = styled.a`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   width: 240px;
   height: 40px;
-  margin-top: 12px;
 
   border-radius: 40px;
   border: 2px solid ${colors.accent};
@@ -103,19 +156,84 @@ export const NoticesButton = styled.button`
   line-height: 22px;
   letter-spacing: 0.04em;
 
-  text-align: center;
-
   color: ${colors.black};
 
   &:hover,
   &:focus {
-    background-color: ${colors.accentButton};
+    background-color: ${colors.accent};
 
     color: ${colors.white};
   }
 
   cursor: pointer;
 
+  ${media.tabletAndDesktop} {
+    width: 160px;
+    margin-left: 12px;
+    margin-top: 0px;
+  }
+`;
+
+export const NoticesButtonFavorite = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 12px;
+
+  width: 240px;
+  height: 40px;
+
+  border-radius: 40px;
+  border: 2px solid ${colors.accent};
+  background-color: ${colors.white};
+
+  font-weight: ${fontWeights.medium};
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0.04em;
+
+  color: ${colors.black};
+
+  &:hover,
+  &:focus {
+    background-color: ${colors.accent};
+
+    color: ${colors.white};
+  }
+
+  cursor: pointer;
+
+  ${media.tabletAndDesktop} {
+    width: 160px;
+    margin-top: 0px;
+  }
+`;
+
+export const HeartIcon = styled.div`
+  margin-left: 10px;
+  margin-top: 5px;
+`;
+
+export const NoticesButtonDelete = styled.button`
+  width: 240px;
+  height: 40px;
+  margin-top: 12px;
+  border-radius: 40px;
+  border: 2px solid ${colors.accent};
+  background-color: ${colors.white};
+  font-weight: ${fontWeights.medium};
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0.04em;
+  text-align: center;
+  color: ${colors.black};
+  &:hover,
+  &:focus {
+    background-color: ${colors.accentButton};
+    color: ${colors.white};
+  }
+  cursor: pointer;
   ${media.tabletAndDesktop} {
     margin-left: 12px;
     margin-top: 0px;

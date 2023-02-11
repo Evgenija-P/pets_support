@@ -7,6 +7,8 @@ import { selectIsLoading } from '../../redux/auth/selectors';
 
 import { logIn } from '../../redux/auth/operations';
 
+import { emailRegex, passwordRegexp } from "../../helpers/regExpsHelpers";
+
 import Spinner from '../Spinner';
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
 import {
@@ -24,21 +26,20 @@ import {
   ErrorText,
 } from './LoginForm.styled';
 
-const regexEmail =
-  /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/;
-const regexPassword = /^\S*$/;
+// const regexPassword = /^\S*$/;
 
 const loginSchema = yup.object().shape({
   email: yup
     .string()
-    .matches(regexEmail, 'Email must contain symbol @')
-    .email('Invalid email adress')
+    .matches(emailRegex, 'Invalid email adress')
     .required('Email is required'),
   password: yup
     .string()
     .min(7, 'Password must be at least 7 characters')
     .max(32, 'Password must be at most 32 characters')
-    .matches(regexPassword, 'Must not contain spaces')
+    .matches(
+      passwordRegexp,
+      'The password must consist of Latin letters (A-z), numbers (0-9)')
     .required('Password is required'),
 });
 

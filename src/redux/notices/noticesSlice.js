@@ -18,7 +18,8 @@ const noticesInitialState = {
   isLoading: false,
   isAdding: false,
   error: null,
-  category: '/notices/',
+  // category: '/notices/',
+  category: '',
   search: '',
   limit: 20,
 };

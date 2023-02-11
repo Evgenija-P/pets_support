@@ -1,6 +1,14 @@
 import styled from '@emotion/styled';
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  margin-top: 28px;
+`;
+
+export const Label = styled.div`
+  font-size: 24px;
+  line-height: 26.5px;
+  color: #000000;
+`;
 
 export const Input = styled.input`
   position: absolute;
@@ -20,15 +28,18 @@ export const Input = styled.input`
   pointer-events: none;
 `;
 
-export const Label = styled.label`
+export const UploadBtn = styled.label`
   position: relative;
   display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
-  width: 150px;
-  height: 150px;
+  width: 140px;
+  height: 140px;
+  margin-top: 12px;
   border-radius: 10px;
 
-  background-color: paleGreen;
+  background-color: #fdf7f2;
 `;
 
 export const Error = styled.span`

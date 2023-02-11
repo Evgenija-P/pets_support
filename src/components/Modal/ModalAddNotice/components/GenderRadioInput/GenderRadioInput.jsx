@@ -3,7 +3,7 @@ import * as styled from './GenderRadioInput.styled';
 import { TbVenus } from 'react-icons/tb';
 import { TbMars } from 'react-icons/tb';
 
-const PetGenderRadioInput = ({ ...props }) => {
+const PetGenderRadioInput = props => {
   const [field] = useField(props);
 
   return (
