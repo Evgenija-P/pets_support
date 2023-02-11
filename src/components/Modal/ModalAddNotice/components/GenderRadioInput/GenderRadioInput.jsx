@@ -1,7 +1,7 @@
 import { useField } from 'formik';
 import * as styled from './GenderRadioInput.styled';
-import { TbVenus } from 'react-icons/tb';
-import { TbMars } from 'react-icons/tb';
+import { ReactComponent as IconFemale } from '../../../../../img/icons/female.svg';
+import { ReactComponent as IconMale } from '../../../../../img/icons/male.svg';
 
 const PetGenderRadioInput = props => {
   const [field] = useField(props);
@@ -9,11 +9,13 @@ const PetGenderRadioInput = props => {
   return (
     <>
       <styled.Labellll htmlFor={props.id} active={field.value === props.value}>
-        {props.value === 'male' ? (
-          <TbMars size="80%" color="#23C1EE" />
-        ) : (
-          <TbVenus size="80%" color="#FE8787" />
-        )}
+        <styled.Wrap>
+          {props.value === 'male' ? (
+            <IconMale width={'100%'} height={'100%'} />
+          ) : (
+            <IconFemale width={'100%'} height={'100%'} />
+          )}
+        </styled.Wrap>
 
         <styled.Text>{props.value}</styled.Text>
       </styled.Labellll>
