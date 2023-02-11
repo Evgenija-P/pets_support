@@ -5,12 +5,14 @@ import {
   NoticesNav,
   NoticesImage,
   NoticesBadge,
-  NoticesButtonFavorite,
+  // NoticesButtonFavorite,
   NoticesDescription,
   NoticesTitle,
   NoticesTags,
   NoticesTag,
   NoticesButton,
+  NoticesFavorite,
+  NoticesButtonFavoriteV2,
 } from './NoticesCategoriesListSecond.styled';
 import {
   getOwnerNotices,
@@ -21,7 +23,7 @@ import notFoundNoticesImage from '../../../img/notFoundNoticesImage.jpg';
 // import { PER_PAGE } from '../../../redux/notices/operations ';
 // import { useSelector, useDispatch } from 'react-redux';
 import { useSelector, useDispatch } from 'react-redux';
-//import useAuth from '../../../hooks/useAuth.js';
+import useAuth from '../../../hooks/useAuth.js';
 import {
   selectNotices,
   // selectFavoriteNotices,
@@ -31,23 +33,32 @@ import { selectFavoriteList } from '../../../redux/favorite/selectors';
 import { deletefavoriteNotice } from '../../../redux/notices/noticesSlice';
 import { selectUser } from '../../../redux/auth/selectors.js';
 // import { display, height } from '@mui/system';
-// import { fetchNotices } from '../../../redux/notices/operations ';
+import { getNoticesById } from '../../../redux/current/operations ';
 // import { useLocation } from 'react-router-dom';
 import {
   addToFavorite,
   removeFromFavorite,
 } from '../../../redux/favorite/operations ';
 //import { deleteNotices } from '../../../redux/notices/operations ';
+
+// import LearnMoreButton from '../NoticesDetailsCard/NoticesButton/NoticesButton';
+
 const NoticesCategoriesListSecond = () => {
   const notices = useSelector(selectNotices);
   const favorite = useSelector(selectFavoriteList);
   const { _id } = useSelector(selectUser);
   const dispatch = useDispatch();
   const { category } = useSelector(selectNoticesObj);
+  const { isLoggedIn } = useAuth();
+  let noticesUpdated = [];
+  if (isLoggedIn) {
+    noticesUpdated = getPetAge(
+      getOwnerNotices(getUserFavoriteNotices(notices, favorite), _id)
+    );
+  } else {
+    noticesUpdated = getPetAge(notices);
+  }
 
-  const noticesUpdated = getPetAge(
-    getOwnerNotices(getUserFavoriteNotices(notices, favorite), _id)
-  );
   const onFavoriteToggle = (_id, favorite) => {
     if (favorite) {
       dispatch(removeFromFavorite(_id));
@@ -79,10 +90,16 @@ const NoticesCategoriesListSecond = () => {
             <NoticesTop>
               <NoticesNav>
                 <NoticesBadge>{categoryName}</NoticesBadge>
-
-                <NoticesButtonFavorite
+                {/* <NoticesButtonFavorite
                   onClick={() => onFavoriteToggle(_id, favorite)}
-                ></NoticesButtonFavorite>
+                ></NoticesButtonFavorite> */}
+                {isLoggedIn && (
+                  <NoticesButtonFavoriteV2
+                    onClick={() => onFavoriteToggle(_id, favorite)}
+                  >
+                    <NoticesFavorite isfavorite={favorite.toString()} />
+                  </NoticesButtonFavoriteV2>
+                )}
               </NoticesNav>
 
               <NoticesImage
@@ -90,10 +107,8 @@ const NoticesCategoriesListSecond = () => {
                 alt={title}
               />
             </NoticesTop>
-
             <NoticesDescription>
               <NoticesTitle>{title}</NoticesTitle>
-
               <NoticesTags>
                 {/* <NoticesTag>id: {_id}</NoticesTag> */}
                 <NoticesTag>Breed: {breed}</NoticesTag>
@@ -106,8 +121,18 @@ const NoticesCategoriesListSecond = () => {
                 {isOwner && isLogined && <NoticesTag>Owner </NoticesTag>} */}
               </NoticesTags>
 
-              <NoticesButton>Learn More</NoticesButton>
-              {/* {!favorite && isLogined && (
+              {/* <LearnMoreButton /> */}
+
+              <NoticesButton
+                onClick={() => {
+                  // console.log('LearnMore', _id, categoryName);
+                  dispatch(getNoticesById(`${categoryName}/${_id}`));
+                }}
+              >
+                Learn More
+              </NoticesButton>
+
+              {/* {!favorite && (
                 <NoticesButton onClick={() => dispatch(addToFavorite(_id))}>
                   add to favorite
                 </NoticesButton>
