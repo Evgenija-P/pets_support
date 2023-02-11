@@ -48,13 +48,13 @@ export const deleteNotices = createAsyncThunk(
   }
 );
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
-// export const fetchFavoriteNotices = createAsyncThunk(
-//   'notices/fetchFavoriteNotices',
-//   async ({ category }, thunkAPI) => {
+// export const getNoticesById = createAsyncThunk(
+//   'notices/getNoticesById',
+//   async ({ category, noticeId }, thunkAPI) => {
 //     try {
-//       const response = await axios.get(category);
+//       const response = await axios.get(`/notices/${category}/${noticeId}`);
 //       // console.log('reresponse.data.messagesponse ', response.data.message);
-//       return response.data.message.favoriteList;
+//       return response.data.message;
 //     } catch (e) {
 //       return thunkAPI.rejectWithValue(e.message);
 //     }
