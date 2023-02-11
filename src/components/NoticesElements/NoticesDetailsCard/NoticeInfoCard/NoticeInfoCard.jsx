@@ -25,7 +25,12 @@ import { useDispatch } from 'react-redux';
 // import { getNoticesById } from '../../../redux/current/operations ';
 // import { useLocation } from 'react-router-dom';
 import { deleteNotices } from '../../../../redux/notices/operations ';
+import {
+  addToFavorite,
+  removeFromFavorite,
+} from '../../../../redux/favorite/operations ';
 import { setCurrentNotices } from '../../../../redux/current/currentSlice';
+import React, { useEffect, useState } from 'react';
 
 const NoticeInfoCard = ({
   _id,
@@ -41,9 +46,20 @@ const NoticeInfoCard = ({
   title,
   location,
   own,
+  favorite,
 }) => {
   // const { _id: user } = useSelector(selectUser);
   const dispatch = useDispatch();
+  const [FavotitefavoriteState, setFavotitestate] = useState(favorite);
+  const onFavoriteToggle = (_id, favorite) => {
+    if (favorite) {
+      dispatch(addToFavorite(_id));
+
+      return;
+    }
+
+    // dispatch(addToFavorite(_id));
+  };
   return (
     <NoticesInfoContainer>
       <NoticesBox>
@@ -95,7 +111,13 @@ const NoticeInfoCard = ({
             Delete
           </NoticesButton>
         )}
-        <NoticesButton>Add to</NoticesButton>
+        <NoticesButton
+          onClick={() => {
+            dispatch(onFavoriteToggle(_id, favorite));
+          }}
+        >
+          Add to
+        </NoticesButton>
         <NoticesButton>Contact</NoticesButton>
       </ButtonBlock>
     </NoticesInfoContainer>
