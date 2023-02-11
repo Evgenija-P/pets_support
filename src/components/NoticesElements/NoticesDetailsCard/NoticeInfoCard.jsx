@@ -14,7 +14,7 @@ import {
   Tags,
   Text,
   Notices,
-} from './NoticesDetailsCard.styled';
+} from './NoticeInfoCard.styled';
 
 import React from 'react';
 

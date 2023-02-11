@@ -1,1 +1,1 @@
-export { default } from './NoticesDetailsCard';
+export { default } from './NoticeInfoCard';
