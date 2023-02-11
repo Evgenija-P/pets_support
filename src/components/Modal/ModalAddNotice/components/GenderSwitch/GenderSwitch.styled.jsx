@@ -9,7 +9,7 @@ export const List = styled.ul`
 `;
 export const Item = styled.li`
   :not(:first-of-type) {
-    margin-left: 50px;
+    margin-left: 80px;
   }
 `;
 export const Label = styled.span``;
