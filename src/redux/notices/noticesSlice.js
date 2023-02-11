@@ -3,6 +3,7 @@ import {
   fetchNotices,
   addNotices,
   deleteNotices,
+
   // addToFavoriteNotices,
   // removeFromFavoriteNotices,
   // fetchFavoriteNotices,
@@ -12,7 +13,6 @@ import {
 // import storage from 'redux-persist/lib/storage';
 const noticesInitialState = {
   noticesList: [],
-  // favoriteNoticesList: [],
   page: 1,
   totalHits: 0,
   isLoading: false,
@@ -27,6 +27,7 @@ const extraActions = [
   fetchNotices,
   addNotices,
   deleteNotices,
+
   // addToFavoriteNotices,
   // removeFromFavoriteNotices,
   // fetchFavoriteNotices,
@@ -61,9 +62,6 @@ const handleDeleteNoticesSuccses = (state, action) => {
   );
   state.noticesList.splice(index, 1);
 };
-// const handleAddToFavoriteNoticesSuccses = (state, action) => {
-//   state.favoriteNoticesList = action.payload;
-// };
 
 // const handleRemoveFromFavoriteNoticesSuccses = (state, action) => {
 //   state.favoriteNoticesList = action.payload;
@@ -103,10 +101,7 @@ export const noticesSlice = createSlice({
       .addCase(addNotices.rejected, handleAddNoticesReject)
 
       .addCase(deleteNotices.fulfilled, handleDeleteNoticesSuccses)
-      // .addCase(
-      //   addToFavoriteNotices.fulfilled,
-      //   handleAddToFavoriteNoticesSuccses
-      // )
+
       // .addCase(
       //   removeFromFavoriteNotices.fulfilled,
       //   handleRemoveFromFavoriteNoticesSuccses

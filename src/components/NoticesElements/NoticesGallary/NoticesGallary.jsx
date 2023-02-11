@@ -39,7 +39,7 @@ const NoticesGallary = () => {
   }, [dispatch, category, isLoggedIn, search]);
 
   const OnPagination = page => {
-    dispatch(fetchNotices({ category, page }));
+    dispatch(fetchNotices({ category, page, search }));
   };
   const countPages = Math.ceil(totalHits / limit);
 

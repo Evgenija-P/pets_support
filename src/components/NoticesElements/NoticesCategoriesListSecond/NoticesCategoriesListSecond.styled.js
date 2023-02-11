@@ -3,7 +3,7 @@ import { media, colors, fontWeights } from '../../../styles/stylesLayout';
 
 import noticesFavoriteIcon from '../../../img/icons/noticesFavoriteIcon.svg';
 import noticesFavoriteIconActive from '../../../img/icons/noticesFavoriteIconActive.svg';
-
+import { ReactComponent as FavoriteIcon } from '../../../img/icons/favoriteNotices.svg';
 export const NoticesList = styled.ul`
   display: grid;
   grid-template-columns: repeat(1, minmax(200px, 1fr));
@@ -76,7 +76,7 @@ export const NoticesButtonFavorite = styled.button`
   border-radius: 44px;
 
   background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(4px);
 
   background-image: url(${noticesFavoriteIcon});
   background-repeat: no-repeat;
@@ -85,6 +85,46 @@ export const NoticesButtonFavorite = styled.button`
   &:hover,
   &:focus {
     background-image: url(${noticesFavoriteIconActive});
+  }
+`;
+export const NoticesFavorite = styled(FavoriteIcon)`
+  stroke: ${colors.accentButton};
+  fill: ${props => {
+    let color = 'rgba(255, 255, 255, 0.6)';
+
+    if (props.isfavorite === 'true') {
+      color = colors.accentButton;
+    }
+
+    if (!props.isfavorite === 'false') {
+      color = 'rgba(255, 255, 255, 0.6)';
+    }
+
+    return color;
+  }};
+`;
+
+export const NoticesButtonFavoriteV2 = styled.button`
+  width: 44px;
+  height: 44px;
+  border: none;
+  outline: none;
+  border-radius: 44px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  outline: none;
+  &:hover,
+  &:focus {
+    background: rgba(255, 255, 255, 1);
+  }
+
+  &:disabled {
+    background-color: rgba(245, 146, 86, 1);
   }
 `;
 
