@@ -1,3 +1,9 @@
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+
+import { selectPets } from '../../redux/pets/selectors';
+import { fetchPets } from '../../redux/pets/operations';
+
 import {
   PetsNav,
   PetButtonAdd,
@@ -14,6 +20,15 @@ import { ReactComponent as PetButtonIconDelete } from '../../img/icons/petButton
 import { ReactComponent as AddPetIcon } from '../../img/icons/addPetIcon.svg';
 
 const PetsUserList = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchPets());
+  }, [dispatch]);
+
+  const { pets } = useSelector(selectPets);
+  console.log(pets);
+
   return (
     <div>
       <PetsNav>
@@ -28,31 +43,34 @@ const PetsUserList = () => {
       </PetsNav>
 
       <ul>
-        <PetsItem>
-          <PetImage />
-          <PetDescription>
-            <PetButtonDelete>
-              <PetButtonIconDelete />
-            </PetButtonDelete>
-            <PetTags>
-              <PetTag>
-                <span>Name:</span>Jack
-              </PetTag>
-              <PetTag>
-                <span>Date of birth:</span>22.04.2018
-              </PetTag>
-              <PetTag>
-                <span>Breed:</span>Jack
-              </PetTag>
-              <PetTag>
-                <span>Comments:</span>
-                Lorem ipsum dolor sit amet, consecteturLorem ipsum dolor sit
-                amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem
-                ipsum dolor sit amet, consectetur
-              </PetTag>
-            </PetTags>
-          </PetDescription>
-        </PetsItem>
+        {pets.map(({ photoURL, name, birthday, breed, comments }) => (
+          <PetsItem>
+            <PetImage />
+            <PetDescription>
+              <PetButtonDelete>
+                <PetButtonIconDelete />
+              </PetButtonDelete>
+              <PetTags>
+                <PetTag>
+                  <span>Name:</span>
+                  {name}
+                </PetTag>
+                <PetTag>
+                  <span>Date of birth:</span>
+                  {birthday}
+                </PetTag>
+                <PetTag>
+                  <span>Breed:</span>
+                  {breed}
+                </PetTag>
+                <PetTag>
+                  <span>Comments:</span>
+                  {comments}
+                </PetTag>
+              </PetTags>
+            </PetDescription>
+          </PetsItem>
+        ))}
       </ul>
     </div>
   );

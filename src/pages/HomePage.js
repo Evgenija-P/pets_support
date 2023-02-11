@@ -1,5 +1,7 @@
 import { Helmet } from 'react-helmet';
-import Home from '../components/Home'
+import Home from '../components/Home';
+
+import PetsUserList from '../components/PetsUserList';
 
 const HomePage = () => {
   return (
@@ -8,6 +10,8 @@ const HomePage = () => {
         <title>Home</title>
       </Helmet>
       <Home />
+
+      <PetsUserList />
     </div>
   );
 };

@@ -14,6 +14,8 @@ import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth/slice';
 import { noticesReducer } from './notices/noticesSlice';
 import { favoriteReducer } from './favorite/favoriteSlice';
+import { petsReducer } from './pets/petsSlice';
+
 const authPersistConfig = {
   key: 'auth',
   storage,
@@ -31,6 +33,7 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReducer),
     notices: noticesReducer,
     favorite: favoriteReducer,
+    pets: petsReducer,
   },
   middleware,
 });
