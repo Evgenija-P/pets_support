@@ -5,7 +5,7 @@ import {
   NoticesNav,
   NoticesImage,
   NoticesBadge,
-  // NoticesButtonFavorite,
+  NoticesButtonFavorite,
   NoticesDescription,
   NoticesTitle,
   NoticesTags,
@@ -90,9 +90,7 @@ const NoticesCategoriesListSecond = () => {
             <NoticesTop>
               <NoticesNav>
                 <NoticesBadge>{categoryName}</NoticesBadge>
-                {/* <NoticesButtonFavorite
-                  onClick={() => onFavoriteToggle(_id, favorite)}
-                ></NoticesButtonFavorite> */}
+                {!isLoggedIn && <NoticesButtonFavorite></NoticesButtonFavorite>}
                 {isLoggedIn && (
                   <NoticesButtonFavoriteV2
                     onClick={() => onFavoriteToggle(_id, favorite)}
