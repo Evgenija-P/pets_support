@@ -27,4 +27,15 @@ const fontWeights = {
   bold: 700,
 };
 
-export { media, colors, fontWeights };
+const optionsToast = {
+  position: 'top-right',
+  autoClose: 3000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+  theme: 'light',
+};
+
+export { media, colors, fontWeights, optionsToast };

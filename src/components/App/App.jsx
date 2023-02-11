@@ -1,6 +1,8 @@
 import { lazy, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
+import { ToastContainer, Flip } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import useAuth from '../../hooks/useAuth';
 import HomePage from '../../pages/HomePage';
 import NotFoundPage from '../../pages/NotFoundPage';
@@ -31,85 +33,92 @@ const App = () => {
   return isRefreshing ? (
     'Идем на сервер'
   ) : (
-    <Routes>
-      <Route path="/" element={<SharedLayout />}>
-        <Route index element={<HomePage />} />
-        <Route
-          path="/news"
-          element={<RestrictedRoute component={<NewsPage />} />}
-        />
+    <>
+      {' '}
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<HomePage />} />
+          <Route
+            path="/news"
+            element={<RestrictedRoute component={<NewsPage />} />}
+          />
 
-        <Route
-          path="/notices"
-          element={
-            isLoggedIn ? (
-              <PrivateRoute
-                component={<NoticesPage />}
-                // redirectTo="/notices/sell"
-              />
-            ) : (
+          <Route
+            path="/notices"
+            element={
+              isLoggedIn ? (
+                <PrivateRoute
+                  component={<NoticesPage />}
+                  // redirectTo="/notices/sell"
+                />
+              ) : (
+                <RestrictedRoute
+                  component={<NoticesPage />}
+                  // redirectTo="/notices/sell"
+                />
+              )
+            }
+          >
+            <Route
+              path="sell"
+              element={<RestrictedRoute component={<NoticesCategoriesNav />} />}
+            />
+            <Route
+              path="lost-found"
+              element={<RestrictedRoute component={<NoticesCategoriesNav />} />}
+            />
+            <Route
+              path="for-free"
+              element={<RestrictedRoute component={<NoticesCategoriesNav />} />}
+            />
+            <Route
+              path="favorite"
+              element={
+                <PrivateRoute
+                  redirectTo="/login"
+                  component={<NoticesCategoriesNav />}
+                />
+              }
+            />
+            <Route
+              path="own"
+              element={
+                <PrivateRoute
+                  redirectTo="/login"
+                  component={<NoticesCategoriesNav />}
+                />
+              }
+            />
+          </Route>
+
+          <Route
+            path="/friends"
+            element={<RestrictedRoute component={<OurFriendsPage />} />}
+          />
+          <Route
+            path="/register"
+            element={
               <RestrictedRoute
-                component={<NoticesPage />}
-                // redirectTo="/notices/sell"
-              />
-            )
-          }
-        >
-          <Route
-            path="sell"
-            element={<RestrictedRoute component={<NoticesCategoriesNav />} />}
-          />
-          <Route
-            path="lost-found"
-            element={<RestrictedRoute component={<NoticesCategoriesNav />} />}
-          />
-          <Route
-            path="for-free"
-            element={<RestrictedRoute component={<NoticesCategoriesNav />} />}
-          />
-          <Route
-            path="favorite"
-            element={
-              <PrivateRoute
-                redirectTo="/login"
-                component={<NoticesCategoriesNav />}
+                component={<RegisterPage />}
+                redirectTo="/user"
               />
             }
           />
           <Route
-            path="own"
+            path="/login"
             element={
-              <PrivateRoute
-                redirectTo="/login"
-                component={<NoticesCategoriesNav />}
-              />
+              <RestrictedRoute component={<LoginPage />} redirectTo="/user" />
             }
           />
-        </Route>
-
-        <Route
-          path="/friends"
-          element={<RestrictedRoute component={<OurFriendsPage />} />}
-        />
-        <Route
-          path="/register"
-          element={
-            <RestrictedRoute component={<RegisterPage />} redirectTo="/user" />
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <RestrictedRoute component={<LoginPage />} redirectTo="/user" />
-          }
-        />
-        <Route
-          path="/user"
+          <Route
+            path="/user"
             element={<PrivateRoute component={<UserPage />} />}
-        />
-        <Route path="*" element={<NotFoundPage />} />
-      </Route>
-    </Routes>
+          />
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
+      </Routes>
+      <ToastContainer transition={Flip} />
+    </>
   );
 };
 

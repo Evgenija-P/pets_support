@@ -1,11 +1,33 @@
-import { Formik, Form, Field, ErrorMessage, useFormik } from 'formik';
+import { Formik} from 'formik';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { selectUser } from '../../redux/auth/selectors'
 import { logOut, addAvatar, updateUserInformation } from '../../redux/auth/operations'
 import imgPlug from '../../img/no-foto.png'
-import{Title, Container} from './UserInformation.styled'
+
+import {
+    Title,
+    UserContainer,
+    UserImg,
+    UserInformationContainer,
+    UserForm,
+    UserKey,
+    UserValue,
+    LogOutWrapper,
+    LogOutButton,
+    LogOutIcon,
+    UserInformationEdit,
+    UserInformationEditWrapper,
+    UserKeyLabel,
+    UserValueInput,
+    UserInformationEdited,
+    InputEditPhoto,
+    CameraSVG,
+    LabelEditPhoto,
+    TextEditPhoto,
+    UserWrapper,
+    AvatarWrapper
+} from './UserInformation.styled'
  
 
 
@@ -47,63 +69,114 @@ const UserInformation = () => {
     
 
     return (
-        <Container>
-            <h1>My information: </h1>
-            <div>
-                <img
-                    src={!user.avatarURL ? imgPlug : user.avatarURL}
-                    alt="Avatar"
-                    width="233"
-                    height="233"
-                />
-                <input type="file" onChange={handleChange}/>
-                <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-                    <Form autoComplete='off'>
+        <div>
+            <Title>My information: </Title>
+            <UserContainer>
+                <UserWrapper>
+                    <AvatarWrapper>
+                        <UserImg
+                            src={!user.avatarURL ? imgPlug : user.avatarURL}
+                            alt="Avatar"
+                        />
+                        <LabelEditPhoto onChange={handleChange}>
+                            <InputEditPhoto type="file" />
+                            <CameraSVG />
+                            <TextEditPhoto>Edit Photo</TextEditPhoto>
+                        </LabelEditPhoto>
+                    </AvatarWrapper>
+                    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+                        <UserForm autoComplete='off'>
 
-                        {change === 'name' ? <label>
-                            Name:
-                            <Field type='text' name='name'/>
-                            <button type='submit'>Change</button>
-                        </label> : <div>
-                            <p>{`Name: ${initialValues.name}`}</p>
-                            <button type='button' onClick={() => setChange('name')}>Change</button></div>}
+                            {change === 'name' ?
+                                <UserKeyLabel>
+                                    Name:
+                                    <UserValueInput type='text' name='name' />
+                                    <UserInformationEditWrapper type='submit' >
+                                        <UserInformationEdited />
+                                    </UserInformationEditWrapper>
+                                </UserKeyLabel> :
+                                <UserInformationContainer>
+                                    <UserKey>Name:</UserKey>
+                                    <UserValue>{`${initialValues.name}`}</UserValue>
+                                    <UserInformationEditWrapper click={change}>
+                                        <UserInformationEdit onClick={() => setChange('name')} />
+                                    </UserInformationEditWrapper>
+                                </UserInformationContainer>}
                         
-                        {change === 'email' ? <label>
-                            Email:
-                            <Field type='email' name='email' />
-                            <button type='submit'>Change</button>
-                        </label> : <div>
-                            <p>{`Email: ${initialValues.email}`}</p>
-                            <button type='button' onClick={() => setChange('email')}>Change</button></div>}
+                            {change === 'email' ?
+                                <UserKeyLabel>
+                                    Email:
+                                    <UserValueInput type='email' name='email' />
+                                    <UserInformationEditWrapper type='submit' >
+                                        <UserInformationEdited />
+                                    </UserInformationEditWrapper>
+                                </UserKeyLabel> :
+                                <UserInformationContainer>
+                                    <UserKey>Email:</UserKey>
+                                    <UserValue>{`${initialValues.email}`}</UserValue>
+                                    <UserInformationEditWrapper click={change}>
+                                        <UserInformationEdit onClick={() => setChange('email')} />
+                                    </UserInformationEditWrapper>
+                                </UserInformationContainer>}
                         
-                         {change === 'birthday' ? <label>
-                            Birthday:
-                            <Field type='text' name='birthday' />
-                            <button type='submit'>Change</button>
-                        </label> : <div>
-                            <p>{`Birthday: ${initialValues.birthday}`}</p>
-                            <button type='button' onClick={() => setChange('birthday')}>Change</button></div>}
+                            {change === 'birthday' ?
+                                <UserKeyLabel>
+                                    Birthday:
+                                    <UserValueInput type='text' name='birthday' />
+                                    <UserInformationEditWrapper type='submit' >
+                                        <UserInformationEdited />
+                                    </UserInformationEditWrapper>
+                                </UserKeyLabel> :
+                                <UserInformationContainer>
+                                    <UserKey>Birthday:</UserKey>
+                                    <UserValue>{`${initialValues.birthday}`}</UserValue>
+                                    <UserInformationEditWrapper click={change}>
+                                        <UserInformationEdit onClick={() => setChange('birthday')} />
+                                    </UserInformationEditWrapper>
+                                </UserInformationContainer>}
                         
-                          {change === 'phone' ? <label>
-                            Phone:
-                            <Field type='text' name='phone' />
-                            <button type='submit'>Change</button>
-                        </label> : <div>
-                            <p>{`Phone: ${initialValues.phone}`}</p>
-                            <button type='button' onClick={() => setChange('phone')}>Change</button></div>}
+                            {change === 'phone' ?
+                                <UserKeyLabel>
+                                    Phone:
+                                    <UserValueInput type='text' name='phone' />
+                                    <UserInformationEditWrapper type='submit' >
+                                        <UserInformationEdited />
+                                    </UserInformationEditWrapper>
+                                </UserKeyLabel> :
+                                <UserInformationContainer>
+                                    <UserKey>Phone:</UserKey>
+                                    <UserValue>{`${initialValues.phone}`}</UserValue>
+                                    <UserInformationEditWrapper click={change}>
+                                        <UserInformationEdit onClick={() => setChange('phone')} />
+                                    </UserInformationEditWrapper>
+                                </UserInformationContainer>}
                         
-                        {change === 'city' ? <label>
-                            City:
-                            <Field type='text' name='city' />
-                            <button type='submit'>Change</button>
-                        </label> : <div>
-                            <p>{`City: ${initialValues.city}`}</p>
-                            <button type='button' onClick={() => setChange('city')}>Change</button></div>} 
-                    </Form>
-                </Formik>
-                <button type='button' onClick={() => dispatch(logOut())}>Log out</button>
-            </div>
-        </Container>
+                            {change === 'city' ?
+                                <UserKeyLabel>
+                                    City:
+                                    <UserValueInput type='text' name='city' />
+                                    <UserInformationEditWrapper type='submit' >
+                                        <UserInformationEdited />
+                                    </UserInformationEditWrapper>
+                                </UserKeyLabel> :
+                                <UserInformationContainer>
+                                    <UserKey>City:</UserKey>
+                                    <UserValue>{`${initialValues.city}`}</UserValue>
+                                    <UserInformationEditWrapper click={change}>
+                                        <UserInformationEdit onClick={() => setChange('city')} />
+                                    </UserInformationEditWrapper>
+                                </UserInformationContainer>}
+                        </UserForm>
+                    </Formik>
+                </UserWrapper>
+                <LogOutWrapper>
+                    <LogOutIcon onClick={() => dispatch(logOut())} />
+                    <LogOutButton type='button' onClick={() => dispatch(logOut())}>
+                        Log out
+                    </LogOutButton>
+                </LogOutWrapper>
+            </UserContainer>
+        </div>
     );
 };
 

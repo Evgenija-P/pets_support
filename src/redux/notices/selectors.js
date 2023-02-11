@@ -2,7 +2,7 @@
 // import { selectFilter } from '../filters/selectors';
 export const selectNoticesObj = state => state.notices;
 export const selectNotices = state => state.notices.noticesList;
-export const selectFavoriteNotices = state => state.notices.favoriteNoticesList;
+// export const selectFavoriteNotices = state => state.notices.favoriteNoticesList;
 
 export const selectIsLoading = state => state.notices.isLoading;
 export const selectError = state => state.notices.error;

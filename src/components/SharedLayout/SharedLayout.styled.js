@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import { media } from '../../styles/stylesLayout';
 
 export const Container = styled.div`
@@ -13,18 +13,17 @@ export const Header = styled.header`
   justify-content: space-between;
   margin-top: 20px;
 
-
-    ${media.mobile} {
-		height: 48px;
-   align-items: flex-start;
+  ${media.mobile} {
+    height: 48px;
+    align-items: flex-start;
   }
 `;
 
 export const LogNav = styled.div`
   display: flex;
   align-items: flex-start;
- 
-    ${media.mobileAndTablet} {
-align-items: center;  
+
+  ${media.mobileAndTablet} {
+    align-items: center;
   }
 `;
