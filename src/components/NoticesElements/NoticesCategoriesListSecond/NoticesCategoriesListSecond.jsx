@@ -19,6 +19,7 @@ import {
   getPetAge,
   getUserFavoriteNotices,
 } from '../../../helpers/noticesHelpers';
+// import toast, { Toaster } from 'react-hot-toast';
 import notFoundNoticesImage from '../../../img/notFoundNoticesImage.jpg';
 // import { PER_PAGE } from '../../../redux/notices/operations ';
 // import { useSelector, useDispatch } from 'react-redux';

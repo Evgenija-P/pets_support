@@ -19,7 +19,7 @@ const getPetAge = notices => {
       .join(' ');
     return { ...notice, age: petAge };
   });
-  console.log('age', noticeWithPetAge);
+  // console.log('age', noticeWithPetAge);
   return noticeWithPetAge;
 };
 
