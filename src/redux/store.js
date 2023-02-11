@@ -15,6 +15,7 @@ import { authReducer } from './auth/slice';
 import { noticesReducer } from './notices/noticesSlice';
 import { favoriteReducer } from './favorite/favoriteSlice';
 import { petsReducer } from './pets/petsSlice';
+import { currentReducer } from './current/currentSlice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -34,6 +35,7 @@ export const store = configureStore({
     notices: noticesReducer,
     favorite: favoriteReducer,
     pets: petsReducer,
+    current: currentReducer,
   },
   middleware,
 });

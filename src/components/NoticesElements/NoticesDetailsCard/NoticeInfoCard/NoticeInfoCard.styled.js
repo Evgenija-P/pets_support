@@ -66,7 +66,7 @@ export const NoticesTag = styled.h3`
   }
 `;
 
-export const NoticesText = styled.p`
+export const NoticesText = styled.div`
   display: flex;
 
   font-weight: ${fontWeights.medium};

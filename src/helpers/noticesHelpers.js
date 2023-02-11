@@ -17,9 +17,9 @@ const getPetAge = notices => {
       .split(' ')
       .slice(0, 2)
       .join(' ');
-
     return { ...notice, age: petAge };
   });
+  // console.log('age', noticeWithPetAge);
   return noticeWithPetAge;
 };
 

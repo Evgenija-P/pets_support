@@ -1,20 +1,26 @@
 import React from 'react';
 import { ReactComponent as IconClose } from '../../../img/icons/close_menu.svg';
+
+import AddNoticeForm from './components/AddNoticeForm';
+
 import {
-  ModalWrapperAddNotices,
   ModalTitleAddNotices,
-} from './ModalAddMyPet.styled';
+  ModalWrapperNotices,
+} from './ModalAddNotice.styled';
+
 import { CloseButton } from '../Modal.styled';
 
-const ModalAddNotice = ({ children, onClose, title }) => {
+console.log(ModalWrapperNotices);
+
+const ModalAddNotice = ({ onClose, title }) => {
   return (
-    <ModalWrapperAddNotices>
+    <ModalWrapperNotices>
       <CloseButton type="button" onClick={onClose}>
         <IconClose />
       </CloseButton>
       {title ? <ModalTitleAddNotices>{title}</ModalTitleAddNotices> : null}
-      <div>{children}</div>
-    </ModalWrapperAddNotices>
+      <AddNoticeForm onClose={onClose} />
+    </ModalWrapperNotices>
   );
 };
 export default ModalAddNotice;
