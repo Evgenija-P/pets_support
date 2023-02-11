@@ -6,7 +6,7 @@ import SectionContainer from '../components/SectionContainer';
 import NoticesCategoriesNav from '../components/NoticesElements/NoticesCategoriesNav/NoticesCategoriesNav';
 import NoticesSearch from '../components/NoticesElements/NoticesSearch/NoticesSearch';
 import NoticesGallary from '../components/NoticesElements/NoticesGallary';
-import NoticeInfoCard from '../components/NoticesElements/NoticesDetailsCard';
+import NoticeInfoCard from '../components/NoticesElements/NoticesDetailsCard/NoticeInfoCard';
 import Modal from '../components/Modal/Modal';
 import { useSelector, useDispatch } from 'react-redux';
 //import useAuth from '../../../hooks/useAuth.js';

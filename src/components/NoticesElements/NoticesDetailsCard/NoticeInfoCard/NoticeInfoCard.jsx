@@ -18,8 +18,8 @@ import {
 
 import React from 'react';
 
-import { ReactComponent as HeartFavorite } from '../../../img/icons/heartFavorite.svg';
-import defaultPhoto from '../../../img/default.jpg';
+import { ReactComponent as HeartFavorite } from '../../../../img/icons/heartFavorite.svg';
+import defaultPhoto from '../../../../img/default.jpg';
 
 const NoticeInfoCard = ({
   _id,
