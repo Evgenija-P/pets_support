@@ -16,6 +16,7 @@ const noticesInitialState = {
   page: 1,
   totalHits: 0,
   isLoading: false,
+  isAdding: false,
   error: null,
   category: '/notices/',
   search: '',
@@ -32,6 +33,7 @@ const extraActions = [
   // fetchFavoriteNotices,
 ];
 const getActions = type => extraActions.map(extraAction => extraAction[type]);
+
 const handleFetchNoticesSuccses = (state, action) => {
   state.noticesList = action.payload.message;
   state.totalHits = action.payload.totalHits;
@@ -39,9 +41,21 @@ const handleFetchNoticesSuccses = (state, action) => {
   state.search = action.payload.search;
   state.limit = action.payload.limit;
 };
-const handleAddNoticesSuccses = (state, action) => {
-  state.noticesList.push(action.payload);
+const handleAddNoticesSuccses = (state, { payload }) => {
+  state.noticesList.push(payload);
+  state.error = null;
+  state.isAdding = false;
 };
+
+const handleAddNoticesPending = state => {
+  state.isAdding = true;
+};
+
+const handleAddNoticesReject = (state, { payload }) => {
+  state.error = payload;
+  state.isAdding = false;
+};
+
 const handleDeleteNoticesSuccses = (state, action) => {
   const index = state.noticesList.findIndex(
     notices => notices._id === action.payload._id
@@ -82,7 +96,10 @@ export const noticesSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(fetchNotices.fulfilled, handleFetchNoticesSuccses)
+      .addCase(addNotices.pending, handleAddNoticesPending)
       .addCase(addNotices.fulfilled, handleAddNoticesSuccses)
+      .addCase(addNotices.rejected, handleAddNoticesReject)
+
       .addCase(deleteNotices.fulfilled, handleDeleteNoticesSuccses)
 
       // .addCase(
