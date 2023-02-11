@@ -3,6 +3,8 @@ import BASE_URL from '../../../servises/api';
 import NewsItem from '../NewsItem/NewsItem';
 import Spinner from '../../Spinner/Spinner';
 import { nanoid } from 'nanoid';
+import { toast } from 'react-toastify';
+import { optionsToast } from '../../../styles/stylesLayout';
 import { ListNews, ItemNews, ConteinerNews } from './NewsList.styled';
 
 const NewsList = () => {
@@ -25,10 +27,16 @@ const NewsList = () => {
       }
       return result;
     } catch (error) {
-      setError(error.message);
+      setError('Oh! Something wrong! Please try again in a few minutes');
+      toast.error('Oh! Something wrong!', optionsToast);
       console.log(error.message);
     }
   };
+  const news = newsItem.sort(function (a, b) {
+    var dateA = new Date(a.date),
+      dateB = new Date(b.date);
+    return dateB - dateA;
+  });
 
   return (
     <ConteinerNews>
@@ -37,7 +45,7 @@ const NewsList = () => {
         {isLoading ? (
           <Spinner />
         ) : (
-          newsItem.map(({ title, description, date, url }) => (
+          news.map(({ title, description, date, url }) => (
             <ItemNews key={nanoid()}>
               <NewsItem
                 title={title}
