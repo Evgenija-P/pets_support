@@ -5,7 +5,7 @@ import {
   NoticesNav,
   NoticesImage,
   NoticesBadge,
-  // NoticesButtonFavorite,
+  NoticesButtonFavorite,
   NoticesDescription,
   NoticesTitle,
   NoticesTags,
@@ -19,11 +19,12 @@ import {
   getPetAge,
   getUserFavoriteNotices,
 } from '../../../helpers/noticesHelpers';
+// import toast, { Toaster } from 'react-hot-toast';
 import notFoundNoticesImage from '../../../img/notFoundNoticesImage.jpg';
 // import { PER_PAGE } from '../../../redux/notices/operations ';
 // import { useSelector, useDispatch } from 'react-redux';
 import { useSelector, useDispatch } from 'react-redux';
-//import useAuth from '../../../hooks/useAuth.js';
+import useAuth from '../../../hooks/useAuth.js';
 import {
   selectNotices,
   // selectFavoriteNotices,
@@ -49,10 +50,16 @@ const NoticesCategoriesListSecond = () => {
   const { _id } = useSelector(selectUser);
   const dispatch = useDispatch();
   const { category } = useSelector(selectNoticesObj);
+  const { isLoggedIn } = useAuth();
+  let noticesUpdated = [];
+  if (isLoggedIn) {
+    noticesUpdated = getPetAge(
+      getOwnerNotices(getUserFavoriteNotices(notices, favorite), _id)
+    );
+  } else {
+    noticesUpdated = getPetAge(notices);
+  }
 
-  const noticesUpdated = getPetAge(
-    getOwnerNotices(getUserFavoriteNotices(notices, favorite), _id)
-  );
   const onFavoriteToggle = (_id, favorite) => {
     if (favorite) {
       dispatch(removeFromFavorite(_id));
@@ -84,14 +91,14 @@ const NoticesCategoriesListSecond = () => {
             <NoticesTop>
               <NoticesNav>
                 <NoticesBadge>{categoryName}</NoticesBadge>
-                {/* <NoticesButtonFavorite
-                  onClick={() => onFavoriteToggle(_id, favorite)}
-                ></NoticesButtonFavorite> */}
-                <NoticesButtonFavoriteV2
-                  onClick={() => onFavoriteToggle(_id, favorite)}
-                >
-                  <NoticesFavorite isfavorite={favorite.toString()} />
-                </NoticesButtonFavoriteV2>
+                {!isLoggedIn && <NoticesButtonFavorite></NoticesButtonFavorite>}
+                {isLoggedIn && (
+                  <NoticesButtonFavoriteV2
+                    onClick={() => onFavoriteToggle(_id, favorite)}
+                  >
+                    <NoticesFavorite isfavorite={favorite.toString()} />
+                  </NoticesButtonFavoriteV2>
+                )}
               </NoticesNav>
 
               <NoticesImage

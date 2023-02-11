@@ -9,7 +9,7 @@ import { selectIsLoading } from '../../redux/auth/selectors';
 import { register } from '../../redux/auth/operations';
 
 import {
-  Form1,
+  FormRegister,
   FormContainer,
   Input,
   Button,
@@ -19,12 +19,13 @@ import {
   PhoneInput,
   ShowPassword,
   StyledLink,
+  BoxText,
 } from './RegisterForm.styled';
 
 const phoneNumberMask = [
   '+',
-  /\d/,
-  /\d/,
+  '3',
+  '8',
   '(',
   /[0-9]/,
   /\d/,
@@ -101,7 +102,6 @@ const RegisterForm = () => {
       }),
       hideForm()
     );
-    //console.log(values);
   };
   const formik = useFormik({
     initialValues: {
@@ -138,7 +138,7 @@ const RegisterForm = () => {
       ) : (
         <FormContainer>
           <Formik validationSchema={registerSchema}>
-            <Form1 onSubmit={formik.handleSubmit}>
+            <FormRegister onSubmit={formik.handleSubmit}>
               <Title>Register</Title>
               {isShown && (
                 <>
@@ -268,11 +268,11 @@ const RegisterForm = () => {
                   Back
                 </BackButton>
               )}
-              <div>
+              <BoxText>
                 <span>Already have an account?</span>{' '}
                 <StyledLink to="/login">Login</StyledLink>
-              </div>
-            </Form1>
+              </BoxText>
+            </FormRegister>
           </Formik>
         </FormContainer>
       )}

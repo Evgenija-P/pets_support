@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import { optionsToast } from '../../../styles/stylesLayout';
 import { ListNews, ItemNews, ConteinerNews } from './NewsList.styled';
 
-const NewsList = () => {
+const NewsList = ({ request }) => {
   const [newsItem, setNewsItem] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -38,6 +38,10 @@ const NewsList = () => {
     return dateB - dateA;
   });
 
+  const filterNews = news.filter(news => {
+    return news.title.toLowerCase().includes(request.toLocaleLowerCase());
+  });
+
   return (
     <ConteinerNews>
       <ListNews>
@@ -45,7 +49,7 @@ const NewsList = () => {
         {isLoading ? (
           <Spinner />
         ) : (
-          news.map(({ title, description, date, url }) => (
+          filterNews.map(({ title, description, date, url }) => (
             <ItemNews key={nanoid()}>
               <NewsItem
                 title={title}

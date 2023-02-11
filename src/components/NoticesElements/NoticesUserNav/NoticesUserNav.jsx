@@ -8,15 +8,15 @@ const NoticesAuthNav = () => {
     <>
       <NoticesCategoriesListLink>
         <li>
-          <NoticesCategoriesLink to="/notices/sell">Sell</NoticesCategoriesLink>
+          <NoticesCategoriesLink to="sell">Sell</NoticesCategoriesLink>
         </li>
         <li>
-          <NoticesCategoriesLink to="/notices/lost-found">
+          <NoticesCategoriesLink to="lost-found">
             Lost / Found
           </NoticesCategoriesLink>
         </li>
         <li>
-          <NoticesCategoriesLink to="/notices/for-free">
+          <NoticesCategoriesLink to="for-free">
             In good hands
           </NoticesCategoriesLink>
         </li>
