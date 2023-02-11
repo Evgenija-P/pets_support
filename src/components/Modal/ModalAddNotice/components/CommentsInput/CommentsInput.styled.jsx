@@ -14,14 +14,13 @@ export const Label = styled.label`
   color: #000000;
 `;
 
-export const Input = styled.input`
-  height: 48px;
+export const CommentsField = styled.textarea`
+  height: 113px;
   border-radius: 30px;
   margin-top: 12px;
-  padding-left: 16px;
-  padding-right: 16px;
+  padding: 16px 18px;
   font-size: 16px;
-  border-radius: 40px;
+  border-radius: 20px;
   border: 1px solid rgba(245, 146, 86, 0.5);
   background-color: #fdf7f2;
 
@@ -40,8 +39,9 @@ export const RequiredSign = styled.span`
 export const Error = styled.span`
   display: block;
   position: absolute;
-  bottom: -20px;
-  left: 0px;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
   font-size: 14px;
   color: red;
 `;
