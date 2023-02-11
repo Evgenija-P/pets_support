@@ -11,14 +11,14 @@ import { NoticesCategoriesContainer } from './NoticesCategoriesNav.styled';
 const NoticesCategoriesNav = ({ notices }) => {
   const { isLoggedIn } = useAuth();
   const [isAddNoticeModalShown, setisAddNoticeModalShown] = useState(false);
-  const [isUnauthorizeModalShown, setIsUnauthorizeModalShown] = useState(false);
+  //const [isUnauthorizeModalShown, setIsUnauthorizeModalShown] = useState(false);
 
   function toggleAddNoticeModal() {
     setisAddNoticeModalShown(prevState => !prevState);
   }
-  function toggleUnauthorizedModal() {
-    setIsUnauthorizeModalShown(prevState => !prevState);
-  }
+  //function toggleUnauthorizedModal() {
+   // setIsUnauthorizeModalShown(prevState => !prevState);
+  //}
 
   console.log('isLoggedIn', isLoggedIn);
 
