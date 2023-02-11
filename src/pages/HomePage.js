@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet';
-import Home from '../components/Home'
+import Home from '../components/Home';
 
 const HomePage = () => {
   return (

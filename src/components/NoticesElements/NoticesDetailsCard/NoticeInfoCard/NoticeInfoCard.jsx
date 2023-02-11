@@ -20,6 +20,21 @@ import React from 'react';
 
 import { ReactComponent as HeartFavorite } from '../../../../img/icons/heartFavorite.svg';
 import defaultPhoto from '../../../../img/default.jpg';
+import { useDispatch } from 'react-redux';
+// import useAuth from '../../../../hooks/useAuth';
+// import {
+//   selectNotices,
+//   // selectFavoriteNotices,
+//   selectNoticesObj,
+// } from '../../../redux/notices/selectors';
+// import { selectFavoriteList } from '../../../redux/favorite/selectors';
+// import { deletefavoriteNotice } from '../../../redux/notices/noticesSlice';
+// import { selectUser } from '../../../../redux/auth/selectors';
+// import { display, height } from '@mui/system';
+// import { getNoticesById } from '../../../redux/current/operations ';
+// import { useLocation } from 'react-router-dom';
+import { deleteNotices } from '../../../../redux/notices/operations ';
+import { setCurrentNotices } from '../../../../redux/current/currentSlice';
 
 const NoticeInfoCard = ({
   _id,
@@ -34,7 +49,10 @@ const NoticeInfoCard = ({
   sex,
   title,
   location,
+  own,
 }) => {
+  // const { _id: user } = useSelector(selectUser);
+  const dispatch = useDispatch();
   const callNumber = 'tel:' + phone;
 
   return (
@@ -81,6 +99,16 @@ const NoticeInfoCard = ({
       </NoticesComment>
 
       <ButtonBlock>
+        {own && (
+          <NoticesButton
+            onClick={() => {
+              dispatch(deleteNotices(_id));
+              dispatch(setCurrentNotices());
+            }}
+          >
+            Delete
+          </NoticesButton>
+        )}
         <NoticesButtonFavorite>
           Add to
           <HeartIcon>

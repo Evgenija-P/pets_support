@@ -30,6 +30,12 @@ export const CloseButton = styled.div`
   top: 20px;
   right: 20px;
 
+  :hover,
+  :focus {
+    transform: scale(1.05);
+    cursor: pointer;
+  }
+
   ${media.tablet} {
     width: 44px;
     height: 44px;
