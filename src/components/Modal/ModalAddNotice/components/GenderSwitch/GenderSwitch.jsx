@@ -1,4 +1,4 @@
-import GenderRadioInput from '../CategoryRadioInput';
+import GenderRadioInput from '../GenderRadioInput';
 import * as styled from './GenderSwitch.styled';
 
 const GenderSwitch = ({ gender }) => {
