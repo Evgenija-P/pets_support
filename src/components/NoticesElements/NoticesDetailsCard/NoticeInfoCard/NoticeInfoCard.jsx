@@ -14,6 +14,7 @@ import {
   Tags,
   Text,
   Notices,
+  NoticesButtonDelete,
 } from './NoticeInfoCard.styled';
 
 import React from 'react';
@@ -100,14 +101,14 @@ const NoticeInfoCard = ({
 
       <ButtonBlock>
         {own && (
-          <NoticesButton
+          <NoticesButtonDelete
             onClick={() => {
               dispatch(deleteNotices(_id));
               dispatch(setCurrentNotices());
             }}
           >
             Delete
-          </NoticesButton>
+          </NoticesButtonDelete>
         )}
         <NoticesButtonFavorite>
           Add to

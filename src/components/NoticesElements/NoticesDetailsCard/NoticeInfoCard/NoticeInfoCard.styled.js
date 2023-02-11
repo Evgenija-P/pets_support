@@ -214,3 +214,28 @@ export const HeartIcon = styled.div`
   margin-left: 10px;
   margin-top: 5px;
 `;
+
+export const NoticesButtonDelete = styled.button`
+  width: 240px;
+  height: 40px;
+  margin-top: 12px;
+  border-radius: 40px;
+  border: 2px solid ${colors.accent};
+  background-color: ${colors.white};
+  font-weight: ${fontWeights.medium};
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0.04em;
+  text-align: center;
+  color: ${colors.black};
+  &:hover,
+  &:focus {
+    background-color: ${colors.accentButton};
+    color: ${colors.white};
+  }
+  cursor: pointer;
+  ${media.tabletAndDesktop} {
+    margin-left: 12px;
+    margin-top: 0px;
+  }
+`;
