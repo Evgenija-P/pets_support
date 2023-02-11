@@ -67,7 +67,7 @@ const NoticeInfoCard = ({
           alt={title}
         />
         <NoticesInfo>
-          <NoticesTitle>Cute pet looking for a home {title}</NoticesTitle>
+          <NoticesTitle>Cute pet looking for a home </NoticesTitle>
           <Notices>
             <Tags>
               <NoticesTag>Name: </NoticesTag>
@@ -93,10 +93,7 @@ const NoticeInfoCard = ({
       </NoticesBox>
 
       <NoticesComment>
-        <strong>Comments: </strong> Lorem ipsum dolor, sit amet consectetur
-        adipisicing elit. Vero, fugiat minima! Quod repudiandae veniam a.
-        Voluptatum, quam delectus incidunt aspernatur laboriosam, obcaecati a id
-        ut quidem quia porro itaque odit. {comments}
+        <strong>Comments: </strong> {comments}
       </NoticesComment>
 
       <ButtonBlock>
