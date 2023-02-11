@@ -208,14 +208,28 @@ export const Button = styled.button`
 
   transform: scale(1);
   transition: transform 0.5s;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: hidden;
 
   :hover,
   :focus {
-    color: ${colors.black};
-    border: 2px solid ${colors.accent};
-    background-color: ${colors.white};
     transform: scale(1.05);
     transition: transform 0.5s;
+  }
+  :hover:before {
+    left: 100%;
+  }
+
+  :before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: ${colors.gradient};
+    transition: all 450ms;
   }
 
   ${media.tabletAndDesktop} {
