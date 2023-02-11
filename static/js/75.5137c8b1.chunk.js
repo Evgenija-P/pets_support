@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkpets_support=self.webpackChunkpets_support||[]).push([[75],{3075:function(e,s,t){t.r(s);var r=t(4270),n=t(184);s.default=function(){return(0,n.jsx)("div",{children:(0,n.jsx)(r.q,{children:(0,n.jsx)("title",{children:"UserPage"})})})}}}]);
-//# sourceMappingURL=75.5137c8b1.chunk.js.map
