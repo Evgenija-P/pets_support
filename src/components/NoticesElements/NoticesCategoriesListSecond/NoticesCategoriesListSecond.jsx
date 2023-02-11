@@ -5,13 +5,20 @@ import {
   NoticesNav,
   NoticesImage,
   NoticesBadge,
-  NoticesButtonFavorite,
+  // NoticesButtonFavorite,
   NoticesDescription,
   NoticesTitle,
   NoticesTags,
   NoticesTag,
   NoticesButton,
+  NoticesFavorite,
+  NoticesButtonFavoriteV2,
 } from './NoticesCategoriesListSecond.styled';
+import {
+  getOwnerNotices,
+  getPetAge,
+  getUserFavoriteNotices,
+} from '../../../helpers/noticesHelpers';
 import notFoundNoticesImage from '../../../img/notFoundNoticesImage.jpg';
 // import { PER_PAGE } from '../../../redux/notices/operations ';
 // import { useSelector, useDispatch } from 'react-redux';
@@ -33,37 +40,19 @@ import {
   removeFromFavorite,
 } from '../../../redux/favorite/operations ';
 //import { deleteNotices } from '../../../redux/notices/operations ';
+
+// import LearnMoreButton from '../NoticesDetailsCard/NoticesButton/NoticesButton';
+
 const NoticesCategoriesListSecond = () => {
-  const noticesRaw = useSelector(selectNotices);
+  const notices = useSelector(selectNotices);
   const favorite = useSelector(selectFavoriteList);
-  const { _id: user } = useSelector(selectUser);
+  const { _id } = useSelector(selectUser);
   const dispatch = useDispatch();
-  const userFavoriteNotices = () => {
-    const noticesWithFavorite = noticesRaw.map(notice => {
-      if (favorite.find(fav => fav === notice._id)) {
-        return { ...notice, favorite: true };
-      }
-      return { ...notice, favorite: false };
-    });
-
-    return noticesWithFavorite;
-  };
-
-  const noticesWithFavorite = userFavoriteNotices();
-
-  const isOwnerNotices = () => {
-    const noticesOwn = noticesWithFavorite.map(notice => {
-      if (notice.owner === user) {
-        return { ...notice, isOwner: true };
-      }
-      return { ...notice, isOwner: false };
-    });
-
-    return noticesOwn;
-  };
-  const notices = isOwnerNotices();
-  // const isLogined = useAuth();
   const { category } = useSelector(selectNoticesObj);
+
+  const noticesUpdated = getPetAge(
+    getOwnerNotices(getUserFavoriteNotices(notices, favorite), _id)
+  );
   const onFavoriteToggle = (_id, favorite) => {
     if (favorite) {
       dispatch(removeFromFavorite(_id));
@@ -78,7 +67,7 @@ const NoticesCategoriesListSecond = () => {
 
   return (
     <NoticesList>
-      {notices.map(
+      {noticesUpdated.map(
         ({
           _id,
           categoryName,
@@ -95,10 +84,14 @@ const NoticesCategoriesListSecond = () => {
             <NoticesTop>
               <NoticesNav>
                 <NoticesBadge>{categoryName}</NoticesBadge>
-
-                <NoticesButtonFavorite
+                {/* <NoticesButtonFavorite
                   onClick={() => onFavoriteToggle(_id, favorite)}
-                ></NoticesButtonFavorite>
+                ></NoticesButtonFavorite> */}
+                <NoticesButtonFavoriteV2
+                  onClick={() => onFavoriteToggle(_id, favorite)}
+                >
+                  <NoticesFavorite isfavorite={favorite.toString()} />
+                </NoticesButtonFavoriteV2>
               </NoticesNav>
 
               <NoticesImage
@@ -106,10 +99,8 @@ const NoticesCategoriesListSecond = () => {
                 alt={title}
               />
             </NoticesTop>
-
             <NoticesDescription>
               <NoticesTitle>{title}</NoticesTitle>
-
               <NoticesTags>
                 {/* <NoticesTag>id: {_id}</NoticesTag> */}
                 <NoticesTag>Breed: {breed}</NoticesTag>
@@ -121,6 +112,8 @@ const NoticesCategoriesListSecond = () => {
                 {/* {favorite && isLogined && <NoticesTag>Favorite </NoticesTag>}
                 {isOwner && isLogined && <NoticesTag>Owner </NoticesTag>} */}
               </NoticesTags>
+
+              {/* <LearnMoreButton /> */}
 
               <NoticesButton>Learn More</NoticesButton>
               {/* {!favorite && isLogined && (

@@ -10,14 +10,17 @@ const NoticesCategoriesNav = ({ notices }) => {
   const { isLoggedIn } = useAuth();
 
   return (
-    <NoticesCategoriesContainer>
-      <AddNoticeButton />
-      {isLoggedIn ? (
-        <NoticesAuthNav notices={notices} />
-      ) : (
-        <NoticesUserNav notices={notices} />
-      )}
-    </NoticesCategoriesContainer>
+    <>
+      <NoticesCategoriesContainer>
+        <AddNoticeButton />
+
+        {isLoggedIn ? (
+          <NoticesAuthNav notices={notices} />
+        ) : (
+          <NoticesUserNav notices={notices} />
+        )}
+      </NoticesCategoriesContainer>
+    </>
   );
 };
 

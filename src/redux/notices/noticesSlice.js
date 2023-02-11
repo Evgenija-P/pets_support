@@ -3,6 +3,7 @@ import {
   fetchNotices,
   addNotices,
   deleteNotices,
+
   // addToFavoriteNotices,
   // removeFromFavoriteNotices,
   // fetchFavoriteNotices,
@@ -19,12 +20,14 @@ const noticesInitialState = {
   error: null,
   category: '/notices/',
   search: '',
+  limit: 20,
 };
 
 const extraActions = [
   fetchNotices,
   addNotices,
   deleteNotices,
+
   // addToFavoriteNotices,
   // removeFromFavoriteNotices,
   // fetchFavoriteNotices,
@@ -35,6 +38,7 @@ const handleFetchNoticesSuccses = (state, action) => {
   state.totalHits = action.payload.totalHits;
   state.page = action.payload.page;
   state.search = action.payload.search;
+  state.limit = action.payload.limit;
 };
 const handleAddNoticesSuccses = (state, action) => {
   state.noticesList.push(action.payload);
@@ -109,6 +113,6 @@ export const noticesSlice = createSlice({
       });
   },
 });
-export const { setCategory, setPage, deletefavoriteNotice } =
+export const { setCategory, setPage, deletefavoriteNotice, setSearch } =
   noticesSlice.actions;
 export const noticesReducer = noticesSlice.reducer;

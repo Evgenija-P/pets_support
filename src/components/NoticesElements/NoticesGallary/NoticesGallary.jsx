@@ -6,7 +6,7 @@ import { fetchFavorite } from '../../../redux/favorite/operations ';
 import { selectNoticesObj } from '../../../redux/notices/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import GalleryPagination from '../../GalleryPagination';
-import { PER_PAGE } from '../../../redux/notices/operations ';
+
 import { setCategory } from '../../../redux/notices/noticesSlice';
 import { useLocation } from 'react-router-dom';
 import NoticesLoader from '../NoticesLoader';
@@ -18,21 +18,30 @@ const NoticesGallary = () => {
 
   const { isLoggedIn } = useAuth();
 
-  const { page: currentPage, totalHits } = useSelector(selectNoticesObj);
+  const {
+    page: currentPage,
+    totalHits,
+    limit,
+    search,
+  } = useSelector(selectNoticesObj);
 
   const dispatch = useDispatch();
   useEffect(() => {
     if (isLoggedIn) {
-      dispatch(fetchFavorite());
+      dispatch(fetchFavorite({ search }));
     }
     dispatch(setCategory(category));
-    dispatch(fetchNotices({ category }));
-  }, [dispatch, category, isLoggedIn]);
+    // if (search) {
+    //   dispatch(fetchNotices({ category, search }));
+    // } else {
+    dispatch(fetchNotices({ category, search }));
+    // }
+  }, [dispatch, category, isLoggedIn, search]);
 
   const OnPagination = page => {
-    dispatch(fetchNotices({ category, page }));
+    dispatch(fetchNotices({ category, page, search }));
   };
-  const countPages = Math.ceil(totalHits / PER_PAGE);
+  const countPages = Math.ceil(totalHits / limit);
 
   return (
     <div>
