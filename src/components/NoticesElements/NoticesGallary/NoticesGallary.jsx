@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-// import { useLocation } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import NoticesCategoriesListSecond from '../../NoticesElements/NoticesCategoriesListSecond';
 import { fetchNotices } from '../../../redux/notices/operations ';
@@ -7,52 +6,52 @@ import { fetchFavorite } from '../../../redux/favorite/operations ';
 import { selectNoticesObj } from '../../../redux/notices/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import GalleryPagination from '../../GalleryPagination';
-// import notFoundNoticesImage from '../../../img/notFoundNoticesImage.jpg';
-import { PER_PAGE } from '../../../redux/notices/operations ';
-import useMatchMedia from '../../../hooks/use-match-media';
-import { setCategory } from '../../../redux/notices/noticesSlice';
-// import { selectUser } from '../../../redux/auth/selectors.js';
-import { useLocation } from 'react-router-dom';
 
+import { setCategory } from '../../../redux/notices/noticesSlice';
+import { useLocation } from 'react-router-dom';
+import NoticesLoader from '../NoticesLoader';
 import Spinner from '../../Spinner';
 const NoticesGallary = () => {
-  const { isLoading, error } = useSelector(selectNoticesObj);
+  const { isLoading, error, noticesList } = useSelector(selectNoticesObj);
 
   const { pathname: category } = useLocation();
 
   const { isLoggedIn } = useAuth();
 
-  const { page: currentPage, totalHits } = useSelector(selectNoticesObj);
+  const {
+    page: currentPage,
+    totalHits,
+    limit,
+    search,
+  } = useSelector(selectNoticesObj);
 
   const dispatch = useDispatch();
   useEffect(() => {
     if (isLoggedIn) {
-      dispatch(fetchFavorite());
+      dispatch(fetchFavorite({ search }));
     }
     dispatch(setCategory(category));
-    dispatch(fetchNotices({ category }));
-  }, [dispatch, category, isLoggedIn]);
+    // if (search) {
+    //   dispatch(fetchNotices({ category, search }));
+    // } else {
+    dispatch(fetchNotices({ category, search }));
+    // }
+  }, [dispatch, category, isLoggedIn, search]);
 
   const OnPagination = page => {
-    // dispatch(setPage(page));
-    // console.log('current page', currentPage);
-    dispatch(fetchNotices({ category, page }));
+    dispatch(fetchNotices({ category, page, search }));
   };
-  const { isDesktop } = useMatchMedia();
-  const countPages = Math.ceil(totalHits / PER_PAGE);
+  const countPages = Math.ceil(totalHits / limit);
 
   return (
     <div>
-      {error && <p>{error}</p>}
-      <div>{isLoading && 'Request in progress...'}</div>
       {isLoading && <Spinner />}
-      {/* <div>{!error && !isLoading && 'Data recived...'}</div> */}
+      {(error || noticesList.length === 0) && !isLoading && <NoticesLoader />}
       {!error && !isLoading && <NoticesCategoriesListSecond />}
-      {countPages > 1 && isDesktop && (
+      {countPages > 1 && !isLoading && (
         <GalleryPagination
           onPagination={page => {
             OnPagination(page);
-            console.log('Pagination presed');
           }}
           countPages={countPages}
           currentPage={Number(currentPage)}

@@ -21,7 +21,10 @@ import { Overlay } from './Modal.styled';
 import ModalAddMyPet from './ModalAddMyPet/ModalAddMyPet';
 import ModalInfo from './ModalInfo/ModalInfo';
 import ModalNotice from './ModalNotice/ModalNotice';
+// import NoticeInfoCard from '../NoticesElements/NoticesDetailsCard/NoticeInfoCard';
 
+import ModalAddNotice from '../../components/Modal/ModalAddNotice';
+import ModalUnauthorized from './ModalUnauthorized/ModalUnauthorized';
 const modalRoot = document.querySelector('#modal-root');
 
 const Modal = ({ children, onClose, title, type }) => {
@@ -60,6 +63,10 @@ const Modal = ({ children, onClose, title, type }) => {
             {children}
           </ModalNotice>
         )}
+        {type === 'addNotice' && (
+          <ModalAddNotice onClose={onClose} title={title} />
+        )}
+        {type === 'unauth' && <ModalUnauthorized onClose={onClose} />}
       </Overlay>
     </RemoveScroll>,
     modalRoot

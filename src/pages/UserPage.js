@@ -8,8 +8,9 @@ const UserPage = () => {
 				<title>UserPage</title>
 			</Helmet>
 			<UserInformation/>
-		
+      {/* <UserPets /> */}
 		</div>
 	);
 };
+
 export default UserPage;

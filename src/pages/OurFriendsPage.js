@@ -1,28 +1,26 @@
 import { Helmet } from 'react-helmet';
 import React, { useState } from 'react';
-import Modal from '../components/Modal';
+
 import FriendsList from '../components/Friends/FriendsList/FriendsList';
+import Modal from '../components/Modal/Modal';
 
 const OurFriendsPage = () => {
   const [showModal, setShowModal] = useState(false);
-
-  function toggleModal(e) {
+  function toggleModal() {
     setShowModal(!showModal);
   }
-
   return (
     <div>
       <Helmet>
         <title>OurFriendsPage</title>
       </Helmet>
-      <button onClick={toggleModal}>Click me!!!</button>
-      <FriendsList />
-
+      <button onClick={toggleModal}>click</button>
       {showModal && (
-        <Modal onClose={toggleModal} title={'add pets'} type={'notice'}>
+        <Modal onClose={toggleModal} type="unauth">
           children
         </Modal>
       )}
+      <FriendsList />
     </div>
   );
 };

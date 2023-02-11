@@ -1,8 +1,21 @@
 import React, { useEffect, useState } from 'react';
+import { nanoid } from 'nanoid';
+import { toast } from 'react-toastify';
+import { optionsToast } from '../../../styles/stylesLayout';
 
 import BASE_URL from '../../../servises/api';
-import FriendsItem from '../FriendsItem/FriendsItem';
+import FriendsAbout from '../FriendsAbout/FriendsAbout';
+import defaultImage from '../../../img/default.jpg';
 import Spinner from '../../Spinner/Spinner';
+import {
+  FriendsContainer,
+  FriendsTitle,
+  FriendsError,
+  FriendsItem,
+  FriendsData,
+  FriendsImg,
+  FriendsItemTitle,
+} from './FriendsList.styles';
 
 const FriendsList = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -24,15 +37,45 @@ const FriendsList = () => {
       }
       return result;
     } catch (e) {
-      setError(e.message);
+      setError('Oh! Something wrong! Please try again in a few minutes');
+      toast.error('Oh! Something wrong!', optionsToast);
       console.log(e.message);
     }
   };
 
   return (
     <>
-      {isLoading ? <Spinner /> : <FriendsItem items={friendsItems} />}
-      {error && <p>{error}</p>}
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <>
+          <FriendsTitle>Our friends</FriendsTitle>
+          <FriendsContainer>
+            {friendsItems.map(item => (
+              <FriendsItem key={nanoid()}>
+                <FriendsItemTitle href={`${item.url}`} target="_blank">
+                  {item.title}
+                </FriendsItemTitle>
+                <FriendsData>
+                  <a
+                    href={`${item.url}`}
+                    target="_blank"
+                    without
+                    rel="noreferrer"
+                  >
+                    <FriendsImg
+                      src={item.imageUrl ? `${item.imageUrl}` : defaultImage}
+                      alt={item.title}
+                    />
+                  </a>
+                  <FriendsAbout item={item} />
+                </FriendsData>
+              </FriendsItem>
+            ))}
+          </FriendsContainer>
+        </>
+      )}
+      {error && <FriendsError>{error}</FriendsError>}
     </>
   );
 };

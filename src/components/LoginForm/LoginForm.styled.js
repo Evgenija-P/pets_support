@@ -14,27 +14,26 @@ export const Container = styled.div`
   background-position: center bottom;
   background-size: contain;
   background-repeat: no-repeat;
-  height: calc(100vh - 74px);
+  height: calc(100vh - 68px);
 
   ${media.tablet} {
     padding-top: 204px;
 
     background-image: url(${tabletBackground});
-    height: calc(100vh - 96px);
+    height: calc(100vh - 71px);
   }
 
   ${media.desktop} {
     padding-top: 80px;
 
     background-image: url(${desktopBackground});
-    height: calc(100vh - 88px);
   }
 `;
 
 export const FormLogin = styled(Form)`
   width: 280px;
-  padding-inline: 0px;
 
+  padding-inline: 0px;
   padding-bottom: 0px;
 
   background-color: transparent;
@@ -84,9 +83,15 @@ export const Title = styled.h1`
 
 export const FieldLogin = styled.div`
   margin-bottom: 16px;
+  position: relative;
 `;
 export const FieldPass = styled.div`
   margin-bottom: 40px;
+  position: relative;
+`;
+
+export const FieldWrap = styled.div`
+  position: relative;
 `;
 
 export const Input = styled(Field)`
@@ -95,7 +100,7 @@ export const Input = styled(Field)`
   width: 100%;
 
   height: 40px;
-  padding-left: 14px;
+  padding: 11px 14px;
 
   font-family: 'Manrope';
   font-weight: ${fontWeights.regular};
@@ -126,9 +131,9 @@ export const Input = styled(Field)`
     outline: 0;
   }
 
-  ${media.tablet} {
+  ${media.tabletAndDesktop} {
     height: 52px;
-    padding-left: 32px;
+    padding: 14px 32px;
 
     font-size: 18px;
     line-height: 1.38;
@@ -144,24 +149,29 @@ export const Input = styled(Field)`
       color: ${colors.gray};
     }
   }
+`;
 
-  ${media.desktop} {
-    height: 52px;
-    padding-left: 32px;
+export const ShowPassword = styled.span`
+  display: inline-block;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  right: 14px;
 
-    font-size: 18px;
-    line-height: 1.38;
+  top: 50%;
+  transform: translateY(-50%);
 
-    background: ${colors.background};
+  color: grey;
+  cursor: pointer;
+  svg {
+    width: inherit;
+    height: inherit;
+  }
 
-    &::placeholder {
-      font-style: normal;
-      font-weight: ${fontWeights.regular};
-      font-size: 18px;
-      line-height: 1.38;
-      letter-spacing: 0.04em;
-      color: ${colors.gray};
-    }
+  ${media.tabletAndDesktop} {
+    width: 22px;
+    height: 22px;
+    right: 32px;
   }
 `;
 
@@ -196,19 +206,37 @@ export const Button = styled.button`
   text-align: center;
   letter-spacing: 0.04em;
 
+  transform: scale(1);
+  transition: transform 0.5s;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: hidden;
+
   :hover,
   :focus {
-    color: ${colors.black};
-    border: 2px solid ${colors.accent};
-    background-color: ${colors.white};
+    transform: scale(1.05);
+    transition: transform 0.5s;
+  }
+  :hover:before {
+    left: 100%;
   }
 
-  ${media.tablet} {
+  :before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: ${colors.gradient};
+    transition: all 450ms;
+  }
+
+  ${media.tabletAndDesktop} {
     width: 458px;
   }
 
   ${media.desktop} {
-    width: 458px;
     height: 48px;
   }
 `;
@@ -237,15 +265,22 @@ export const Link = styled(NavLink)`
 `;
 
 export const ErrorText = styled.div`
-  display: flex;
-  align-items: center;
-
-  margin-top: 8px;
+  position: absolute;
 
   font-family: 'Manrope';
   font-size: 12px;
+  font-style: italic;
+
   line-height: 1.4;
   letter-spacing: 0.03em;
 
   color: #e53e3e;
+
+  white-space: nowrap;
+  bottom: -16px;
+  left: 12px;
+
+  ${media.tabletAndDesktop} {
+    left: 32px;
+  }
 `;

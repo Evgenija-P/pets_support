@@ -10,6 +10,7 @@ export const Overlay = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
+  overflow: scroll;
   background-color: ${colors.gray};
   backdrop-filter: blur(5px);
   transition-property: opacity;
@@ -29,6 +30,12 @@ export const CloseButton = styled.div`
   position: absolute;
   top: 20px;
   right: 20px;
+
+  :hover,
+  :focus {
+    transform: scale(1.05);
+    cursor: pointer;
+  }
 
   ${media.tablet} {
     width: 44px;
