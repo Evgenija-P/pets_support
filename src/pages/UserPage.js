@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet';
 
-import PetsUserList from '../components/PetsUserList';
+import UserPets from '../components/PetsElements/UserPets';
 
 const UserPage = () => {
   return (
@@ -9,7 +9,7 @@ const UserPage = () => {
         <title>UserPage</title>
       </Helmet>
 
-      <PetsUserList />
+      <UserPets />
     </div>
   );
 };

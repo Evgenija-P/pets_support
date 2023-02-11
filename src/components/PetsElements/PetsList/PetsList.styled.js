@@ -1,29 +1,5 @@
 import styled from '@emotion/styled';
-import { media, colors, fontWeights } from '../../styles/stylesLayout';
-
-export const PetsNav = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  margin-bottom: 32px;
-
-  ${media.tabletAndDesktop} {
-    margin-bottom: 24px;
-  }
-`;
-
-export const PetsTitle = styled.h2`
-  font-weight: ${fontWeights.bold};
-  font-size: 20px;
-  line-height: 27px;
-  letter-spacing: 0.04em;
-
-  ${media.tabletAndDesktop} {
-    font-size: 28px;
-    line-height: 38px;
-  }
-`;
+import { media, colors, fontWeights } from '../../../styles/stylesLayout';
 
 export const PetsItem = styled.li`
   display: flex;
@@ -60,11 +36,9 @@ export const PetImage = styled.img`
 
   min-width: 240px;
   min-height: 240px;
-
   border-radius: 20px;
-  background-color: gray;
 
-  object-fit: contain;
+  object-fit: cover;
 
   ${media.tabletAndDesktop} {
     width: 160px;
@@ -128,45 +102,5 @@ export const PetButtonDelete = styled.button`
 
   &:focus {
     fill: ${colors.accentButton};
-  }
-`;
-
-export const PetButtonAdd = styled.button`
-  display: flex;
-  align-items: center;
-  gap: 24px;
-
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 27px;
-
-  border: none;
-  outline: none;
-  background-color: transparent;
-
-  transition: 250ms ease;
-
-  &:hover {
-    color: ${colors.accent};
-  }
-
-  &:focus {
-    span {
-      stroke: ${colors.white};
-      background-color: ${colors.accentButton};
-    }
-  }
-
-  span {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 40px;
-
-    width: 40px;
-    height: 40px;
-
-    background-color: ${colors.accent};
   }
 `;
