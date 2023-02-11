@@ -23,7 +23,7 @@ import notFoundNoticesImage from '../../../img/notFoundNoticesImage.jpg';
 // import { PER_PAGE } from '../../../redux/notices/operations ';
 // import { useSelector, useDispatch } from 'react-redux';
 import { useSelector, useDispatch } from 'react-redux';
-//import useAuth from '../../../hooks/useAuth.js';
+import useAuth from '../../../hooks/useAuth.js';
 import {
   selectNotices,
   // selectFavoriteNotices,
@@ -49,10 +49,16 @@ const NoticesCategoriesListSecond = () => {
   const { _id } = useSelector(selectUser);
   const dispatch = useDispatch();
   const { category } = useSelector(selectNoticesObj);
+  const { isLoggedIn } = useAuth();
+  let noticesUpdated = [];
+  if (isLoggedIn) {
+    noticesUpdated = getPetAge(
+      getOwnerNotices(getUserFavoriteNotices(notices, favorite), _id)
+    );
+  } else {
+    noticesUpdated = getPetAge(notices);
+  }
 
-  const noticesUpdated = getPetAge(
-    getOwnerNotices(getUserFavoriteNotices(notices, favorite), _id)
-  );
   const onFavoriteToggle = (_id, favorite) => {
     if (favorite) {
       dispatch(removeFromFavorite(_id));
