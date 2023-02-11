@@ -17,7 +17,7 @@ const NoticesCategoriesNav = ({ notices }) => {
     setisAddNoticeModalShown(prevState => !prevState);
   }
   function toggleUnauthorizedModal() {
-  setIsUnauthorizeModalShown(prevState => !prevState);
+    setIsUnauthorizeModalShown(prevState => !prevState);
   }
 
   console.log('isLoggedIn', isLoggedIn);
@@ -25,7 +25,7 @@ const NoticesCategoriesNav = ({ notices }) => {
   return (
     <NoticesCategoriesContainer>
       <AddNoticeButton
-      onClick={isLoggedIn ? toggleAddNoticeModal : toggleUnauthorizedModal}
+        onClick={isLoggedIn ? toggleAddNoticeModal : toggleUnauthorizedModal}
       />
       {isLoggedIn ? (
         <NoticesAuthNav notices={notices} />

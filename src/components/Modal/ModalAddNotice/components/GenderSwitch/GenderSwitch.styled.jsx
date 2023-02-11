@@ -16,3 +16,12 @@ export const Label = styled.span``;
 export const RequiredFieldSign = styled.span`
   color: tomato;
 `;
+
+export const Error = styled.span`
+  display: block;
+  position: absolute;
+  bottom: -20px;
+  left: 0px;
+  font-size: 14px;
+  color: red;
+`;

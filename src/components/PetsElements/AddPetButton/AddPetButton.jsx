@@ -2,9 +2,9 @@ import { PetButton } from './AddPetButton.styled';
 
 import { ReactComponent as AddPetIcon } from '../../../img/icons/addPetIcon.svg';
 
-const AddPetButton = () => {
+const AddPetButton = ({ onClick }) => {
   return (
-    <PetButton>
+    <PetButton type="button" onClick={onClick}>
       Add pet
       <span>
         <AddPetIcon />
