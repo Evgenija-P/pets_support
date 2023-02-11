@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from 'react-redux';
 //import useAuth from '../../../hooks/useAuth.js';
 import { selectCurrentObj } from '../redux/current/selectors';
 import { setCurrentNotices } from '../redux/current/currentSlice';
+import { selectUser } from '../redux/auth/selectors';
 import Spinner from '../components/Spinner/Spinner';
 const NoticesPage = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,15 @@ const NoticesPage = () => {
     dispatch(setCurrentNotices());
   };
   const { currentNotices, isLoading, error } = useSelector(selectCurrentObj);
+  const { _id } = useSelector(selectUser);
+  const addOwntoNorice = () => {
+    if (_id === currentNotices.owner) {
+      console.log('owner true', { ...currentNotices, own: true });
+      return { ...currentNotices, own: true };
+    }
+    console.log('owner false', { ...currentNotices, own: false });
+    return { ...currentNotices, own: false };
+  };
   return (
     <>
       <Helmet>
@@ -32,7 +42,7 @@ const NoticesPage = () => {
             // title={'notice'}
             type={'notice'}
             onClose={toggleModal}
-            children={<NoticeInfoCard {...currentNotices} />}
+            children={<NoticeInfoCard {...addOwntoNorice()} />}
           ></Modal>
         )}
       </SectionContainer>

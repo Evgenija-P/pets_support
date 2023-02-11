@@ -5,7 +5,7 @@ import {
   NoticesNav,
   NoticesImage,
   NoticesBadge,
-  // NoticesButtonFavorite,
+  NoticesButtonFavorite,
   NoticesDescription,
   NoticesTitle,
   NoticesTags,
@@ -19,6 +19,7 @@ import {
   getPetAge,
   getUserFavoriteNotices,
 } from '../../../helpers/noticesHelpers';
+// import toast, { Toaster } from 'react-hot-toast';
 import notFoundNoticesImage from '../../../img/notFoundNoticesImage.jpg';
 // import { PER_PAGE } from '../../../redux/notices/operations ';
 // import { useSelector, useDispatch } from 'react-redux';
@@ -90,9 +91,7 @@ const NoticesCategoriesListSecond = () => {
             <NoticesTop>
               <NoticesNav>
                 <NoticesBadge>{categoryName}</NoticesBadge>
-                {/* <NoticesButtonFavorite
-                  onClick={() => onFavoriteToggle(_id, favorite)}
-                ></NoticesButtonFavorite> */}
+                {!isLoggedIn && <NoticesButtonFavorite></NoticesButtonFavorite>}
                 {isLoggedIn && (
                   <NoticesButtonFavoriteV2
                     onClick={() => onFavoriteToggle(_id, favorite)}
