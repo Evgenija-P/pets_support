@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/pets_support/static/css/main.c5a3bebb.css",
-    "main.js": "/pets_support/static/js/main.fe91bb37.js",
-    "static/js/79.2d2f9a39.chunk.js": "/pets_support/static/js/79.2d2f9a39.chunk.js",
+    "main.js": "/pets_support/static/js/main.df6f6056.js",
+    "static/js/79.6a17ef53.chunk.js": "/pets_support/static/js/79.6a17ef53.chunk.js",
     "static/js/291.5f44d687.chunk.js": "/pets_support/static/js/291.5f44d687.chunk.js",
     "static/js/157.62093293.chunk.js": "/pets_support/static/js/157.62093293.chunk.js",
     "static/js/77.65f68566.chunk.js": "/pets_support/static/js/77.65f68566.chunk.js",
@@ -12,11 +12,8 @@
     "static/js/296.56c4f16a.chunk.js": "/pets_support/static/js/296.56c4f16a.chunk.js",
     "static/media/mobileTablet4x.png": "/pets_support/static/media/mobileTablet4x.4f9c9dd5b637daf54e55.png",
     "static/media/mobileTablet.png": "/pets_support/static/media/mobileTablet.2a7d5279d494272874dc.png",
-    "static/media/hp-figure-mobile.png": "/pets_support/static/media/hp-figure-mobile.80290c5c8bbd3a683b5c.png",
     "static/media/hp-desktop.png": "/pets_support/static/media/hp-desktop.8e641358cf0d42d50e1a.png",
     "static/media/mainPast.png": "/pets_support/static/media/mainPast.a3cb7a1d8e28be6a526f.png",
-    "static/media/hp-figure-desktop.png": "/pets_support/static/media/hp-figure-desktop.29b6383148228479d0bd.png",
-    "static/media/hp-figure-little-desktop.png": "/pets_support/static/media/hp-figure-little-desktop.5b70fedb07e42cdae7ef.png",
     "static/media/bg-auth-tablet.png": "/pets_support/static/media/bg-auth-tablet.b2c9c95741743cc440fe.png",
     "static/media/bg-auth-desctop.png": "/pets_support/static/media/bg-auth-desctop.b918115ad8558592734d.png",
     "static/media/notFoundNoticesImage.jpg": "/pets_support/static/media/notFoundNoticesImage.67b4247e533524e9292b.jpg",
@@ -30,8 +27,8 @@
     "static/media/addNoticeIcon.svg": "/pets_support/static/media/addNoticeIcon.e8d0628a1c3e012892b19d6a6f82becf.svg",
     "static/media/close_menu.svg": "/pets_support/static/media/close_menu.83d26970ecb6bec9b0eb04bec91afacb.svg",
     "main.c5a3bebb.css.map": "/pets_support/static/css/main.c5a3bebb.css.map",
-    "main.fe91bb37.js.map": "/pets_support/static/js/main.fe91bb37.js.map",
-    "79.2d2f9a39.chunk.js.map": "/pets_support/static/js/79.2d2f9a39.chunk.js.map",
+    "main.df6f6056.js.map": "/pets_support/static/js/main.df6f6056.js.map",
+    "79.6a17ef53.chunk.js.map": "/pets_support/static/js/79.6a17ef53.chunk.js.map",
     "291.5f44d687.chunk.js.map": "/pets_support/static/js/291.5f44d687.chunk.js.map",
     "157.62093293.chunk.js.map": "/pets_support/static/js/157.62093293.chunk.js.map",
     "77.65f68566.chunk.js.map": "/pets_support/static/js/77.65f68566.chunk.js.map",
@@ -42,6 +39,6 @@
   },
   "entrypoints": [
     "static/css/main.c5a3bebb.css",
-    "static/js/main.fe91bb37.js"
+    "static/js/main.df6f6056.js"
   ]
 }
