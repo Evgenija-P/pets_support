@@ -16,8 +16,7 @@ import {
   Notices,
   NoticesButtonDelete,
 } from './NoticeInfoCard.styled';
-import { toast } from 'react-toastify';
-import { optionsToast } from '../../../../styles/stylesLayout';
+
 import React from 'react';
 
 import { ReactComponent as HeartFavorite } from '../../../../img/icons/heartFavorite.svg';
@@ -61,13 +60,13 @@ const NoticeInfoCard = ({
   // const { _id: user } = useSelector(selectUser);
   const dispatch = useDispatch();
   const callNumber = 'tel:' + phone;
-  const { isLoggedIn } = useAuth();
-  const onFavoriteNotAuth = () => {
-    toast.warning('You need Login first....', optionsToast);
-  };
+
   return (
     <>
       <NoticesBox>
+        <NoticesCategory>
+          <span>{categoryName}</span>
+        </NoticesCategory>
         <NoticesCategory>
           <span>{categoryName}</span>
         </NoticesCategory>
@@ -119,33 +118,8 @@ const NoticeInfoCard = ({
             Delete
           </NoticesButtonDelete>
         )}
-        {!isLoggedIn && (
-          <NoticesButtonFavorite onClick={onFavoriteNotAuth}>
-            Add to
-            <HeartIcon>
-              <HeartFavorite />
-            </HeartIcon>
-          </NoticesButtonFavorite>
-        )}
-        {isLoggedIn && !favorite && (
-          <NoticesButtonFavorite onClick={() => dispatch(addToFavorite(_id))}>
-            Add to
-            <HeartIcon>
-              <HeartFavorite />
-            </HeartIcon>
-          </NoticesButtonFavorite>
-        )}
-        {isLoggedIn && favorite && (
-          <NoticesButtonFavorite
-            onClick={() => dispatch(removeFromFavorite(_id))}
-          >
-            Remove from
-            <HeartIcon>
-              <HeartFavorite />
-            </HeartIcon>
-          </NoticesButtonFavorite>
-        )}
-        <NoticesButtonContact href={callNumber}>Contact</NoticesButtonContact>
+        <NoticesButton>Add to</NoticesButton>
+        <NoticesButton>Contact</NoticesButton>
       </ButtonBlock>
     </>
   );
