@@ -40,11 +40,6 @@ const App = () => {
           <Route index element={<HomePage />} />
 
           <Route
-            path="/news"
-            element={<RestrictedRoute component={<NewsPage />} />}
-          />
-
-          <Route
             path="/notices"
             element={
               isLoggedIn ? (
@@ -59,6 +54,11 @@ const App = () => {
               element={<RestrictedRoute component={<NoticesCategoriesNav />} />}
             />
           </Route>
+
+          <Route
+            path="/news"
+            element={<RestrictedRoute component={<NewsPage />} />}
+          />
 
           <Route
             path="/friends"
