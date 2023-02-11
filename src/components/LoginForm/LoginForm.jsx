@@ -1,74 +1,73 @@
-// import { useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
-import { Formik, ErrorMessage } from 'formik';
+import { Formik, useFormik } from 'formik';
 import * as yup from 'yup';
 
 import { selectIsLoading } from '../../redux/auth/selectors';
 
 import { logIn } from '../../redux/auth/operations';
+
 import Spinner from '../Spinner';
-// import { ImEye, ImEyeBlocked } from 'react-icons/im';
+import { ImEye, ImEyeBlocked } from 'react-icons/im';
 import {
   Container,
   FormLogin,
   FieldLogin,
   FieldPass,
   Title,
+  FieldWrap,
   Input,
+  ShowPassword,
   Button,
   Text,
   Link,
   ErrorText,
 } from './LoginForm.styled';
 
+const regexEmail =
+  /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/;
 const regexPassword = /^\S*$/;
 
 const loginSchema = yup.object().shape({
-  email: yup.string().email('Invalid email adress').required('Required'),
+  email: yup
+    .string()
+    .matches(regexEmail, 'Email must contain symbol @')
+    .email('Invalid email adress')
+    .required('Email is required'),
   password: yup
     .string()
     .min(7, 'Password must be at least 7 characters')
     .max(32, 'Password must be at most 32 characters')
     .matches(regexPassword, 'Must not contain spaces')
-    .required('Required'),
+    .required('Password is required'),
 });
 
-const FormError = ({ name }) => {
-  return (
-    <ErrorMessage
-      name={name}
-      render={message => <ErrorText>{message}</ErrorText>}
-    />
-  );
-};
-
 const LoginForm = () => {
-// const[showPassword, setShowPassword] = useState(false);
- 
-//   const handleShowPasswordClick = () => {
-//         setShowPassword((prevState)=> !prevState)    
-//     }
-
+  const [showPass, setShowPass] = useState(false);
 
   const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
 
-  const initialValues = {
-    email: '',
-    password: '',
-  };
-
-  const handleSubmit = async (values, actions) => {
+  const onSubmit = async (values, actions) => {
     const { resetForm } = actions;
     const form = { email: values.email, password: values.password };
     const { error } = await dispatch(logIn(form));
 
-    console.log(error);
+    // console.log(error);
 
     if (!error) {
       resetForm();
     }
+  };
+
+  const formik = useFormik({
+    initialValues: { email: '', password: '' },
+    validationSchema: loginSchema,
+    onSubmit,
+  });
+
+  const showPassword = () => {
+    setShowPass(!showPass);
   };
 
   return (
@@ -78,12 +77,12 @@ const LoginForm = () => {
       ) : (
         <Container>
           <Formik
-            initialValues={initialValues}
-            onSubmit={handleSubmit}
+            initialValues={formik.initialValues}
             validationSchema={loginSchema}
           >
-            <FormLogin autoComplete="on">
+            <FormLogin onSubmit={formik.handleSubmit} autoComplete="on">
               <Title>Login</Title>
+
               <FieldLogin>
                 <label htmlFor="email">
                   <Input
@@ -91,20 +90,37 @@ const LoginForm = () => {
                     type="email"
                     name="email"
                     placeholder="Email"
+                    onChange={formik.handleChange}
+                    value={formik.values.email}
+                    onBlur={formik.handleBlur}
                   />
-                  <FormError name="email" />
+                  {formik.errors.email || formik.touched.email ? (
+                    <ErrorText>{formik.errors.email}</ErrorText>
+                  ) : null}
                 </label>
               </FieldLogin>
 
               <FieldPass>
                 <label htmlFor="password">
-                  <Input
-                    id="password"
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                  />
-                  <FormError name="password" />
+                  <FieldWrap>
+                    <Input
+                      id="password"
+                      type={showPass ? 'text' : 'password'}
+                      name="password"
+                      placeholder="Password"
+                      onChange={formik.handleChange}
+                      value={formik.values.password}
+                      onBlur={formik.handleBlur}
+                    />
+
+                    <ShowPassword onClick={showPassword}>
+                      {!showPass ? <ImEyeBlocked /> : <ImEye />}
+                    </ShowPassword>
+                  </FieldWrap>
+
+                  {formik.errors.password && formik.touched.password ? (
+                    <ErrorText>{formik.errors.password}</ErrorText>
+                  ) : null}
                 </label>
               </FieldPass>
 
