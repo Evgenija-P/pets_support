@@ -2,9 +2,9 @@ import { Button } from './AddNoticeButton.styled';
 
 import addNoticeIcon from '../../../img/icons/addNoticeIcon.svg';
 
-const AddNoticeButton = () => {
+const AddNoticeButton = ({ onClick }) => {
   return (
-    <Button>
+    <Button onClick={onClick}>
       <span>
         <img src={addNoticeIcon} alt={addNoticeIcon} />
       </span>

@@ -2,7 +2,7 @@ import React from 'react';
 import { ReactComponent as IconClose } from '../../../img/icons/close_menu.svg';
 import { ModalWrapperNotice, ModalTitleNotice } from './ModalNotice.styles';
 import { CloseButton } from '../Modal.styled';
-
+// import NoticeInfoCard from '../../NoticesElements/NoticesDetailsCard/NoticeInfoCard';
 const ModalNotice = ({ children, onClose, title }) => {
   return (
     <ModalWrapperNotice>
