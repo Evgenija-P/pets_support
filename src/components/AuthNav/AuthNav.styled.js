@@ -35,8 +35,42 @@ export const AuthNavLink = styled(NavLink)`
     font-size: 20px;
     line-height: 1.35;
   }
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  :hover,
+  :focus {
+    transform: scale(1.05);
+    transition: transform 0.5s;
+  }
+  :hover:before {
+    left: 100%;
+  }
+  :before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: ${colors.gradient};
+    transition: all 450ms;
+  }
   &.active {
     background: ${colors.accent};
     color: ${colors.white};
+    :hover:before {
+      left: 100%;
+    }
+    :before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: ${colors.gradient};
+      transition: all 450ms;
+    }
   }
 `;
