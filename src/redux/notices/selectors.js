@@ -7,6 +7,7 @@ export const selectNotices = state => state.notices.noticesList;
 export const selectIsLoading = state => state.notices.isLoading;
 export const selectError = state => state.notices.error;
 export const selectCategory = state => state.notices.category;
+export const selectIsAdding = state => state.notices.isAdding;
 // export const selectVisibleContacts = createSelector(
 //   [selectContacts, selectFilter],
 //   (contactList, filterContact) => {

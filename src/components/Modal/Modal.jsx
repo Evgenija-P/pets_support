@@ -21,7 +21,9 @@ import { Overlay } from './Modal.styled';
 import ModalAddMyPet from './ModalAddMyPet/ModalAddMyPet';
 import ModalInfo from './ModalInfo/ModalInfo';
 import ModalNotice from './ModalNotice/ModalNotice';
+// import NoticeInfoCard from '../NoticesElements/NoticesDetailsCard/NoticeInfoCard';
 
+import ModalAddNotice from '../../components/Modal/ModalAddNotice';
 const modalRoot = document.querySelector('#modal-root');
 
 const Modal = ({ children, onClose, title, type }) => {
@@ -59,6 +61,9 @@ const Modal = ({ children, onClose, title, type }) => {
           <ModalNotice onClose={onClose} title={title}>
             {children}
           </ModalNotice>
+        )}
+        {type === 'addNotice' && (
+          <ModalAddNotice onClose={onClose} title={title} />
         )}
       </Overlay>
     </RemoveScroll>,
