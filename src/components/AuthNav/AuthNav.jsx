@@ -1,19 +1,15 @@
-import { NavLinkLog, NavLinkReg, ButtonLog, ButtonReg, Sp, User } from './AuthNav.styled';
+import { AuthNavLink, AuthNavList } from './AuthNav.styled';
 
 const AuthNav = () => {
-	return (
-    <User>
-      <ButtonLog>
-        <NavLinkLog to="/login">
-          <Sp>Login</Sp>
-        </NavLinkLog>
-      </ButtonLog>
-      <ButtonReg>
-        <NavLinkReg to="/register">
-          <Sp>Registration</Sp>
-        </NavLinkReg>
-      </ButtonReg>
-    </User>
+  return (
+    <AuthNavList>
+      <li>
+        <AuthNavLink to="/login">Login</AuthNavLink>
+      </li>
+      <li>
+        <AuthNavLink to="/register">Registration</AuthNavLink>
+      </li>
+    </AuthNavList>
   );
 };
 
