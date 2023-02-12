@@ -26,6 +26,8 @@ import {
 
 import notFoundNoticesImage from '../../../img/notFoundNoticesImage.jpg';
 import { ReactComponent as Delete } from '../../../img/icons/delete.svg';
+
+// import { ReactComponent as Delete } from '../../../img/icons/delete.svg';
 // import { PER_PAGE } from '../../../redux/notices/operations ';
 // import { useSelector, useDispatch } from 'react-redux';
 import { useSelector, useDispatch } from 'react-redux';

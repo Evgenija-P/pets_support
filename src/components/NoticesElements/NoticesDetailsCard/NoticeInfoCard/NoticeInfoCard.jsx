@@ -10,12 +10,10 @@ import {
   ButtonBlock,
   NoticesButtonFavorite,
   NoticesButtonContact,
-  HeartIcon,
   Tags,
   Text,
   Notices,
   NoticesButtonDelete,
-  DeleteIcon,
 } from './NoticeInfoCard.styled';
 
 import React from 'react';
@@ -117,7 +115,8 @@ const NoticeInfoCard = () => {
           alt={title}
         />
         <NoticesInfo>
-          <NoticesTitle>Cute pet looking for a home </NoticesTitle>
+          <NoticesTitle> {title} </NoticesTitle>
+
           <Notices>
             <Tags>
               <NoticesTag>Name: </NoticesTag>
@@ -154,9 +153,7 @@ const NoticeInfoCard = () => {
             }}
           >
             Delete
-            <DeleteIcon>
-              <Delete />
-            </DeleteIcon>
+            <Delete />
           </NoticesButtonDelete>
         )}
         {!Isfavorite && isLoggedIn && (
@@ -165,9 +162,7 @@ const NoticeInfoCard = () => {
             // onClick={() => onFavoriteToggle(_id, Isfavorite)}
           >
             Add to
-            <HeartIcon>
-              <HeartFavorite />
-            </HeartIcon>
+            <HeartFavorite />
           </NoticesButtonFavorite>
         )}
 
@@ -177,17 +172,13 @@ const NoticeInfoCard = () => {
             onClick={onToggle}
           >
             Remove from
-            <HeartIcon>
-              <HeartFavorite />
-            </HeartIcon>
+            <HeartFavorite />
           </NoticesButtonFavorite>
         )}
         {!isLoggedIn && (
           <NoticesButtonFavorite onClick={onFavoriteNotAuth}>
             Add to
-            <HeartIcon>
-              <HeartFavorite />
-            </HeartIcon>
+            <HeartFavorite />
           </NoticesButtonFavorite>
         )}
         <NoticesButtonContact href={callNumber}>Contact</NoticesButtonContact>
