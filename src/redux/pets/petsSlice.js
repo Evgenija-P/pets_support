@@ -33,7 +33,7 @@ const handleAddNewPetSuccess = (state, { payload }) => {
   state.petToDeleteId = null;
   state.isDeleting = false;
 
-  state.contacts.push(payload.data);
+  state.pets.push(payload);
 };
 
 const handlePending = state => {
