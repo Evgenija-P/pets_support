@@ -11,7 +11,7 @@ import AddPetButton from '../AddPetButton';
 import Modal from '../../Modal';
 import PetsList from '../PetsList';
 
-import { PetsNav, PetsTitle } from './UserPets.styled';
+import { PetsContainer, PetsNav, PetsTitle } from './UserPets.styled';
 
 const UserPets = () => {
   const [showModal, setShowModal] = useState(false);
@@ -28,7 +28,7 @@ const UserPets = () => {
   }, [dispatch]);
 
   return (
-    <div>
+    <PetsContainer>
       <PetsNav>
         <PetsTitle>My pets:</PetsTitle>
 
@@ -42,7 +42,7 @@ const UserPets = () => {
       {isLoading && <Spinner />}
       {(error || pets.length === 0) && !isLoading && <PetsLoader />}
       {!error && !isLoading && <PetsList />}
-    </div>
+    </PetsContainer>
   );
 };
 
