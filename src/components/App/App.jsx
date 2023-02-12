@@ -94,7 +94,13 @@ const App = () => {
 
           <Route
             path="/friends"
-            element={<RestrictedRoute component={<OurFriendsPage />} />}
+            element={
+              isLoggedIn ? (
+                <PrivateRoute component={<OurFriendsPage />} />
+              ) : (
+                <RestrictedRoute component={<OurFriendsPage />} />
+              )
+            }
           />
           <Route
             path="/register"
