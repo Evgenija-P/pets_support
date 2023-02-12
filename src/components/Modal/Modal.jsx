@@ -55,7 +55,7 @@ const Modal = ({ children, onClose, title, type }) => {
         {type === 'info' && <ModalInfo onClose={onClose}>{children}</ModalInfo>}
         {type === 'pet' && (
           <ModalAddMyPet onClose={onClose} title={title}>
-            {children}
+            Add pet
           </ModalAddMyPet>
         )}
         {type === 'notice' && (
