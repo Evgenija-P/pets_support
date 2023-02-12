@@ -137,7 +137,7 @@ const RegisterForm = () => {
       ) : (
         <FormContainer>
           <Formik validationSchema={registerSchema}>
-            <FormRegister onSubmit={formik.handleSubmit}>
+            <FormRegister onSubmit={formik.handleSubmit} autoComplete="off">
               <Title>Register</Title>
               {isShown && (
                 <>

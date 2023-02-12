@@ -1,13 +1,19 @@
 import styled from '@emotion/styled';
-import { colors } from '../../../../../styles/stylesLayout';
+import { colors, media } from '../../../../../styles/stylesLayout';
 import ClipLoader from 'react-spinners/ClipLoader';
 
 export const BtnGroup = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   margin-top: 40px;
 
-  gap: 24px;
+  gap: 12px;
+
+  ${media.tabletAndDesktop} {
+    flex-direction: row;
+    gap: 20px;
+  }
 `;
 
 export const Btn = styled.button`
@@ -17,7 +23,6 @@ export const Btn = styled.button`
   align-items: center;
   column-gap: 10px;
 
-  width: 180px;
   height: 44px;
 
   font-size: 20px;
@@ -28,6 +33,10 @@ export const Btn = styled.button`
   border: 1px solid ${colors.accent};
 
   opacity: ${p => (p.disabled ? 0.6 : 1)};
+
+  ${media.tabletAndDesktop} {
+    width: 180px;
+  }
 `;
 
 export const PrimaryBtn = styled(Btn)`
