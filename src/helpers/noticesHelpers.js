@@ -1,4 +1,6 @@
 import moment from 'moment';
+import { toast } from 'react-toastify';
+import { optionsToast } from '../styles/stylesLayout';
 const getOwnerNotices = (notices, user) => {
   const noticesOwn = notices.map(notice => {
     if (notice.owner === user) {
@@ -33,4 +35,13 @@ const getUserFavoriteNotices = (notices, favorite) => {
 
   return noticesWithFavorite;
 };
-export { getOwnerNotices, getPetAge, getUserFavoriteNotices };
+const onFavoriteNotAuth = () => {
+  toast.warning('You need Login first....', optionsToast);
+};
+
+export {
+  getOwnerNotices,
+  getPetAge,
+  getUserFavoriteNotices,
+  onFavoriteNotAuth,
+};
