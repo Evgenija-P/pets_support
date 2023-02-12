@@ -36,7 +36,7 @@ export const DelBtn = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  top: 0;
+  top: -5px;
   right: 5px;
 
   width: 30px;
