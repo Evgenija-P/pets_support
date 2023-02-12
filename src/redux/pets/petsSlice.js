@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchPets, deletePet } from './operations';
+import { fetchPets, deletePet, addNewPet } from './operations';
 
 const petsInitialState = {
   pets: [],
@@ -28,6 +28,14 @@ const handleDeletePetRejected = (state, { payload }) => {
   state.isDeleting = false;
 };
 
+const handleAddNewPetSuccess = (state, { payload }) => {
+  state.error = payload;
+  state.petToDeleteId = null;
+  state.isDeleting = false;
+
+  state.contacts.push(payload.data);
+};
+
 const handlePending = state => {
   state.isLoading = true;
 };
@@ -52,7 +60,12 @@ const petsSlice = createSlice({
 
       .addCase(deletePet.pending, handleDeletePetPending)
       .addCase(deletePet.fulfilled, handleDeletePetSuccess)
-      .addCase(deletePet.rejected, handleDeletePetRejected),
+      .addCase(deletePet.rejected, handleDeletePetRejected)
+
+      //addNewPet
+      .addCase(addNewPet.pending, handlePending)
+      .addCase(addNewPet.fulfilled, handleAddNewPetSuccess)
+      .addCase(addNewPet.rejected, handleRejected),
 });
 
 export const petsReducer = petsSlice.reducer;
