@@ -41,7 +41,7 @@ const addNoticeSchema = yup.object({
       then: yup.string().required(),
     }),
 
-  comments: yup.string().min(2).max(120),
+  comments: yup.string().min(8).max(120),
 });
 
 export default addNoticeSchema;
