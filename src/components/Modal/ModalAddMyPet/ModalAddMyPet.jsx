@@ -15,7 +15,7 @@ const ModalAddMyPet = ({ children, onClose, title }) => {
         <IconClose />
       </CloseButton>
       {title ? <ModalTitleAddMyPet>{title}</ModalTitleAddMyPet> : null}
-      <AddPetForm onClose />
+      <AddPetForm onClose={onClose} />
     </ModalWrapperAddMyPet>
   );
 };
