@@ -122,7 +122,13 @@ const App = () => {
 
           <Route
             path="/user"
-            element={<PrivateRoute component={<UserPage />} />}
+            element={
+              isLoggedIn ? (
+                <PrivateRoute component={<UserPage />} />
+              ) : (
+                <RestrictedRoute component={<HomePage />} />
+              )
+            }
           />
 
           <Route path="*" element={<NotFoundPage />} />

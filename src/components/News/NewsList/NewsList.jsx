@@ -49,7 +49,10 @@ const NewsList = () => {
 
   const handleChange = evt => {
     setRequest(evt.target.value.trim());
-    if (evt.target.value === '') {
+  };
+
+  const handlelupa = evt => {
+    if (request === '') {
       toast.error('Enter the name of the news!', optionsToast);
     }
   };
@@ -61,7 +64,7 @@ const NewsList = () => {
   });
 
   const filterNews = news.filter(news => {
-    return news.title.toLowerCase().includes(request.toLocaleLowerCase());
+    return news.title.toLowerCase().includes(request.toLowerCase());
   });
 
   return (
@@ -76,7 +79,7 @@ const NewsList = () => {
           onChange={handleChange}
         />
         {request.trim() === '' ? (
-          <SearchNewsButton type="button" onClick={handleChange}>
+          <SearchNewsButton type="button" onClick={handlelupa}>
             <SearchIButtonIcon />
           </SearchNewsButton>
         ) : (

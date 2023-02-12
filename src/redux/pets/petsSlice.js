@@ -5,10 +5,12 @@ const petsInitialState = {
   pets: [],
   isLoading: false,
   isDeleting: false,
-  idAdding: false,
+  isAdding: false,
   petToDeleteId: null,
   error: null,
 };
+
+// delete pet handlers
 
 const handleDeletePetPending = (state, { meta }) => {
   state.isDeleting = true;
@@ -28,12 +30,21 @@ const handleDeletePetRejected = (state, { payload }) => {
   state.isDeleting = false;
 };
 
-const handleAddNewPetSuccess = (state, { payload }) => {
-  state.error = payload;
-  state.petToDeleteId = null;
-  state.isDeleting = false;
+// add pet handlers
 
+const handleAddNewPetPendeing = state => {
+  state.isAdding = true;
+};
+
+const handleAddNewPetSuccess = (state, { payload }) => {
+  state.isAdding = false;
+  state.error = null;
   state.pets.push(payload);
+};
+
+const handleAddNewPetRejected = (state, { payload }) => {
+  state.isAdding = false;
+  state.error = payload;
 };
 
 const handlePending = state => {
@@ -58,14 +69,15 @@ const petsSlice = createSlice({
         state.pets = action.payload.data.pets;
       })
 
+      //deletePet
       .addCase(deletePet.pending, handleDeletePetPending)
       .addCase(deletePet.fulfilled, handleDeletePetSuccess)
       .addCase(deletePet.rejected, handleDeletePetRejected)
 
       //addNewPet
-      .addCase(addNewPet.pending, handlePending)
+      .addCase(addNewPet.pending, handleAddNewPetPendeing)
       .addCase(addNewPet.fulfilled, handleAddNewPetSuccess)
-      .addCase(addNewPet.rejected, handleRejected),
+      .addCase(addNewPet.rejected, handleAddNewPetRejected),
 });
 
 export const petsReducer = petsSlice.reducer;

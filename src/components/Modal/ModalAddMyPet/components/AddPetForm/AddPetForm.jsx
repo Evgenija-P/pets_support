@@ -3,71 +3,61 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import { toast } from 'react-toastify';
 
-import TextInput from '../TextInput';
+// import FileInput from '../../../ModalAddNotice/components/FileInput';
 import FileInput from '../FileInput';
-import CommentsInput from '../CommentsInput';
+import TextInput from '../../../ModalAddNotice/components/TextInput';
 import PreviewPhoto from '../PreviewPhoto';
-import NoticeCategories from '../NoticeCategories';
-import GenderSwitch from '../GenderSwitch';
+import CommentsInput from '../../../ModalAddNotice/components/CommentsInput';
 
 import { optionsToast } from '../.././../../../styles/stylesLayout';
-import addNoticeSchema from '../../../../../validationShemas/noticesSchema';
-import { addNotices } from '../../../../../redux/notices/operations ';
+import addPetSchema from '../../../../../validationShemas/petSchema';
+import { addNewPet } from '../../../../../redux/pets/operations';
 import createFormData from '../../../../../helpers/createFormData';
-import { selectIsAdding } from '../../../../../redux/notices/selectors';
+import { selectIsAdding } from '../../../../../redux/pets/selectors';
 
-import * as styled from './AddNoticeForm.styled';
+import * as styled from './AddPetForm.styled';
 
 const initialValues = {
-  categoryName: 'sell',
-  title: '',
   name: '',
-  birthdate: '',
+  birthday: '',
   breed: '',
-  sex: '',
-  location: '',
+  petPhoto: '',
   comments: '',
-  price: '',
-  petImage: '',
 };
 
-const PET_GENDER = ['male', 'female'];
-const FIRST_STEP_FORM_FIELDS = ['title', 'name', 'birthDate', 'breed'];
-const NOTICE_CATEGORIES = ['for-free', 'lost-found', 'sell'];
+const FIRST_STEP_FORM_FIELDS = ['name', 'birthday', 'breed'];
 
-const AddNoticeForm = ({ onClose }) => {
+const AddPetForm = ({ onClose }) => {
   const dispatch = useDispatch();
+  const isAdding = useSelector(selectIsAdding);
   const [isFirstStep, setIsFirstStep] = useState(true);
-  const isNoticeAdding = useSelector(selectIsAdding);
 
-  async function handleFormSubmit({ price, petImage, ...values }) {
-    const data = petImage ? { ...values, petImage } : { ...values };
-    if (price) {
-      data['price'] = price;
-    }
-    console.log('data', values);
+  async function handleFormSubmit({ petPhoto, ...values }) {
+    console.log('values', values);
+    const data = petPhoto ? { ...values, petPhoto } : { ...values };
+
+    console.log('data', data);
     const formData = createFormData(data);
-
-    dispatch(addNotices(formData))
+    console.log('formData: ', formData.name);
+    dispatch(addNewPet(formData))
       .unwrap()
       .then(() => {
-        toast.success('Notice was added.', optionsToast);
+        toast.success('Pet was added.', optionsToast);
         onClose();
       })
       .catch(err => {
         console.log(err);
-        toast.error(
-          'Error occured. Notice addition not completed.',
-          optionsToast
-        );
+        toast.error(err.message, optionsToast);
       });
   }
+
+  // 'Error occured. Pet addition not completed.'
 
   return (
     <Formik
       initialValues={initialValues}
       onSubmit={handleFormSubmit}
-      validationSchema={addNoticeSchema}
+      validationSchema={addPetSchema}
     >
       {({
         values,
@@ -80,17 +70,6 @@ const AddNoticeForm = ({ onClose }) => {
         <form onSubmit={handleSubmit}>
           {isFirstStep && (
             <div>
-              <styled.Texts>
-                Please select an ad category and fill in all fields.
-              </styled.Texts>
-
-              <NoticeCategories categories={NOTICE_CATEGORIES} />
-              <TextInput
-                label="Title of ad"
-                name="title"
-                placeholder="Type name"
-                required
-              />
               <TextInput
                 label="Name pet"
                 name="name"
@@ -98,10 +77,11 @@ const AddNoticeForm = ({ onClose }) => {
               />
               <TextInput
                 label="Date of birth"
-                name="birthdate"
+                name="birthday"
                 placeholder="dd.mm.yyyy"
               />
               <TextInput label="Breed" name="breed" placeholder="Type breed" />
+
               <styled.BtnGroup>
                 <styled.SecondaryBtn type="button" onClick={() => onClose()}>
                   Cancel
@@ -110,6 +90,7 @@ const AddNoticeForm = ({ onClose }) => {
                 <styled.PrimaryBtn
                   type={'button'}
                   onClick={async () => {
+                    console.log('next', values);
                     const errors = await validateForm();
                     const isValid = FIRST_STEP_FORM_FIELDS.every(
                       field => !errors[field]
@@ -130,36 +111,20 @@ const AddNoticeForm = ({ onClose }) => {
           )}
           {!isFirstStep && (
             <div>
-              <GenderSwitch gender={PET_GENDER} />
-              <TextInput
-                label="Location"
-                name="location"
-                placeholder="City, region"
-                required
-              />
-              {values.categoryName === 'sell' && (
-                <TextInput
-                  label="Price"
-                  name="price"
-                  placeholder="Type price"
-                  required
-                />
-              )}
-
-              {values.petImage && !errors.petImage ? (
+              {values.petPhoto && !errors.petPhoto ? (
                 <PreviewPhoto
                   label="Load the pet's image"
-                  photo={values.petImage}
-                  onDeletePreview={() => setFieldValue('petImage', '')}
+                  photo={values.petPhoto}
+                  onDeletePreview={() => setFieldValue('petPhoto', '')}
                 />
               ) : (
                 <>
                   <FileInput
-                    id="petImage"
-                    name="petImage"
+                    id="petPhoto"
+                    name="petPhoto"
                     label="Load the pet's image"
                     onChange={async ({ target }) => {
-                      setFieldValue('petImage', target.files[0]);
+                      setFieldValue('petPhoto', target.files[0]);
                     }}
                   />
                 </>
@@ -179,9 +144,8 @@ const AddNoticeForm = ({ onClose }) => {
                   Back
                 </styled.SecondaryBtn>
 
-                <styled.PrimaryBtn type="submit" disabled={isNoticeAdding}>
-                  done{' '}
-                  {isNoticeAdding && <styled.Loader size={25} color="white" />}
+                <styled.PrimaryBtn type="submit" disabled={isAdding}>
+                  done {isAdding && <styled.Loader size={25} color="white" />}
                 </styled.PrimaryBtn>
               </styled.BtnGroup>
             </div>
@@ -192,4 +156,4 @@ const AddNoticeForm = ({ onClose }) => {
   );
 };
 
-export default AddNoticeForm;
+export default AddPetForm;
