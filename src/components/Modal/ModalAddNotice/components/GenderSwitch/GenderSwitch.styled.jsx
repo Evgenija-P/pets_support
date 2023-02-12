@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { colors, media } from '../../../../../styles/stylesLayout';
 
 export const Container = styled.div`
   position: relative;
@@ -14,7 +15,16 @@ export const Item = styled.li`
     margin-left: 80px;
   }
 `;
-export const Label = styled.span``;
+export const Label = styled.span`
+  font-size: 18px;
+  line-height: 1.47;
+  color: ${colors.black};
+
+  ${media.tabletAndDesktop} {
+    font-size: 24px;
+    line-height: 1.1;
+  }
+`;
 export const RequiredFieldSign = styled.span`
   color: tomato;
 `;

@@ -1,7 +1,6 @@
 import useAuth from '../../../hooks/useAuth';
 
-import { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useState } from 'react';
 
 import NoticesAuthNav from '../NoticesAuthNav';
 import NoticesUserNav from '../NoticesUserNav';
@@ -11,15 +10,6 @@ import Modal from '../../Modal';
 import { NoticesCategoriesContainer } from './NoticesCategoriesNav.styled';
 
 const NoticesCategoriesNav = ({ notices }) => {
-  const { category } = useParams();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!category) {
-      navigate('/notices/sell');
-    }
-  }, [category, navigate]);
-
   const { isLoggedIn } = useAuth();
   const [isAddNoticeModalShown, setisAddNoticeModalShown] = useState(false);
   const [, setIsUnauthorizeModalShown] = useState(false);
@@ -31,7 +21,7 @@ const NoticesCategoriesNav = ({ notices }) => {
     setIsUnauthorizeModalShown(prevState => !prevState);
   }
 
-  console.log('isLoggedIn', isLoggedIn);
+  // console.log('isLoggedIn', isLoggedIn);
 
   return (
     <NoticesCategoriesContainer>

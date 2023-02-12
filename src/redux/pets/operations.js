@@ -28,3 +28,15 @@ export const deletePet = createAsyncThunk(
     }
   }
 );
+
+export const addNewPet = createAsyncThunk(
+  'pets/addNewPet',
+  async (newPet, thunkAPI) => {
+    try {
+      const res = await axios.post('/pets', { newPet });
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

@@ -28,6 +28,7 @@ export const FriendsContainer = styled.ul`
   line-height: 1.37;
   font-weight: ${fontWeights.bold};
   color: ${colors.black};
+  margin-bottom: 100px;
 
   ${media.tablet} {
     font-size: 14px;

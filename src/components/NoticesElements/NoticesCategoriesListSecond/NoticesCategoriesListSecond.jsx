@@ -14,12 +14,15 @@ import {
   NoticesFavorite,
   NoticesButtonFavoriteV2,
 } from './NoticesCategoriesListSecond.styled';
+import { toast } from 'react-toastify';
+import { optionsToast } from '../../..//styles/stylesLayout';
 import {
   getOwnerNotices,
   getPetAge,
   getUserFavoriteNotices,
+  onFavoriteNotAuth,
 } from '../../../helpers/noticesHelpers';
-// import toast, { Toaster } from 'react-hot-toast';
+
 import notFoundNoticesImage from '../../../img/notFoundNoticesImage.jpg';
 // import { PER_PAGE } from '../../../redux/notices/operations ';
 // import { useSelector, useDispatch } from 'react-redux';
@@ -28,21 +31,21 @@ import useAuth from '../../../hooks/useAuth.js';
 import {
   selectNotices,
   // selectFavoriteNotices,
-  selectNoticesObj,
+  // selectNoticesObj,
 } from '../../../redux/notices/selectors';
 import { selectFavoriteList } from '../../../redux/favorite/selectors';
-import { deletefavoriteNotice } from '../../../redux/notices/noticesSlice';
+// import { deletefavoriteNotice } from '../../../redux/notices/noticesSlice';
 import { selectUser } from '../../../redux/auth/selectors.js';
 // import { display, height } from '@mui/system';
-import { getNoticesById } from '../../../redux/current/operations ';
+import { getNoticesById } from '../../../redux/notices/operations ';
 // import { useLocation } from 'react-router-dom';
 import {
   addToFavorite,
   removeFromFavorite,
 } from '../../../redux/favorite/operations ';
-//import { deleteNotices } from '../../../redux/notices/operations ';
-import { toast } from 'react-toastify';
-import { optionsToast } from '../../../styles/stylesLayout';
+import { deleteNotices } from '../../../redux/notices/operations ';
+// import { deleteNoticLoc } from '../../../redux/notices/noticesSlice';
+
 // import LearnMoreButton from '../NoticesDetailsCard/NoticesButton/NoticesButton';
 
 const NoticesCategoriesListSecond = () => {
@@ -50,7 +53,7 @@ const NoticesCategoriesListSecond = () => {
   const favorite = useSelector(selectFavoriteList);
   const { _id } = useSelector(selectUser);
   const dispatch = useDispatch();
-  const { category } = useSelector(selectNoticesObj);
+  // const { pathname } = useLocation();
   const { isLoggedIn } = useAuth();
   let noticesUpdated = [];
   if (isLoggedIn) {
@@ -70,14 +73,20 @@ const NoticesCategoriesListSecond = () => {
     }
     if (favorite) {
       dispatch(removeFromFavorite(_id));
-      if (category === '/notices/favorite') {
-        dispatch(deletefavoriteNotice(_id));
-      }
+      // console.log('removeFromFavorite', _id);
+      // if (pathname === '/notices/favorite') {
+      //   console.log('delete', _id);
+      //   dispatch(deletefavoriteNotice(_id));
+      // }
 
       return;
     }
     dispatch(addToFavorite(_id));
   };
+
+  // const onFavoriteNotAuth = () => {
+  //   toast.warning('You need Login first....', optionsToast);
+  // };
 
   return (
     <NoticesList>
@@ -100,7 +109,7 @@ const NoticesCategoriesListSecond = () => {
                 <NoticesBadge>{categoryName}</NoticesBadge>
                 {!isLoggedIn && (
                   <NoticesButtonFavorite
-                    onClick={onFavoriteToggle}
+                    onClick={onFavoriteNotAuth}
                   ></NoticesButtonFavorite>
                 )}
                 {isLoggedIn && (
@@ -122,6 +131,7 @@ const NoticesCategoriesListSecond = () => {
               <NoticesTitle>{title}</NoticesTitle>
 
               <NoticesTags>
+                {/* <NoticesTag>id: {_id}</NoticesTag> */}
                 <NoticesTag>Breed: {breed}</NoticesTag>
                 <NoticesTag>Place: {location}</NoticesTag>
                 <NoticesTag>Age: {age}</NoticesTag>
@@ -137,6 +147,29 @@ const NoticesCategoriesListSecond = () => {
               >
                 Learn More
               </NoticesButton>
+
+              {!favorite && isLoggedIn && (
+                <NoticesButton onClick={() => dispatch(addToFavorite(_id))}>
+                  add to favorite
+                </NoticesButton>
+              )}
+              {favorite && isLoggedIn && (
+                <NoticesButton
+                  onClick={() => dispatch(removeFromFavorite(_id))}
+                >
+                  remove from favorite
+                </NoticesButton>
+              )}
+              {!isLoggedIn && (
+                <NoticesButton onClick={onFavoriteNotAuth}>
+                  add to favorite
+                </NoticesButton>
+              )}
+              {isOwner && isLoggedIn && (
+                <NoticesButton onClick={() => dispatch(deleteNotices(_id))}>
+                  Delete
+                </NoticesButton>
+              )}
             </NoticesDescription>
           </NoticesItem>
         )
