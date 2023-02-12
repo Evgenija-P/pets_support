@@ -1,6 +1,9 @@
 import styled from '@emotion/styled';
 import { colors, media } from '../../../../../styles/stylesLayout';
 
+import ClipLoader from 'react-spinners/ClipLoader';
+
+
 export const BtnGroup = styled.div`
   display: flex;
   flex-direction: column;
@@ -16,9 +19,11 @@ export const BtnGroup = styled.div`
 `;
 
 export const Btn = styled.button`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+  column-gap: 10px;
 
   height: 44px;
 
@@ -46,6 +51,7 @@ export const SecondaryBtn = styled(Btn)`
   background-color: ${colors.white};
 `;
 
+
 export const Texts = styled.p`
   font-size: 16px;
   text-align: center;
@@ -54,4 +60,9 @@ export const Texts = styled.p`
   ${media.tabletAndDesktop} {
     font-size: 20px;
   }
+  `;
+
+export const Loader = styled(ClipLoader)`
+  position: absolute;
+  right: 30px;
 `;

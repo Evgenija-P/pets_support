@@ -1,7 +1,9 @@
 import styled from '@emotion/styled';
 import { colors, media } from '../../../../../styles/stylesLayout';
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  position: relative;
+`;
 
 export const List = styled.ul`
   display: flex;

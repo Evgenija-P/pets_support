@@ -2,6 +2,10 @@ import styled from '@emotion/styled';
 import { colors, media } from '../../../../../styles/stylesLayout';
 
 export const Container = styled.div`
+  margin-top: 28px;
+`;
+
+export const Wrapper = styled.div`
   position: relative;
   width: 140px;
   height: 140px;
@@ -12,6 +16,12 @@ export const Container = styled.div`
   ${media.tabletAndDesktop} {
     margin-top: 12px;
   }
+`;
+
+export const Label = styled.div`
+  font-size: 24px;
+  line-height: 26.5px;
+  color: #000000;
 `;
 
 export const Photo = styled.img`
@@ -28,8 +38,12 @@ export const DelBtn = styled.button`
   align-items: center;
   top: 0;
   right: 5px;
+
   width: 30px;
   height: 30px;
+
+  margin-top: 12px;
+
   border-radius: 50%;
   border: 1px solid ${colors.accent};
 

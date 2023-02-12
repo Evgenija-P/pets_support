@@ -41,7 +41,8 @@ import {
   removeFromFavorite,
 } from '../../../redux/favorite/operations ';
 //import { deleteNotices } from '../../../redux/notices/operations ';
-
+import { toast } from 'react-toastify';
+import { optionsToast } from '../../../styles/stylesLayout';
 // import LearnMoreButton from '../NoticesDetailsCard/NoticesButton/NoticesButton';
 
 const NoticesCategoriesListSecond = () => {
@@ -61,6 +62,12 @@ const NoticesCategoriesListSecond = () => {
   }
 
   const onFavoriteToggle = (_id, favorite) => {
+    if (!isLoggedIn) {
+      toast.info('You must login or register to add to favorites', {
+        optionsToast,
+      });
+      return;
+    }
     if (favorite) {
       dispatch(removeFromFavorite(_id));
       if (category === '/notices/favorite') {
@@ -91,7 +98,11 @@ const NoticesCategoriesListSecond = () => {
             <NoticesTop>
               <NoticesNav>
                 <NoticesBadge>{categoryName}</NoticesBadge>
-                {!isLoggedIn && <NoticesButtonFavorite></NoticesButtonFavorite>}
+                {!isLoggedIn && (
+                  <NoticesButtonFavorite
+                    onClick={onFavoriteToggle}
+                  ></NoticesButtonFavorite>
+                )}
                 {isLoggedIn && (
                   <NoticesButtonFavoriteV2
                     onClick={() => onFavoriteToggle(_id, favorite)}
@@ -106,48 +117,26 @@ const NoticesCategoriesListSecond = () => {
                 alt={title}
               />
             </NoticesTop>
+
             <NoticesDescription>
               <NoticesTitle>{title}</NoticesTitle>
+
               <NoticesTags>
-                {/* <NoticesTag>id: {_id}</NoticesTag> */}
                 <NoticesTag>Breed: {breed}</NoticesTag>
                 <NoticesTag>Place: {location}</NoticesTag>
                 <NoticesTag>Age: {age}</NoticesTag>
                 {categoryName === 'sell' && (
                   <NoticesTag>Price: {price}$</NoticesTag>
                 )}
-                {/* {favorite && isLogined && <NoticesTag>Favorite </NoticesTag>}
-                {isOwner && isLogined && <NoticesTag>Owner </NoticesTag>} */}
               </NoticesTags>
-
-              {/* <LearnMoreButton /> */}
 
               <NoticesButton
                 onClick={() => {
-                  // console.log('LearnMore', _id, categoryName);
                   dispatch(getNoticesById(`${categoryName}/${_id}`));
                 }}
               >
                 Learn More
               </NoticesButton>
-
-              {/* {!favorite && (
-                <NoticesButton onClick={() => dispatch(addToFavorite(_id))}>
-                  add to favorite
-                </NoticesButton>
-              )} */}
-              {/* {favorite && isLogined && (
-                <NoticesButton
-                  onClick={() => dispatch(removeFromFavorite(_id))}
-                >
-                  remove from favorite
-                </NoticesButton>
-              )} */}
-              {/* {isOwner && isLogined && (
-                <NoticesButton onClick={() => dispatch(deleteNotices(_id))}>
-                  delete
-                </NoticesButton>
-              )} */}
             </NoticesDescription>
           </NoticesItem>
         )

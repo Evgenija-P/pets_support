@@ -22,13 +22,20 @@ const Burger = {
 
 const Navigation = () => {
   const { isTablet, isMobile } = useMatchMedia();
-  const [nav, setNav] = useState(false);
+	const [nav, setNav] = useState(false); 
+	const handleChangeNav = (nav) => {
+		setNav(!nav)
+	}
+	
+	const changeNav = () => {
+		setNav(!nav)
+	}
 
   if (isTablet) {
     return (
       <Nav>
         <Button>
-          <NavLinkMenuBurger onClick={() => setNav(!nav)}>
+          <NavLinkMenuBurger onClick={changeNav}>
             <GiHamburgerMenu size={30} color={'#000'} />
           </NavLinkMenuBurger>
         </Button>
@@ -39,16 +46,16 @@ const Navigation = () => {
               <GrFormClose
                 size={40}
                 color={'#000'}
-                onClick={() => setNav(!nav)}
+                onClick={changeNav}
               />
             </HeaderBurger>
-            <NavLinkMenu to="/news" onClick={() => setNav(!nav)}>
+            <NavLinkMenu to="/news" onClick={changeNav}>
               News
             </NavLinkMenu>
-            <NavLinkMenu to="/notices" onClick={() => setNav(!nav)}>
+            <NavLinkMenu to="/notices" onClick={changeNav}>
               Find pet
             </NavLinkMenu>
-            <NavLinkMenu to="/friends" onClick={() => setNav(!nav)}>
+            <NavLinkMenu to="/friends" onClick={changeNav}>
               Our friends
             </NavLinkMenu>
           </NavMobile>
@@ -67,7 +74,7 @@ const Navigation = () => {
     return (
       <Nav>
         <Button>
-          <NavLinkMenuBurger onClick={() => setNav(!nav)}>
+          <NavLinkMenuBurger onClick={changeNav}>
             <GiHamburgerMenu size={30} color={'#000'} />
           </NavLinkMenuBurger>
         </Button>
@@ -75,24 +82,20 @@ const Navigation = () => {
           <NavMobile style={Burger}>
             <HeaderBurger>
               <Logo />
-              <GrFormClose
-                size={40}
-                color={'#000'}
-                onClick={() => setNav(!nav)}
-              />
+              <GrFormClose size={40} color={'#000'} onClick={changeNav} />
             </HeaderBurger>
-            <AppBar />
-            <NavLinkMenu to="/news" onClick={() => setNav(!nav)}>
+            <AppBar onClick={handleChangeNav} />
+            <NavLinkMenu to="/news" onClick={changeNav}>
               News
             </NavLinkMenu>
             <NavLinkMenu
               to="/notices"
               component={<NoticesCategoriesNav />}
-              onClick={() => setNav(!nav)}
+              onClick={handleChangeNav}
             >
               Find pet
             </NavLinkMenu>
-            <NavLinkMenu to="/friends" onClick={() => setNav(!nav)}>
+            <NavLinkMenu to="/friends" onClick={changeNav}>
               Our friends
             </NavLinkMenu>
           </NavMobile>
@@ -113,7 +116,7 @@ const Navigation = () => {
         {isTablet || isMobile ? (
           <Nav>
             <Button>
-              <NavLinkMenuBurger onClick={() => setNav(!nav)}>
+              <NavLinkMenuBurger onClick={changeNav}>
                 <GiHamburgerMenu size={30} color={'#000'} />
               </NavLinkMenuBurger>
             </Button>
@@ -124,20 +127,20 @@ const Navigation = () => {
                   <GrFormClose
                     size={40}
                     color={'#000'}
-                    onClick={() => setNav(!nav)}
+                    onClick={changeNav}
                   />
                 </HeaderBurger>
-                <NavLinkMenu to="/news" onClick={() => setNav(!nav)}>
+                <NavLinkMenu to="/news" onClick={changeNav}>
                   News
                 </NavLinkMenu>
                 <NavLinkMenu
                   to="/notices"
                   component={<NoticesCategoriesNav />}
-                  onClick={() => setNav(!nav)}
+                  onClick={changeNav}
                 >
                   Find pet
                 </NavLinkMenu>
-                <NavLinkMenu to="/friends" onClick={() => setNav(!nav)}>
+                <NavLinkMenu to="/friends" onClick={changeNav}>
                   Our friends
                 </NavLinkMenu>
               </NavMobile>
