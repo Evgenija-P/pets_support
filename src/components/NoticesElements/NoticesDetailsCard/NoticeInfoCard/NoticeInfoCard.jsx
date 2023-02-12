@@ -27,22 +27,18 @@ import { useDispatch, useSelector } from 'react-redux';
 //   selectNotices,
 //   // selectFavoriteNotices,
 //   selectNoticesObj,
-// } from '../../../../redux/notices/selectors';
-import {
-  selectCurrentObj,
-  selectCurrent,
-} from '../../../../redux/current/selectors';
-import { useState, useEffect } from 'react';
+
+import { useState } from 'react';
 // import { selectFavoriteList } from '../../../redux/favorite/selectors';
 // import { deletefavoriteNotice } from '../../../redux/notices/noticesSlice';
 // import { selectUser } from '../../../../redux/auth/selectors';
 // import { display, height } from '@mui/system';
-// import { getNoticesById } from '../../../redux/current/operations ';
+import { setSelectedNotice } from '../../../../redux/notices/noticesSlice';
 // import { useLocation } from 'react-router-dom';
 import { deleteNotices } from '../../../../redux/notices/operations ';
-import { setCurrentNotices } from '../../../../redux/current/currentSlice';
+import Spinner from '../../../Spinner/Spinner';
 import { selectUser } from '../../../../redux/auth/selectors';
-import { selectFavoriteList } from '../../../../redux/favorite/selectors';
+import { selectFavoriteObj } from '../../../../redux/favorite/selectors';
 import useAuth from '../../../../hooks/useAuth.js';
 import {
   getIsOwnNotice,
@@ -52,21 +48,21 @@ import {
   removeFromFavorite,
   addToFavorite,
 } from '../../../../redux/favorite/operations ';
-
+import { selectNoticesObj } from '../../../../redux/notices/selectors';
 const NoticeInfoCard = () => {
   // const { _id: user } = useSelector(selectUser);
   const dispatch = useDispatch();
 
   const { isLoggedIn } = useAuth();
-  const currentNotices = useSelector(selectCurrent);
+  const { selectedNotice } = useSelector(selectNoticesObj);
   const { _id: userId } = useSelector(selectUser);
-  const favoriteList = useSelector(selectFavoriteList);
+  const { favoriteList, isLoading } = useSelector(selectFavoriteObj);
 
   const noticeReduced = getIsFavoriteNotice(
     favoriteList,
-    getIsOwnNotice(userId, currentNotices)
+    getIsOwnNotice(userId, selectedNotice)
   );
-  console.log('noticeReduced', noticeReduced);
+
   ////////////////////////////////////////////////////////////////////
   const {
     _id,
@@ -89,28 +85,24 @@ const NoticeInfoCard = () => {
   console.log('favorite', favorite);
   console.log('Isfavorite', Isfavorite);
 
-  const onFavoriteToggle = (_id, favorite) => {
-    if (favorite) {
-      dispatch(removeFromFavorite(_id));
+  // const onFavoriteToggle = (_id, favorite) => {
+  //   if (favorite) {
+  //     dispatch(removeFromFavorite(_id));
 
-      return;
-    }
-    dispatch(addToFavorite(_id));
-  };
+  //     return;
+  //   }
+  //   dispatch(addToFavorite(_id));
+  // };
   const onToggle = () => {
     setIsfavorite(prev => !prev);
-  };
-  useEffect(() => {
     if (Isfavorite) {
       dispatch(removeFromFavorite(_id));
 
       return;
     }
     dispatch(addToFavorite(_id));
-    // return () => {
-    //   cleanup
-    // };
-  }, [Isfavorite]);
+  };
+
   return (
     <>
       <NoticesBox>
@@ -153,13 +145,12 @@ const NoticeInfoCard = () => {
         Voluptatum, quam delectus incidunt aspernatur laboriosam, obcaecati a id
         ut quidem quia porro itaque odit. {comments}
       </NoticesComment>
-
+      {isLoading && <Spinner />}
       <ButtonBlock>
         {own && (
           <NoticesButtonDelete
             onClick={() => {
-              dispatch(deleteNotices(_id));
-              dispatch(setCurrentNotices());
+              dispatch(deleteNotices(_id), dispatch(setSelectedNotice()));
             }}
           >
             Delete

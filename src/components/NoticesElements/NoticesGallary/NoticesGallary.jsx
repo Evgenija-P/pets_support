@@ -7,14 +7,14 @@ import { selectNoticesObj } from '../../../redux/notices/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import GalleryPagination from '../../GalleryPagination';
 
-import { setCategory } from '../../../redux/notices/noticesSlice';
+import { selectFavoriteObj } from '../../../redux/favorite/selectors';
 
 import NoticesLoader from '../NoticesLoader';
 import Spinner from '../../Spinner';
 import Modal from '../../../components/Modal/Modal';
 //import useAuth from '../../../hooks/useAuth.js';
-import { selectCurrentObj } from '../../../redux/current/selectors';
-import { setCurrentNotices } from '../../../redux/current/currentSlice';
+import { setSelectedNotice } from '../../../redux/notices/noticesSlice';
+// import { setCurrentNotices } from '../../../redux/current/currentSlice';
 // import { selectFavoriteList } from '../../../redux/favorite/selectors';
 // import { selectUser } from '../../../redux/auth/selectors';
 import { useNavigate } from 'react-router-dom';
@@ -22,11 +22,11 @@ import { useLocation } from 'react-router-dom';
 import { useRef } from 'react';
 import NoticeInfoCard from '../../../components/NoticesElements/NoticesDetailsCard/NoticeInfoCard';
 const NoticesGallary = () => {
-  const {
-    currentNotices,
-    isLoading: isLoadingCurrent,
-    error: errorCurrent,
-  } = useSelector(selectCurrentObj);
+  // const {
+  //   currentNotices,
+  //   isLoading: isLoadingCurrent,
+  //   error: errorCurrent,
+  // } = useSelector(selectCurrentObj);
   const { pathname } = useLocation();
   const {
     page: currentPage,
@@ -36,8 +36,9 @@ const NoticesGallary = () => {
     isLoading: isLoadingNotices,
     error: errorNotices,
     noticesList,
+    selectedNotice,
   } = useSelector(selectNoticesObj);
-
+  const { isLoading: isLoadingFavorite } = useSelector(selectFavoriteObj);
   const { isLoggedIn } = useAuth();
 
   const dispatch = useDispatch();
@@ -47,14 +48,14 @@ const NoticesGallary = () => {
 
   useEffect(() => {
     if (firstRender.current) {
-      console.log('first render');
-      console.log('useEffect in gallary Navigate ');
+      // console.log('first render');
+      // console.log('useEffect in gallary Navigate ');
       navigate('/notices/sell', { replace: true });
       firstRender.current = false;
       return;
     }
 
-    console.log('render');
+    // console.log('render');
   });
 
   // useEffect(() => {
@@ -88,18 +89,18 @@ const NoticesGallary = () => {
     // }
     // dispatch(setCategory(pathname));
     if (!firstRender.current) {
-      console.log(
-        'fetchNotices({ category: pathname, search }',
-        pathname,
-        search
-      );
+      // console.log(
+      //   'fetchNotices({ category: pathname, search }',
+      //   pathname,
+      //   search
+      // );
       dispatch(fetchNotices({ category: pathname, search }));
     }
   }, [dispatch, pathname, search]);
 
   useEffect(() => {
     if (isLoggedIn) {
-      console.log('IsLog fetchFavorite() in Gallary');
+      // console.log('IsLog fetchFavorite() in Gallary');
       dispatch(fetchFavorite({}));
     }
   }, [dispatch, isLoggedIn]);
@@ -112,14 +113,15 @@ const NoticesGallary = () => {
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   const toggleModal = () => {
-    dispatch(setCurrentNotices());
+    dispatch(setSelectedNotice());
   };
 
   return (
     <div>
-      {isLoadingCurrent && isLoadingNotices && <Spinner />}
-      {(errorNotices || noticesList.length === 0 || errorCurrent) &&
-        !isLoadingNotices && <NoticesLoader />}
+      {(isLoadingNotices || isLoadingFavorite) && <Spinner />}
+      {(errorNotices || noticesList.length === 0) && !isLoadingNotices && (
+        <NoticesLoader />
+      )}
       {!errorNotices && !isLoadingNotices && <NoticesCategoriesListSecond />}
       {countPages > 1 && !isLoadingNotices && (
         <GalleryPagination
@@ -130,7 +132,7 @@ const NoticesGallary = () => {
           currentPage={Number(currentPage)}
         />
       )}{' '}
-      {currentNotices && !isLoadingNotices && (
+      {selectedNotice && !isLoadingNotices && (
         <Modal
           // title={'notice'}
           type={'info'}

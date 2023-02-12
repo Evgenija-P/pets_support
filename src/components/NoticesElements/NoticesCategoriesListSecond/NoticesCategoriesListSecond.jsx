@@ -37,7 +37,7 @@ import { selectFavoriteList } from '../../../redux/favorite/selectors';
 // import { deletefavoriteNotice } from '../../../redux/notices/noticesSlice';
 import { selectUser } from '../../../redux/auth/selectors.js';
 // import { display, height } from '@mui/system';
-import { getNoticesById } from '../../../redux/current/operations ';
+import { getNoticesById } from '../../../redux/notices/operations ';
 // import { useLocation } from 'react-router-dom';
 import {
   addToFavorite,

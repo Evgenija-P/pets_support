@@ -3,7 +3,7 @@ import {
   fetchNotices,
   addNotices,
   deleteNotices,
-
+  getNoticesById,
   // addToFavoriteNotices,
   // removeFromFavoriteNotices,
   // fetchFavoriteNotices,
@@ -13,13 +13,14 @@ import {
 // import storage from 'redux-persist/lib/storage';
 const noticesInitialState = {
   noticesList: [],
+  selectedNotice: null,
   page: 1,
   totalHits: 0,
   isLoading: false,
   isAdding: false,
   error: null,
   // category: '/notices/',
-  category: '',
+  // category: '',
   search: '',
   limit: 20,
 };
@@ -28,6 +29,7 @@ const extraActions = [
   fetchNotices,
   addNotices,
   deleteNotices,
+  getNoticesById,
 
   // addToFavoriteNotices,
   // removeFromFavoriteNotices,
@@ -62,6 +64,9 @@ const handleDeleteNoticesSuccses = (state, action) => {
     notices => notices._id === action.payload._id
   );
   state.noticesList.splice(index, 1);
+};
+const handleGetNoticesByIdSuccses = (state, action) => {
+  state.selectedNotice = action.payload;
 };
 
 // const handleRemoveFromFavoriteNoticesSuccses = (state, action) => {
@@ -99,6 +104,10 @@ export const noticesSlice = createSlice({
 
       state.noticesList.splice(index, 1);
     },
+
+    setSelectedNotice(state, action) {
+      state.selectedNotice = null;
+    },
   },
 
   ///////////////////////////////////////////////
@@ -111,10 +120,7 @@ export const noticesSlice = createSlice({
 
       .addCase(deleteNotices.fulfilled, handleDeleteNoticesSuccses)
 
-      // .addCase(
-      //   removeFromFavoriteNotices.fulfilled,
-      //   handleRemoveFromFavoriteNoticesSuccses
-      // )
+      .addCase(getNoticesById.fulfilled, handleGetNoticesByIdSuccses)
       // .addCase(
       //   fetchFavoriteNotices.fulfilled,
       //   handleFetchFavoriteNoticesSuccses
@@ -138,5 +144,6 @@ export const {
   deletefavoriteNotice,
   setSearch,
   deleteNoticLoc,
+  setSelectedNotice,
 } = noticesSlice.actions;
 export const noticesReducer = noticesSlice.reducer;
