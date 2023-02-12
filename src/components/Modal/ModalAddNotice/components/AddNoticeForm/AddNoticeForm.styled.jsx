@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { colors } from '../../../../../styles/stylesLayout';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 export const BtnGroup = styled.div`
   display: flex;
@@ -10,9 +11,11 @@ export const BtnGroup = styled.div`
 `;
 
 export const Btn = styled.button`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+  column-gap: 10px;
 
   width: 180px;
   height: 44px;
@@ -35,4 +38,9 @@ export const PrimaryBtn = styled(Btn)`
 export const SecondaryBtn = styled(Btn)`
   color: ${colors.black};
   background-color: ${colors.white};
+`;
+
+export const Loader = styled(ClipLoader)`
+  position: absolute;
+  right: 30px;
 `;

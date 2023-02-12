@@ -1,7 +1,7 @@
 import { lazy, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-import { ToastContainer, Flip } from 'react-toastify';
+import { Flip, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useAuth from '../../hooks/useAuth';
 import HomePage from '../../pages/HomePage';
@@ -40,6 +40,17 @@ const App = () => {
           <Route index element={<HomePage />} />
 
           <Route
+            path="/news"
+            element={
+              isLoggedIn ? (
+                <PrivateRoute component={<NewsPage />} />
+              ) : (
+                <RestrictedRoute component={<NewsPage />} />
+              )
+            }
+          />
+
+          <Route
             path="/notices"
             element={
               isLoggedIn ? (
@@ -50,19 +61,46 @@ const App = () => {
             }
           >
             <Route
-              path=":category"
+              path="sell"
               element={<RestrictedRoute component={<NoticesCategoriesNav />} />}
+            />
+            <Route
+              path="lost-found"
+              element={<RestrictedRoute component={<NoticesCategoriesNav />} />}
+            />
+            <Route
+              path="for-free"
+              element={<RestrictedRoute component={<NoticesCategoriesNav />} />}
+            />
+            <Route
+              path="favorite"
+              element={
+                <PrivateRoute
+                  redirectTo="/login"
+                  component={<NoticesCategoriesNav />}
+                />
+              }
+            />
+            <Route
+              path="own"
+              element={
+                <PrivateRoute
+                  redirectTo="/login"
+                  component={<NoticesCategoriesNav />}
+                />
+              }
             />
           </Route>
 
           <Route
-            path="/news"
-            element={<RestrictedRoute component={<NewsPage />} />}
-          />
-
-          <Route
             path="/friends"
-            element={<RestrictedRoute component={<OurFriendsPage />} />}
+            element={
+              isLoggedIn ? (
+                <PrivateRoute component={<OurFriendsPage />} />
+              ) : (
+                <RestrictedRoute component={<OurFriendsPage />} />
+              )
+            }
           />
 
           <Route

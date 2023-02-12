@@ -84,6 +84,10 @@ export const PetButtonDelete = styled.button`
   position: absolute;
   right: 0;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   width: 44px;
   height: 44px;
 
@@ -93,6 +97,8 @@ export const PetButtonDelete = styled.button`
   background-color: ${colors.background};
 
   fill: ${colors.gray};
+
+  opacity: ${p => (p.disabled ? 0.7 : 1)};
 
   transition: 250ms ease;
 
