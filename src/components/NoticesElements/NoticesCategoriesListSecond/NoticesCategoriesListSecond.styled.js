@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { media, colors, fontWeights } from '../../../styles/stylesLayout';
 
 import noticesFavoriteIcon from '../../../img/icons/noticesFavoriteIcon.svg';
-import noticesFavoriteIconActive from '../../../img/icons/noticesFavoriteIconActive.svg';
+//import noticesFavoriteIconActive from '../../../img/icons/noticesFavoriteIconActive.svg';
 import { ReactComponent as FavoriteIcon } from '../../../img/icons/favoriteNotices.svg';
 export const NoticesList = styled.ul`
   display: grid;
@@ -87,7 +87,7 @@ export const NoticesButtonFavorite = styled.button`
 
   &:hover,
   &:focus {
-    background-image: url(${noticesFavoriteIconActive});
+    scale: 1.4;
   }
 `;
 export const NoticesFavorite = styled(FavoriteIcon)`
@@ -124,6 +124,7 @@ export const NoticesButtonFavoriteV2 = styled.button`
   &:hover,
   &:focus {
     background: rgba(255, 255, 255, 1);
+    scale: 1.4;
   }
 
   &:disabled {

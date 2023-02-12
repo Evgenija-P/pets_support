@@ -1,6 +1,10 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import ClockLoader from 'react-spinners/ClockLoader';
+import { toast } from 'react-toastify';
 
-import { selectPets } from '../../../redux/pets/selectors';
+import { deletePet } from '../../../redux/pets/operations';
+import { selectPets, selectIsDeleting } from '../../../redux/pets/selectors';
+import { optionsToast, colors } from '../../../styles/stylesLayout';
 
 import {
   PetsItem,
@@ -16,6 +20,18 @@ import notFoundNoticesImage from '../../../img/notFoundNoticesImage.jpg';
 
 const PetsList = () => {
   const { pets } = useSelector(selectPets);
+  const isDeleting = useSelector(selectIsDeleting);
+  const dispatch = useDispatch();
+
+  function handleDeletePet(petId) {
+    dispatch(deletePet(petId))
+      .unwrap()
+      .then(() => toast.success('Pet was was deleted.', optionsToast))
+      .catch(err => {
+        console.log(err);
+        toast.error('Error occured. Pet deleting not completed.', optionsToast);
+      });
+  }
 
   return (
     <ul>
@@ -26,8 +42,15 @@ const PetsList = () => {
             alt={name}
           />
           <PetDescription>
-            <PetButtonDelete>
-              <PetButtonIconDelete />
+            <PetButtonDelete
+              onClick={() => handleDeletePet(_id)}
+              disabled={isDeleting}
+            >
+              {isDeleting ? (
+                <ClockLoader size={25} color={colors.accent} />
+              ) : (
+                <PetButtonIconDelete />
+              )}
             </PetButtonDelete>
             <PetTags>
               <PetTag>

@@ -41,7 +41,8 @@ import {
   removeFromFavorite,
 } from '../../../redux/favorite/operations ';
 //import { deleteNotices } from '../../../redux/notices/operations ';
-
+import { toast } from 'react-toastify';
+import { optionsToast } from '../../../styles/stylesLayout';
 // import LearnMoreButton from '../NoticesDetailsCard/NoticesButton/NoticesButton';
 
 const NoticesCategoriesListSecond = () => {
@@ -61,6 +62,12 @@ const NoticesCategoriesListSecond = () => {
   }
 
   const onFavoriteToggle = (_id, favorite) => {
+    if (!isLoggedIn) {
+      toast.info('You must login or register to add to favorites', {
+        optionsToast,
+      });
+      return;
+    }
     if (favorite) {
       dispatch(removeFromFavorite(_id));
       if (category === '/notices/favorite') {
@@ -91,7 +98,11 @@ const NoticesCategoriesListSecond = () => {
             <NoticesTop>
               <NoticesNav>
                 <NoticesBadge>{categoryName}</NoticesBadge>
-                {!isLoggedIn && <NoticesButtonFavorite></NoticesButtonFavorite>}
+                {!isLoggedIn && (
+                  <NoticesButtonFavorite
+                    onClick={onFavoriteToggle}
+                  ></NoticesButtonFavorite>
+                )}
                 {isLoggedIn && (
                   <NoticesButtonFavoriteV2
                     onClick={() => onFavoriteToggle(_id, favorite)}
