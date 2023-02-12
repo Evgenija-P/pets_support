@@ -47,6 +47,10 @@ import {
   getIsOwnNotice,
   getIsFavoriteNotice,
 } from '../../../../helpers/currentHelpers';
+import {
+  removeFromFavorite,
+  addToFavorite,
+} from '../../../../redux/favorite/operations ';
 
 const NoticeInfoCard = () => {
   // const { _id: user } = useSelector(selectUser);
@@ -56,12 +60,20 @@ const NoticeInfoCard = () => {
   const currentNotices = useSelector(selectCurrent);
   const { _id: userId } = useSelector(selectUser);
   const favoriteList = useSelector(selectFavoriteList);
-  // const own = true;
-  // const favorite = true;
   const noticeReduced = getIsFavoriteNotice(
     favoriteList,
     getIsOwnNotice(userId, currentNotices)
   );
+  const onFavoriteToggle = (_id, favorite) => {
+    if (favorite) {
+      dispatch(removeFromFavorite(_id));
+
+      return;
+    }
+    dispatch(addToFavorite(_id));
+  };
+
+  ////////////////////////////////////////////////////////////////////
   const {
     _id,
     petImageURL,
@@ -133,17 +145,21 @@ const NoticeInfoCard = () => {
             Delete
           </NoticesButtonDelete>
         )}
-        {/* {!favorite && isLoggedIn && (
-          <NoticesButtonFavorite>
+        {!favorite && isLoggedIn && (
+          <NoticesButtonFavorite
+            onClick={() => onFavoriteToggle(_id, favorite)}
+          >
             Add to
             <HeartIcon>
               <HeartFavorite />
             </HeartIcon>
           </NoticesButtonFavorite>
-        )} */}
+        )}
 
         {favorite && isLoggedIn && (
-          <NoticesButtonFavorite>
+          <NoticesButtonFavorite
+            onClick={() => onFavoriteToggle(_id, favorite)}
+          >
             Remove from
             <HeartIcon>
               <HeartFavorite />

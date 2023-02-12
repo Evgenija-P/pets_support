@@ -6,39 +6,44 @@ import SectionContainer from '../components/SectionContainer';
 import NoticesCategoriesNav from '../components/NoticesElements/NoticesCategoriesNav/NoticesCategoriesNav';
 import NoticesSearch from '../components/NoticesElements/NoticesSearch/NoticesSearch';
 import NoticesGallary from '../components/NoticesElements/NoticesGallary';
-import NoticeInfoCard from '../components/NoticesElements/NoticesDetailsCard/NoticeInfoCard';
+// import NoticeInfoCard from '../components/NoticesElements/NoticesDetailsCard/NoticeInfoCard';
+// import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
+// import { fetchNotices } from '../redux/notices/operations ';
+// import { fetchFavorite } from '../redux/favorite/operations ';
+// import { selectNoticesObj } from '../redux/notices/selectors';
 // import Modal from '../components/Modal/Modal';
 // import { useSelector, useDispatch } from 'react-redux';
-// //import useAuth from '../../../hooks/useAuth.js';
+// import useAuth from '../hooks/useAuth.js';
 // import { selectCurrentObj } from '../redux/current/selectors';
 // import { setCurrentNotices } from '../redux/current/currentSlice';
 // import { selectFavoriteList } from '../redux/favorite/selectors';
 // import { selectUser } from '../redux/auth/selectors';
 // import Spinner from '../components/Spinner/Spinner';
 const NoticesPage = () => {
+  // const firstRender = useRef(true);
   // const dispatch = useDispatch();
-  // const toggleModal = () => {
-  //   dispatch(setCurrentNotices());
-  // };
-  // const { currentNotices, isLoading, error } = useSelector(selectCurrentObj);
-  // const { _id } = useSelector(selectUser);
-  // const favoriteList = useSelector(selectFavoriteList);
-  // // const { _id: currentID } = currentNotices;
-  // const addOwnToNotice = () => {
-  //   if (_id === currentNotices.owner) {
-  //     console.log('owner true', { ...currentNotices, own: true });
-  //     return { ...currentNotices, own: true };
-  //   }
-  //   console.log('owner false', { ...currentNotices, own: false });
-  //   return { ...currentNotices, own: false };
-  // };
-  // const noticeWithOwn = addOwnToNotice();
-  // const addFavoriteToNotice = () => {
-  //   if (favoriteList.findIndex(noticeWithOwn._id)) {
-  //     return { ...noticeWithOwn, favorite: true };
-  //   }
-  //   return { ...noticeWithOwn, favorite: false };
-  // };
+  // const { isLoggedIn } = useAuth();
+
+  // // const { pathname } = useLocation();
+  // const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   console.log('useEffect in NoticePage');
+  //   navigate('/notices/sell', { replace: true });
+  //   // if (firstRender) {
+  //   //   console.log('first render');
+  //   //   navigate('/notices/sell', { replace: true });
+  //   // console.log('fetchNotices from NoticePage {category: /notices/sell}');
+  //   // dispatch(fetchNotices({ category: '/notices/sell' }));
+
+  //   // if (isLoggedIn) {
+  //   //   console.log('fetchFavorite() from NoticePage');
+  //   //   dispatch(fetchFavorite());
+  //   // }
+  // }, []);
   return (
     <>
       <Helmet>
@@ -48,16 +53,6 @@ const NoticesPage = () => {
         <NoticesSearch />
         <NoticesCategoriesNav />
         <NoticesGallary />
-        {/* {error && <div>error</div>}
-        {isLoading && <Spinner />}
-        {currentNotices && !isLoading && (
-          <Modal
-            // title={'notice'}
-            type={'info'}
-            onClose={toggleModal}
-            children={<NoticeInfoCard {...addFavoriteToNotice()} />}
-          ></Modal>
-        )} */}
       </SectionContainer>
 
       {/* <Suspense fallback={<p>Loading...</p>}>

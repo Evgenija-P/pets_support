@@ -86,10 +86,18 @@ export const noticesSlice = createSlice({
       const index = state.noticesList.findIndex(
         notices => notices.id === action.payload
       );
+
       state.noticesList.splice(index, 1);
     },
     setSearch(state, action) {
       state.search = action.payload;
+    },
+    deleteNotice(state, action) {
+      const index = state.noticesList.findIndex(
+        notices => notices.id === action.payload
+      );
+
+      state.noticesList.splice(index, 1);
     },
   },
 
@@ -124,6 +132,11 @@ export const noticesSlice = createSlice({
       });
   },
 });
-export const { setCategory, setPage, deletefavoriteNotice, setSearch } =
-  noticesSlice.actions;
+export const {
+  setCategory,
+  setPage,
+  deletefavoriteNotice,
+  setSearch,
+  deleteNotice,
+} = noticesSlice.actions;
 export const noticesReducer = noticesSlice.reducer;

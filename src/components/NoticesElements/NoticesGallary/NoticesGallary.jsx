@@ -27,8 +27,6 @@ const NoticesGallary = () => {
     isLoading: isLoadingCurrent,
     error: errorCurrent,
   } = useSelector(selectCurrentObj);
-  // const { _id } = useSelector(selectUser);
-  // const favoriteList = useSelector(selectFavoriteList);
   const { pathname } = useLocation();
   const {
     page: currentPage,
@@ -38,60 +36,77 @@ const NoticesGallary = () => {
     isLoading: isLoadingNotices,
     error: errorNotices,
     noticesList,
-    category,
   } = useSelector(selectNoticesObj);
 
   const { isLoggedIn } = useAuth();
 
   const dispatch = useDispatch();
   const firstRender = useRef(true);
-  // const { pathname: category } = useLocation();
+
   const navigate = useNavigate();
 
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   if (firstRender.current) {
-  //     console.log('first render');
-  //   }
-  //   firstRender.current = false;
-  //   console.log('render');
-  // });
-
-  // useEffect(() => {
-  //   console.log('useEffect[]');
-  //   if (firstRender) {
-  //     return;
-  //   }
-  //   if (isLoggedIn) {
-  //     dispatch(fetchFavorite());
-  //   }
-  //   // dispatch(setCategory(category));
-
-  //   dispatch(fetchNotices({ category: '/notices/sell' }));
-  //   navigate('/notices/sell', { replace: true });
-  // }, []);
-
-  //////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
-    console.log('useEffect [category, isLoggedIn, search]');
-    if (firstRender) {
-      if (isLoggedIn) {
-        dispatch(fetchFavorite());
-      }
-      dispatch(fetchNotices({ category: '/notices/sell' }));
+    if (firstRender.current) {
+      console.log('first render');
+      console.log('useEffect in gallary Navigate ');
       navigate('/notices/sell', { replace: true });
       firstRender.current = false;
       return;
     }
-    if (isLoggedIn) {
-      dispatch(fetchFavorite({ search }));
+
+    console.log('render');
+  });
+
+  // useEffect(() => {
+  //   // if (isLoggedIn) {
+  //   //   dispatch(fetchFavorite());
+  //   // }
+
+  //   navigate('/notices/sell', { replace: true });
+  //   dispatch(fetchNotices({ category: '/notices/sell' }));
+  // }, []);
+
+  //////////////////////////////////////////////////////////////////////////////////////////
+  // useEffect(() => {
+  //   console.log('useEffect in gallary Navigate ');
+  //   navigate('/notices/sell', { replace: true });
+  //   // if (firstRender) {
+  //   //   console.log('first render');
+  //   //   navigate('/notices/sell', { replace: true });
+  //   // console.log('fetchNotices from NoticePage {category: /notices/sell}');
+  //   // dispatch(fetchNotices({ category: '/notices/sell' }));
+
+  //   // if (isLoggedIn) {
+  //   //   console.log('fetchFavorite() from NoticePage');
+  //   //   dispatch(fetchFavorite());
+  //   // }
+  // }, []);
+  useEffect(() => {
+    // if (isLoggedIn) {
+    //   console.log('IsLog fetchFavorite({ search } in Gallary');
+    //   dispatch(fetchFavorite({ search }));
+    // }
+    // dispatch(setCategory(pathname));
+    if (!firstRender.current) {
+      console.log(
+        'fetchNotices({ category: pathname, search }',
+        pathname,
+        search
+      );
+      dispatch(fetchNotices({ category: pathname, search }));
     }
-    dispatch(setCategory(pathname));
-    dispatch(fetchNotices({ category: pathname, search }));
-  }, [dispatch, pathname, isLoggedIn, search]);
+  }, [dispatch, pathname, search]);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      console.log('IsLog fetchFavorite() in Gallary');
+      dispatch(fetchFavorite({}));
+    }
+  }, [dispatch, isLoggedIn]);
+
   //////////////////////////////////////////////////////////////////////////////////////////////
   const OnPagination = page => {
-    dispatch(fetchNotices({ category, page, search }));
+    dispatch(fetchNotices({ category: pathname, page, search }));
   };
   const countPages = Math.ceil(totalHits / limit);
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -100,8 +115,6 @@ const NoticesGallary = () => {
     dispatch(setCurrentNotices());
   };
 
-  // const { _id: currentID } = currentNotices;
-  //
   return (
     <div>
       {isLoadingCurrent && isLoadingNotices && <Spinner />}

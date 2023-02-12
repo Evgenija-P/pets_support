@@ -36,12 +36,12 @@ import { deletefavoriteNotice } from '../../../redux/notices/noticesSlice';
 import { selectUser } from '../../../redux/auth/selectors.js';
 // import { display, height } from '@mui/system';
 import { getNoticesById } from '../../../redux/current/operations ';
-// import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import {
   addToFavorite,
   removeFromFavorite,
 } from '../../../redux/favorite/operations ';
-//import { deleteNotices } from '../../../redux/notices/operations ';
+import { deleteNotices } from '../../../redux/notices/operations ';
 
 // import LearnMoreButton from '../NoticesDetailsCard/NoticesButton/NoticesButton';
 
@@ -50,7 +50,7 @@ const NoticesCategoriesListSecond = () => {
   const favorite = useSelector(selectFavoriteList);
   const { _id } = useSelector(selectUser);
   const dispatch = useDispatch();
-  const { category } = useSelector(selectNoticesObj);
+  const { pathname } = useLocation();
   const { isLoggedIn } = useAuth();
   let noticesUpdated = [];
   if (isLoggedIn) {
@@ -64,7 +64,9 @@ const NoticesCategoriesListSecond = () => {
   const onFavoriteToggle = (_id, favorite) => {
     if (favorite) {
       dispatch(removeFromFavorite(_id));
-      if (category === '/notices/favorite') {
+      console.log('location', pathname);
+      if (pathname === '/notices/favorite') {
+        console.log('delete', _id);
         dispatch(deletefavoriteNotice(_id));
       }
 
@@ -118,7 +120,7 @@ const NoticesCategoriesListSecond = () => {
             <NoticesDescription>
               <NoticesTitle>{title}</NoticesTitle>
               <NoticesTags>
-                {/* <NoticesTag>id: {_id}</NoticesTag> */}
+                <NoticesTag>id: {_id}</NoticesTag>
                 <NoticesTag>Breed: {breed}</NoticesTag>
                 <NoticesTag>Place: {location}</NoticesTag>
                 <NoticesTag>Age: {age}</NoticesTag>
@@ -155,6 +157,11 @@ const NoticesCategoriesListSecond = () => {
               {!isLoggedIn && (
                 <NoticesButton onClick={onFavoriteNotAuth}>
                   add to favorite
+                </NoticesButton>
+              )}
+              {isOwner && isLoggedIn && (
+                <NoticesButton onClick={() => dispatch(deleteNotices(_id))}>
+                  Delete
                 </NoticesButton>
               )}
             </NoticesDescription>

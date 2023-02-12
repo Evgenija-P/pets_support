@@ -20,7 +20,7 @@ const NoticesCategoriesNav = ({ notices }) => {
     setIsUnauthorizeModalShown(prevState => !prevState);
   }
 
-  console.log('isLoggedIn', isLoggedIn);
+  // console.log('isLoggedIn', isLoggedIn);
 
   return (
     <NoticesCategoriesContainer>
