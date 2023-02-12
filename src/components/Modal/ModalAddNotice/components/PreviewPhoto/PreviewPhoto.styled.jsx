@@ -1,11 +1,17 @@
 import styled from '@emotion/styled';
+import { colors, media } from '../../../../../styles/stylesLayout';
 
 export const Container = styled.div`
   position: relative;
-  width: 150px;
-  height: 150px;
-  border-radius: 10px;
+  width: 140px;
+  height: 140px;
+  margin-top: 8px;
+  border-radius: 20px;
   overflow: hidden;
+
+  ${media.tabletAndDesktop} {
+    margin-top: 12px;
+  }
 `;
 
 export const Photo = styled.img`
@@ -17,11 +23,15 @@ export const Photo = styled.img`
 export const DelBtn = styled.button`
   position: absolute;
   cursor: pointer;
-  top: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
   right: 5px;
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
+  border: 1px solid ${colors.accent};
 
-  background-color: tomato;
+  background-color: ${colors.background};
 `;

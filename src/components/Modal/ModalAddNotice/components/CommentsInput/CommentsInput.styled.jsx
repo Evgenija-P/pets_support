@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { colors } from '../../../../../styles/stylesLayout';
+import { colors, media } from '../../../../../styles/stylesLayout';
 
 export const Container = styled.div`
   position: relative;
@@ -9,25 +9,33 @@ export const Container = styled.div`
 `;
 
 export const Label = styled.label`
-  font-size: 24px;
-  line-height: 26.5px;
-  color: #000000;
+  font-size: 18px;
+  line-height: 1.47;
+  color: ${colors.black};
+
+  ${media.tabletAndDesktop} {
+    font-size: 24px;
+    line-height: 1.1;
+  }
 `;
 
 export const CommentsField = styled.textarea`
-  height: 113px;
-  border-radius: 30px;
-  margin-top: 12px;
-  padding: 16px 18px;
-  font-size: 16px;
+  height: 137px;
+  margin-top: 8px;
+  padding: 12px 14px;
+  font-size: 14px;
   border-radius: 20px;
   border: 1px solid rgba(245, 146, 86, 0.5);
-  background-color: #fdf7f2;
+  background-color: ${colors.background};
 
   ::placeholder {
-    font-size: 16px;
-    line-height: 26.5px;
+    font-size: 14px;
+    line-height: 1.37;
     color: rgba(17, 17, 17, 0.6);
+    ${media.tabletAndDesktop} {
+      font-size: 16px;
+      line-height: 1.65;
+    }
   }
 `;
 
