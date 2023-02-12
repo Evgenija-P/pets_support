@@ -10,7 +10,7 @@ import { NoticesCategoriesContainer } from './NoticesCategoriesNav.styled';
 
 const NoticesCategoriesNav = ({ notices }) => {
   const { isLoggedIn } = useAuth();
-  const [isAddNoticeModalShown, setisAddNoticeModalShown] = useState(true);
+  const [isAddNoticeModalShown, setisAddNoticeModalShown] = useState(false);
   const [, setIsUnauthorizeModalShown] = useState(false);
 
   function toggleAddNoticeModal() {
