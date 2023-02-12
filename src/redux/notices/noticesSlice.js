@@ -3,7 +3,7 @@ import {
   fetchNotices,
   addNotices,
   deleteNotices,
-
+  getNoticesById,
   // addToFavoriteNotices,
   // removeFromFavoriteNotices,
   // fetchFavoriteNotices,
@@ -13,12 +13,14 @@ import {
 // import storage from 'redux-persist/lib/storage';
 const noticesInitialState = {
   noticesList: [],
+  selectedNotice: null,
   page: 1,
   totalHits: 0,
   isLoading: false,
   isAdding: false,
   error: null,
-  category: '/notices/',
+  // category: '/notices/',
+  // category: '',
   search: '',
   limit: 20,
 };
@@ -27,6 +29,7 @@ const extraActions = [
   fetchNotices,
   addNotices,
   deleteNotices,
+  getNoticesById,
 
   // addToFavoriteNotices,
   // removeFromFavoriteNotices,
@@ -62,6 +65,9 @@ const handleDeleteNoticesSuccses = (state, action) => {
   );
   state.noticesList.splice(index, 1);
 };
+const handleGetNoticesByIdSuccses = (state, action) => {
+  state.selectedNotice = action.payload;
+};
 
 // const handleRemoveFromFavoriteNoticesSuccses = (state, action) => {
 //   state.favoriteNoticesList = action.payload;
@@ -85,10 +91,22 @@ export const noticesSlice = createSlice({
       const index = state.noticesList.findIndex(
         notices => notices.id === action.payload
       );
+
       state.noticesList.splice(index, 1);
     },
     setSearch(state, action) {
       state.search = action.payload;
+    },
+    deleteNoticLoc(state, action) {
+      const index = state.noticesList.findIndex(
+        notices => notices.id === action.payload
+      );
+
+      state.noticesList.splice(index, 1);
+    },
+
+    setSelectedNotice(state, action) {
+      state.selectedNotice = null;
     },
   },
 
@@ -102,10 +120,7 @@ export const noticesSlice = createSlice({
 
       .addCase(deleteNotices.fulfilled, handleDeleteNoticesSuccses)
 
-      // .addCase(
-      //   removeFromFavoriteNotices.fulfilled,
-      //   handleRemoveFromFavoriteNoticesSuccses
-      // )
+      .addCase(getNoticesById.fulfilled, handleGetNoticesByIdSuccses)
       // .addCase(
       //   fetchFavoriteNotices.fulfilled,
       //   handleFetchFavoriteNoticesSuccses
@@ -123,6 +138,12 @@ export const noticesSlice = createSlice({
       });
   },
 });
-export const { setCategory, setPage, deletefavoriteNotice, setSearch } =
-  noticesSlice.actions;
+export const {
+  setCategory,
+  setPage,
+  deletefavoriteNotice,
+  setSearch,
+  deleteNoticLoc,
+  setSelectedNotice,
+} = noticesSlice.actions;
 export const noticesReducer = noticesSlice.reducer;
