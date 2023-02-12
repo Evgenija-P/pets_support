@@ -8,10 +8,16 @@ const getIsOwnNotice = (_id, notice) => {
 };
 
 const getIsFavoriteNotice = (favoriteList, notice) => {
-  if (favoriteList.findIndex(favorite => favorite === notice._id)) {
-    return { ...notice, favorite: true };
+  console.log(
+    'getIsFavorite',
+    favoriteList.findIndex(favorite => favorite === notice._id)
+  );
+  if (favoriteList.findIndex(favorite => favorite === notice._id) === -1) {
+    console.log('getIsFavoriteNotice', { ...notice, favorite: true });
+    return { ...notice, favorite: false };
   }
-  return { ...notice, favorite: false };
+  console.log('getIsFavoriteNotice', { ...notice, favorite: false });
+  return { ...notice, favorite: true };
 };
 
 export { getIsOwnNotice, getIsFavoriteNotice };

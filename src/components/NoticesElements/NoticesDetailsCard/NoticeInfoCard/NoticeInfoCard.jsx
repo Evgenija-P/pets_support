@@ -32,7 +32,7 @@ import {
   selectCurrentObj,
   selectCurrent,
 } from '../../../../redux/current/selectors';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 // import { selectFavoriteList } from '../../../redux/favorite/selectors';
 // import { deletefavoriteNotice } from '../../../redux/notices/noticesSlice';
 // import { selectUser } from '../../../../redux/auth/selectors';
@@ -61,11 +61,12 @@ const NoticeInfoCard = () => {
   const currentNotices = useSelector(selectCurrent);
   const { _id: userId } = useSelector(selectUser);
   const favoriteList = useSelector(selectFavoriteList);
+
   const noticeReduced = getIsFavoriteNotice(
     favoriteList,
     getIsOwnNotice(userId, currentNotices)
   );
-
+  console.log('noticeReduced', noticeReduced);
   ////////////////////////////////////////////////////////////////////
   const {
     _id,
@@ -99,6 +100,17 @@ const NoticeInfoCard = () => {
   const onToggle = () => {
     setIsfavorite(prev => !prev);
   };
+  useEffect(() => {
+    if (Isfavorite) {
+      dispatch(removeFromFavorite(_id));
+
+      return;
+    }
+    dispatch(addToFavorite(_id));
+    // return () => {
+    //   cleanup
+    // };
+  }, [Isfavorite]);
   return (
     <>
       <NoticesBox>
