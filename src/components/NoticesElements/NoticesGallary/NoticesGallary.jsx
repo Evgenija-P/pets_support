@@ -48,14 +48,14 @@ const NoticesGallary = () => {
 
   useEffect(() => {
     if (firstRender.current) {
-      // console.log('first render');
+      console.log('first render');
       // console.log('useEffect in gallary Navigate ');
       navigate('/notices/sell', { replace: true });
       firstRender.current = false;
       return;
     }
 
-    // console.log('render');
+    console.log('render');
   });
 
   // useEffect(() => {
