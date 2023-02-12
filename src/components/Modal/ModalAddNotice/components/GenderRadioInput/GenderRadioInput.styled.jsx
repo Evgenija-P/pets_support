@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { media, colors, fontWeights } from '../../../../../styles/stylesLayout';
 
 export const Input = styled.input`
   position: absolute;
@@ -23,16 +24,36 @@ export const Labellll = styled.label`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-end;
-  height: 100px;
-  color: ${p => (p.active ? 'tomato' : 'black')};
-
-  /* border: 1px solid teal; */
+  margin-top: 16px;
+  color: ${p => (p.active ? colors.accent : colors.black)};
 
   :hover,
-  :focus {
-    color: tomato;
+  :focus,
+  :active {
+    color: ${colors.accent};
+  }
+
+  ${media.tabletAndDesktop} {
+    margin-top: 20px;
   }
 `;
 export const Text = styled.span`
-  font-size: 20px;
+  margin-top: 12px;
+  font-size: 18px;
+  font-weight: ${fontWeights.regular};
+
+  ${media.tabletAndDesktop} {
+    font-size: 20px;
+    margin-top: 20px;
+  }
+`;
+
+export const Wrap = styled.div`
+  width: 40px;
+  height: 40px;
+
+  ${media.tabletAndDesktop} {
+    width: 60px;
+    height: 60px;
+  }
 `;

@@ -3,12 +3,16 @@ import UserMenu from '../UserMenu';
 import AuthNav from '../AuthNav';
 import { Buttons } from './AppBar.styled';
 
-const AppBar = () => {
-  const { isLoggedIn } = useAuth();
-	// const isLoggedIn  = null;
+
+const AppBar = ({ onClick }) => {
+
+	const { isLoggedIn } = useAuth();
+	const handleOnClick = (nav) => {
+		onClick(nav);
+	}
 
   return (
-    <Buttons>
+    <Buttons onClick={handleOnClick}>
       {isLoggedIn ? <UserMenu /> : <AuthNav />}
     </Buttons>
   );

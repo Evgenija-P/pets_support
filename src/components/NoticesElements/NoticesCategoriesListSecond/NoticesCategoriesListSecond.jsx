@@ -63,6 +63,12 @@ const NoticesCategoriesListSecond = () => {
   }
 
   const onFavoriteToggle = (_id, favorite) => {
+    if (!isLoggedIn) {
+      toast.info('You must login or register to add to favorites', {
+        optionsToast,
+      });
+      return;
+    }
     if (favorite) {
       dispatch(removeFromFavorite(_id));
       // console.log('removeFromFavorite', _id);
