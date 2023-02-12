@@ -81,7 +81,7 @@ const LoginForm = () => {
             initialValues={formik.initialValues}
             validationSchema={loginSchema}
           >
-            <FormLogin onSubmit={formik.handleSubmit} autoComplete="on">
+            <FormLogin onSubmit={formik.handleSubmit} autoComplete="off">
               <Title>Login</Title>
 
               <FieldLogin>
