@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/pets_support/static/css/main.c5a3bebb.css",
-    "main.js": "/pets_support/static/js/main.a983ddf0.js",
+    "main.js": "/pets_support/static/js/main.b18419c9.js",
     "static/js/79.8d501fd2.chunk.js": "/pets_support/static/js/79.8d501fd2.chunk.js",
     "static/js/291.8c5a297a.chunk.js": "/pets_support/static/js/291.8c5a297a.chunk.js",
     "static/js/157.2fe51a08.chunk.js": "/pets_support/static/js/157.2fe51a08.chunk.js",
-    "static/js/345.77845750.chunk.js": "/pets_support/static/js/345.77845750.chunk.js",
+    "static/js/727.4764966d.chunk.js": "/pets_support/static/js/727.4764966d.chunk.js",
     "static/js/403.14babbcf.chunk.js": "/pets_support/static/js/403.14babbcf.chunk.js",
     "static/js/518.bcd8f31b.chunk.js": "/pets_support/static/js/518.bcd8f31b.chunk.js",
     "static/js/504.874a5735.chunk.js": "/pets_support/static/js/504.874a5735.chunk.js",
@@ -24,21 +24,22 @@
     "static/media/male.svg": "/pets_support/static/media/male.738c9ca9680a0bee2db2bd089ee92c0f.svg",
     "static/media/female.svg": "/pets_support/static/media/female.603c34c0f688d1b687cbff7c0c94bd6f.svg",
     "static/media/noticesFavoriteIcon.svg": "/pets_support/static/media/noticesFavoriteIcon.91b9a8d2e8596f3a8595bd2bfc6db6c8.svg",
+    "static/media/delete.svg": "/pets_support/static/media/delete.4c3eecd5989a97dff70cf5f768ec25a2.svg",
     "static/media/petButtonDelete.svg": "/pets_support/static/media/petButtonDelete.1d417b47d1d0cafa8d26c0e0c64d614d.svg",
     "static/media/favoriteNotices.svg": "/pets_support/static/media/favoriteNotices.d6b46c54bee5576718110a2e473a7af0.svg",
     "index.html": "/pets_support/index.html",
-    "static/media/heartFavorite.svg": "/pets_support/static/media/heartFavorite.052097893e7d7e1e4dd43c105f2d11a4.svg",
+    "static/media/heartFavorite.svg": "/pets_support/static/media/heartFavorite.7b7f13e94c18b23c6433167b7704c225.svg",
     "static/media/searchIButtonIcon.svg": "/pets_support/static/media/searchIButtonIcon.c5d78e4f4df9eaf60c0cb698cb86be03.svg",
     "static/media/Band.svg": "/pets_support/static/media/Band.7cc93b9dea0fcf5d58d972511098e302.svg",
     "static/media/addNoticeIcon.svg": "/pets_support/static/media/addNoticeIcon.e8d0628a1c3e012892b19d6a6f82becf.svg",
     "static/media/addPetIcon.svg": "/pets_support/static/media/addPetIcon.cc688de0c183f6ff112b012b678a7997.svg",
     "static/media/close_menu.svg": "/pets_support/static/media/close_menu.83d26970ecb6bec9b0eb04bec91afacb.svg",
     "main.c5a3bebb.css.map": "/pets_support/static/css/main.c5a3bebb.css.map",
-    "main.a983ddf0.js.map": "/pets_support/static/js/main.a983ddf0.js.map",
+    "main.b18419c9.js.map": "/pets_support/static/js/main.b18419c9.js.map",
     "79.8d501fd2.chunk.js.map": "/pets_support/static/js/79.8d501fd2.chunk.js.map",
     "291.8c5a297a.chunk.js.map": "/pets_support/static/js/291.8c5a297a.chunk.js.map",
     "157.2fe51a08.chunk.js.map": "/pets_support/static/js/157.2fe51a08.chunk.js.map",
-    "345.77845750.chunk.js.map": "/pets_support/static/js/345.77845750.chunk.js.map",
+    "727.4764966d.chunk.js.map": "/pets_support/static/js/727.4764966d.chunk.js.map",
     "403.14babbcf.chunk.js.map": "/pets_support/static/js/403.14babbcf.chunk.js.map",
     "518.bcd8f31b.chunk.js.map": "/pets_support/static/js/518.bcd8f31b.chunk.js.map",
     "504.874a5735.chunk.js.map": "/pets_support/static/js/504.874a5735.chunk.js.map",
@@ -48,6 +49,6 @@
   },
   "entrypoints": [
     "static/css/main.c5a3bebb.css",
-    "static/js/main.a983ddf0.js"
+    "static/js/main.b18419c9.js"
   ]
 }
