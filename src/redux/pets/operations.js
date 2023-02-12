@@ -38,7 +38,7 @@ export const addNewPet = createAsyncThunk(
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       console.log(res.data);
-      return res.data;
+      return res.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
