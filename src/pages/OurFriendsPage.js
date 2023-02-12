@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet';
 import React from 'react';
+import SectionContainer from '../components/SectionContainer';
 
 import FriendsList from '../components/Friends/FriendsList/FriendsList';
 
@@ -9,7 +10,9 @@ const OurFriendsPage = () => {
       <Helmet>
         <title>OurFriendsPage</title>
       </Helmet>
-      <FriendsList />
+      <SectionContainer title="Our friends">
+        <FriendsList />
+      </SectionContainer>
     </div>
   );
 };

@@ -9,7 +9,6 @@ import defaultImage from '../../../img/default.jpg';
 import Spinner from '../../Spinner/Spinner';
 import {
   FriendsContainer,
-  FriendsTitle,
   FriendsError,
   FriendsItem,
   FriendsData,
@@ -49,7 +48,6 @@ const FriendsList = () => {
         <Spinner />
       ) : (
         <>
-          <FriendsTitle>Our friends</FriendsTitle>
           <FriendsContainer>
             {friendsItems.map(item => (
               <FriendsItem key={nanoid()}>
