@@ -3,7 +3,11 @@ import ClockLoader from 'react-spinners/ClockLoader';
 import { toast } from 'react-toastify';
 
 import { deletePet } from '../../../redux/pets/operations';
-import { selectPets, selectIsDeleting } from '../../../redux/pets/selectors';
+import {
+  selectPets,
+  selectIsDeleting,
+  selectPetToDeleteId,
+} from '../../../redux/pets/selectors';
 import { optionsToast, colors } from '../../../styles/stylesLayout';
 
 import {
@@ -21,6 +25,10 @@ import notFoundNoticesImage from '../../../img/notFoundNoticesImage.jpg';
 const PetsList = () => {
   const { pets } = useSelector(selectPets);
   const isDeleting = useSelector(selectIsDeleting);
+  const petToDeleteId = useSelector(selectPetToDeleteId);
+
+  console.log('petToDeleteID', petToDeleteId);
+
   const dispatch = useDispatch();
 
   function handleDeletePet(petId) {
@@ -44,9 +52,9 @@ const PetsList = () => {
           <PetDescription>
             <PetButtonDelete
               onClick={() => handleDeletePet(_id)}
-              disabled={isDeleting}
+              disabled={isDeleting && petToDeleteId === _id}
             >
-              {isDeleting ? (
+              {isDeleting && petToDeleteId === _id ? (
                 <ClockLoader size={25} color={colors.accent} />
               ) : (
                 <PetButtonIconDelete />
