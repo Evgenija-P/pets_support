@@ -148,7 +148,7 @@ const NoticesCategoriesListSecond = () => {
                 Learn More
               </NoticesButton>
 
-              {!favorite && isLoggedIn && (
+              {/* {!favorite && isLoggedIn && (
                 <NoticesButton onClick={() => dispatch(addToFavorite(_id))}>
                   add to favorite
                 </NoticesButton>
@@ -164,7 +164,7 @@ const NoticesCategoriesListSecond = () => {
                 <NoticesButton onClick={onFavoriteNotAuth}>
                   add to favorite
                 </NoticesButton>
-              )}
+              )} */}
               {isOwner && isLoggedIn && (
                 <NoticesButton onClick={() => dispatch(deleteNotices(_id))}>
                   Delete
