@@ -1,13 +1,23 @@
 import styled from '@emotion/styled';
+import { colors, media } from '../../../../../styles/stylesLayout';
 
 export const Container = styled.div`
-  margin-top: 28px;
+  margin-top: 16px;
+
+  ${media.tabletAndDesktop} {
+    margin-top: 28px;
+  }
 `;
 
 export const Label = styled.div`
-  font-size: 24px;
-  line-height: 26.5px;
-  color: #000000;
+  font-size: 18px;
+  line-height: 1.47;
+  color: ${colors.black};
+
+  ${media.tabletAndDesktop} {
+    font-size: 24px;
+    line-height: 1.1;
+  }
 `;
 
 export const Input = styled.input`
@@ -34,12 +44,18 @@ export const UploadBtn = styled.label`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  width: 140px;
-  height: 140px;
-  margin-top: 12px;
-  border-radius: 10px;
+  width: 116px;
+  height: 116px;
+  margin-top: 8px;
+  border-radius: 20px;
 
-  background-color: #fdf7f2;
+  background-color: ${colors.background};
+
+  ${media.tabletAndDesktop} {
+    width: 140px;
+    height: 140px;
+    margin-top: 12px;
+  }
 `;
 
 export const Error = styled.span`
