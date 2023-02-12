@@ -177,7 +177,7 @@ export const NoticesButton = styled.button`
   font-size: 16px;
   line-height: 1.375;
   letter-spacing: 0.04em;
-
+  margin-bottom: 10px;
   text-align: center;
   color: ${colors.accent};
 

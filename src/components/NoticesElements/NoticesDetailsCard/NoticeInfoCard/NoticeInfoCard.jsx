@@ -18,16 +18,20 @@ import {
 } from './NoticeInfoCard.styled';
 
 import React from 'react';
-
+import { onFavoriteNotAuth } from '../../../../helpers/noticesHelpers';
 import { ReactComponent as HeartFavorite } from '../../../../img/icons/heartFavorite.svg';
 import defaultPhoto from '../../../../img/default.jpg';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // import useAuth from '../../../../hooks/useAuth';
 // import {
 //   selectNotices,
 //   // selectFavoriteNotices,
 //   selectNoticesObj,
-// } from '../../../redux/notices/selectors';
+// } from '../../../../redux/notices/selectors';
+import {
+  selectCurrentObj,
+  selectCurrent,
+} from '../../../../redux/current/selectors';
 // import { selectFavoriteList } from '../../../redux/favorite/selectors';
 // import { deletefavoriteNotice } from '../../../redux/notices/noticesSlice';
 // import { selectUser } from '../../../../redux/auth/selectors';
@@ -36,37 +40,48 @@ import { useDispatch } from 'react-redux';
 // import { useLocation } from 'react-router-dom';
 import { deleteNotices } from '../../../../redux/notices/operations ';
 import { setCurrentNotices } from '../../../../redux/current/currentSlice';
-import useAuth from '../../../../hooks/useAuth';
+import { selectUser } from '../../../../redux/auth/selectors';
+import { selectFavoriteList } from '../../../../redux/favorite/selectors';
+import useAuth from '../../../../hooks/useAuth.js';
 import {
-  addToFavorite,
-  removeFromFavorite,
-} from '../../../../redux/favorite/operations ';
-const NoticeInfoCard = ({
-  _id,
-  petImageURL,
-  birthdate,
-  breed,
-  categoryName,
-  comments,
-  email,
-  name,
-  phone,
-  sex,
-  title,
-  location,
-  own,
-  favorite,
-}) => {
+  getIsOwnNotice,
+  getIsFavoriteNotice,
+} from '../../../../helpers/currentHelpers';
+
+const NoticeInfoCard = () => {
   // const { _id: user } = useSelector(selectUser);
   const dispatch = useDispatch();
-  const callNumber = 'tel:' + phone;
 
+  const { isLoggedIn } = useAuth();
+  const currentNotices = useSelector(selectCurrent);
+  const { _id: userId } = useSelector(selectUser);
+  const favoriteList = useSelector(selectFavoriteList);
+  // const own = true;
+  // const favorite = true;
+  const noticeReduced = getIsFavoriteNotice(
+    favoriteList,
+    getIsOwnNotice(userId, currentNotices)
+  );
+  const {
+    _id,
+    petImageURL,
+    birthdate,
+    breed,
+    categoryName,
+    comments,
+    email,
+    name,
+    phone,
+    sex,
+    title,
+    location,
+    own,
+    favorite,
+  } = noticeReduced;
+  const callNumber = 'tel:' + phone;
   return (
     <>
       <NoticesBox>
-        <NoticesCategory>
-          <span>{categoryName}</span>
-        </NoticesCategory>
         <NoticesCategory>
           <span>{categoryName}</span>
         </NoticesCategory>
@@ -118,8 +133,32 @@ const NoticeInfoCard = ({
             Delete
           </NoticesButtonDelete>
         )}
-        <NoticesButton>Add to</NoticesButton>
-        <NoticesButton>Contact</NoticesButton>
+        {/* {!favorite && isLoggedIn && (
+          <NoticesButtonFavorite>
+            Add to
+            <HeartIcon>
+              <HeartFavorite />
+            </HeartIcon>
+          </NoticesButtonFavorite>
+        )} */}
+
+        {favorite && isLoggedIn && (
+          <NoticesButtonFavorite>
+            Remove from
+            <HeartIcon>
+              <HeartFavorite />
+            </HeartIcon>
+          </NoticesButtonFavorite>
+        )}
+        {!isLoggedIn && (
+          <NoticesButtonFavorite onClick={onFavoriteNotAuth}>
+            Add to
+            <HeartIcon>
+              <HeartFavorite />
+            </HeartIcon>
+          </NoticesButtonFavorite>
+        )}
+        <NoticesButtonContact href={callNumber}>Contact</NoticesButtonContact>
       </ButtonBlock>
     </>
   );

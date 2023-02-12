@@ -18,9 +18,9 @@ import {
   getOwnerNotices,
   getPetAge,
   getUserFavoriteNotices,
+  onFavoriteNotAuth,
 } from '../../../helpers/noticesHelpers';
-import { toast } from 'react-toastify';
-import { optionsToast } from '../../../styles/stylesLayout';
+
 import notFoundNoticesImage from '../../../img/notFoundNoticesImage.jpg';
 // import { PER_PAGE } from '../../../redux/notices/operations ';
 // import { useSelector, useDispatch } from 'react-redux';
@@ -73,9 +73,9 @@ const NoticesCategoriesListSecond = () => {
     dispatch(addToFavorite(_id));
   };
 
-  const onFavoriteNotAuth = () => {
-    toast.warning('You need Login first....', optionsToast);
-  };
+  // const onFavoriteNotAuth = () => {
+  //   toast.warning('You need Login first....', optionsToast);
+  // };
 
   return (
     <NoticesList>
