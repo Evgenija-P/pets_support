@@ -29,8 +29,11 @@ export const NoticesItem = styled.li`
   box-shadow: 7px 4px 15px 0px ${colors.shadow};
 
   overflow: hidden;
-  object-fit: cover;
+
+  background-color: ${colors.white};
+
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
   &:hover {
     transform: scale(1.03);
   }
@@ -138,7 +141,6 @@ export const NoticesImage = styled.img`
 
 export const NoticesDescription = styled.div`
   padding: 20px 16px 32px 16px;
-  background-color: ${colors.white};
 `;
 
 export const NoticesTitle = styled.h2`
@@ -151,15 +153,14 @@ export const NoticesTitle = styled.h2`
 `;
 
 export const NoticesTags = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-
+  min-height: 100px;
   margin-bottom: 50px;
 `;
 
-export const NoticesTag = styled.span`
-  display: inline-block;
+export const NoticesTag = styled.p`
+  :not(:last-child) {
+    margin-bottom: 8px;
+  }
 
   font-weight: ${fontWeights.medium};
   font-size: 16px;
