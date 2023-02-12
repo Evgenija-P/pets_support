@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import * as styled from './PreviewPhoto.styled';
 
-const PreviewPhoto = ({ photo, onDeletePreview }) => {
+const PreviewPhoto = ({ label, photo, onDeletePreview }) => {
   const [preview, setPreview] = useState({});
 
   if (photo) {
@@ -11,7 +11,7 @@ const PreviewPhoto = ({ photo, onDeletePreview }) => {
   }
   return (
     <styled.Container>
-      <styled.Label>Load the pet's image</styled.Label>
+      <styled.Label>{label}</styled.Label>
       <styled.Wrapper>
         <styled.Photo src={preview} />
         <styled.DelBtn type="button" onClick={onDeletePreview}>

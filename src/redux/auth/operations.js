@@ -3,8 +3,8 @@ import { toast } from 'react-toastify';
 
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://petly-brs3.onrender.com/api';
-// axios.defaults.baseURL = 'http://localhost:3001/api';
+// axios.defaults.baseURL = 'https://petly-brs3.onrender.com/api';
+axios.defaults.baseURL = 'http://localhost:3001/api';
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
@@ -89,7 +89,8 @@ export const refreshUser = createAsyncThunk(
   }
 );
 
-export const addAvatar = createAsyncThunk('auth/addAvatar',
+export const addAvatar = createAsyncThunk(
+  'auth/addAvatar',
   async (credentials, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
@@ -104,11 +105,11 @@ export const addAvatar = createAsyncThunk('auth/addAvatar',
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
-
   }
 );
 
-export const updateUserInformation = createAsyncThunk('auth/updateUSerInformation',
+export const updateUserInformation = createAsyncThunk(
+  'auth/updateUSerInformation',
   async (credentials, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
@@ -124,4 +125,4 @@ export const updateUserInformation = createAsyncThunk('auth/updateUSerInformatio
       return thunkAPI.rejectWithValue(error.message);
     }
   }
-)
+);

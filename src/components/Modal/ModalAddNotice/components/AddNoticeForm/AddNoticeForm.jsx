@@ -31,9 +31,9 @@ const initialValues = {
   petImage: '',
 };
 
-const FIRST_STEP_FORM_FIELDS = ['title', 'name', 'birthDate', 'breed'];
-const NOTICE_CATEGORIES = ['lost/found', 'in good hands', 'sell'];
 const PET_GENDER = ['male', 'female'];
+const FIRST_STEP_FORM_FIELDS = ['title', 'name', 'birthDate', 'breed'];
+const NOTICE_CATEGORIES = ['for-free', 'lost-found', 'sell'];
 
 const AddNoticeForm = ({ onClose }) => {
   const dispatch = useDispatch();
@@ -129,7 +129,7 @@ const AddNoticeForm = ({ onClose }) => {
               <TextInput
                 label="Location"
                 name="location"
-                placeholder="Type location"
+                placeholder="City, region"
                 required
               />
               {values.categoryName === 'sell' && (
@@ -143,6 +143,7 @@ const AddNoticeForm = ({ onClose }) => {
 
               {values.petImage && !errors.petImage ? (
                 <PreviewPhoto
+                  label="Load the pet's image"
                   photo={values.petImage}
                   onDeletePreview={() => setFieldValue('petImage', '')}
                 />
@@ -151,6 +152,7 @@ const AddNoticeForm = ({ onClose }) => {
                   <FileInput
                     id="petImage"
                     name="petImage"
+                    label="Load the pet's image"
                     onChange={async ({ target }) => {
                       setFieldValue('petImage', target.files[0]);
                     }}
