@@ -32,6 +32,7 @@ import {
   selectCurrentObj,
   selectCurrent,
 } from '../../../../redux/current/selectors';
+import { useState } from 'react';
 // import { selectFavoriteList } from '../../../redux/favorite/selectors';
 // import { deletefavoriteNotice } from '../../../redux/notices/noticesSlice';
 // import { selectUser } from '../../../../redux/auth/selectors';
@@ -64,14 +65,6 @@ const NoticeInfoCard = () => {
     favoriteList,
     getIsOwnNotice(userId, currentNotices)
   );
-  const onFavoriteToggle = (_id, favorite) => {
-    if (favorite) {
-      dispatch(removeFromFavorite(_id));
-
-      return;
-    }
-    dispatch(addToFavorite(_id));
-  };
 
   ////////////////////////////////////////////////////////////////////
   const {
@@ -91,6 +84,21 @@ const NoticeInfoCard = () => {
     favorite,
   } = noticeReduced;
   const callNumber = 'tel:' + phone;
+  const [Isfavorite, setIsfavorite] = useState(favorite);
+  console.log('favorite', favorite);
+  console.log('Isfavorite', Isfavorite);
+
+  const onFavoriteToggle = (_id, favorite) => {
+    if (favorite) {
+      dispatch(removeFromFavorite(_id));
+
+      return;
+    }
+    dispatch(addToFavorite(_id));
+  };
+  const onToggle = () => {
+    setIsfavorite(prev => !prev);
+  };
   return (
     <>
       <NoticesBox>
@@ -145,9 +153,10 @@ const NoticeInfoCard = () => {
             Delete
           </NoticesButtonDelete>
         )}
-        {!favorite && isLoggedIn && (
+        {!Isfavorite && isLoggedIn && (
           <NoticesButtonFavorite
-            onClick={() => onFavoriteToggle(_id, favorite)}
+            onClick={onToggle}
+            // onClick={() => onFavoriteToggle(_id, Isfavorite)}
           >
             Add to
             <HeartIcon>
@@ -156,9 +165,10 @@ const NoticeInfoCard = () => {
           </NoticesButtonFavorite>
         )}
 
-        {favorite && isLoggedIn && (
+        {Isfavorite && isLoggedIn && (
           <NoticesButtonFavorite
-            onClick={() => onFavoriteToggle(_id, favorite)}
+            // onClick={() => onFavoriteToggle(_id, Isfavorite)}
+            onClick={onToggle}
           >
             Remove from
             <HeartIcon>

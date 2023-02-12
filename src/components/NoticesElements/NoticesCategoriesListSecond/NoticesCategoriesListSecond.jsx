@@ -14,6 +14,8 @@ import {
   NoticesFavorite,
   NoticesButtonFavoriteV2,
 } from './NoticesCategoriesListSecond.styled';
+import { toast } from 'react-toastify';
+import { optionsToast } from '../../..//styles/stylesLayout';
 import {
   getOwnerNotices,
   getPetAge,
@@ -29,20 +31,20 @@ import useAuth from '../../../hooks/useAuth.js';
 import {
   selectNotices,
   // selectFavoriteNotices,
-  selectNoticesObj,
+  // selectNoticesObj,
 } from '../../../redux/notices/selectors';
 import { selectFavoriteList } from '../../../redux/favorite/selectors';
-import { deletefavoriteNotice } from '../../../redux/notices/noticesSlice';
+// import { deletefavoriteNotice } from '../../../redux/notices/noticesSlice';
 import { selectUser } from '../../../redux/auth/selectors.js';
 // import { display, height } from '@mui/system';
 import { getNoticesById } from '../../../redux/current/operations ';
-import { useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 import {
   addToFavorite,
   removeFromFavorite,
 } from '../../../redux/favorite/operations ';
 import { deleteNotices } from '../../../redux/notices/operations ';
-import { deleteNoticLoc } from '../../../redux/notices/noticesSlice';
+// import { deleteNoticLoc } from '../../../redux/notices/noticesSlice';
 
 // import LearnMoreButton from '../NoticesDetailsCard/NoticesButton/NoticesButton';
 
@@ -51,7 +53,7 @@ const NoticesCategoriesListSecond = () => {
   const favorite = useSelector(selectFavoriteList);
   const { _id } = useSelector(selectUser);
   const dispatch = useDispatch();
-  const { pathname } = useLocation();
+  // const { pathname } = useLocation();
   const { isLoggedIn } = useAuth();
   let noticesUpdated = [];
   if (isLoggedIn) {
