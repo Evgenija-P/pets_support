@@ -36,7 +36,7 @@ const optionsToast = {
   pauseOnHover: true,
   draggable: true,
   progress: undefined,
-  theme: 'light',
+  theme: 'dark',
 };
 
 export { media, colors, fontWeights, optionsToast };
