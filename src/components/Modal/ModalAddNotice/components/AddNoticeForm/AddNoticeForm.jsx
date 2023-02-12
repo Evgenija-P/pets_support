@@ -31,7 +31,7 @@ const initialValues = {
   petImage: '',
 };
 
-const PET_GENDER = ['male', 'female'];
+const PET_GENDER = ['Male', 'Female'];
 const FIRST_STEP_FORM_FIELDS = ['title', 'name', 'birthDate', 'breed'];
 const NOTICE_CATEGORIES = ['for-free', 'lost-found', 'sell'];
 
@@ -80,8 +80,11 @@ const AddNoticeForm = ({ onClose }) => {
         <form onSubmit={handleSubmit}>
           {isFirstStep && (
             <div>
-              <NoticeCategories categories={NOTICE_CATEGORIES} />
+              <styled.Texts>
+                Please select an ad category and fill in all fields.
+              </styled.Texts>
 
+              <NoticeCategories categories={NOTICE_CATEGORIES} />
               <TextInput
                 label="Title of ad"
                 name="title"
@@ -99,7 +102,6 @@ const AddNoticeForm = ({ onClose }) => {
                 placeholder="dd.mm.yyyy"
               />
               <TextInput label="Breed" name="breed" placeholder="Type breed" />
-
               <styled.BtnGroup>
                 <styled.SecondaryBtn type="button" onClick={() => onClose()}>
                   Cancel

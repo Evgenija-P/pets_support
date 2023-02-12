@@ -1,34 +1,51 @@
 import styled from '@emotion/styled';
-import { colors } from '../../../../../styles/stylesLayout';
+import { colors, media } from '../../../../../styles/stylesLayout';
 
 export const Container = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-top: 28px;
+  margin-top: 16px;
+
+  ${media.tabletAndDesktop} {
+    margin-top: 28px;
+  }
 `;
 
 export const Label = styled.label`
-  font-size: 24px;
-  line-height: 26.5px;
-  color: #000000;
+  font-size: 18px;
+  line-height: 1.47;
+  color: ${colors.black};
+
+  ${media.tabletAndDesktop} {
+    font-size: 24px;
+    line-height: 1.1;
+  }
 `;
 
 export const Input = styled.input`
-  height: 48px;
-  border-radius: 30px;
-  margin-top: 12px;
-  padding-left: 16px;
-  padding-right: 16px;
+  height: 40px;
+  margin-top: 8px;
+  padding: 12px 14px;
   font-size: 16px;
   border-radius: 40px;
   border: 1px solid rgba(245, 146, 86, 0.5);
   background-color: #fdf7f2;
 
   ::placeholder {
-    font-size: 16px;
-    line-height: 26.5px;
+    font-size: 14px;
+    line-height: 1.37;
     color: rgba(17, 17, 17, 0.6);
+    ${media.tabletAndDesktop} {
+      font-size: 16px;
+      line-height: 1.65;
+    }
+  }
+
+  ${media.tabletAndDesktop} {
+    height: 48px;
+    margin-top: 12px;
+    padding: 10px 16px;
   }
 `;
 

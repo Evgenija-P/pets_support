@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { colors } from '../../../../../styles/stylesLayout';
+import { colors, media } from '../../../../../styles/stylesLayout';
 
 export const Label = styled.label`
   display: flex;
@@ -8,7 +8,7 @@ export const Label = styled.label`
   padding: 10px 28px;
   align-items: center;
 
-  font-size: 20px;
+  font-size: 14px;
   line-height: 27px;
   letter-spacing: 4%;
 
@@ -26,6 +26,10 @@ export const Label = styled.label`
   :focus {
     color: ${colors.white};
     background-color: ${colors.accent};
+  }
+
+  ${media.tabletAndDesktop} {
+    font-size: 20px;
   }
 `;
 export const Input = styled.input`

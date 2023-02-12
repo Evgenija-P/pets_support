@@ -126,25 +126,22 @@ const NoticesCategoriesListSecond = () => {
                 alt={title}
               />
             </NoticesTop>
+
             <NoticesDescription>
               <NoticesTitle>{title}</NoticesTitle>
+
               <NoticesTags>
-                <NoticesTag>id: {_id}</NoticesTag>
+                {/* <NoticesTag>id: {_id}</NoticesTag> */}
                 <NoticesTag>Breed: {breed}</NoticesTag>
                 <NoticesTag>Place: {location}</NoticesTag>
                 <NoticesTag>Age: {age}</NoticesTag>
                 {categoryName === 'sell' && (
                   <NoticesTag>Price: {price}$</NoticesTag>
                 )}
-                {/* {favorite && isLogined && <NoticesTag>Favorite </NoticesTag>}
-                {isOwner && isLogined && <NoticesTag>Owner </NoticesTag>} */}
               </NoticesTags>
-
-              {/* <LearnMoreButton /> */}
 
               <NoticesButton
                 onClick={() => {
-                  // console.log('LearnMore', _id, categoryName);
                   dispatch(getNoticesById(`${categoryName}/${_id}`));
                 }}
               >
