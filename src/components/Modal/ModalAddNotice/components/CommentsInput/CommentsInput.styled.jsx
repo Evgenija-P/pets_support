@@ -39,9 +39,8 @@ export const RequiredSign = styled.span`
 export const Error = styled.span`
   display: block;
   position: absolute;
-  bottom: -15px;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: -20px;
+  left: 0;
   font-size: 14px;
   color: red;
 `;

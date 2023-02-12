@@ -40,23 +40,26 @@ const AddNoticeForm = ({ onClose }) => {
   const [isFirstStep, setIsFirstStep] = useState(true);
   const isNoticeAdding = useSelector(selectIsAdding);
 
-  async function handleFormSubmit({ petImage, ...values }) {
+  async function handleFormSubmit({ price, petImage, ...values }) {
     const data = petImage ? { ...values, petImage } : { ...values };
+    if (price) {
+      data['price'] = price;
+    }
     console.log('data', values);
     const formData = createFormData(data);
 
     dispatch(addNotices(formData))
       .unwrap()
-      .then(() => toast.success('Notice was added.', optionsToast))
+      .then(() => {
+        toast.success('Notice was added.', optionsToast);
+        onClose();
+      })
       .catch(err => {
         console.log(err);
         toast.error(
           'Error occured. Notice addition not completed.',
           optionsToast
         );
-      })
-      .finally(() => {
-        onClose();
       });
   }
 
