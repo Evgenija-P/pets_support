@@ -1,4 +1,5 @@
 import useAuth from '../../../hooks/useAuth';
+
 import { useState } from 'react';
 
 import NoticesAuthNav from '../NoticesAuthNav';
@@ -20,7 +21,7 @@ const NoticesCategoriesNav = ({ notices }) => {
     setIsUnauthorizeModalShown(prevState => !prevState);
   }
 
-  console.log('isLoggedIn', isLoggedIn);
+  // console.log('isLoggedIn', isLoggedIn);
 
   return (
     <NoticesCategoriesContainer>

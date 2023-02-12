@@ -1,10 +1,39 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchPets } from './operations';
+import { fetchPets, deletePet, addNewPet } from './operations';
 
 const petsInitialState = {
   pets: [],
   isLoading: false,
+  isDeleting: false,
+  idAdding: false,
+  petToDeleteId: null,
   error: null,
+};
+
+const handleDeletePetPending = (state, { meta }) => {
+  state.isDeleting = true;
+  state.petToDeleteId = meta.arg;
+};
+
+const handleDeletePetSuccess = (state, { payload }) => {
+  state.petToDeleteId = null;
+  state.isDeleting = false;
+  state.error = null;
+  state.pets = [...state.pets].filter(pet => pet._id !== payload);
+};
+
+const handleDeletePetRejected = (state, { payload }) => {
+  state.error = payload;
+  state.petToDeleteId = null;
+  state.isDeleting = false;
+};
+
+const handleAddNewPetSuccess = (state, { payload }) => {
+  state.error = payload;
+  state.petToDeleteId = null;
+  state.isDeleting = false;
+
+  state.pets.push(payload);
 };
 
 const handlePending = state => {
@@ -27,7 +56,16 @@ const petsSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.pets = action.payload.data.pets;
-      }),
+      })
+
+      .addCase(deletePet.pending, handleDeletePetPending)
+      .addCase(deletePet.fulfilled, handleDeletePetSuccess)
+      .addCase(deletePet.rejected, handleDeletePetRejected)
+
+      //addNewPet
+      .addCase(addNewPet.pending, handlePending)
+      .addCase(addNewPet.fulfilled, handleAddNewPetSuccess)
+      .addCase(addNewPet.rejected, handleRejected),
 });
 
 export const petsReducer = petsSlice.reducer;

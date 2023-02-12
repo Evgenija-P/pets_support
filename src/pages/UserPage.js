@@ -1,6 +1,9 @@
 import { Helmet } from 'react-helmet';
 
+import UserInformation from '../components/UserInformation/UserInformation';
 import UserPets from '../components/PetsElements/UserPets';
+
+import { UserInfoContainer } from '../components/UserElements/UserElements.styled';
 
 const UserPage = () => {
   return (
@@ -9,7 +12,10 @@ const UserPage = () => {
         <title>UserPage</title>
       </Helmet>
 
-      <UserPets />
+      <UserInfoContainer>
+        <UserInformation />
+        <UserPets />
+      </UserInfoContainer>
     </div>
   );
 };

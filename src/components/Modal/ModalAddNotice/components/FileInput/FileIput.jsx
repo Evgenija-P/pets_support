@@ -2,14 +2,14 @@ import { VscAdd } from 'react-icons/vsc';
 import { useField } from 'formik';
 import * as styled from './FileInput.styled';
 
-const FileInput = ({ ...props }) => {
+const FileInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
 
   const { value, ...customField } = field;
 
   return (
     <styled.Container>
-      <styled.Label>Load the pet's image</styled.Label>
+      <styled.Label>{label}</styled.Label>
       <styled.UploadBtn htmlFor={props.id || props.name}>
         <VscAdd size="50%" />
       </styled.UploadBtn>

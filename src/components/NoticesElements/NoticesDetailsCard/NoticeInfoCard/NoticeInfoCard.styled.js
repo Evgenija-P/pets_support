@@ -41,6 +41,8 @@ export const NoticesImage = styled.img`
   width: 240px;
   height: 240px;
 
+  object-fit: cover;
+
   border-radius: 0px 0px 40px 40px;
   box-shadow: 7px 4px 15px 0px ${colors.shadow};
 
