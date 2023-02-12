@@ -32,6 +32,7 @@ export const UserContainer = styled.div`
     padding-top: 20px;
   }
   ${media.tablet} {
+    margin-left: -32px;
     position: relative;
     margin-top: 40px;
     border-radius: 0px 40px 40px 0px;
@@ -40,6 +41,7 @@ export const UserContainer = styled.div`
     padding-bottom: 24px;
   }
   ${media.desktop} {
+    margin-left: -17px;
     width: 411px;
     margin-top: 24px;
     padding-top: 20px;
