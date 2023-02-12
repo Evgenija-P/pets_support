@@ -36,3 +36,9 @@ export const SecondaryBtn = styled(Btn)`
   color: ${colors.black};
   background-color: ${colors.white};
 `;
+
+export const Texts = styled.p`
+  font-size: 16px;
+  text-align: center;
+  color: ${colors.black};
+`;

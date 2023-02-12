@@ -69,8 +69,11 @@ const AddNoticeForm = ({ onClose }) => {
         <form onSubmit={handleSubmit}>
           {isFirstStep && (
             <div>
-              <NoticeCategories categories={NOTICE_CATEGORIES} />
+              <styled.Texts>
+                Please select an ad category and fill in all fields.
+              </styled.Texts>
 
+              <NoticeCategories categories={NOTICE_CATEGORIES} />
               <TextInput
                 label="Title of ad"
                 name="title"
@@ -88,7 +91,6 @@ const AddNoticeForm = ({ onClose }) => {
                 placeholder="dd.mm.yyyy"
               />
               <TextInput label="Breed" name="breed" placeholder="Type breed" />
-
               <styled.BtnGroup>
                 <styled.SecondaryBtn type="button" onClick={() => onClose()}>
                   Cancel
