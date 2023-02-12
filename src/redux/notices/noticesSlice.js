@@ -92,7 +92,7 @@ export const noticesSlice = createSlice({
     setSearch(state, action) {
       state.search = action.payload;
     },
-    deleteNotice(state, action) {
+    deleteNoticLoc(state, action) {
       const index = state.noticesList.findIndex(
         notices => notices.id === action.payload
       );
@@ -137,6 +137,6 @@ export const {
   setPage,
   deletefavoriteNotice,
   setSearch,
-  deleteNotice,
+  deleteNoticLoc,
 } = noticesSlice.actions;
 export const noticesReducer = noticesSlice.reducer;

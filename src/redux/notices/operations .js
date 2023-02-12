@@ -45,8 +45,9 @@ export const deleteNotices = createAsyncThunk(
   'notices/deleteNotices',
   async (noticeId, thunkAPI) => {
     try {
+      console.log('deleteNotices DELETE', noticeId);
       const response = await axios.delete(`/notices/${noticeId}`);
-
+      console.log('deleteNotices GET', response.data.message);
       return response.data.message;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

@@ -42,6 +42,7 @@ import {
   removeFromFavorite,
 } from '../../../redux/favorite/operations ';
 import { deleteNotices } from '../../../redux/notices/operations ';
+import { deleteNoticLoc } from '../../../redux/notices/noticesSlice';
 
 // import LearnMoreButton from '../NoticesDetailsCard/NoticesButton/NoticesButton';
 
@@ -64,11 +65,11 @@ const NoticesCategoriesListSecond = () => {
   const onFavoriteToggle = (_id, favorite) => {
     if (favorite) {
       dispatch(removeFromFavorite(_id));
-      console.log('location', pathname);
-      if (pathname === '/notices/favorite') {
-        console.log('delete', _id);
-        dispatch(deletefavoriteNotice(_id));
-      }
+      // console.log('removeFromFavorite', _id);
+      // if (pathname === '/notices/favorite') {
+      //   console.log('delete', _id);
+      //   dispatch(deletefavoriteNotice(_id));
+      // }
 
       return;
     }
