@@ -47,9 +47,11 @@ const AddPetForm = ({ onClose }) => {
       })
       .catch(err => {
         console.log(err);
-        toast.error('Error occured. Pet addition not completed.', optionsToast);
+        toast.error(err.message, optionsToast);
       });
   }
+
+  // 'Error occured. Pet addition not completed.'
 
   return (
     <Formik
