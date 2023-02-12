@@ -5,7 +5,8 @@ import { Helmet } from 'react-helmet';
 import SectionContainer from '../components/SectionContainer';
 import NoticesCategoriesNav from '../components/NoticesElements/NoticesCategoriesNav/NoticesCategoriesNav';
 import NoticesSearch from '../components/NoticesElements/NoticesSearch/NoticesSearch';
-import NoticesGallary from '../components/NoticesElements/NoticesGallary';
+// import NoticesGallary from '../components/NoticesElements/NoticesGallary';
+// import NoticesCategoriesList from '../components/NoticesElements/NoticesCategoriesList';
 // import NoticeInfoCard from '../components/NoticesElements/NoticesDetailsCard/NoticeInfoCard';
 // import { useEffect, useRef } from 'react';
 // import { useEffect } from 'react';
@@ -16,13 +17,21 @@ import NoticesGallary from '../components/NoticesElements/NoticesGallary';
 // import { selectNoticesObj } from '../redux/notices/selectors';
 // import Modal from '../components/Modal/Modal';
 // import { useSelector, useDispatch } from 'react-redux';
+// import { useLocation } from 'react-router-dom';
 // import useAuth from '../hooks/useAuth.js';
 // import { selectCurrentObj } from '../redux/current/selectors';
-// import { setCurrentNotices } from '../redux/current/currentSlice';
+// import { selectNoticesObj } from '../redux/notices/selectors';
+import NoticesCategoriesListSecond from '../components/NoticesElements/NoticesCategoriesListSecond';
 // import { selectFavoriteObj } from '../redux/favorite/selectors';
 // import { selectUser } from '../redux/auth/selectors';
 // import Spinner from '../components/Spinner/Spinner';
 const NoticesPage = () => {
+  // const { pathname } = useLocation();
+  // const dispath = useDispatch();
+  // useEffect(() => {
+  //   dispath(fetchNotices({ category: pathname }));
+  // }, []);
+  // const { noticesList, isLoading } = useSelector(selectNoticesObj);
   // const { isLoading: isLoadingCurrent } = useSelector(selectCurrentObj);
   // const { isLoading: isLoadingNotices } = useSelector(selectNoticesObj);
   // const { isLoading: isLoadingFavorite } = useSelector(selectFavoriteObj);
@@ -47,6 +56,7 @@ const NoticesPage = () => {
   //   //   dispatch(fetchFavorite());
   //   // }
   // }, []);
+  // console.log('Notices', noticesList);
   return (
     <>
       <Helmet>
@@ -54,11 +64,10 @@ const NoticesPage = () => {
       </Helmet>
       <SectionContainer title="Find your favorite pet">
         <NoticesSearch />
-        {/* {(isLoadingCurrent || isLoadingNotices || isLoadingFavorite) && (
-          <Spinner />
-        )} */}
+
         <NoticesCategoriesNav />
-        <NoticesGallary />
+        <NoticesCategoriesListSecond />
+        {/* <NoticesGallary /> */}
       </SectionContainer>
 
       {/* <Suspense fallback={<p>Loading...</p>}>

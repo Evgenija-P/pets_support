@@ -50,6 +50,7 @@ import { deleteNotices } from '../../../redux/notices/operations ';
 
 const NoticesCategoriesListSecond = () => {
   const notices = useSelector(selectNotices);
+
   const favorite = useSelector(selectFavoriteList);
   const { _id } = useSelector(selectUser);
   const dispatch = useDispatch();
@@ -61,7 +62,7 @@ const NoticesCategoriesListSecond = () => {
       getOwnerNotices(getUserFavoriteNotices(notices, favorite), _id)
     );
   } else {
-    noticesUpdated = getPetAge(notices);
+    //   noticesUpdated = getPetAge(notices);
   }
 
   const onFavoriteToggle = (_id, favorite) => {
@@ -84,13 +85,13 @@ const NoticesCategoriesListSecond = () => {
     dispatch(addToFavorite(_id));
   };
 
-  // const onFavoriteNotAuth = () => {
-  //   toast.warning('You need Login first....', optionsToast);
-  // };
-
+  const onFavoriteNotAuth = () => {
+    toast.warning('You need Login first....', optionsToast);
+  };
+  const NoticeRenter = isLoggedIn ? noticesUpdated : notices;
   return (
     <NoticesList>
-      {noticesUpdated.map(
+      {NoticeRenter.map(
         ({
           _id,
           categoryName,

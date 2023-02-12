@@ -18,20 +18,9 @@ const NoticesSearch = () => {
   const initialValues = {
     search: searchState,
   };
-  // console.log('searchState ', searchState);
-  // const { isLoading, search: searchState } = useSelector(selectNoticesObj);
+
   const dispatch = useDispatch();
 
-  // const schema = yup.object().shape({
-  //   search: yup
-  //     .string()
-  //     .max(20)
-  //     .matches(
-  //       /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/,
-  //       'Search may contain only letters, apostrophe, dash and spaces. '
-  //     )
-  //     .required(),
-  // });
   const { pathname: category } = useLocation();
 
   const heandleSubmitForm = (values, { resetForm }) => {
@@ -48,7 +37,7 @@ const NoticesSearch = () => {
 
   const onChangeForm = event => {
     const search = event.target.value;
-    // console.log('serch change', event.target.value);
+
     if (!search) {
       dispatch(fetchNotices({ category }));
     }

@@ -2,8 +2,19 @@ import {
   NoticesCategoriesListLink,
   NoticesCategoriesLink,
 } from '../NoticesCategoriesNav/NoticesCategoriesNav.styled';
+import { useDispatch } from 'react-redux';
+
+import { fetchNotices } from '../../../redux/notices/operations ';
+import { useEffect } from 'react';
+
+import { useLocation } from 'react-router-dom';
 
 const NoticesAuthNav = () => {
+  const dispatch = useDispatch();
+  const { pathname } = useLocation();
+  useEffect(() => {
+    dispatch(fetchNotices({ category: pathname }));
+  }, [pathname]);
   return (
     <>
       <NoticesCategoriesListLink>

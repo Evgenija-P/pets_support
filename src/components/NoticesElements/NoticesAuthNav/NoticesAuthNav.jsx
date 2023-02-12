@@ -2,18 +2,24 @@ import {
   NoticesCategoriesListLink,
   NoticesCategoriesLink,
 } from '../NoticesCategoriesNav/NoticesCategoriesNav.styled';
+/////////////////////////////////////////////////////////////////////////
+
+import { useSelector, useDispatch } from 'react-redux';
+import useAuth from '../../../hooks/useAuth.js';
+import { fetchNotices } from '../../../redux/notices/operations ';
+import { fetchFavorite } from '../../../redux/favorite/operations ';
+import { useEffect } from 'react';
+// import { selectUser } from '../../../redux/auth/selectors.js';
+
+import { useLocation } from 'react-router-dom';
 
 const NoticesAuthNav = () => {
-  // useEffect(() => {
-  //   const fetchNotices = async () => {
-  //     const { message: result } = await getNoticesByCategory(category);
-  //     setNotices(result);
-  //     try {
-  //     } catch (error) {}
-  //   };
-
-  //   fetchNotices();
-  // }, [category]);
+  const dispatch = useDispatch();
+  const { pathname } = useLocation();
+  useEffect(() => {
+    dispatch(fetchNotices({ category: pathname }));
+    dispatch(fetchFavorite({}));
+  }, [pathname]);
 
   return (
     <>
