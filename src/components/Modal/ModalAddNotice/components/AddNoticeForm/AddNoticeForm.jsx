@@ -31,7 +31,7 @@ const initialValues = {
   petImage: '',
 };
 
-const PET_GENDER = ['Male', 'Female'];
+const PET_GENDER = ['male', 'female'];
 const FIRST_STEP_FORM_FIELDS = ['title', 'name', 'birthDate', 'breed'];
 const NOTICE_CATEGORIES = ['for-free', 'lost-found', 'sell'];
 

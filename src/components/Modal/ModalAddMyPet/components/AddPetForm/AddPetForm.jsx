@@ -11,9 +11,9 @@ import CommentsInput from '../../../ModalAddNotice/components/CommentsInput';
 
 import { optionsToast } from '../.././../../../styles/stylesLayout';
 import addPetSchema from '../../../../../validationShemas/petSchema';
-import { addNotices } from '../../../../../redux/notices/operations ';
+import { addNewPet } from '../../../../../redux/pets/operations';
 import createFormData from '../../../../../helpers/createFormData';
-import { selectIsAdding } from '../../../../../redux/notices/selectors';
+import { selectIsAdding } from '../../../../../redux/pets/selectors';
 
 import * as styled from './AddPetForm.styled';
 
@@ -29,28 +29,26 @@ const FIRST_STEP_FORM_FIELDS = ['name', 'birthday', 'breed'];
 
 const AddPetForm = ({ onClose }) => {
   const dispatch = useDispatch();
+  const isAdding = useSelector(selectIsAdding);
   const [isFirstStep, setIsFirstStep] = useState(true);
 
   async function handleFormSubmit({ petPhoto, ...values }) {
     console.log('values', values);
     const data = petPhoto ? { ...values, petPhoto } : { ...values };
 
-    console.log('data', values);
+    console.log('data', data);
     const formData = createFormData(data);
-    // console.log('formData: ', formData.name);
-    // dispatch(addNotices(formData))
-    //   .unwrap()
-    //   .then(() => {
-    //     toast.success('Notice was added.', optionsToast);
-    //     onClose();
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //     toast.error(
-    //       'Error occured. Notice addition not completed.',
-    //       optionsToast
-    //     );
-    //   });
+    console.log('formData: ', formData.name);
+    dispatch(addNewPet(formData))
+      .unwrap()
+      .then(() => {
+        toast.success('Pet was added.', optionsToast);
+        onClose();
+      })
+      .catch(err => {
+        console.log(err);
+        toast.error('Error occured. Pet addition not completed.', optionsToast);
+      });
   }
 
   return (
@@ -90,6 +88,7 @@ const AddPetForm = ({ onClose }) => {
                 <styled.PrimaryBtn
                   type={'button'}
                   onClick={async () => {
+                    console.log('next', values);
                     const errors = await validateForm();
                     const isValid = FIRST_STEP_FORM_FIELDS.every(
                       field => !errors[field]
@@ -143,8 +142,8 @@ const AddPetForm = ({ onClose }) => {
                   Back
                 </styled.SecondaryBtn>
 
-                <styled.PrimaryBtn type="submit" disabled={false}>
-                  done {false && <styled.Loader size={25} color="white" />}
+                <styled.PrimaryBtn type="submit" disabled={isAdding}>
+                  done {isAdding && <styled.Loader size={25} color="white" />}
                 </styled.PrimaryBtn>
               </styled.BtnGroup>
             </div>
