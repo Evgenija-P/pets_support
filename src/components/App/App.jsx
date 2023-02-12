@@ -35,10 +35,10 @@ const App = () => {
     <Spinner />
   ) : (
     <>
-      {' '}
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<HomePage />} />
+
           <Route
             path="/news"
             element={
@@ -102,6 +102,7 @@ const App = () => {
               )
             }
           />
+
           <Route
             path="/register"
             element={
@@ -111,19 +112,23 @@ const App = () => {
               />
             }
           />
+
           <Route
             path="/login"
             element={
               <RestrictedRoute component={<LoginPage />} redirectTo="/user" />
             }
           />
+
           <Route
             path="/user"
             element={<PrivateRoute component={<UserPage />} />}
           />
+
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
+
       <ToastContainer transition={Flip} />
     </>
   );
