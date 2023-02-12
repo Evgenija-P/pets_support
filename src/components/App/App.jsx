@@ -1,7 +1,7 @@
 import { lazy, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-import { ToastContainer, Flip } from 'react-toastify';
+import { Flip, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useAuth from '../../hooks/useAuth';
 import HomePage from '../../pages/HomePage';
@@ -41,22 +41,22 @@ const App = () => {
           <Route index element={<HomePage />} />
           <Route
             path="/news"
-            element={<RestrictedRoute component={<NewsPage />} />}
+            element={
+              isLoggedIn ? (
+                <PrivateRoute component={<NewsPage />} />
+              ) : (
+                <RestrictedRoute component={<NewsPage />} />
+              )
+            }
           />
 
           <Route
             path="/notices"
             element={
               isLoggedIn ? (
-                <PrivateRoute
-                  component={<NoticesPage />}
-                  // redirectTo="/notices/sell"
-                />
+                <PrivateRoute component={<NoticesPage />} />
               ) : (
-                <RestrictedRoute
-                  component={<NoticesPage />}
-                  // redirectTo="/notices/sell"
-                />
+                <RestrictedRoute component={<NoticesPage />} />
               )
             }
           >
