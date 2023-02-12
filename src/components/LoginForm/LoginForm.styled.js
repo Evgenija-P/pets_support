@@ -127,7 +127,7 @@ export const Input = styled(Field)`
 
   :hover,
   :focus {
-    border: 2px solid ${colors.accent};
+    /* border: 2px solid ${colors.accent}; */
     outline: 0;
   }
 
@@ -269,7 +269,7 @@ export const ErrorText = styled.div`
 
   font-family: 'Manrope';
   font-size: 12px;
-  font-style: italic;
+  font-style: normal;
 
   line-height: 1.4;
   letter-spacing: 0.03em;
