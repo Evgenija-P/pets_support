@@ -5,12 +5,21 @@ import Spinner from '../../Spinner/Spinner';
 import { nanoid } from 'nanoid';
 import { toast } from 'react-toastify';
 import { optionsToast } from '../../../styles/stylesLayout';
-import { ListNews, ItemNews, ConteinerNews } from './NewsList.styled';
+import { ReactComponent as SearchIButtonIcon } from '../../../img/icons/searchIButtonIcon.svg';
+import {
+  ListNews,
+  ItemNews,
+  ConteinerNews,
+  SearchNewsForm,
+  SearchNewsInput,
+  SearchNewsButton,
+} from './NewsList.styled';
 
-const NewsList = ({ request }) => {
+const NewsList = () => {
   const [newsItem, setNewsItem] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [request, setRequest] = useState('');
 
   useEffect(() => {
     setIsLoading(true);
@@ -32,6 +41,19 @@ const NewsList = ({ request }) => {
       console.log(error.message);
     }
   };
+
+  const handleClear = evt => {
+    evt.preventDefault();
+    setRequest('');
+  };
+
+  const handleChange = evt => {
+    setRequest(evt.target.value.trim());
+    if (evt.target.value === '') {
+      toast.error('Enter the name of the news!', optionsToast);
+    }
+  };
+
   const news = newsItem.sort(function (a, b) {
     var dateA = new Date(a.date),
       dateB = new Date(b.date);
@@ -44,6 +66,26 @@ const NewsList = ({ request }) => {
 
   return (
     <ConteinerNews>
+      <SearchNewsForm>
+        <SearchNewsInput
+          type="text"
+          autoComplete="off"
+          autoFocus
+          value={request}
+          placeholder="Search"
+          onChange={handleChange}
+        />
+        {request.trim() === '' ? (
+          <SearchNewsButton type="button" onClick={handleChange}>
+            <SearchIButtonIcon />
+          </SearchNewsButton>
+        ) : (
+          <SearchNewsButton type="button" onClick={handleClear}>
+            clear
+          </SearchNewsButton>
+        )}
+      </SearchNewsForm>
+
       <ListNews>
         {error && <p>{error}</p>}
         {isLoading ? (
