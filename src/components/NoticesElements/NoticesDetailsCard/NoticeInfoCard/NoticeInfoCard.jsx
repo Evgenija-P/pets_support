@@ -15,11 +15,14 @@ import {
   Text,
   Notices,
   NoticesButtonDelete,
+  DeleteIcon,
 } from './NoticeInfoCard.styled';
 
 import React from 'react';
 import { onFavoriteNotAuth } from '../../../../helpers/noticesHelpers';
 import { ReactComponent as HeartFavorite } from '../../../../img/icons/heartFavorite.svg';
+import { ReactComponent as Delete } from '../../../../img/icons/delete.svg';
+
 import defaultPhoto from '../../../../img/default.jpg';
 import { useDispatch, useSelector } from 'react-redux';
 // import useAuth from '../../../../hooks/useAuth';
@@ -151,6 +154,9 @@ const NoticeInfoCard = () => {
             }}
           >
             Delete
+            <DeleteIcon>
+              <Delete />
+            </DeleteIcon>
           </NoticesButtonDelete>
         )}
         {!Isfavorite && isLoggedIn && (

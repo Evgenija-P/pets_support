@@ -13,6 +13,7 @@ import {
   NoticesButton,
   NoticesFavorite,
   NoticesButtonFavoriteV2,
+  NoticesDeleteIcon,
 } from './NoticesCategoriesListSecond.styled';
 import { toast } from 'react-toastify';
 import { optionsToast } from '../../..//styles/stylesLayout';
@@ -24,6 +25,7 @@ import {
 } from '../../../helpers/noticesHelpers';
 
 import notFoundNoticesImage from '../../../img/notFoundNoticesImage.jpg';
+import { ReactComponent as Delete } from '../../../img/icons/delete.svg';
 // import { PER_PAGE } from '../../../redux/notices/operations ';
 // import { useSelector, useDispatch } from 'react-redux';
 import { useSelector, useDispatch } from 'react-redux';
@@ -168,6 +170,9 @@ const NoticesCategoriesListSecond = () => {
               {isOwner && isLoggedIn && (
                 <NoticesButton onClick={() => dispatch(deleteNotices(_id))}>
                   Delete
+                  <NoticesDeleteIcon>
+                    <Delete />
+                  </NoticesDeleteIcon>
                 </NoticesButton>
               )}
             </NoticesDescription>

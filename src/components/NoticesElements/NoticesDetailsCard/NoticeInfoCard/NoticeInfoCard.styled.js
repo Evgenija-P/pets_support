@@ -212,32 +212,58 @@ export const NoticesButtonFavorite = styled.button`
   }
 `;
 
-export const HeartIcon = styled.div`
-  margin-left: 10px;
-  margin-top: 5px;
-`;
-
 export const NoticesButtonDelete = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   width: 240px;
   height: 40px;
   margin-top: 12px;
+
   border-radius: 40px;
   border: 2px solid ${colors.accent};
   background-color: ${colors.white};
+
   font-weight: ${fontWeights.medium};
   font-size: 16px;
   line-height: 22px;
   letter-spacing: 0.04em;
-  text-align: center;
+
   color: ${colors.black};
+
   &:hover,
   &:focus {
-    background-color: ${colors.accentButton};
+    background-color: ${colors.accent};
+
     color: ${colors.white};
   }
+
   cursor: pointer;
+
   ${media.tabletAndDesktop} {
-    margin-left: 12px;
+    width: 160px;
+    margin-right: 12px;
     margin-top: 0px;
+  }
+`;
+
+export const HeartIcon = styled.div`
+  margin-left: 10px;
+  margin-top: 5px;
+
+  :hover {
+    color: ${colors.white};
+  }
+`;
+
+export const DeleteIcon = styled.div`
+  margin-left: 10px;
+  margin-top: 5px;
+
+  fill: ${colors.black};
+
+  :hover {
+    fill: ${colors.white};
   }
 `;

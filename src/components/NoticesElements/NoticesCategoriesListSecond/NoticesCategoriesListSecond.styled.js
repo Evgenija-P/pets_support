@@ -168,6 +168,9 @@ export const NoticesTag = styled.p`
 `;
 
 export const NoticesButton = styled.button`
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
   width: 100%;
   padding: 8px 28px;
 
@@ -191,4 +194,15 @@ export const NoticesButton = styled.button`
   }
 
   cursor: pointer;
+`;
+
+export const NoticesDeleteIcon = styled.span`
+  margin-left: 12px;
+  margin-top: 5px;
+
+  fill: ${colors.black};
+
+  :hover {
+    fill: ${colors.white};
+  }
 `;
