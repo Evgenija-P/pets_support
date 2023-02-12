@@ -123,7 +123,11 @@ const App = () => {
           <Route
             path="/user"
             element={
-              <PrivateRoute component={<UserPage />} redirectTo="/user" />
+              isLoggedIn ? (
+                <PrivateRoute component={<UserPage />} />
+              ) : (
+                <RestrictedRoute component={<HomePage />} />
+              )
             }
           />
 
