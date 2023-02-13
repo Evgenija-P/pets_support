@@ -28,8 +28,6 @@ export const addNotices = createAsyncThunk(
   'notices/addNotices',
   async (noticeData, thunkAPI) => {
     try {
-      console.log('add notice operation');
-
       const { data } = await axios.post('/notices', noticeData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });

@@ -70,7 +70,11 @@ export const ShowPassword = styled.span`
   width: 25px;
   height: 25px;
   right: 15px;
-  top: 13px;
+  /* top: 13px; */
+
+  top: 50%;
+  transform: translateY(-80%);
+
   color: grey;
   cursor: pointer;
   svg {
@@ -210,10 +214,16 @@ export const ErrBox = styled.div`
   white-space: nowrap;
   bottom: 0px;
   left: 15px;
-  color: red;
-  font-size: 14px;
+  color: #e53e3e;
+
+  font-family: 'Manrope';
+  font-size: 12px;
+  font-style: normal;
+  line-height: 1.4;
+  letter-spacing: 0.03em;
+
   ${media.tabletAndDesktop} {
-    left: 25px;
+    left: 32px;
   }
 `;
 export const StyledLink = styled(Link)`

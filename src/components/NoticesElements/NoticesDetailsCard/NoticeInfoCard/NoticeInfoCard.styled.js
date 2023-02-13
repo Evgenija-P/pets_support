@@ -56,7 +56,7 @@ export const NoticesInfo = styled.div`
   margin-top: 16px;
 
   ${media.tabletAndDesktop} {
-    margin-left: 20px;
+    /* margin-left: 20px; */
     margin-top: 0px;
   }
 `;
@@ -68,16 +68,17 @@ export const NoticesTitle = styled.h2`
   letter-spacing: -0.01em;
 
   margin-bottom: 8px;
+  min-width: 321px;
 
   ${media.tabletAndDesktop} {
+    margin-left: 20px;
     margin-bottom: 12px;
-    margin-right: 50px;
   }
 `;
 
 export const Notices = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 `;
 
 export const Tags = styled.div`
@@ -179,9 +180,10 @@ export const NoticesButtonContact = styled.a`
 export const NoticesButtonFavorite = styled.button`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
 
   margin-top: 12px;
+  padding: 9px 50px;
 
   width: 240px;
   height: 40px;
@@ -196,6 +198,46 @@ export const NoticesButtonFavorite = styled.button`
   letter-spacing: 0.04em;
 
   color: ${colors.black};
+  fill: ${colors.accent};
+
+  &:hover,
+  &:focus {
+    background-color: ${colors.accent};
+
+    color: ${colors.white};
+    fill: ${colors.white};
+  }
+
+  cursor: pointer;
+
+  ${media.tabletAndDesktop} {
+    width: 160px;
+    margin-top: 0px;
+    padding: 9px 15px;
+  }
+`;
+
+export const NoticesButtonDelete = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+  width: 240px;
+  height: 40px;
+  margin-top: 12px;
+  padding: 9px 50px;
+
+  border-radius: 40px;
+  border: 2px solid ${colors.accent};
+  background-color: ${colors.white};
+
+  font-weight: ${fontWeights.medium};
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0.04em;
+
+  color: ${colors.black};
+  fill: currentColor;
 
   &:hover,
   &:focus {
@@ -208,36 +250,26 @@ export const NoticesButtonFavorite = styled.button`
 
   ${media.tabletAndDesktop} {
     width: 160px;
+    margin-right: 12px;
     margin-top: 0px;
+    padding: 9px 15px;
   }
 `;
 
-export const HeartIcon = styled.div`
-  margin-left: 10px;
-  margin-top: 5px;
-`;
+// export const HeartIcon = styled.div`
+//   margin-left: 10px;
+//   margin-top: 5px;
 
-export const NoticesButtonDelete = styled.button`
-  width: 240px;
-  height: 40px;
-  margin-top: 12px;
-  border-radius: 40px;
-  border: 2px solid ${colors.accent};
-  background-color: ${colors.white};
-  font-weight: ${fontWeights.medium};
-  font-size: 16px;
-  line-height: 22px;
-  letter-spacing: 0.04em;
-  text-align: center;
-  color: ${colors.black};
-  &:hover,
-  &:focus {
-    background-color: ${colors.accentButton};
-    color: ${colors.white};
-  }
-  cursor: pointer;
-  ${media.tabletAndDesktop} {
-    margin-left: 12px;
-    margin-top: 0px;
-  }
-`;
+//   fill: currentColor;
+
+//   :hover {
+//     fill: currentColor;
+//   }
+// `;
+
+// export const DeleteIcon = styled.div`
+//   margin-left: 10px;
+//   margin-top: 5px;
+
+//   fill: currentColor;
+// `;

@@ -2,6 +2,9 @@ import styled from '@emotion/styled';
 import { colors, media } from '../../../../../styles/stylesLayout';
 
 export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-top: 28px;
 `;
 
