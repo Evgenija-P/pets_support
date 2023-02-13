@@ -57,7 +57,7 @@ const NewsList = () => {
 
   const handlelupa = evt => {
     evt.preventDefault();
-    if (request === '') {
+    if (value === '') {
       toast.error('Enter the name of the news!', optionsToast);
     }
     setRequest(value);
