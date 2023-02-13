@@ -18,7 +18,7 @@ export const PetsNav = styled.div`
 `;
 
 export const PetsTitle = styled.h2`
-  font-weight: ${fontWeights.bold};
+  font-weight: ${fontWeights.medium};
   font-size: 20px;
   line-height: 27px;
   letter-spacing: 0.04em;

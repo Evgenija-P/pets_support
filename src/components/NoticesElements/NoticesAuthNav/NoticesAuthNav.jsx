@@ -43,25 +43,25 @@ const NoticesAuthNav = () => {
     <>
       <NoticesCategoriesListLink>
         <li>
-          <NoticesCategoriesLink to="sell">Sell</NoticesCategoriesLink>
+          <NoticesCategoriesLink to="sell">sell</NoticesCategoriesLink>
         </li>
         <li>
           <NoticesCategoriesLink to="lost-found">
-            Lost / Found
+            lost/found
           </NoticesCategoriesLink>
         </li>
         <li>
           <NoticesCategoriesLink to="for-free">
-            In good hands
+            in good hands
           </NoticesCategoriesLink>
         </li>
         <li>
           <NoticesCategoriesLink to="favorite">
-            Favorite ads
+            favorite ads
           </NoticesCategoriesLink>
         </li>
         <li>
-          <NoticesCategoriesLink to="own">My ads</NoticesCategoriesLink>
+          <NoticesCategoriesLink to="own">my ads</NoticesCategoriesLink>
         </li>
       </NoticesCategoriesListLink>
     </>
