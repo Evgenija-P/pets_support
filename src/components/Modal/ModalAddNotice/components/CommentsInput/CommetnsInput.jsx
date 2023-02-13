@@ -6,7 +6,7 @@ const CommentsInput = ({ label, required, ...props }) => {
 
   return (
     <styled.Container>
-      <styled.Label>
+      <styled.Label htmlFor={props.id}>
         {required ? (
           <>
             {label} <styled.RequiredSign>*</styled.RequiredSign>

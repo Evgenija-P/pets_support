@@ -2,6 +2,9 @@ import styled from '@emotion/styled';
 import { colors, media } from '../../../../../styles/stylesLayout';
 
 export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-top: 28px;
 `;
 
@@ -45,7 +48,7 @@ export const DelBtn = styled.button`
   margin-top: 12px;
 
   border-radius: 50%;
-  border: 1px solid;
+  border: 2px solid;
 
   border-color: ${colors.accent};
   color: ${colors.accent};

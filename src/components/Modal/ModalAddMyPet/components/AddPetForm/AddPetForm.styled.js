@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import { colors, media } from '../../../../../styles/stylesLayout';
-
 import ClipLoader from 'react-spinners/ClipLoader';
 
 export const BtnGroup = styled.div`
@@ -32,16 +31,12 @@ export const Btn = styled.button`
 
   border-radius: 40px;
   border: 1px solid;
+
   border-color: ${colors.accent};
 
   opacity: ${p => (p.disabled ? 0.6 : 1)};
 
   transition: border-color 250ms ease-in-out;
-
-  :hover,
-  :focus {
-    border-color: ${colors.hover};
-  }
 
   ${media.tabletAndDesktop} {
     width: 180px;
@@ -64,16 +59,6 @@ export const PrimaryBtn = styled(Btn)`
 export const SecondaryBtn = styled(Btn)`
   color: ${colors.black};
   background-color: ${colors.white};
-`;
-
-export const Texts = styled.p`
-  font-size: 16px;
-  text-align: center;
-  color: ${colors.black};
-
-  ${media.tabletAndDesktop} {
-    font-size: 20px;
-  }
 `;
 
 export const Loader = styled(ClipLoader)`

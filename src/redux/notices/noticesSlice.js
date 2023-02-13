@@ -27,7 +27,6 @@ const noticesInitialState = {
 
 const extraActions = [
   fetchNotices,
-  addNotices,
   deleteNotices,
   getNoticesById,
 
@@ -54,8 +53,7 @@ const handleAddNoticesPending = state => {
   state.isAdding = true;
 };
 
-const handleAddNoticesReject = (state, { payload }) => {
-  state.error = payload;
+const handleAddNoticesReject = state => {
   state.isAdding = false;
 };
 

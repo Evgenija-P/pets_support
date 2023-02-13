@@ -6,6 +6,8 @@ import {
 } from './ModalAddMyPet.styled';
 import { CloseButton } from '../Modal.styled';
 
+import AddPetForm from './components/AddPetForm';
+
 const ModalAddMyPet = ({ children, onClose, title }) => {
   return (
     <ModalWrapperAddMyPet>
@@ -13,7 +15,7 @@ const ModalAddMyPet = ({ children, onClose, title }) => {
         <IconClose />
       </CloseButton>
       {title ? <ModalTitleAddMyPet>{title}</ModalTitleAddMyPet> : null}
-      <div>{children}</div>
+      <AddPetForm onClose={onClose} />
     </ModalWrapperAddMyPet>
   );
 };

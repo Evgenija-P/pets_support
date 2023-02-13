@@ -5,6 +5,8 @@ import { ReactComponent as IconMale } from '../../../../../img/icons/male.svg';
 
 const PetGenderRadioInput = props => {
   const [field] = useField(props);
+  const btnLabel =
+    props.value.charAt(0).toLocaleUpperCase() + props.value.slice(1);
 
   return (
     <>
@@ -17,7 +19,7 @@ const PetGenderRadioInput = props => {
           )}
         </styled.Wrap>
 
-        <styled.Text>{props.value}</styled.Text>
+        <styled.Text>{btnLabel}</styled.Text>
       </styled.Labellll>
       <styled.Input type="radio" {...field} {...props} />
     </>

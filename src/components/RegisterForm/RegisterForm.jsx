@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useFormik, Formik } from 'formik';
+import { useFormik, Formik, /* getActiveElement */ } from 'formik';
 import { object, string, ref } from 'yup';
 import Spinner from '../Spinner';
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
@@ -51,24 +51,24 @@ const phoneNumberMask = [
 
 const registerSchema = object().shape({
   password: string()
-    .min(7, 'Too Short!')
-    .max(32, 'Too Long!')
-    .matches(passwordRegexp, 'Invalid password')
+    .min(7, 'Password must be at least 7 characters')
+    .max(32, 'Password must be at most 32 characters')
+    .matches(passwordRegexp, 'Must not contain spaces')
     .required('Password is required'),
   confirmPassword: string()
     .required('Please confirm your password')
     .oneOf([ref('password')], 'Passwords does not match'),
   email: string()
-    .matches(emailRegex, 'Invalid email')
-    .email('Invalid email')
+    .matches(emailRegex, 'Invalid email adress')
+    // .email('Invalid email adress')
     .required('Email is required'),
   name: string()
-    .min(2, 'min 2 symbols')
+    .min(2, 'Min 2 symbols')
     .matches(userNameRegexp, 'Only letters')
     .required('Name is required'),
   phone: string()
     .min(13, 'Too Short!')
-    .matches(phoneRegexp, 'bad phone number')
+    .matches(phoneRegexp, 'Bad phone number')
     .required('Phone is required'),
   city: string()
     .matches(cityRegexp, 'Error. Example: Brovary, Kyiv')
@@ -101,6 +101,7 @@ const RegisterForm = () => {
       }),
       hideForm()
     );
+    console.log(values);
   };
   const formik = useFormik({
     initialValues: {
@@ -137,7 +138,7 @@ const RegisterForm = () => {
       ) : (
         <FormContainer>
           <Formik validationSchema={registerSchema}>
-            <FormRegister onSubmit={formik.handleSubmit}>
+            <FormRegister onSubmit={formik.handleSubmit} autoComplete="off">
               <Title>Register</Title>
               {isShown && (
                 <>
@@ -244,7 +245,8 @@ const RegisterForm = () => {
               {!isShown && (
                 <>
                   <div>
-                    <PhoneInput
+                      <PhoneInput
+                      
                       mask={phoneNumberMask}
                       id="phone"
                       type="phone"

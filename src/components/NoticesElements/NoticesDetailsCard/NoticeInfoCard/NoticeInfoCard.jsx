@@ -10,7 +10,6 @@ import {
   ButtonBlock,
   NoticesButtonFavorite,
   NoticesButtonContact,
-  HeartIcon,
   Tags,
   Text,
   Notices,
@@ -20,6 +19,8 @@ import {
 import React from 'react';
 import { onFavoriteNotAuth } from '../../../../helpers/noticesHelpers';
 import { ReactComponent as HeartFavorite } from '../../../../img/icons/heartFavorite.svg';
+import { ReactComponent as Delete } from '../../../../img/icons/delete.svg';
+
 import defaultPhoto from '../../../../img/default.jpg';
 import { useDispatch, useSelector } from 'react-redux';
 // import useAuth from '../../../../hooks/useAuth';
@@ -114,7 +115,8 @@ const NoticeInfoCard = () => {
           alt={title}
         />
         <NoticesInfo>
-          <NoticesTitle>Cute pet looking for a home {title}</NoticesTitle>
+          <NoticesTitle> {title} </NoticesTitle>
+
           <Notices>
             <Tags>
               <NoticesTag>Name: </NoticesTag>
@@ -140,10 +142,7 @@ const NoticeInfoCard = () => {
       </NoticesBox>
 
       <NoticesComment>
-        <strong>Comments: </strong> Lorem ipsum dolor, sit amet consectetur
-        adipisicing elit. Vero, fugiat minima! Quod repudiandae veniam a.
-        Voluptatum, quam delectus incidunt aspernatur laboriosam, obcaecati a id
-        ut quidem quia porro itaque odit. {comments}
+        <strong>Comments: </strong> {comments}
       </NoticesComment>
       {isLoading && <Spinner />}
       <ButtonBlock>
@@ -154,6 +153,7 @@ const NoticeInfoCard = () => {
             }}
           >
             Delete
+            <Delete />
           </NoticesButtonDelete>
         )}
         {!Isfavorite && isLoggedIn && (
@@ -162,9 +162,7 @@ const NoticeInfoCard = () => {
             // onClick={() => onFavoriteToggle(_id, Isfavorite)}
           >
             Add to
-            <HeartIcon>
-              <HeartFavorite />
-            </HeartIcon>
+            <HeartFavorite />
           </NoticesButtonFavorite>
         )}
 
@@ -174,17 +172,13 @@ const NoticeInfoCard = () => {
             onClick={onToggle}
           >
             Remove from
-            <HeartIcon>
-              <HeartFavorite />
-            </HeartIcon>
+            <HeartFavorite />
           </NoticesButtonFavorite>
         )}
         {!isLoggedIn && (
           <NoticesButtonFavorite onClick={onFavoriteNotAuth}>
             Add to
-            <HeartIcon>
-              <HeartFavorite />
-            </HeartIcon>
+            <HeartFavorite />
           </NoticesButtonFavorite>
         )}
         <NoticesButtonContact href={callNumber}>Contact</NoticesButtonContact>

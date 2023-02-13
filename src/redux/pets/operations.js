@@ -18,12 +18,13 @@ export const fetchPets = createAsyncThunk(
 );
 
 export const deletePet = createAsyncThunk(
-  'pets/addPet',
+  'pets/deletPet',
   async (payload, thunkAPI) => {
     try {
       await axios.delete(`/pets/${payload}`);
       return payload;
     } catch (error) {
+      console.log(error);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -32,11 +33,16 @@ export const deletePet = createAsyncThunk(
 export const addNewPet = createAsyncThunk(
   'pets/addNewPet',
   async (newPet, thunkAPI) => {
+    console.log('reqBody', newPet);
     try {
-      const res = await axios.post('/pets', { newPet });
-      return res.data;
+      const res = await axios.post('/pets', newPet, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+      console.log(res.data);
+      return res.data.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      console.log(error);
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
