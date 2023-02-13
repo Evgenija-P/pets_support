@@ -117,6 +117,7 @@ export const PhoneInput = styled(MaskedInput)`
     border-color: ${colors.hover};
     outline: none;
   }
+
   ${media.tabletAndDesktop} {
     width: 448px;
     padding: 14px 0 13px 32px;
