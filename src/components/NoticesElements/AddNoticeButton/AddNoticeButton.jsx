@@ -8,7 +8,7 @@ import addNoticeIcon from '../../../img/icons/addNoticeIcon.svg';
 
 const AddNoticeButton = ({ onClick }) => {
   const { isLoggedIn } = useAuth();
-
+// eslint-disable-next-line
   const onFavoriteToggle = () => {
     if (!isLoggedIn) {
       toast.info('You must login or register to add to favorites', {
