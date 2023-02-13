@@ -39,7 +39,9 @@ const loginSchema = yup.object().shape({
     .max(32, 'Password must be at most 32 characters')
     .matches(
       passwordRegexp,
-      'The password must consist of Latin letters (A-z), numbers (0-9)')
+      'Must not contain spaces'
+      // 'The password must consist of Latin letters (A-z), numbers (0-9)'
+    )
     .required('Password is required'),
 });
 
