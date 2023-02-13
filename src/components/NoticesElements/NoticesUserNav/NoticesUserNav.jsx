@@ -14,7 +14,7 @@ const NoticesAuthNav = () => {
   const { pathname } = useLocation();
   useEffect(() => {
     dispatch(fetchNotices({ category: pathname }));
-  }, [pathname]);
+  }, [pathname, dispatch]);
   return (
     <>
       <NoticesCategoriesListLink>
