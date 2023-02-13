@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { media, colors, fontWeights } from '../../../styles/stylesLayout';
-import { Form, Field } from 'formik';
+// import { Form, Field } from 'formik';
 
 export const SearchForm = styled.form`
   position: relative;
