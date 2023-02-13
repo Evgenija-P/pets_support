@@ -18,7 +18,7 @@ export const Title = styled.h1`
     line-height: 38px;
     color: ${colors.black};
   }
-`;
+`
 
 export const UserContainer = styled.div`
   margin-top: 18px;
@@ -51,7 +51,7 @@ export const UserContainer = styled.div`
     box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
     border-radius: 0px 40px 40px 0px;
   }
-`;
+`
 
 export const UserImg = styled.img`
   display: block;
@@ -66,7 +66,7 @@ export const UserImg = styled.img`
   ${media.desktop} {
     margin-top: 0;
   }
-`;
+`
 
 export const UserForm = styled(Form)`
   margin-top: 36px;
@@ -74,7 +74,7 @@ export const UserForm = styled(Form)`
     margin-top: 40px;
     width: 379px;
   }
-`;
+`
 
 export const UserInformationContainer = styled.div`
   display: grid;
@@ -83,7 +83,7 @@ export const UserInformationContainer = styled.div`
   &:last-child {
     margin-bottom: 0px;
   }
-`;
+`
 export const UserKeyLabel = styled.label`
   display: flex;
   align-items: center;
@@ -101,7 +101,7 @@ export const UserKeyLabel = styled.label`
     font-size: 18px;
     line-height: 25px;
   }
-`;
+`
 
 export const UserValueInput = styled(Field)`
   background: ${colors.background};
@@ -120,7 +120,7 @@ export const UserValueInput = styled(Field)`
     line-height: 25px;
     width: 200px;
   }
-`;
+`
 export const UserInformationEdited = styled(BsCheckLg)`
   width: 12, 5px;
   height: 12, 5px;
@@ -132,7 +132,7 @@ export const UserInformationEdited = styled(BsCheckLg)`
     width: 20px;
     height: 20px;
   }
-`;
+`
 
 export const UserKey = styled.p`
   font-weight: ${fontWeights.medium};
@@ -144,7 +144,7 @@ export const UserKey = styled.p`
     font-size: 18px;
     line-height: 25px;
   }
-`;
+`
 
 export const UserValue = styled.p`
   font-weight: ${fontWeights.regular};
@@ -156,7 +156,8 @@ export const UserValue = styled.p`
     font-size: 18px;
     line-height: 25px;
   }
-`;
+`
+
 export const UserInformationEditWrapper = styled.button`
   position: relative;
   width: 20px;
@@ -177,15 +178,19 @@ export const UserInformationEditWrapper = styled.button`
       ? 'rgba(17, 17, 17, 0.6);'
       : '#F59256'};
   margin-left: auto;
+  &:hover, :focus {
+    transform: scale(1.1);
+    color: black;
+  }
   ${media.tabletAndDesktop} {
     width: 32px;
     height: 32px;
   }
-`;
+`
 
 export const UserInformationEdit = styled(MdModeEdit)`
-  width: 12, 5px;
-  height: 12, 5px;
+  width: 12,5px;
+  height: 12,5px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -194,19 +199,32 @@ export const UserInformationEdit = styled(MdModeEdit)`
     width: 20px;
     height: 20px;
   }
-`;
+`
 
-export const LogOutWrapper = styled.div`
+export const LogOutButton = styled.button`
   display: flex;
   align-items: center;
-  & :hover,
-  :focus {
+  justify-content: center;
+  flex-direction: row-reverse;
+  border: 0;
+  background-color: ${colors.white};
+  padding: 0;
+  font-weight: ${fontWeights.medium};
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0.04em;
+  color: rgba(17, 17, 17, 0.6);
+  &:hover, :focus {
+    span {
+      color: black;
+    }
     color: black;
     stroke: black;
+    transform: scale(1.1);
   }
   ${media.mobile} {
     margin-top: 42px;
-    justify-content: flex-end;
+    margin-left: auto
   }
   ${media.tablet} {
     position: absolute;
@@ -216,37 +234,40 @@ export const LogOutWrapper = styled.div`
   ${media.desktop} {
     margin-top: 44px;
   }
-`;
+`
+
+export const LogOutIconWrapper = styled.span`
+    display: flex;
+    align-items: center;
+    color: ${colors.accent};
+    padding-right: 8px;
+`
+
 export const LogOutIcon = styled(HiOutlineLogout)`
   width: 18px;
   height: 18px;
-  stroke: ${colors.accent};
-  cursor: pointer;
-`;
+`
 
-export const LogOutButton = styled.button`
-  border: 0;
-  background-color: ${colors.white};
-  padding: 0;
-  padding-left: 8px;
-  font-weight: ${fontWeights.medium};
-  font-size: 16px;
-  line-height: 22px;
-  letter-spacing: 0.04em;
-  color: rgba(17, 17, 17, 0.6);
-`;
-
-export const LabelEditPhoto = styled.label`
-  display: flex;
-  color: ${colors.accent};
-  justify-content: flex-end;
-  align-items: center;
+export const ButtonEdit = styled.button`
+  display: block;
+  margin-left: auto;
   margin-top: 12px;
   margin-right: 12px;
-  cursor: pointer;
-  & :hover,
+  border: none;
+  font-weight: ${fontWeights.regular};
+  font-size: 12px;
+  line-height: 22px;
+  letter-spacing: 0.04em;
+  color: ${colors.black};
+  background-color: ${colors.white};
+  &:hover,
   :focus {
-    color: ${colors.black};
+     span {
+      color: black;
+    }
+    color: ${colors.accent};
+    stroke: black;
+    transform: scale(1.1);
   }
 
   ${media.tablet} {
@@ -259,17 +280,30 @@ export const LabelEditPhoto = styled.label`
     margin-top: 0;
     margin-right: 0;
   }
-`;
+  label{
+    display: flex;
+    cursor: pointer;
+  }
+  
+`
+
+export const CameraSVGWrapper = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${colors.accent};
+  padding-right: 8px;
+`
 
 export const InputEditPhoto = styled.input`
   display: none;
-`;
+`
 
 export const CameraSVG = styled(BsCameraFill)`
   stroke: ${colors.accent};
   width: 20px;
   height: 20px;
-`;
+`
 
 export const TextEditPhoto = styled.p`
   font-weight: ${fontWeights.regular};
@@ -285,7 +319,7 @@ export const TextEditPhoto = styled.p`
   ${media.desktop} {
     margin-left: 5px;
   }
-`;
+`
 
 export const UserWrapper = styled.div`
   ${media.tablet} {
@@ -294,10 +328,10 @@ export const UserWrapper = styled.div`
     flex-direction: row-reverse;
     justify-content: space-between;
   }
-`;
+`
 
 export const AvatarWrapper = styled.div`
   ${media.desktop} {
     position: relative;
   }
-`;
+`
