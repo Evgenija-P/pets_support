@@ -110,10 +110,10 @@ const NoticesCategoriesListSecond = () => {
   const notices = isLoggedIn ? noticesUpdated : noticesList;
 
   const filterNotices = (notices, search) => {
-    console.log('filtr', notices, search);
-    const filterByComment = notices.filter(notice =>
-      notice.comments.toLowerCase().includes(search.toLowerCase())
-    );
+    // console.log('filtr', notices, search);
+    // const filterByComment = notices.filter(notice =>
+    //   notice.comments.toLowerCase().includes(search.toLowerCase())
+    // );
     const filterByTitle = notices.filter(notice =>
       notice.title.toLowerCase().includes(search.toLowerCase())
     );
@@ -121,7 +121,7 @@ const NoticesCategoriesListSecond = () => {
     //   notice.breed.toLowerCase().includes(search.toLowerCase())
     // );
 
-    return [...filterByComment, ...filterByTitle];
+    return [...filterByTitle];
   };
 
   const NoticesRender = search ? filterNotices(notices, search) : notices;
@@ -172,7 +172,7 @@ const NoticesCategoriesListSecond = () => {
                 <NoticesTitle>{title}</NoticesTitle>
 
                 <NoticesTags>
-                  {/* <NoticesTag>id: {_id}</NoticesTag> */}
+                  <NoticesTag>id: {_id}</NoticesTag>
                   <NoticesTag>Breed: {breed}</NoticesTag>
                   <NoticesTag>Place: {location}</NoticesTag>
                   <NoticesTag>Age: {age}</NoticesTag>
