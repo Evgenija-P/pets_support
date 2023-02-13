@@ -45,16 +45,16 @@ const NoticesPage = () => {
   // useEffect(() => {
   //   console.log('useEffect in NoticePage');
   //   navigate('/notices/sell', { replace: true });
-  //   // if (firstRender) {
-  //   //   console.log('first render');
-  //   //   navigate('/notices/sell', { replace: true });
-  //   // console.log('fetchNotices from NoticePage {category: /notices/sell}');
-  //   // dispatch(fetchNotices({ category: '/notices/sell' }));
+  // if (firstRender) {
+  //   console.log('first render');
+  //   navigate('/notices/sell', { replace: true });
+  // console.log('fetchNotices from NoticePage {category: /notices/sell}');
+  // dispatch(fetchNotices({ category: '/notices/sell' }));
 
-  //   // if (isLoggedIn) {
-  //   //   console.log('fetchFavorite() from NoticePage');
-  //   //   dispatch(fetchFavorite());
-  //   // }
+  // if (isLoggedIn) {
+  //   console.log('fetchFavorite() from NoticePage');
+  //   dispatch(fetchFavorite());
+  // }
   // }, []);
   // console.log('Notices', noticesList);
   return (

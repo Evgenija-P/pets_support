@@ -72,12 +72,14 @@ const NoticesCategoriesListSecond = () => {
   // const { pathname } = useLocation();
   const { isLoggedIn } = useAuth();
   let noticesUpdated = [];
+  // const del = getUserFavoriteNotices(noticesList, favorite);
+  // console.log('del', del);
   if (isLoggedIn) {
     noticesUpdated = getPetAge(
       getOwnerNotices(getUserFavoriteNotices(noticesList, favorite), _id)
     );
   } else {
-    //   noticesUpdated = getPetAge(notices);
+    noticesUpdated = getPetAge(noticesList);
   }
 
   const onFavoriteToggle = (_id, favorite) => {
@@ -189,23 +191,23 @@ const NoticesCategoriesListSecond = () => {
                   Learn More
                 </NoticesButton>
 
-                {/* {!favorite && isLoggedIn && (
-                <NoticesButton onClick={() => dispatch(addToFavorite(_id))}>
-                  add to favorite
-                </NoticesButton>
-              )}
-              {favorite && isLoggedIn && (
-                <NoticesButton
-                  onClick={() => dispatch(removeFromFavorite(_id))}
-                >
-                  remove from favorite
-                </NoticesButton>
-              )}
-              {!isLoggedIn && (
-                <NoticesButton onClick={onFavoriteNotAuth}>
-                  add to favorite
-                </NoticesButton>
-              )} */}
+                {!favorite && isLoggedIn && (
+                  <NoticesButton onClick={() => dispatch(addToFavorite(_id))}>
+                    add to favorite
+                  </NoticesButton>
+                )}
+                {favorite && isLoggedIn && (
+                  <NoticesButton
+                    onClick={() => dispatch(removeFromFavorite(_id))}
+                  >
+                    remove from favorite
+                  </NoticesButton>
+                )}
+                {!isLoggedIn && (
+                  <NoticesButton onClick={onFavoriteNotAuth}>
+                    add to favorite
+                  </NoticesButton>
+                )}
                 {isOwner && isLoggedIn && (
                   <NoticesButton onClick={() => dispatch(deleteNotices(_id))}>
                     Delete

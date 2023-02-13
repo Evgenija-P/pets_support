@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 // import { TbPlaylistOff } from 'react-icons/tb';
 
-axios.defaults.baseURL = 'https://petly-brs3.onrender.com/api';
+// axios.defaults.baseURL = 'https://petly-brs3.onrender.com/api';
 
 export const fetchPets = createAsyncThunk(
   'pets/fetchAll',
