@@ -47,7 +47,9 @@ const NoticesSearch = () => {
       dispatch(setSearch(''));
       setformStste('');
       setisInSearch(false);
-      dispatch(fetchNotices({ category: pathname }));
+      if (pathname !== '/notices/favorite') {
+        dispatch(fetchNotices({ category: pathname }));
+      }
       return;
     }
     setformStste(evt.target.value);
@@ -56,12 +58,16 @@ const NoticesSearch = () => {
 
   const handlelupa = evt => {
     if (formStste === '') {
+      evt.preventDefault();
       toast.warning('Enter the title of notice!', optionsToast);
+      return;
     }
     evt.preventDefault();
     dispatch(setSearch(formStste));
-    dispatch(fetchNotices({ category: pathname, search: formStste }));
     setisInSearch(true);
+    if (pathname !== '/notices/favorite') {
+      dispatch(fetchNotices({ category: pathname, search: formStste }));
+    }
   };
 
   // const handleChange = evt => {

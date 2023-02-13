@@ -14,6 +14,9 @@ const getOwnerNotices = (notices, user) => {
 
 const getPetAge = notices => {
   const noticeWithPetAge = notices.map(notice => {
+    if (!notice.birthdate) {
+      return { ...notice, age: 'not specified' };
+    }
     const petAge = moment(notice.birthdate, 'DD-MM-YYYY')
       .fromNow()
       .split(' ')
@@ -42,9 +45,53 @@ const onFavoriteNotAuth = () => {
   toast.warning('You need Login first....', optionsToast);
 };
 
+const labelNotices = notices => {
+  // console.log('getUserFavoriteNotices', { notices, favorite });
+  const noticesWithLabel = notices.map(notice => {
+    let category = '';
+    switch (notice.categoryName) {
+      case 'for-free':
+        category = 'In good hands';
+        break;
+
+      case 'lost-found':
+        category = 'lost/found';
+        break;
+      case 'sell':
+        category = 'sell';
+        break;
+
+      default:
+        category = '';
+    }
+    return { ...notice, categoryName: category };
+  });
+  return noticesWithLabel;
+};
+const labelNotice = notice => {
+  let category = '';
+  switch (notice.categoryName) {
+    case 'for-free':
+      category = 'In good hands';
+      break;
+
+    case 'lost-found':
+      category = 'lost/found';
+      break;
+    case 'sell':
+      category = 'sell';
+      break;
+
+    default:
+      category = '';
+  }
+  return { ...notice, categoryName: category };
+};
 export {
   getOwnerNotices,
   getPetAge,
   getUserFavoriteNotices,
   onFavoriteNotAuth,
+  labelNotices,
+  labelNotice,
 };
