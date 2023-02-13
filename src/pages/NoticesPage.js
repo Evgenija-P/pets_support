@@ -42,6 +42,7 @@ const NoticesPage = () => {
   //   }
   // }, [isLoggedIn]);
   // console.log('Notices', noticesList);
+  ///////////////////////////////////////////
   return (
     <>
       <Helmet>
