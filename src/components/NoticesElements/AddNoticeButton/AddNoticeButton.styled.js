@@ -11,7 +11,7 @@ export const Button = styled.button`
     position: fixed;
     z-index: 100;
     right: 20px;
-    top: 50%;
+    top: 75%;
 
     width: 80px;
     height: 80px;

@@ -15,9 +15,7 @@ const PetsLoader = () => {
     <LoaderWrapper>
       {error && <PetsError>{error}</PetsError>}
       {error && <PetsErrorIcon />}
-      {pets.length === 0 && !error && (
-        <PetsMessage>Pets not found...</PetsMessage>
-      )}
+      {pets.length === 0 && !error && <PetsMessage>Add your pets </PetsMessage>}
       {pets.length === 0 && !error && <PetsIcon />}
     </LoaderWrapper>
   );

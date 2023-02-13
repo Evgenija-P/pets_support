@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { media, fontWeights } from '../../../styles/stylesLayout';
 
 export const PetsContainer = styled.div`
-  width: 100%;
+  flex-grow: 2;
 `;
 
 export const PetsNav = styled.div`
