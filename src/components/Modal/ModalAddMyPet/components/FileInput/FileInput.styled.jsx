@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { colors, media } from '../../../../../styles/stylesLayout';
 
 export const Container = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -63,8 +64,11 @@ export const UploadBtn = styled.label`
 
 export const Error = styled.span`
   display: block;
-  position: absolute;
-
   font-size: 14px;
   color: red;
+`;
+
+export const ErrorContainer = styled.div`
+  position: absolute;
+  bottom: -20px;
 `;

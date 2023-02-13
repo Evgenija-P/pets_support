@@ -14,7 +14,11 @@ const FileInput = ({ label, ...props }) => {
         <VscAdd size="50%" />
       </styled.UploadBtn>
       <styled.Input value="" type="file" {...customField} {...props} />
-      {meta.error && meta.touched && <styled.Error>{meta.error}</styled.Error>}
+      {meta.error && meta.touched && (
+        <styled.ErrorContainer>
+          <styled.Error>{meta.error}</styled.Error>
+        </styled.ErrorContainer>
+      )}
     </styled.Container>
   );
 };

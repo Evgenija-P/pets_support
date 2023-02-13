@@ -59,6 +59,13 @@ export const PrimaryBtn = styled(Btn)`
 export const SecondaryBtn = styled(Btn)`
   color: ${colors.black};
   background-color: ${colors.white};
+
+  transition: border-color 250ms ease-in-out;
+
+  :hover,
+  :focus {
+    border-color: ${colors.hover};
+  }
 `;
 
 export const Loader = styled(ClipLoader)`
