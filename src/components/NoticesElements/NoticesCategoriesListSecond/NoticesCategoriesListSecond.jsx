@@ -148,13 +148,20 @@ const NoticesCategoriesListSecond = () => {
   };
 
   const NoticesRender = search ? filterNotices(notices, search) : notices;
+  const sortedNotices = [...NoticesRender].sort(function (a, b) {
+    var dateA = new Date(a.createdAt),
+      dateB = new Date(b.createdAt);
+    return dateB - dateA;
+  });
+  console.log('not', NoticesRender);
+  console.log('sorted', sortedNotices);
   return (
     <>
       {/* {isLoadingNotice && <Spinner />}
       // {error && <NoticesLoader>console</NoticesLoader>}
       {!isLoadingNotice && !error && ( */}
       <NoticesList>
-        {NoticesRender.map(
+        {sortedNotices.map(
           ({
             _id,
             categoryName,
