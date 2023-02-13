@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet';
 import SectionContainer from '../components/SectionContainer';
 import NoticesCategoriesNav from '../components/NoticesElements/NoticesCategoriesNav/NoticesCategoriesNav';
 import NoticesSearch from '../components/NoticesElements/NoticesSearch/NoticesSearch';
-// import NoticesGallary from '../components/NoticesElements/NoticesGallary';
+import NoticesGallary from '../components/NoticesElements/NoticesGallary';
 // import NoticesCategoriesList from '../components/NoticesElements/NoticesCategoriesList';
 // import NoticeInfoCard from '../components/NoticesElements/NoticesDetailsCard/NoticeInfoCard';
 // import { useEffect, useRef } from 'react';
@@ -18,9 +18,10 @@ import NoticesSearch from '../components/NoticesElements/NoticesSearch/NoticesSe
 
 // import useAuth from '../hooks/useAuth.js';
 
-import NoticesCategoriesListSecond from '../components/NoticesElements/NoticesCategoriesListSecond';
+// import NoticesCategoriesListSecond from '../components/NoticesElements/NoticesCategoriesListSecond';
 
-import GalleryPagination from '../components/NoticesElements/GalleryPagination';
+// import GalleryPagination from '../components/NoticesElements/GalleryPagination';
+import NoticeSpiner from '../components/NoticesElements/NoticeSpiner';
 const NoticesPage = () => {
   // const firstRender = useRef(true);
   // const dispatch = useDispatch();
@@ -49,12 +50,13 @@ const NoticesPage = () => {
         <title>NoticesPage</title>
       </Helmet>
       <SectionContainer title="Find your favorite pet">
+        <NoticeSpiner />
         <NoticesSearch />
 
         <NoticesCategoriesNav />
-        <NoticesCategoriesListSecond />
-        {/* <NoticesGallary /> */}
-        <GalleryPagination />
+        {/* <NoticesCategoriesListSecond /> */}
+        <NoticesGallary />
+        {/* <GalleryPagination /> */}
       </SectionContainer>
 
       {/* <Suspense fallback={<p>Loading...</p>}>
