@@ -20,7 +20,7 @@ import {
   getOwnerNotices,
   getPetAge,
   getUserFavoriteNotices,
-  // onFavoriteNotAuth,
+  labelNotices,
 } from '../../../helpers/noticesHelpers';
 
 import notFoundNoticesImage from '../../../img/notFoundNoticesImage.jpg';
@@ -96,11 +96,13 @@ const NoticesCategoriesListSecond = () => {
   // const del = getUserFavoriteNotices(noticesList, favorite);
   // console.log('del', del);
   if (isLoggedIn) {
-    noticesUpdated = getPetAge(
-      getOwnerNotices(getUserFavoriteNotices(noticesList, favorite), _id)
+    noticesUpdated = labelNotices(
+      getPetAge(
+        getOwnerNotices(getUserFavoriteNotices(noticesList, favorite), _id)
+      )
     );
   } else {
-    noticesUpdated = getPetAge(noticesList);
+    noticesUpdated = labelNotices(getPetAge(noticesList));
   }
 
   const onFavoriteToggle = (_id, favorite) => {
@@ -132,7 +134,7 @@ const NoticesCategoriesListSecond = () => {
 
   const notices = isLoggedIn ? noticesUpdated : noticesList;
 
-  const filterNotices = (notices, search) => {
+  const filterFavoritrNotices = (notices, search) => {
     // console.log('filtr', notices, search);
     // const filterByComment = notices.filter(notice =>
     //   notice.comments.toLowerCase().includes(search.toLowerCase())
@@ -143,18 +145,25 @@ const NoticesCategoriesListSecond = () => {
     // const filterByBreed = notices.filter(notice =>
     //   notice.breed.toLowerCase().includes(search.toLowerCase())
     // );
+    // const newFilteredList = new Set(filterByTitle);
 
-    return [...filterByTitle];
+    // return [...newFilteredList.add(filterByComment)];
+    return filterByTitle;
   };
 
-  const NoticesRender = search ? filterNotices(notices, search) : notices;
+  // const NoticesRender = search && pathname === '/notices/favorite';
+  const filterNotices =
+    search && pathname === '/notices/favorite'
+      ? filterFavoritrNotices(notices, search)
+      : notices;
+  const NoticesRender = search ? filterNotices : notices;
   const sortedNotices = [...NoticesRender].sort(function (a, b) {
     var dateA = new Date(a.createdAt),
       dateB = new Date(b.createdAt);
     return dateB - dateA;
   });
-  console.log('not', NoticesRender);
-  console.log('sorted', sortedNotices);
+  // console.log('not', NoticesRender);
+  // console.log('sorted', sortedNotices);
   return (
     <>
       {/* {isLoadingNotice && <Spinner />}
@@ -218,13 +227,13 @@ const NoticesCategoriesListSecond = () => {
                 >
                   Learn More
                 </NoticesButton>
-
+                {/* 
                 {!favorite && isLoggedIn && (
                   <NoticesButton onClick={() => dispatch(addToFavorite(_id))}>
                     add to favorite
                   </NoticesButton>
-                )}
-                {favorite && isLoggedIn && (
+                )} */}
+                {/* {favorite && isLoggedIn && (
                   <NoticesButton
                     onClick={() => dispatch(removeFromFavorite(_id))}
                   >
@@ -235,7 +244,7 @@ const NoticesCategoriesListSecond = () => {
                   <NoticesButton onClick={onFavoriteNotAuth}>
                     add to favorite
                   </NoticesButton>
-                )}
+                )} */}
                 {isOwner && isLoggedIn && (
                   <NoticesButton onClick={() => dispatch(deleteNotices(_id))}>
                     Delete

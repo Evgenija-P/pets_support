@@ -50,6 +50,7 @@ import {
   addToFavorite,
 } from '../../../../redux/favorite/operations ';
 import { selectNoticesObj } from '../../../../redux/notices/selectors';
+import { labelNotice } from '../../../../helpers/noticesHelpers';
 const NoticeInfoCard = () => {
   // const { _id: user } = useSelector(selectUser);
   const dispatch = useDispatch();
@@ -59,9 +60,8 @@ const NoticeInfoCard = () => {
   const { _id: userId } = useSelector(selectUser);
   const { favoriteList, isLoading } = useSelector(selectFavoriteObj);
 
-  const noticeReduced = getIsFavoriteNotice(
-    favoriteList,
-    getIsOwnNotice(userId, selectedNotice)
+  const noticeReduced = labelNotice(
+    getIsFavoriteNotice(favoriteList, getIsOwnNotice(userId, selectedNotice))
   );
 
   ////////////////////////////////////////////////////////////////////
