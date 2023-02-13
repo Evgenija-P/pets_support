@@ -180,7 +180,7 @@ export const NoticesButton = styled.button`
   line-height: 1.375;
   letter-spacing: 0.04em;
   margin-bottom: 10px;
-  /* text-align: center; */
+  text-align: center;
   color: ${colors.accent};
 
   &:hover,
@@ -191,9 +191,4 @@ export const NoticesButton = styled.button`
   }
 
   cursor: pointer;
-`;
-
-export const NoticesDeleteIcon = styled.span`
-  margin-left: 12px;
-  fill: #111111;
 `;

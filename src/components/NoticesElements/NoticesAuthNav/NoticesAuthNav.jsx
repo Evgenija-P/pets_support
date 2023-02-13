@@ -37,7 +37,7 @@ const NoticesAuthNav = () => {
     }
     dispatch(fetchNotices({ category: pathname }));
     // dispatch(fetchFavorite({}));
-  }, [pathname, isLoggedIn, dispatch]);
+  }, [pathname, isLoggedIn]);
 
   return (
     <>
