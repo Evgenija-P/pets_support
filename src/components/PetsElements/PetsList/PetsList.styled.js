@@ -1,7 +1,17 @@
 import styled from '@emotion/styled';
 import { media, colors, fontWeights } from '../../../styles/stylesLayout';
 
+export const PetsContainer = styled.ul`
+  width: 100%;
+
+  ${media.desktop} {
+    max-width: 820px;
+  }
+`;
+
 export const PetsItem = styled.li`
+  position: relative;
+
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -49,18 +59,7 @@ export const PetImage = styled.img`
 `;
 
 export const PetDescription = styled.div`
-  width: 100%;
   position: relative;
-`;
-
-export const PetTags = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-
-  ${media.tabletAndDesktop} {
-    gap: 16px;
-  }
 `;
 
 export const PetTag = styled.p`
@@ -71,6 +70,16 @@ export const PetTag = styled.p`
 
   ${media.tabletAndDesktop} {
     font-size: 16px;
+  }
+
+  :not(:last-child) {
+    margin-bottom: 12px;
+  }
+
+  ${media.tabletAndDesktop} {
+    :not(:last-child) {
+      margin-bottom: 16px;
+    }
   }
 
   span {
