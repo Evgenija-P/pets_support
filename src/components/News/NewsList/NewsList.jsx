@@ -6,6 +6,7 @@ import { nanoid } from 'nanoid';
 import { toast } from 'react-toastify';
 import { optionsToast } from '../../../styles/stylesLayout';
 import { ReactComponent as SearchIButtonIcon } from '../../../img/icons/searchIButtonIcon.svg';
+import { ReactComponent as IconsCancel } from '../../../img/icons/IconsCancell.svg';
 import {
   ListNews,
   ItemNews,
@@ -19,6 +20,7 @@ const NewsList = () => {
   const [newsItem, setNewsItem] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [value, setValue] = useState('');
   const [request, setRequest] = useState('');
 
   useEffect(() => {
@@ -45,16 +47,20 @@ const NewsList = () => {
   const handleClear = evt => {
     evt.preventDefault();
     setRequest('');
+    setValue('');
   };
 
   const handleChange = evt => {
-    setRequest(evt.target.value.trim());
+    evt.preventDefault();
+    setValue(evt.target.value);
   };
 
   const handlelupa = evt => {
+    evt.preventDefault();
     if (request === '') {
       toast.error('Enter the name of the news!', optionsToast);
     }
+    setRequest(value);
   };
 
   const news = newsItem.sort(function (a, b) {
@@ -74,17 +80,17 @@ const NewsList = () => {
           type="text"
           autoComplete="off"
           autoFocus
-          value={request}
+          value={value}
           placeholder="Search"
           onChange={handleChange}
         />
-        {request.trim() === '' ? (
-          <SearchNewsButton type="button" onClick={handlelupa}>
+        {request === '' ? (
+          <SearchNewsButton type="sabmit" onClick={handlelupa}>
             <SearchIButtonIcon />
           </SearchNewsButton>
         ) : (
-          <SearchNewsButton type="button" onClick={handleClear}>
-            clear
+          <SearchNewsButton type="sabmit" onClick={handleClear}>
+            <IconsCancel width={'100%'} height={'100%'} />
           </SearchNewsButton>
         )}
       </SearchNewsForm>
