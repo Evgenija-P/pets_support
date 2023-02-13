@@ -18,6 +18,8 @@ export const Label = styled.label`
   border: 1px solid ${colors.accent};
   border-radius: 40px;
 
+  transition: color 250ms ease-in-out, background-color 250ms ease-in-out;
+
   :not(:first-of-type) {
     margin-left: 15px;
   }

@@ -13,6 +13,7 @@ export const Container = styled.div`
 `;
 
 export const Label = styled.label`
+  cursor: pointer;
   font-size: 18px;
   line-height: 1.47;
   color: ${colors.black};
@@ -29,8 +30,18 @@ export const Input = styled.input`
   padding: 12px 14px;
   font-size: 16px;
   border-radius: 40px;
-  border: 1px solid rgba(245, 146, 86, 0.5);
+  border: 1px solid;
+  border-color: rgba(245, 146, 86, 0.5);
   background-color: #fdf7f2;
+
+  outline: none;
+
+  transition: border-color 250ms ease-in-out;
+
+  :hover,
+  :focus {
+    border-color: ${colors.hover};
+  }
 
   ::placeholder {
     font-size: 14px;

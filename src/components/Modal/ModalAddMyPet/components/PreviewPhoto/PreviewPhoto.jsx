@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import * as styled from './PreviewPhoto.styled';
+import { MdClose } from 'react-icons/md';
 
 const PreviewPhoto = ({ label, photo, onDeletePreview }) => {
   const [preview, setPreview] = useState({});
@@ -15,7 +16,7 @@ const PreviewPhoto = ({ label, photo, onDeletePreview }) => {
       <styled.Wrapper>
         <styled.Photo src={preview} />
         <styled.DelBtn type="button" onClick={onDeletePreview}>
-          x
+          <MdClose size={100} />
         </styled.DelBtn>
       </styled.Wrapper>
     </styled.Container>

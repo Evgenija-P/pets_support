@@ -47,11 +47,9 @@ const AddPetForm = ({ onClose }) => {
       })
       .catch(err => {
         console.log(err);
-        toast.error(err.message, optionsToast);
+        toast.error('Error occured. Pet addition not completed.', optionsToast);
       });
   }
-
-  // 'Error occured. Pet addition not completed.'
 
   return (
     <Formik
@@ -74,13 +72,20 @@ const AddPetForm = ({ onClose }) => {
                 label="Name pet"
                 name="name"
                 placeholder="Type name pet"
+                required
               />
               <TextInput
                 label="Date of birth"
                 name="birthday"
                 placeholder="dd.mm.yyyy"
+                required
               />
-              <TextInput label="Breed" name="breed" placeholder="Type breed" />
+              <TextInput
+                label="Breed"
+                name="breed"
+                placeholder="Type breed"
+                required
+              />
 
               <styled.BtnGroup>
                 <styled.SecondaryBtn type="button" onClick={() => onClose()}>
@@ -131,6 +136,7 @@ const AddPetForm = ({ onClose }) => {
               )}
 
               <CommentsInput
+                id="comments"
                 label="Comments"
                 name="comments"
                 placeholder="Type commetns"

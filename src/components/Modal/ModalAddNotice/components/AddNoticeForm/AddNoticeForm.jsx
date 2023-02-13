@@ -54,8 +54,7 @@ const AddNoticeForm = ({ onClose }) => {
         toast.success('Notice was added.', optionsToast);
         onClose();
       })
-      .catch(err => {
-        console.log(err);
+      .catch(() => {
         toast.error(
           'Error occured. Notice addition not completed.',
           optionsToast
@@ -86,22 +85,30 @@ const AddNoticeForm = ({ onClose }) => {
 
               <NoticeCategories categories={NOTICE_CATEGORIES} />
               <TextInput
+                id="title"
                 label="Title of ad"
                 name="title"
                 placeholder="Type name"
                 required
               />
               <TextInput
+                id="name"
                 label="Name pet"
                 name="name"
                 placeholder="Type name pet"
               />
               <TextInput
+                id="birthdate"
                 label="Date of birth"
                 name="birthdate"
                 placeholder="dd.mm.yyyy"
               />
-              <TextInput label="Breed" name="breed" placeholder="Type breed" />
+              <TextInput
+                id="breed"
+                label="Breed"
+                name="breed"
+                placeholder="Type breed"
+              />
               <styled.BtnGroup>
                 <styled.SecondaryBtn type="button" onClick={() => onClose()}>
                   Cancel
@@ -132,6 +139,7 @@ const AddNoticeForm = ({ onClose }) => {
             <div>
               <GenderSwitch gender={PET_GENDER} />
               <TextInput
+                id="location"
                 label="Location"
                 name="location"
                 placeholder="City, region"
@@ -139,6 +147,7 @@ const AddNoticeForm = ({ onClose }) => {
               />
               {values.categoryName === 'sell' && (
                 <TextInput
+                  id="price"
                   label="Price"
                   name="price"
                   placeholder="Type price"
@@ -166,6 +175,7 @@ const AddNoticeForm = ({ onClose }) => {
               )}
 
               <CommentsInput
+                id="comments"
                 label="Comments"
                 name="comments"
                 placeholder="Type commetns"

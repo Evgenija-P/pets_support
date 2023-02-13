@@ -15,6 +15,7 @@ const colors = {
   newsText: '#111321',
   maleColor: '#23C2EF',
   femaleColor: '#FF8787',
+  hover: '#FF6101',
   blue: '#3091EB',
   white: '#FFFFFF',
   gray: 'rgba(17, 17, 17, 0.6)',
