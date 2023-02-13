@@ -20,6 +20,7 @@ export const Overlay = styled.div`
 `;
 
 export const CloseButton = styled.div`
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,10 +32,11 @@ export const CloseButton = styled.div`
   top: 20px;
   right: 20px;
 
+  transition: transform 250ms ease-in-out, fill 250ms ease-in-out;
+
   :hover,
   :focus {
-    transform: scale(1.05);
-    cursor: pointer;
+    fill: ${colors.hover};
   }
 
   ${media.tablet} {

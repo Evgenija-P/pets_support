@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { lazy, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
@@ -11,6 +12,7 @@ import PrivateRoute from '../PrivateRoute';
 import RestrictedRoute from '../RestrictedRoute';
 import SharedLayout from '../SharedLayout';
 import Spinner from '../Spinner';
+import BASE_URL from '../../servises/api';
 
 const NoticesCategoriesNav = lazy(() =>
   import('../NoticesElements/NoticesCategoriesNav')
@@ -22,6 +24,8 @@ const NewsPage = lazy(() => import('../../pages/NewsPage'));
 const NoticesPage = lazy(() => import('../../pages/NoticesPage'));
 const OurFriendsPage = lazy(() => import('../../pages/OurFriendsPage'));
 const UserPage = lazy(() => import('../../pages/UserPage'));
+
+axios.defaults.baseURL = BASE_URL;
 
 const App = () => {
   const dispatch = useDispatch();

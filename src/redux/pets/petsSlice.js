@@ -25,7 +25,6 @@ const handleDeletePetSuccess = (state, { payload }) => {
 };
 
 const handleDeletePetRejected = (state, { payload }) => {
-  state.error = payload;
   state.petToDeleteId = null;
   state.isDeleting = false;
 };
@@ -44,7 +43,6 @@ const handleAddNewPetSuccess = (state, { payload }) => {
 
 const handleAddNewPetRejected = (state, { payload }) => {
   state.isAdding = false;
-  state.error = payload;
 };
 
 const handlePending = state => {

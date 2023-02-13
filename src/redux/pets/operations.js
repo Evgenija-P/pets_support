@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 // import { TbPlaylistOff } from 'react-icons/tb';
 
-axios.defaults.baseURL = 'https://petly-brs3.onrender.com/api';
+// axios.defaults.baseURL = 'https://petly-brs3.onrender.com/api';
 
 export const fetchPets = createAsyncThunk(
   'pets/fetchAll',
@@ -24,6 +24,7 @@ export const deletePet = createAsyncThunk(
       await axios.delete(`/pets/${payload}`);
       return payload;
     } catch (error) {
+      console.log(error);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -40,7 +41,8 @@ export const addNewPet = createAsyncThunk(
       console.log(res.data);
       return res.data.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      console.log(error);
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );

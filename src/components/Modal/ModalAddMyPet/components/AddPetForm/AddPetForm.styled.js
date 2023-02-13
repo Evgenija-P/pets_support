@@ -30,9 +30,13 @@ export const Btn = styled.button`
   letter-spacing: 4%;
 
   border-radius: 40px;
-  border: 1px solid ${colors.accent};
+  border: 1px solid;
+
+  border-color: ${colors.accent};
 
   opacity: ${p => (p.disabled ? 0.6 : 1)};
+
+  transition: border-color 250ms ease-in-out;
 
   ${media.tabletAndDesktop} {
     width: 180px;
@@ -42,6 +46,14 @@ export const Btn = styled.button`
 export const PrimaryBtn = styled(Btn)`
   color: ${colors.white};
   background-color: ${colors.accent};
+
+  transition: background-color 250ms ease-in-out, border-color 250ms ease-in-out;
+
+  :hover,
+  :focus {
+    background-color: ${colors.hover};
+    border-color: ${colors.hover};
+  }
 `;
 
 export const SecondaryBtn = styled(Btn)`

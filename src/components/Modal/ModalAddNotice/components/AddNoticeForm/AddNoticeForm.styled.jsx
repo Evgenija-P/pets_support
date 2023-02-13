@@ -3,7 +3,6 @@ import { colors, media } from '../../../../../styles/stylesLayout';
 
 import ClipLoader from 'react-spinners/ClipLoader';
 
-
 export const BtnGroup = styled.div`
   display: flex;
   flex-direction: column;
@@ -32,9 +31,17 @@ export const Btn = styled.button`
   letter-spacing: 4%;
 
   border-radius: 40px;
-  border: 1px solid ${colors.accent};
+  border: 1px solid;
+  border-color: ${colors.accent};
 
   opacity: ${p => (p.disabled ? 0.6 : 1)};
+
+  transition: border-color 250ms ease-in-out;
+
+  :hover,
+  :focus {
+    border-color: ${colors.hover};
+  }
 
   ${media.tabletAndDesktop} {
     width: 180px;
@@ -44,13 +51,20 @@ export const Btn = styled.button`
 export const PrimaryBtn = styled(Btn)`
   color: ${colors.white};
   background-color: ${colors.accent};
+
+  transition: background-color 250ms ease-in-out, border-color 250ms ease-in-out;
+
+  :hover,
+  :focus {
+    background-color: ${colors.hover};
+    border-color: ${colors.hover};
+  }
 `;
 
 export const SecondaryBtn = styled(Btn)`
   color: ${colors.black};
   background-color: ${colors.white};
 `;
-
 
 export const Texts = styled.p`
   font-size: 16px;
@@ -60,7 +74,7 @@ export const Texts = styled.p`
   ${media.tabletAndDesktop} {
     font-size: 20px;
   }
-  `;
+`;
 
 export const Loader = styled(ClipLoader)`
   position: absolute;

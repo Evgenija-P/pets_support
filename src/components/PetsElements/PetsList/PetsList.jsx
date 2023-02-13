@@ -27,8 +27,6 @@ const PetsList = () => {
   const isDeleting = useSelector(selectIsDeleting);
   const petToDeleteId = useSelector(selectPetToDeleteId);
 
-  console.log('petToDeleteID', petToDeleteId);
-
   const dispatch = useDispatch();
 
   function handleDeletePet(petId) {

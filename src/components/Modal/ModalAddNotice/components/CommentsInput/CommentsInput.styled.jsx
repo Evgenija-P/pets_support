@@ -9,6 +9,7 @@ export const Container = styled.div`
 `;
 
 export const Label = styled.label`
+  cursor: pointer;
   font-size: 18px;
   line-height: 1.47;
   color: ${colors.black};
@@ -27,6 +28,9 @@ export const CommentsField = styled.textarea`
   border-radius: 20px;
   border: 1px solid rgba(245, 146, 86, 0.5);
   background-color: ${colors.background};
+  outline: none;
+
+  transition: border-color 250ms ease-in-out;
 
   ::placeholder {
     font-size: 14px;
@@ -36,6 +40,11 @@ export const CommentsField = styled.textarea`
       font-size: 16px;
       line-height: 1.65;
     }
+  }
+
+  :hover,
+  :focus {
+    border-color: ${colors.hover};
   }
 `;
 

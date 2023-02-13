@@ -48,7 +48,17 @@ export const DelBtn = styled.button`
   margin-top: 12px;
 
   border-radius: 50%;
-  border: 1px solid ${colors.accent};
+  border: 2px solid;
 
+  border-color: ${colors.accent};
+  color: ${colors.accent};
   background-color: ${colors.background};
+
+  transition: color 250ms ease-in-out, background-color 250ms ease-in-out;
+
+  :hover,
+  :focus {
+    color: ${colors.background};
+    background-color: ${colors.accent};
+  }
 `;

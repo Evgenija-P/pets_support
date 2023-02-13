@@ -27,10 +27,12 @@ export const Labellll = styled.label`
   margin-top: 16px;
   color: ${p => (p.active ? colors.accent : colors.black)};
 
+  transition: color 250ms ease-in-out;
+
   :hover,
   :focus,
   :active {
-    color: ${colors.accent};
+    color: ${colors.hover};
   }
 
   ${media.tabletAndDesktop} {
