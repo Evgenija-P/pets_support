@@ -11,10 +11,10 @@ import {
 import { optionsToast, colors } from '../../../styles/stylesLayout';
 
 import {
+  PetsContainer,
   PetsItem,
   PetImage,
   PetDescription,
-  PetTags,
   PetTag,
   PetButtonDelete,
 } from './PetsList.styled';
@@ -24,6 +24,7 @@ import notFoundNoticesImage from '../../../img/notFoundNoticesImage.jpg';
 
 const PetsList = () => {
   const { pets } = useSelector(selectPets);
+
   const isDeleting = useSelector(selectIsDeleting);
   const petToDeleteId = useSelector(selectPetToDeleteId);
 
@@ -40,13 +41,14 @@ const PetsList = () => {
   }
 
   return (
-    <ul>
+    <PetsContainer>
       {pets.map(({ _id, photoURL, name, birthday, breed, comments }) => (
         <PetsItem key={_id}>
           <PetImage
             src={photoURL ? photoURL : notFoundNoticesImage}
             alt={name}
           />
+
           <PetDescription>
             <PetButtonDelete
               onClick={() => handleDeletePet(_id)}
@@ -58,7 +60,8 @@ const PetsList = () => {
                 <PetButtonIconDelete />
               )}
             </PetButtonDelete>
-            <PetTags>
+
+            <div>
               <PetTag>
                 <span>Name:</span>
                 {name}
@@ -73,13 +76,13 @@ const PetsList = () => {
               </PetTag>
               <PetTag>
                 <span>Comments:</span>
-                {comments}
+                <p>{comments}</p>
               </PetTag>
-            </PetTags>
+            </div>
           </PetDescription>
         </PetsItem>
       ))}
-    </ul>
+    </PetsContainer>
   );
 };
 

@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { media, colors, fontWeights } from '../../../styles/stylesLayout';
 
-export const NoticesCategoriesContainer = styled.ul`
+export const NoticesCategoriesContainer = styled.div`
   margin-top: 30px;
 
   ${media.tabletAndDesktop} {
@@ -20,6 +20,10 @@ export const NoticesCategoriesListLink = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
+
+  ${media.tablet} {
+    max-width: 500px;
+  }
 `;
 
 export const NoticesCategoriesLink = styled(NavLink)`
