@@ -53,9 +53,10 @@ import Modal from '../../../components/Modal/Modal';
 import NoticeInfoCard from '../../../components/NoticesElements/NoticesDetailsCard/NoticeInfoCard';
 import { setSelectedNotice } from '../../../redux/notices/noticesSlice';
 import { Notices } from '../NoticesDetailsCard/NoticeInfoCard/NoticeInfoCard.styled';
+import { useLocation } from 'react-router-dom';
 const NoticesCategoriesListSecond = () => {
   const {
-    noticesList,
+    noticesList: listNotices,
     selectedNotice,
     page,
     totalHits,
@@ -65,8 +66,11 @@ const NoticesCategoriesListSecond = () => {
     limit,
     search,
   } = useSelector(selectNoticesObj);
-
+  const { pathname } = useLocation();
   const favorite = useSelector(selectFavoriteList);
+  console.log('pathname', pathname);
+  const noticesList = pathname === '/notices/favorite' ? favorite : listNotices;
+
   const { _id } = useSelector(selectUser);
   const dispatch = useDispatch();
   // const { pathname } = useLocation();

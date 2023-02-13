@@ -17,6 +17,10 @@ const NoticesAuthNav = () => {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
   useEffect(() => {
+    if (pathname === '/notices/favorite') {
+      // dispatch(fetchFavorite({}));
+      return;
+    }
     dispatch(fetchNotices({ category: pathname }));
     dispatch(fetchFavorite({}));
   }, [pathname]);
