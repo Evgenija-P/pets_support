@@ -6,7 +6,7 @@ import GalleryPagination from '../../NoticesElements/GalleryPagination';
 
 // import { selectFavoriteObj } from '../../../redux/favorite/selectors';
 
-// import NoticesLoader from '../NoticesLoader';
+import NoticesLoader from '../NoticesLoader';
 // import Spinner from '../../Spinner';
 // import Modal from '../../../components/Modal/Modal';
 // //import useAuth from '../../../hooks/useAuth.js';
@@ -22,14 +22,15 @@ const NoticesGallary = () => {
   // const { pathname } = useLocation();
   const {
     // page,
-    totalHits,
-    limit,
+    // totalHits,
+    // limit,
     // search,
-    isLoading: isLoadingNotices,
+    isLoading,
     error: errorNotices,
-    // noticesList,
+    noticesList,
     // selectedNotice,
   } = useSelector(selectNoticesObj);
+  // const favoriteList = useSelector(selectFavoriteList);
   // const { isLoading: isLoadingFavorite } = useSelector(selectFavoriteObj);
   // const { isLoggedIn } = useAuth();
 
@@ -38,17 +39,16 @@ const NoticesGallary = () => {
 
   // const navigate = useNavigate();
 
-  const countPages = Math.ceil(totalHits / limit);
+  // const countPages = Math.ceil(totalHits / limit);
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   return (
     <div>
-      {/* {(isLoadingNotices || isLoadingFavorite) && <Spinner />}  */}
-      {/* {/* {(errorNotices || noticesList.length === 0) && !isLoadingNotices && (
+      {(errorNotices || noticesList.length === 0) && !isLoading && (
         <NoticesLoader />
-      )} */}
-      {!errorNotices && !isLoadingNotices && <NoticesCategoriesListSecond />}
-      {countPages > 1 && !isLoadingNotices && <GalleryPagination />}
+      )}
+      {!errorNotices && <NoticesCategoriesListSecond />}
+      <GalleryPagination />
     </div>
   );
 };
