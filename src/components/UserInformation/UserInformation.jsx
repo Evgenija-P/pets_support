@@ -17,7 +17,6 @@ import {
   UserForm,
   UserKey,
   UserValue,
-  LogOutWrapper,
   LogOutButton,
   LogOutIcon,
   UserInformationEdit,
@@ -27,10 +26,11 @@ import {
   UserInformationEdited,
   InputEditPhoto,
   CameraSVG,
-  LabelEditPhoto,
-  TextEditPhoto,
+  CameraSVGWrapper,
   UserWrapper,
   AvatarWrapper,
+  ButtonEdit,
+  LogOutIconWrapper,
 } from './UserInformation.styled';
 
 const UserInformation = () => {
@@ -74,11 +74,15 @@ const UserInformation = () => {
               src={!user.avatarURL ? imgPlug : user.avatarURL}
               alt="Avatar"
             />
-            <LabelEditPhoto onChange={handleChange}>
-              <InputEditPhoto type="file" />
-              <CameraSVG />
-              <TextEditPhoto>Edit Photo</TextEditPhoto>
-            </LabelEditPhoto>
+            <ButtonEdit type="button">
+              <label onChange={handleChange}>
+                <InputEditPhoto type="file" />
+                <CameraSVGWrapper>
+                  <CameraSVG />
+                </CameraSVGWrapper>
+                Edit Photo
+              </label>
+            </ButtonEdit>
           </AvatarWrapper>
           <Formik initialValues={initialValues} onSubmit={handleSubmit}>
             <UserForm autoComplete="off">
@@ -94,8 +98,8 @@ const UserInformation = () => {
                 <UserInformationContainer>
                   <UserKey>Name:</UserKey>
                   <UserValue>{`${initialValues.name}`}</UserValue>
-                  <UserInformationEditWrapper click={change}>
-                    <UserInformationEdit onClick={() => setChange('name')} />
+                  <UserInformationEditWrapper click={change} onClick={() => setChange('name')}>
+                    <UserInformationEdit />
                   </UserInformationEditWrapper>
                 </UserInformationContainer>
               )}
@@ -121,7 +125,11 @@ const UserInformation = () => {
               {change === 'birthday' ? (
                 <UserKeyLabel>
                   Birthday:
-                  <UserValueInput type="text" name="birthday" />
+                  <UserValueInput
+                    type="text"
+                    name="birthday"
+                    placeholder={initialValues.birthday === null && "11.11.2000"}
+                  />
                   <UserInformationEditWrapper type="submit">
                     <UserInformationEdited />
                   </UserInformationEditWrapper>
@@ -176,12 +184,12 @@ const UserInformation = () => {
             </UserForm>
           </Formik>
         </UserWrapper>
-        <LogOutWrapper>
-          <LogOutIcon onClick={() => dispatch(logOut())} />
-          <LogOutButton type="button" onClick={() => dispatch(logOut())}>
-            Log out
-          </LogOutButton>
-        </LogOutWrapper>
+        <LogOutButton type="button" onClick={() => dispatch(logOut())}>
+          Log out
+          <LogOutIconWrapper>
+            <LogOutIcon onClick={() => dispatch(logOut())} />
+          </LogOutIconWrapper>
+        </LogOutButton>
       </UserContainer>
     </div>
   );
