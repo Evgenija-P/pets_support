@@ -1,6 +1,8 @@
-import useAuth from '../../../hooks/useAuth';
+import { toast } from 'react-toastify';
+import { optionsToast } from '../../..//styles/stylesLayout';
 
 import { useState } from 'react';
+import useAuth from '../../../hooks/useAuth';
 
 import NoticesAuthNav from '../NoticesAuthNav';
 import NoticesUserNav from '../NoticesUserNav';
@@ -17,8 +19,16 @@ const NoticesCategoriesNav = ({ notices }) => {
   function toggleAddNoticeModal() {
     setisAddNoticeModalShown(prevState => !prevState);
   }
+
   function toggleUnauthorizedModal() {
     setIsUnauthorizeModalShown(prevState => !prevState);
+
+    if (!isLoggedIn) {
+      toast.warn('You must login or register to add pets', {
+        optionsToast,
+      });
+      return;
+    }
   }
 
   // console.log('isLoggedIn', isLoggedIn);
