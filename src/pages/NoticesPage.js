@@ -8,13 +8,13 @@ import NoticesSearch from '../components/NoticesElements/NoticesSearch/NoticesSe
 import NoticesGallary from '../components/NoticesElements/NoticesGallary';
 // import NoticesCategoriesList from '../components/NoticesElements/NoticesCategoriesList';
 // import NoticeInfoCard from '../components/NoticesElements/NoticesDetailsCard/NoticeInfoCard';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 // // import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // import { fetchFavorite } from '../redux/favorite/operations ';
 
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 
 // import useAuth from '../hooks/useAuth.js';
 
@@ -23,8 +23,8 @@ import { useDispatch } from 'react-redux';
 // import GalleryPagination from '../components/NoticesElements/GalleryPagination';
 import NoticeSpiner from '../components/NoticesElements/NoticeSpiner';
 const NoticesPage = () => {
-  const firstRender = useRef(true);
-  const dispatch = useDispatch();
+  // const firstRender = useRef(true);
+  // const dispatch = useDispatch();
   // const { isLoggedIn } = useAuth();
 
   // const { pathname } = useLocation();
