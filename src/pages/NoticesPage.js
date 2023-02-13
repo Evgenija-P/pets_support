@@ -20,7 +20,7 @@ import NoticesSearch from '../components/NoticesElements/NoticesSearch/NoticesSe
 
 import NoticesCategoriesListSecond from '../components/NoticesElements/NoticesCategoriesListSecond';
 
-// import GalleryPagination from '../components/NoticesElements/GalleryPagination';
+import GalleryPagination from '../components/NoticesElements/GalleryPagination';
 const NoticesPage = () => {
   // const firstRender = useRef(true);
   // const dispatch = useDispatch();
@@ -54,7 +54,7 @@ const NoticesPage = () => {
         <NoticesCategoriesNav />
         <NoticesCategoriesListSecond />
         {/* <NoticesGallary /> */}
-        {/* <GalleryPagination /> */}
+        <GalleryPagination />
       </SectionContainer>
 
       {/* <Suspense fallback={<p>Loading...</p>}>

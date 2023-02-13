@@ -47,7 +47,7 @@ const GalleryPagination = () => {
     // selectedNotice,
     page,
     totalHits,
-    // isLoading,
+    isLoading,
     // isAdding,
     // error,
 
@@ -73,20 +73,22 @@ const GalleryPagination = () => {
   return (
     <ThemeProvider theme={theme}>
       <StyledEngineProvider injectFirst>
-        <PagginationWrapper>
-          <Pagination
-            // boundaryCount={5}
-            count={Number(countPages)}
-            page={Number(page)}
-            showFirstButton
-            showLastButton
-            variant="outlined"
-            shape="rounded"
-            size="large"
-            onChange={(e, page) => OnPagination(page)}
-            color="primary"
-          />
-        </PagginationWrapper>
+        {countPages > 1 && pathname !== '/notices/favorite' && !isLoading && (
+          <PagginationWrapper>
+            <Pagination
+              // boundaryCount={5}
+              count={Number(countPages)}
+              page={Number(page)}
+              showFirstButton
+              showLastButton
+              variant="outlined"
+              shape="rounded"
+              size="large"
+              onChange={(e, page) => OnPagination(page)}
+              color="primary"
+            />
+          </PagginationWrapper>
+        )}
       </StyledEngineProvider>
     </ThemeProvider>
   );
