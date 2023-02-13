@@ -45,7 +45,7 @@ const handleFetchNoticesSuccses = (state, action) => {
   state.limit = action.payload.limit;
 };
 const handleAddNoticesSuccses = (state, { payload }) => {
-  state.noticesList.push(payload);
+  state.noticesList.unshift(payload);
   state.error = null;
   state.isAdding = false;
 };
