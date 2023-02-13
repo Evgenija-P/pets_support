@@ -46,17 +46,17 @@ const NoticesGallary = () => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (firstRender.current) {
-      console.log('first render');
-      // console.log('useEffect in gallary Navigate ');
-      navigate('/notices/sell', { replace: true });
-      firstRender.current = false;
-      return;
-    }
+  // useEffect(() => {
+  //   if (firstRender.current) {
+  //     console.log('first render');
+  //     // console.log('useEffect in gallary Navigate ');
+  //     navigate('/notices/sell', { replace: true });
+  //     firstRender.current = false;
+  //     return;
+  //   }
 
-    console.log('render');
-  });
+  //   console.log('render');
+  // });
 
   // useEffect(() => {
   //   // if (isLoggedIn) {
@@ -72,38 +72,38 @@ const NoticesGallary = () => {
   //   console.log('useEffect in gallary Navigate ');
   //   navigate('/notices/sell', { replace: true });
   //   // if (firstRender) {
-  //   //   console.log('first render');
-  //   //   navigate('/notices/sell', { replace: true });
-  //   // console.log('fetchNotices from NoticePage {category: /notices/sell}');
-  //   // dispatch(fetchNotices({ category: '/notices/sell' }));
+  // //   //   console.log('first render');
+  // //   //   navigate('/notices/sell', { replace: true });
+  // //   // console.log('fetchNotices from NoticePage {category: /notices/sell}');
+  // //   // dispatch(fetchNotices({ category: '/notices/sell' }));
 
+  // //   // if (isLoggedIn) {
+  // //   //   console.log('fetchFavorite() from NoticePage');
+  // //   //   dispatch(fetchFavorite());
+  // //   // }
+  // // }, []);
+  // useEffect(() => {
   //   // if (isLoggedIn) {
-  //   //   console.log('fetchFavorite() from NoticePage');
-  //   //   dispatch(fetchFavorite());
+  //   //   console.log('IsLog fetchFavorite({ search } in Gallary');
+  //   //   dispatch(fetchFavorite({ search }));
   //   // }
-  // }, []);
-  useEffect(() => {
-    // if (isLoggedIn) {
-    //   console.log('IsLog fetchFavorite({ search } in Gallary');
-    //   dispatch(fetchFavorite({ search }));
-    // }
-    // dispatch(setCategory(pathname));
-    if (!firstRender.current) {
-      // console.log(
-      //   'fetchNotices({ category: pathname, search }',
-      //   pathname,
-      //   search
-      // );
-      dispatch(fetchNotices({ category: pathname, search }));
-    }
-  }, [dispatch, pathname, search]);
+  //   // dispatch(setCategory(pathname));
+  //   if (!firstRender.current) {
+  //     // console.log(
+  //     //   'fetchNotices({ category: pathname, search }',
+  //     //   pathname,
+  //     //   search
+  //     // );
+  //     dispatch(fetchNotices({ category: pathname, search }));
+  //   }
+  // }, [dispatch, pathname, search]);
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      // console.log('IsLog fetchFavorite() in Gallary');
-      dispatch(fetchFavorite({}));
-    }
-  }, [dispatch, isLoggedIn]);
+  // useEffect(() => {
+  //   if (isLoggedIn) {
+  //     // console.log('IsLog fetchFavorite() in Gallary');
+  //     dispatch(fetchFavorite({}));
+  //   }
+  // }, [dispatch, isLoggedIn]);
 
   //////////////////////////////////////////////////////////////////////////////////////////////
   const OnPagination = page => {

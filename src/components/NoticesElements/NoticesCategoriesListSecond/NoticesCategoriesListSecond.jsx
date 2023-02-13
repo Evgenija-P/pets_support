@@ -54,6 +54,9 @@ import NoticeInfoCard from '../../../components/NoticesElements/NoticesDetailsCa
 import { setSelectedNotice } from '../../../redux/notices/noticesSlice';
 import { Notices } from '../NoticesDetailsCard/NoticeInfoCard/NoticeInfoCard.styled';
 import { useLocation } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { fetchFavorite } from '../../../redux/favorite/operations ';
 const NoticesCategoriesListSecond = () => {
   const {
     noticesList: listNotices,
@@ -68,8 +71,22 @@ const NoticesCategoriesListSecond = () => {
   } = useSelector(selectNoticesObj);
   const { pathname } = useLocation();
   const favorite = useSelector(selectFavoriteList);
-  console.log('pathname', pathname);
+  // console.log('pathname', pathname);
   const noticesList = pathname === '/notices/favorite' ? favorite : listNotices;
+  const firstRender = useRef(true);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (firstRender) {
+      console.log('first render in Page Navigate ');
+      navigate('/notices/sell', { replace: true });
+      if (isLoggedIn) {
+        dispatch(fetchFavorite({}));
+      }
+      firstRender.current = false;
+
+      return;
+    }
+  }, []);
 
   const { _id } = useSelector(selectUser);
   const dispatch = useDispatch();

@@ -26,10 +26,10 @@ const getPetAge = notices => {
 };
 
 const getUserFavoriteNotices = (notices, favorite) => {
-  console.log('getUserFavoriteNotices', { notices, favorite });
+  // console.log('getUserFavoriteNotices', { notices, favorite });
   const noticesWithFavorite = notices.map(notice => {
     if (favorite.find(fav => fav._id === notice._id)) {
-      console.log('getUserFavoriteNotices', { ...notice, favorite: true });
+      // console.log('getUserFavoriteNotices', { ...notice, favorite: true });
 
       return { ...notice, favorite: true };
     }

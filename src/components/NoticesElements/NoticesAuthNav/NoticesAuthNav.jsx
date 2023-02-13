@@ -8,21 +8,24 @@ import { useDispatch } from 'react-redux';
 
 import { fetchNotices } from '../../../redux/notices/operations ';
 import { fetchFavorite } from '../../../redux/favorite/operations ';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 // import { selectUser } from '../../../redux/auth/selectors.js';
 
 import { useLocation } from 'react-router-dom';
 
 const NoticesAuthNav = () => {
+  const firstRender = useRef(false);
   const dispatch = useDispatch();
   const { pathname } = useLocation();
   useEffect(() => {
+    if (firstRender) {
+    }
     if (pathname === '/notices/favorite') {
       // dispatch(fetchFavorite({}));
       return;
     }
     dispatch(fetchNotices({ category: pathname }));
-    dispatch(fetchFavorite({}));
+    // dispatch(fetchFavorite({}));
   }, [pathname]);
 
   return (
