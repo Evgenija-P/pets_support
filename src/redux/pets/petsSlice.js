@@ -38,7 +38,7 @@ const handleAddNewPetPendeing = state => {
 const handleAddNewPetSuccess = (state, { payload }) => {
   state.isAdding = false;
   state.error = null;
-  state.pets.push(payload);
+  state.pets.unshift(payload);
 };
 
 const handleAddNewPetRejected = (state, { payload }) => {
