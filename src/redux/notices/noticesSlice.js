@@ -81,9 +81,9 @@ export const noticesSlice = createSlice({
   name: 'notices',
   initialState: noticesInitialState,
   reducers: {
-    setCategory(state, action) {
-      state.category = action.payload;
-    },
+    // setCategory(state, action) {
+    //   state.category = action.payload;
+    // },
     setPage(state, action) {
       state.page = action.payload;
     },
@@ -139,7 +139,7 @@ export const noticesSlice = createSlice({
   },
 });
 export const {
-  setCategory,
+  // setCategory,
   setPage,
   deletefavoriteNotice,
   setSearch,

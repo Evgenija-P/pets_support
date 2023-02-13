@@ -31,7 +31,7 @@ import useAuth from '../../../hooks/useAuth.js';
 import {
   selectNotices,
   // selectFavoriteNotices,
-  // selectNoticesObj,
+  selectNoticesObj,
 } from '../../../redux/notices/selectors';
 import { selectFavoriteList } from '../../../redux/favorite/selectors';
 // import { deletefavoriteNotice } from '../../../redux/notices/noticesSlice';
@@ -47,9 +47,24 @@ import { deleteNotices } from '../../../redux/notices/operations ';
 // import { deleteNoticLoc } from '../../../redux/notices/noticesSlice';
 
 // import LearnMoreButton from '../NoticesDetailsCard/NoticesButton/NoticesButton';
-
+import NoticesLoader from '../NoticesLoader';
+import Spinner from '../../Spinner/Spinner';
+import Modal from '../../../components/Modal/Modal';
+import NoticeInfoCard from '../../../components/NoticesElements/NoticesDetailsCard/NoticeInfoCard';
+import { setSelectedNotice } from '../../../redux/notices/noticesSlice';
+import { Notices } from '../NoticesDetailsCard/NoticeInfoCard/NoticeInfoCard.styled';
 const NoticesCategoriesListSecond = () => {
-  const notices = useSelector(selectNotices);
+  const {
+    noticesList,
+    selectedNotice,
+    page,
+    totalHits,
+    isLoading: isLoadingNotice,
+    isAdding,
+    error,
+    limit,
+    search,
+  } = useSelector(selectNoticesObj);
 
   const favorite = useSelector(selectFavoriteList);
   const { _id } = useSelector(selectUser);
@@ -59,7 +74,7 @@ const NoticesCategoriesListSecond = () => {
   let noticesUpdated = [];
   if (isLoggedIn) {
     noticesUpdated = getPetAge(
-      getOwnerNotices(getUserFavoriteNotices(notices, favorite), _id)
+      getOwnerNotices(getUserFavoriteNotices(noticesList, favorite), _id)
     );
   } else {
     //   noticesUpdated = getPetAge(notices);
@@ -88,68 +103,93 @@ const NoticesCategoriesListSecond = () => {
   const onFavoriteNotAuth = () => {
     toast.warning('You need Login first....', optionsToast);
   };
-  const NoticeRenter = isLoggedIn ? noticesUpdated : notices;
+  const toggleModal = () => {
+    dispatch(setSelectedNotice());
+  };
+
+  const notices = isLoggedIn ? noticesUpdated : noticesList;
+
+  const filterNotices = (notices, search) => {
+    console.log('filtr', notices, search);
+    const filterByComment = notices.filter(notice =>
+      notice.comments.toLowerCase().includes(search.toLowerCase())
+    );
+    const filterByTitle = notices.filter(notice =>
+      notice.title.toLowerCase().includes(search.toLowerCase())
+    );
+    // const filterByBreed = notices.filter(notice =>
+    //   notice.breed.toLowerCase().includes(search.toLowerCase())
+    // );
+
+    return [...filterByComment, ...filterByTitle];
+  };
+
+  const NoticesRender = search ? filterNotices(notices, search) : notices;
   return (
-    <NoticesList>
-      {NoticeRenter.map(
-        ({
-          _id,
-          categoryName,
-          petImageURL,
-          title,
-          breed,
-          location,
-          age,
-          price,
-          favorite,
-          isOwner,
-        }) => (
-          <NoticesItem key={_id}>
-            <NoticesTop>
-              <NoticesNav>
-                <NoticesBadge>{categoryName}</NoticesBadge>
-                {!isLoggedIn && (
-                  <NoticesButtonFavorite
-                    onClick={onFavoriteNotAuth}
-                  ></NoticesButtonFavorite>
-                )}
-                {isLoggedIn && (
-                  <NoticesButtonFavoriteV2
-                    onClick={() => onFavoriteToggle(_id, favorite)}
-                  >
-                    <NoticesFavorite isfavorite={favorite.toString()} />
-                  </NoticesButtonFavoriteV2>
-                )}
-              </NoticesNav>
+    <>
+      {/* {isLoadingNotice && <Spinner />}
+      // {error && <NoticesLoader>console</NoticesLoader>}
+      {!isLoadingNotice && !error && ( */}
+      <NoticesList>
+        {NoticesRender.map(
+          ({
+            _id,
+            categoryName,
+            petImageURL,
+            title,
+            breed,
+            location,
+            age,
+            price,
+            favorite,
+            isOwner,
+          }) => (
+            <NoticesItem key={_id}>
+              <NoticesTop>
+                <NoticesNav>
+                  <NoticesBadge>{categoryName}</NoticesBadge>
+                  {!isLoggedIn && (
+                    <NoticesButtonFavorite
+                      onClick={onFavoriteNotAuth}
+                    ></NoticesButtonFavorite>
+                  )}
+                  {isLoggedIn && (
+                    <NoticesButtonFavoriteV2
+                      onClick={() => onFavoriteToggle(_id, favorite)}
+                    >
+                      <NoticesFavorite isfavorite={favorite.toString()} />
+                    </NoticesButtonFavoriteV2>
+                  )}
+                </NoticesNav>
 
-              <NoticesImage
-                src={petImageURL ? petImageURL : notFoundNoticesImage}
-                alt={title}
-              />
-            </NoticesTop>
+                <NoticesImage
+                  src={petImageURL ? petImageURL : notFoundNoticesImage}
+                  alt={title}
+                />
+              </NoticesTop>
 
-            <NoticesDescription>
-              <NoticesTitle>{title}</NoticesTitle>
+              <NoticesDescription>
+                <NoticesTitle>{title}</NoticesTitle>
 
-              <NoticesTags>
-                {/* <NoticesTag>id: {_id}</NoticesTag> */}
-                <NoticesTag>Breed: {breed}</NoticesTag>
-                <NoticesTag>Place: {location}</NoticesTag>
-                <NoticesTag>Age: {age}</NoticesTag>
-                {categoryName === 'sell' && (
-                  <NoticesTag>Price: {price}$</NoticesTag>
-                )}
-              </NoticesTags>
+                <NoticesTags>
+                  {/* <NoticesTag>id: {_id}</NoticesTag> */}
+                  <NoticesTag>Breed: {breed}</NoticesTag>
+                  <NoticesTag>Place: {location}</NoticesTag>
+                  <NoticesTag>Age: {age}</NoticesTag>
+                  {categoryName === 'sell' && (
+                    <NoticesTag>Price: {price}$</NoticesTag>
+                  )}
+                </NoticesTags>
 
-              <NoticesButton
-                onClick={() => {
-                  dispatch(getNoticesById(`${categoryName}/${_id}`));
-                }}
-              >
-                Learn More
-              </NoticesButton>
+                <NoticesButton
+                  onClick={() => {
+                    dispatch(getNoticesById(`${categoryName}/${_id}`));
+                  }}
+                >
+                  Learn More
+                </NoticesButton>
 
-              {/* {!favorite && isLoggedIn && (
+                {/* {!favorite && isLoggedIn && (
                 <NoticesButton onClick={() => dispatch(addToFavorite(_id))}>
                   add to favorite
                 </NoticesButton>
@@ -166,16 +206,26 @@ const NoticesCategoriesListSecond = () => {
                   add to favorite
                 </NoticesButton>
               )} */}
-              {isOwner && isLoggedIn && (
-                <NoticesButton onClick={() => dispatch(deleteNotices(_id))}>
-                  Delete
-                </NoticesButton>
-              )}
-            </NoticesDescription>
-          </NoticesItem>
-        )
+                {isOwner && isLoggedIn && (
+                  <NoticesButton onClick={() => dispatch(deleteNotices(_id))}>
+                    Delete
+                  </NoticesButton>
+                )}
+              </NoticesDescription>
+            </NoticesItem>
+          )
+        )}
+      </NoticesList>
+      {/* )} */}
+      {selectedNotice && (
+        <Modal
+          // title={'notice'}
+          type={'info'}
+          onClose={toggleModal}
+          children={<NoticeInfoCard />}
+        ></Modal>
       )}
-    </NoticesList>
+    </>
   );
 };
 

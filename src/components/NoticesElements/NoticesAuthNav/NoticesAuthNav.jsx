@@ -4,8 +4,8 @@ import {
 } from '../NoticesCategoriesNav/NoticesCategoriesNav.styled';
 /////////////////////////////////////////////////////////////////////////
 
-import { useSelector, useDispatch } from 'react-redux';
-import useAuth from '../../../hooks/useAuth.js';
+import { useDispatch } from 'react-redux';
+
 import { fetchNotices } from '../../../redux/notices/operations ';
 import { fetchFavorite } from '../../../redux/favorite/operations ';
 import { useEffect } from 'react';
@@ -46,8 +46,6 @@ const NoticesAuthNav = () => {
           <NoticesCategoriesLink to="own">My ads</NoticesCategoriesLink>
         </li>
       </NoticesCategoriesListLink>
-      {/* 
-      <NoticesCategoriesList notices={notices} /> */}
     </>
   );
 };
