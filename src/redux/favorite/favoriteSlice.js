@@ -23,7 +23,10 @@ const handleAddToFavoriteSuccses = (state, action) => {
 };
 
 const handleRemoveFromFavoriteSuccses = (state, action) => {
-  state.favoriteList = action.payload;
+  const index = state.favoriteList.findIndex(
+    notices => notices._id === action.payload
+  );
+  state.favoriteList.splice(index, 1);
 };
 
 const handleFetchFavoriteSuccses = (state, action) => {

@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { media, colors, fontWeights } from '../../../styles/stylesLayout';
 import { Form, Field } from 'formik';
 
-export const SearchForm = styled(Form)`
+export const SearchForm = styled.form`
   position: relative;
 
   margin: 0px auto;
@@ -15,7 +15,7 @@ export const SearchForm = styled(Form)`
   }
 `;
 
-export const SearchInput = styled(Field)`
+export const SearchInput = styled.input`
   display: inline-block;
 
   width: 100%;

@@ -39,10 +39,10 @@ export const removeFromFavorite = createAsyncThunk(
   'favorite/removeFromFavorite',
   async (noticeId, thunkAPI) => {
     try {
-      // console.log(`removeFromFavorite PATCH`, noticeId);
+      console.log(`removeFromFavorite PATCH`, noticeId);
       const response = await axios.patch(`/notices/${noticeId}/favorite`);
-      // console.log('removeFromFavorite GET', response.data.message.favoriteList);
-      return response.data.message.favoriteList;
+      console.log('removeFromFavorite GET', response.data.message);
+      return response.data.message;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }

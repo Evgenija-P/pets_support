@@ -2,86 +2,80 @@ import {
   SearchForm,
   SearchInput,
   SearchFormButton,
-  FormErrorMessage,
+  // FormErrorMessage,
 } from './NoticesSearch.styled';
-import { Formik, ErrorMessage } from 'formik';
+// import { Formik, ErrorMessage } from 'formik';
+
+import { toast } from 'react-toastify';
+import { optionsToast } from '../../../styles/stylesLayout';
 // import * as yup from 'yup';
 import { ReactComponent as SearchIButtonIcon } from '../../../img/icons/searchIButtonIcon.svg';
 // import { setSearch } from '../../../redux/notices/noticesSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectNoticesObj } from '../../../redux/notices/selectors';
-import { fetchNotices } from '../../../redux/notices/operations ';
-import { useLocation } from 'react-router-dom';
+// import { fetchNotices } from '../../../redux/notices/operations ';
+
 import { setSearch } from '../../../redux/notices/noticesSlice';
 const NoticesSearch = () => {
-  const { isLoading, search: searchState } = useSelector(selectNoticesObj);
-  const initialValues = {
-    search: searchState,
-  };
-  // console.log('searchState ', searchState);
-  // const { isLoading, search: searchState } = useSelector(selectNoticesObj);
   const dispatch = useDispatch();
+  const {
+    // noticesList,
+    // selectedNotic,
+    // page,
+    // totalHits,
+    // isLoading,
 
-  // const schema = yup.object().shape({
-  //   search: yup
-  //     .string()
-  //     .max(20)
-  //     .matches(
-  //       /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/,
-  //       'Search may contain only letters, apostrophe, dash and spaces. '
-  //     )
-  //     .required(),
+    // error,
+    search,
+    // limit,
+  } = useSelector(selectNoticesObj);
+  const handleClear = evt => {
+    evt.preventDefault();
+    dispatch(setSearch(''));
+  };
+
+  const handleChange = evt => {
+    dispatch(setSearch(evt.target.value));
+  };
+
+  const handlelupa = evt => {
+    if (search === '') {
+      toast.warning('Enter the title of notice!', optionsToast);
+    }
+  };
+
+  // const news = newsItem.sort(function (a, b) {
+  //   var dateA = new Date(a.date),
+  //     dateB = new Date(b.date);
+  //   return dateB - dateA;
   // });
-  const { pathname: category } = useLocation();
 
-  const heandleSubmitForm = (values, { resetForm }) => {
-    const { search } = values;
-    // console.log(search);
-    // console.log(category);
-    const normalizedSearch = search.toLocaleLowerCase();
-    if (normalizedSearch && normalizedSearch !== searchState) {
-      // console.log(search);
-      dispatch(setSearch(normalizedSearch));
-      dispatch(fetchNotices({ category, search: normalizedSearch }));
-    }
-  };
-
-  const onChangeForm = event => {
-    const search = event.target.value;
-    // console.log('serch change', event.target.value);
-    if (!search) {
-      dispatch(fetchNotices({ category }));
-    }
-  };
+  // const filterNews = news.filter(news => {
+  //   return news.title.toLowerCase().includes(search.toLowerCase());
+  // });
 
   return (
-    <Formik
-      initialValues={initialValues}
-      // validationSchema={schema}
-      onSubmit={heandleSubmitForm}
-      onChange={() => {
-        // console.log('changing');
-      }}
-    >
-      <SearchForm onChange={onChangeForm}>
+    <>
+      <SearchForm>
         <SearchInput
-          name="search"
           type="text"
           autoComplete="off"
           autoFocus
+          value={search}
           placeholder="Search"
-        ></SearchInput>
-        <ErrorMessage name="search" component={FormErrorMessage} />
-        <SearchFormButton
-          type="submit"
-          disabled={isLoading}
-          className="button"
-          aria-label="Search"
-        >
-          <SearchIButtonIcon />
-        </SearchFormButton>
+          onChange={handleChange}
+        />
+        {search.trim() === '' ? (
+          <SearchFormButton type="button" onClick={handlelupa}>
+            <SearchIButtonIcon />
+          </SearchFormButton>
+        ) : (
+          <SearchFormButton type="button" onClick={handleClear}>
+            clear
+          </SearchFormButton>
+        )}
       </SearchForm>
-    </Formik>
+    </>
   );
 };
 

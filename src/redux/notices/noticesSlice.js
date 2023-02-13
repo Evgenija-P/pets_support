@@ -44,7 +44,7 @@ const handleFetchNoticesSuccses = (state, action) => {
   state.limit = action.payload.limit;
 };
 const handleAddNoticesSuccses = (state, { payload }) => {
-  state.noticesList.push(payload);
+  state.noticesList.unshift(payload);
   state.error = null;
   state.isAdding = false;
 };
@@ -79,9 +79,9 @@ export const noticesSlice = createSlice({
   name: 'notices',
   initialState: noticesInitialState,
   reducers: {
-    setCategory(state, action) {
-      state.category = action.payload;
-    },
+    // setCategory(state, action) {
+    //   state.category = action.payload;
+    // },
     setPage(state, action) {
       state.page = action.payload;
     },
@@ -137,7 +137,7 @@ export const noticesSlice = createSlice({
   },
 });
 export const {
-  setCategory,
+  // setCategory,
   setPage,
   deletefavoriteNotice,
   setSearch,

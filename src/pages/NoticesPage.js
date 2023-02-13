@@ -5,27 +5,23 @@ import { Helmet } from 'react-helmet';
 import SectionContainer from '../components/SectionContainer';
 import NoticesCategoriesNav from '../components/NoticesElements/NoticesCategoriesNav/NoticesCategoriesNav';
 import NoticesSearch from '../components/NoticesElements/NoticesSearch/NoticesSearch';
-import NoticesGallary from '../components/NoticesElements/NoticesGallary';
+// import NoticesGallary from '../components/NoticesElements/NoticesGallary';
+// import NoticesCategoriesList from '../components/NoticesElements/NoticesCategoriesList';
 // import NoticeInfoCard from '../components/NoticesElements/NoticesDetailsCard/NoticeInfoCard';
 // import { useEffect, useRef } from 'react';
-// import { useEffect } from 'react';
+// // import { useEffect } from 'react';
 // import { useNavigate } from 'react-router-dom';
-// import { useLocation } from 'react-router-dom';
-// import { fetchNotices } from '../redux/notices/operations ';
+
 // import { fetchFavorite } from '../redux/favorite/operations ';
-// import { selectNoticesObj } from '../redux/notices/selectors';
-// import Modal from '../components/Modal/Modal';
-// import { useSelector, useDispatch } from 'react-redux';
+
+// import { useDispatch } from 'react-redux';
+
 // import useAuth from '../hooks/useAuth.js';
-// import { selectCurrentObj } from '../redux/current/selectors';
-// import { setCurrentNotices } from '../redux/current/currentSlice';
-// import { selectFavoriteObj } from '../redux/favorite/selectors';
-// import { selectUser } from '../redux/auth/selectors';
-// import Spinner from '../components/Spinner/Spinner';
+
+import NoticesCategoriesListSecond from '../components/NoticesElements/NoticesCategoriesListSecond';
+
+// import GalleryPagination from '../components/NoticesElements/GalleryPagination';
 const NoticesPage = () => {
-  // const { isLoading: isLoadingCurrent } = useSelector(selectCurrentObj);
-  // const { isLoading: isLoadingNotices } = useSelector(selectNoticesObj);
-  // const { isLoading: isLoadingFavorite } = useSelector(selectFavoriteObj);
   // const firstRender = useRef(true);
   // const dispatch = useDispatch();
   // const { isLoggedIn } = useAuth();
@@ -34,19 +30,19 @@ const NoticesPage = () => {
   // const navigate = useNavigate();
 
   // useEffect(() => {
-  //   console.log('useEffect in NoticePage');
-  //   navigate('/notices/sell', { replace: true });
-  //   // if (firstRender) {
-  //   //   console.log('first render');
-  //   //   navigate('/notices/sell', { replace: true });
-  //   // console.log('fetchNotices from NoticePage {category: /notices/sell}');
-  //   // dispatch(fetchNotices({ category: '/notices/sell' }));
+  //   if (firstRender) {
+  //     console.log('first render in Page Navigate ');
+  //     navigate('/notices/sell', { replace: true });
+  //     if (isLoggedIn) {
+  //       dispatch(fetchFavorite({}));
+  //     }
+  //     firstRender.current = false;
 
-  //   // if (isLoggedIn) {
-  //   //   console.log('fetchFavorite() from NoticePage');
-  //   //   dispatch(fetchFavorite());
-  //   // }
-  // }, []);
+  //     return;
+  //   }
+  // }, [isLoggedIn]);
+  // console.log('Notices', noticesList);
+  ///////////////////////////////////////////
   return (
     <>
       <Helmet>
@@ -54,11 +50,11 @@ const NoticesPage = () => {
       </Helmet>
       <SectionContainer title="Find your favorite pet">
         <NoticesSearch />
-        {/* {(isLoadingCurrent || isLoadingNotices || isLoadingFavorite) && (
-          <Spinner />
-        )} */}
+
         <NoticesCategoriesNav />
-        <NoticesGallary />
+        <NoticesCategoriesListSecond />
+        {/* <NoticesGallary /> */}
+        {/* <GalleryPagination /> */}
       </SectionContainer>
 
       {/* <Suspense fallback={<p>Loading...</p>}>
