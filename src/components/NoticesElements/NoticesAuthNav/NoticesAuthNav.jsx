@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import { fetchNotices } from '../../../redux/notices/operations ';
 import { fetchFavorite } from '../../../redux/favorite/operations ';
 import { useEffect } from 'react';
-// import {  useRef } from 'react';
+// import { useRef } from 'react';
 import { selectNoticesObj } from '../../../redux/notices/selectors';
 
 import useAuth from '../../../hooks/useAuth.js';

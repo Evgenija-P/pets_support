@@ -11,11 +11,11 @@ import NoticesLoader from '../NoticesLoader';
 // import Modal from '../../../components/Modal/Modal';
 // //import useAuth from '../../../hooks/useAuth.js';
 // import { setSelectedNotice } from '../../../redux/notices/noticesSlice';
-// import { setCurrentNotices } from '../../../redux/current/currentSlice';
-// import { selectFavoriteList } from '../../../redux/favorite/selectors';
+
+import { selectFavoriteObj } from '../../../redux/favorite/selectors';
 // import { selectUser } from '../../../redux/auth/selectors';
 // import { useNavigate } from 'react-router-dom';
-// import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 // import { useRef } from 'react';
 
 const NoticesGallary = () => {
@@ -30,10 +30,15 @@ const NoticesGallary = () => {
     noticesList,
     // selectedNotice,
   } = useSelector(selectNoticesObj);
-  // const favoriteList = useSelector(selectFavoriteList);
+  const {
+    favoriteList,
+
+    isLoading: isLoadingFavorite,
+    error: errorFavorite,
+  } = useSelector(selectFavoriteObj);
   // const { isLoading: isLoadingFavorite } = useSelector(selectFavoriteObj);
   // const { isLoggedIn } = useAuth();
-
+  const { pathname } = useLocation();
   // const dispatch = useDispatch();
   // const firstRender = useRef(true);
 
@@ -44,10 +49,17 @@ const NoticesGallary = () => {
 
   return (
     <div>
-      {(errorNotices || noticesList.length === 0) && !isLoading && (
-        <NoticesLoader />
-      )}
-      {!errorNotices && <NoticesCategoriesListSecond />}
+      {pathname === '/notices/favorite'
+        ? (errorFavorite || favoriteList.length === 0) &&
+          !isLoadingFavorite && <NoticesLoader />
+        : (errorNotices || noticesList.length === 0) &&
+          !isLoading && <NoticesLoader />}
+      {pathname === '/notices/favorite'
+        ? !errorFavorite &&
+          favoriteList.length && <NoticesCategoriesListSecond />
+        : !errorNotices &&
+          noticesList.length !== 0 && <NoticesCategoriesListSecond />}
+      {/* // {!errorNotices && <NoticesCategoriesListSecond />} */}
       <GalleryPagination />
     </div>
   );
