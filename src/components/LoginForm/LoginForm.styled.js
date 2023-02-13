@@ -127,7 +127,7 @@ export const Input = styled(Field)`
 
   :hover,
   :focus {
-    /* border: 2px solid ${colors.accent}; */
+    border-color: ${colors.hover};
     outline: 0;
   }
 
