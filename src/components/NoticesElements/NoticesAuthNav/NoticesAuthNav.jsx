@@ -67,7 +67,7 @@ const NoticesAuthNav = () => {
     // // }
     // dispatch(fetchNotices({ category: pathname, search }));
     dispatch(fetchFavorite({}));
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
