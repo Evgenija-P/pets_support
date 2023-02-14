@@ -44,7 +44,7 @@ import {
 } from '../../../redux/notices/operations ';
 import { deleteNotices } from '../../../redux/notices/operations ';
 import Modal from '../../../components/Modal/Modal';
-import NoticeInfoCard from '../../../components/NoticesElements/NoticesDetailsCard/NoticeInfoCard';
+import NoticesDetailsCard from '../../../components/NoticesElements/NoticesDetailsCard';
 import { setSelectedNotice } from '../../../redux/notices/noticesSlice';
 // import { useLocation } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
@@ -246,7 +246,7 @@ const NoticesCategoriesListSecond = () => {
           // title={'notice'}
           type={'info'}
           onClose={toggleModal}
-          children={<NoticeInfoCard />}
+          children={<NoticesDetailsCard />}
         ></Modal>
       )}
     </>
