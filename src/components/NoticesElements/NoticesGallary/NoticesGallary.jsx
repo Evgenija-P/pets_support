@@ -6,7 +6,7 @@ import GalleryPagination from '../../NoticesElements/GalleryPagination';
 
 // import { selectFavoriteObj } from '../../../redux/favorite/selectors';
 
-// import NoticesLoader from '../NoticesLoader';
+import NoticesLoader from '../NoticesLoader';
 // import Spiner from '../../Spinner';
 import Spiner from '../../Spinner';
 // import Modal from '../../../components/Modal/Modal';
@@ -16,7 +16,7 @@ import Spiner from '../../Spinner';
 // import { selectFavoriteObj } from '../../../redux/favorite/selectors';
 // import { selectUser } from '../../../redux/auth/selectors';
 // import { useNavigate } from 'react-router-dom';
-// import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 // import { useRef } from 'react';
 
 const NoticesGallary = () => {
@@ -28,8 +28,8 @@ const NoticesGallary = () => {
     // search,
     isLoading,
     error: errorNotices,
-    // noticesList,
-    // noticesFavoriteList,
+    noticesList,
+    noticesFavoriteList,
 
     // selectedNotice,
   } = useSelector(selectNoticesObj);
@@ -41,7 +41,7 @@ const NoticesGallary = () => {
   // } = useSelector(selectFavoriteObj);
   // const { isLoading: isLoadingFavorite } = useSelector(selectFavoriteObj);
   // const { isLoggedIn } = useAuth();
-  // const { pathname } = useLocation();
+  const { pathname } = useLocation();
   // const dispatch = useDispatch();
   // const firstRender = useRef(true);
 
@@ -68,6 +68,13 @@ const NoticesGallary = () => {
           favoriteList.length !== 0 && <NoticesCategoriesListSecond />
         : !errorNotices &&
           noticesList.length !== 0 && <NoticesCategoriesListSecond />} */}
+      {/* {pathname === '/notices/favorite' ? (
+        <NoticesLoader />
+      ) : (
+        (errorNotices || noticesList.length === 0) && <NoticesLoader />
+      )} */}
+
+      {/* {noticesList.length === 0 && <NoticesLoader />} */}
       {!errorNotices && <NoticesCategoriesListSecond />}
       {isLoading && <Spiner />}
       <GalleryPagination />
