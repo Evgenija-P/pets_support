@@ -14,7 +14,7 @@ import {
   NoticesFavorite,
   NoticesButtonFavoriteV2,
   ButtonList,
-} from './NoticesCategoriesList.styled';
+} from './NoticesCategoriesListSecond.styled';
 import { toast } from 'react-toastify';
 import { optionsToast } from '../../../styles/stylesLayout';
 import {
@@ -49,7 +49,7 @@ import { setSelectedNotice } from '../../../redux/notices/noticesSlice';
 // import { useLocation } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 // import { useEffect } from 'react';
-const NoticesCategoriesList = () => {
+const NoticesCategoriesListSecond = () => {
   const {
     noticesList: listNotices,
     selectedNotice,
@@ -256,4 +256,4 @@ const NoticesCategoriesList = () => {
   );
 };
 
-export default NoticesCategoriesList;
+export default NoticesCategoriesListSecond;
