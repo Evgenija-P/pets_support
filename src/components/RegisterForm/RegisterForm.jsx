@@ -9,7 +9,7 @@ import { selectIsLoading } from '../../redux/auth/selectors';
 import { register } from '../../redux/auth/operations';
 
 import {
-  emailRegex,
+  // emailRegex,
   phoneRegexp,
   cityRegexp,
   userNameRegexp,
@@ -28,6 +28,8 @@ import {
   StyledLink,
   BoxText,
 } from './RegisterForm.styled';
+
+const emailRegex = /^[^-][a-zA-Z0-9_.-]{1,64}@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/
 
 const phoneNumberMask = [
   '+',
@@ -49,6 +51,8 @@ const phoneNumberMask = [
   /\d/,
 ];
 
+
+
 const registerSchema = object().shape({
   password: string()
     .min(7, 'Password must be at least 7 characters')
@@ -59,8 +63,8 @@ const registerSchema = object().shape({
     .required('Please confirm your password')
     .oneOf([ref('password')], 'Passwords does not match'),
   email: string()
+    .email('Invalid email adress')
     .matches(emailRegex, 'Invalid email adress')
-    // .email('Invalid email adress')
     .required('Email is required'),
   name: string()
     .min(2, 'Min 2 symbols')
@@ -124,7 +128,7 @@ const RegisterForm = () => {
     formik.values.confirmPassword === ''
       ? true
       : false;
-
+      
   const showPassword = () => {
     setShowPass(!showPass);
   };
@@ -137,7 +141,9 @@ const RegisterForm = () => {
         <Spinner />
       ) : (
         <FormContainer>
-          <Formik validationSchema={registerSchema}>
+          <Formik 
+              validationSchema={registerSchema}
+          >
             <FormRegister onSubmit={formik.handleSubmit} autoComplete="off">
               <Title>Register</Title>
               {isShown && (
@@ -147,9 +153,10 @@ const RegisterForm = () => {
                       name="email"
                       type="email"
                       placeholder="Email"
+                      validate={registerSchema.email}
                       onChange={formik.handleChange}
                       value={formik.values.email}
-                      onBlur={formik.handleBlur}
+                      onBlur={formik.handleBlur}                        
                     />
 
                     {formik.errors.email || formik.touched.email ? (
