@@ -3,18 +3,28 @@ import {
   NoticesCategoriesLink,
 } from '../NoticesCategoriesNav/NoticesCategoriesNav.styled';
 import { useDispatch } from 'react-redux';
-
 import { fetchNotices } from '../../../redux/notices/operations ';
 import { useEffect } from 'react';
-
 import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const NoticesAuthNav = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { pathname } = useLocation();
+  const { categoryName } = useParams();
+
+  useEffect(() => {
+    if (!categoryName) {
+      navigate('/notices/sell');
+    }
+  }, [categoryName, navigate]);
+
   useEffect(() => {
     dispatch(fetchNotices({ category: pathname }));
   }, [pathname, dispatch]);
+
   return (
     <>
       <NoticesCategoriesListLink>

@@ -7,7 +7,8 @@ import GalleryPagination from '../../NoticesElements/GalleryPagination';
 // import { selectFavoriteObj } from '../../../redux/favorite/selectors';
 
 import NoticesLoader from '../NoticesLoader';
-// import Spinner from '../../Spinner';
+// import NoticeSpiner from '../NoticeSpiner';
+import Spiner from '../../Spinner';
 // import Modal from '../../../components/Modal/Modal';
 // //import useAuth from '../../../hooks/useAuth.js';
 // import { setSelectedNotice } from '../../../redux/notices/noticesSlice';
@@ -50,16 +51,14 @@ const NoticesGallary = () => {
   return (
     <div>
       {pathname === '/notices/favorite'
-        ? (errorFavorite || favoriteList.length === 0) &&
-          !isLoadingFavorite && <NoticesLoader />
-        : (errorNotices || noticesList.length === 0) &&
-          !isLoading && <NoticesLoader />}
+        ? (errorFavorite || favoriteList.length === 0) && <NoticesLoader />
+        : (errorNotices || noticesList.length === 0) && <NoticesLoader />}
       {pathname === '/notices/favorite'
         ? !errorFavorite &&
-          favoriteList.length && <NoticesCategoriesListSecond />
+          favoriteList.length !== 0 && <NoticesCategoriesListSecond />
         : !errorNotices &&
           noticesList.length !== 0 && <NoticesCategoriesListSecond />}
-      {/* // {!errorNotices && <NoticesCategoriesListSecond />} */}
+      {(isLoadingFavorite || isLoading) && <Spiner />}
       <GalleryPagination />
     </div>
   );

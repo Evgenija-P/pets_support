@@ -7,7 +7,7 @@ import NoticesCategoriesNav from '../components/NoticesElements/NoticesCategorie
 import NoticesSearch from '../components/NoticesElements/NoticesSearch/NoticesSearch';
 import NoticesGallary from '../components/NoticesElements/NoticesGallary';
 
-import NoticeSpiner from '../components/NoticesElements/NoticeSpiner';
+// import NoticeSpiner from '../components/NoticesElements/NoticeSpiner';
 const NoticesPage = () => {
   return (
     <>
@@ -15,7 +15,7 @@ const NoticesPage = () => {
         <title>NoticesPage</title>
       </Helmet>
       <SectionContainer title="Find your favorite pet">
-        <NoticeSpiner />
+        {/* <NoticeSpiner /> */}
         <NoticesSearch />
 
         <NoticesCategoriesNav />
