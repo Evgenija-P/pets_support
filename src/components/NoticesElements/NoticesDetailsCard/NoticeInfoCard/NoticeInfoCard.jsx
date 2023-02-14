@@ -55,7 +55,7 @@ const NoticeInfoCard = () => {
   const dispatch = useDispatch();
 
   const { isLoggedIn } = useAuth();
-  const { selectedNotice, favoriteNoticesList, isLoading } =
+  const { selectedNotice, favoriteNoticesList, /* isLoading */ } =
     useSelector(selectNoticesObj);
   const { _id: userId } = useSelector(selectUser);
   // const { favoriteList, isLoading } = useSelector(selectFavoriteObj);
