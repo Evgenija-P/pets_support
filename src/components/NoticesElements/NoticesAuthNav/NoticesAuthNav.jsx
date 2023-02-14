@@ -16,6 +16,7 @@ import { fetchFavoriteNotices } from '../../../redux/notices/operations ';
 const NoticesAuthNav = () => {
   const dispatch = useDispatch();
   const { categoryName } = useParams();
+  console.log('category', categoryName);
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const { search } = useSelector(selectNoticesObj);
@@ -27,13 +28,9 @@ const NoticesAuthNav = () => {
   }, [categoryName, navigate]);
 
   useEffect(() => {
-    // if (pathname === '/notices/favorite') {
-    //   dispatch(fetchFavoriteNotices({}));
-    //   return;
-    // }
     dispatch(fetchNotices({ category: pathname, search }));
-    // dispatch(setCategory(categoryName));
   }, [pathname, dispatch, search]);
+
   useEffect(() => {
     dispatch(setCategory(categoryName));
   }, [dispatch, categoryName]);
