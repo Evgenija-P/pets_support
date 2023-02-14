@@ -50,13 +50,7 @@ const NoticeInfoCard = () => {
       getIsOwnNotice(userId, selectedNotice)
     )
   );
-  // console.log(
-  //   'select!!!!',
-  //   getIsFavoriteNotice(favoriteNoticesList, selectedNotice)
-  // );
-  // const noticeReduced = labelNotice(
-  //   getIsFavoriteNotice(favoriteNoticesList, selectedNotice)
-  // );
+
   const {
     _id,
     petImageURL,
@@ -151,21 +145,14 @@ const NoticeInfoCard = () => {
           </NoticesButtonDelete>
         )}
         {!Isfavorite && isLoggedIn && (
-          <NoticesButtonFavorite
-            disabled={isLoading}
-            onClick={onToggle}
-            // onClick={() => onFavoriteToggle(_id, Isfavorite)}
-          >
+          <NoticesButtonFavorite disabled={isLoading} onClick={onToggle}>
             Add to
             <HeartFavorite />
           </NoticesButtonFavorite>
         )}
 
         {Isfavorite && isLoggedIn && (
-          <NoticesButtonFavorite
-            // onClick={() => onFavoriteToggle(_id, Isfavorite)}
-            onClick={onToggle}
-          >
+          <NoticesButtonFavorite onClick={onToggle}>
             Remove from
             <HeartFavorite />
           </NoticesButtonFavorite>

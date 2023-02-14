@@ -8,9 +8,7 @@ import {
   removeFromFavoriteNotices,
   fetchFavoriteNotices,
 } from './operations ';
-// import { nanoid } from 'nanoid';
-// import { persistReducer } from 'redux-persist';
-// import storage from 'redux-persist/lib/storage';
+
 const noticesInitialState = {
   noticesList: [],
   favoriteNoticesList: [],
@@ -78,10 +76,8 @@ const handleGetNoticesByIdSuccses = (state, action) => {
 const handleAddToFavoriteNoticesSuccses = (state, action) => {
   if (state.category === 'favorite') {
     state.noticesList.push(action.payload);
-
-    // state.favoriteNoticesList.push(action.payload);
   }
-  // state.favoriteNoticesList = action.payload;
+
   state.favoriteNoticesList.push(action.payload);
 };
 const handleRemoveFromFavoriteNoticesSuccses = (state, action) => {
