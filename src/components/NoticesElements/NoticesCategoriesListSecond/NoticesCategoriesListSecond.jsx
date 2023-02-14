@@ -47,6 +47,7 @@ import Modal from '../../../components/Modal/Modal';
 import NoticeInfoCard from '../../../components/NoticesElements/NoticesDetailsCard/NoticeInfoCard';
 import { setSelectedNotice } from '../../../redux/notices/noticesSlice';
 import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 // import { useEffect } from 'react';
 const NoticesCategoriesListSecond = () => {
   const {
@@ -68,6 +69,7 @@ const NoticesCategoriesListSecond = () => {
   // const { pathname } = useLocation();
   const { isLoggedIn } = useAuth();
   let noticesUpdated = [];
+
   // const del = getUserFavoriteNotices(noticesList, favorite);
   // console.log('del', del);
 
@@ -112,7 +114,7 @@ const NoticesCategoriesListSecond = () => {
   const toggleModal = () => {
     dispatch(setSelectedNotice());
   };
-
+  const { categoryName: category } = useParams();
   // const notices = isLoggedIn ? noticesUpdated : noticesList;
   const notices = noticesUpdated;
 
@@ -204,7 +206,7 @@ const NoticesCategoriesListSecond = () => {
 
                 <NoticesButton
                   onClick={() => {
-                    dispatch(getNoticesById(`${categoryName}/${_id}`));
+                    dispatch(getNoticesById(`${category}/${_id}`));
                   }}
                 >
                   Learn More

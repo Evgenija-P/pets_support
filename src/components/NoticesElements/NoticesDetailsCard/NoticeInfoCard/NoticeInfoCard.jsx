@@ -19,26 +19,13 @@ import React from 'react';
 import { onFavoriteNotAuth } from '../../../../helpers/noticesHelpers';
 import { ReactComponent as HeartFavorite } from '../../../../img/icons/heartFavorite.svg';
 import { ReactComponent as Delete } from '../../../../img/icons/delete.svg';
-
 import defaultPhoto from '../../../../img/default.jpg';
 import { useDispatch, useSelector } from 'react-redux';
-// import useAuth from '../../../../hooks/useAuth';
-// import {
-//   selectNotices,
-//   // selectFavoriteNotices,
-//   selectNoticesObj,
-
 import { useState } from 'react';
-// import { selectFavoriteList } from '../../../redux/favorite/selectors';
-// import { deletefavoriteNotice } from '../../../redux/notices/noticesSlice';
-// import { selectUser } from '../../../../redux/auth/selectors';
-// import { display, height } from '@mui/system';
 import { setSelectedNotice } from '../../../../redux/notices/noticesSlice';
-// import { useLocation } from 'react-router-dom';
 import { deleteNotices } from '../../../../redux/notices/operations ';
-// import Spinner from '../../../Spinner/Spinner';
+import Spinner from '../../../Spinner/Spinner';
 import { selectUser } from '../../../../redux/auth/selectors';
-// import { selectFavoriteObj } from '../../../../redux/favorite/selectors';
 import useAuth from '../../../../hooks/useAuth.js';
 import {
   getIsOwnNotice,
@@ -51,14 +38,11 @@ import {
 import { selectNoticesObj } from '../../../../redux/notices/selectors';
 import { labelNotice } from '../../../../helpers/noticesHelpers';
 const NoticeInfoCard = () => {
-  // const { _id: user } = useSelector(selectUser);
   const dispatch = useDispatch();
-
   const { isLoggedIn } = useAuth();
-  const { selectedNotice, favoriteNoticesList, /* isLoading */ } =
+  const { selectedNotice, favoriteNoticesList, isLoading } =
     useSelector(selectNoticesObj);
   const { _id: userId } = useSelector(selectUser);
-  // const { favoriteList, isLoading } = useSelector(selectFavoriteObj);
 
   const noticeReduced = labelNotice(
     getIsFavoriteNotice(
@@ -67,7 +51,6 @@ const NoticeInfoCard = () => {
     )
   );
 
-  ////////////////////////////////////////////////////////////////////
   const {
     _id,
     petImageURL,
@@ -89,14 +72,6 @@ const NoticeInfoCard = () => {
   console.log('favorite', favorite);
   console.log('Isfavorite', Isfavorite);
 
-  // const onFavoriteToggle = (_id, favorite) => {
-  //   if (favorite) {
-  //     dispatch(removeFromFavorite(_id));
-
-  //     return;
-  //   }
-  //   dispatch(addToFavorite(_id));
-  // };
   const onToggle = () => {
     setIsfavorite(prev => !prev);
     if (Isfavorite) {
@@ -156,7 +131,7 @@ const NoticeInfoCard = () => {
       <NoticesComment>
         <strong>Comments: </strong> {comments}
       </NoticesComment>
-      {/* {isLoading && <Spinner />} */}
+      {isLoading && <Spinner />}
       <ButtonBlock>
         {own && (
           <NoticesButtonDelete
