@@ -13,30 +13,30 @@ import {
   Notices,
   NoticesButtonDelete,
   NotiseColumn,
-} from './NoticeInfoCard.styled';
+} from './NoticesDetailsCard.styled';
 
 import React from 'react';
-import { onFavoriteNotAuth } from '../../../../helpers/noticesHelpers';
-import { ReactComponent as HeartFavorite } from '../../../../img/icons/heartFavorite.svg';
-import { ReactComponent as Delete } from '../../../../img/icons/delete.svg';
-import defaultPhoto from '../../../../img/default.jpg';
+import { onFavoriteNotAuth } from '../../../helpers/noticesHelpers';
+import { ReactComponent as HeartFavorite } from '../../../img/icons/heartFavorite.svg';
+import { ReactComponent as Delete } from '../../../img/icons/delete.svg';
+import defaultPhoto from '../../../img/default.jpg';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-import { setSelectedNotice } from '../../../../redux/notices/noticesSlice';
-import { deleteNotices } from '../../../../redux/notices/operations ';
-import Spinner from '../../../Spinner/Spinner';
-import { selectUser } from '../../../../redux/auth/selectors';
-import useAuth from '../../../../hooks/useAuth.js';
+import { setSelectedNotice } from '../../../redux/notices/noticesSlice';
+import { deleteNotices } from '../../../redux/notices/operations ';
+import Spinner from '../../Spinner/Spinner';
+import { selectUser } from '../../../redux/auth/selectors';
+import useAuth from '../../../hooks/useAuth.js';
 import {
   getIsOwnNotice,
   getIsFavoriteNotice,
-} from '../../../../helpers/currentHelpers';
+} from '../../../helpers/currentHelpers';
 import {
   addToFavoriteNotices,
   removeFromFavoriteNotices,
-} from '../../../../redux/notices/operations ';
-import { selectNoticesObj } from '../../../../redux/notices/selectors';
-import { labelNotice } from '../../../../helpers/noticesHelpers';
+} from '../../../redux/notices/operations ';
+import { selectNoticesObj } from '../../../redux/notices/selectors';
+import { labelNotice } from '../../../helpers/noticesHelpers';
 const NoticeInfoCard = () => {
   const dispatch = useDispatch();
   const { isLoggedIn } = useAuth();
@@ -69,8 +69,6 @@ const NoticeInfoCard = () => {
   } = noticeReduced;
   const callNumber = 'tel:' + phone;
   const [Isfavorite, setIsfavorite] = useState(favorite);
-  // console.log('favorite', favorite);
-  // console.log('Isfavorite', Isfavorite);
 
   const onToggle = () => {
     setIsfavorite(prev => !prev);

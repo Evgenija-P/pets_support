@@ -31,13 +31,8 @@ const NoticesCategoriesNav = ({ notices }) => {
     }
   }
 
-  // console.log('isLoggedIn', isLoggedIn);
-
   return (
     <NoticesCategoriesContainer>
-      <AddNoticeButton
-        onClick={isLoggedIn ? toggleAddNoticeModal : toggleUnauthorizedModal}
-      />
       {isLoggedIn ? (
         <NoticesAuthNav notices={notices} />
       ) : (
@@ -50,6 +45,9 @@ const NoticesCategoriesNav = ({ notices }) => {
           onClose={toggleAddNoticeModal}
         />
       )}
+      <AddNoticeButton
+        onClick={isLoggedIn ? toggleAddNoticeModal : toggleUnauthorizedModal}
+      />
     </NoticesCategoriesContainer>
   );
 };

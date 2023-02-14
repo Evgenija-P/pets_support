@@ -41,7 +41,6 @@ import {
   ErrBox
 } from './UserInformation.styled';
 
-
 const userUpdateSchema = object().shape({
   email: string()
     .matches(emailRegex, 'Invalid email adress')
@@ -49,7 +48,7 @@ const userUpdateSchema = object().shape({
     .required('Email is required'),
   name: string()
     .min(2, 'Min 2 symbols')
-    .matches(userNameRegexp, 'Only letters')
+    .matches(userNameRegexp, 'Only latin letters')
     .required('Name is required'),
   phone: string()
     .min(13, 'Too Short!')

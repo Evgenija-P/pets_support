@@ -68,4 +68,5 @@ export const Error = styled.span`
 export const ErrorContainer = styled.div`
   position: absolute;
   top: 100%;
+  left: 0;
 `;

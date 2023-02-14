@@ -13,6 +13,7 @@ import {
   NoticesButton,
   NoticesFavorite,
   NoticesButtonFavoriteV2,
+  ButtonList,
 } from './NoticesCategoriesListSecond.styled';
 import { toast } from 'react-toastify';
 import { optionsToast } from '../../..//styles/stylesLayout';
@@ -37,14 +38,13 @@ import { getNoticesById } from '../../../redux/notices/operations ';
 //   removeFromFavorite,
 // } from '../../../redux/favorite/operations ';
 // import Spinner from '../../Spinner';
-// import NoticesLoader from '../NoticesLoader';
 import {
   addToFavoriteNotices,
   removeFromFavoriteNotices,
 } from '../../../redux/notices/operations ';
 import { deleteNotices } from '../../../redux/notices/operations ';
 import Modal from '../../../components/Modal/Modal';
-import NoticeInfoCard from '../../../components/NoticesElements/NoticesDetailsCard/NoticeInfoCard';
+import NoticesDetailsCard from '../../../components/NoticesElements/NoticesDetailsCard';
 import { setSelectedNotice } from '../../../redux/notices/noticesSlice';
 // import { useLocation } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
@@ -56,7 +56,7 @@ const NoticesCategoriesListSecond = () => {
     search,
     favoriteNoticesList,
     isLoading,
-    // error,
+    error,
   } = useSelector(selectNoticesObj);
   // const { pathname } = useLocation();
   // const favorite = useSelector(selectFavoriteList);
@@ -150,8 +150,8 @@ const NoticesCategoriesListSecond = () => {
   // console.log('sorted', sortedNotices);
   return (
     <>
-      {/* {isLoading && <Spinner />}
-      {(error || listNotices === 0) && <NoticesLoader>console</NoticesLoader>} */}
+      {/* {isLoading && <Spinner />} */}
+      {(error || favoriteNoticesList.lengt === 0) && <div>нет</div>}
 
       <NoticesList>
         {sortedNotices.map(
@@ -204,14 +204,23 @@ const NoticesCategoriesListSecond = () => {
                   )}
                 </NoticesTags>
 
-                <NoticesButton
-                  disabled={isLoading}
-                  onClick={() => {
-                    dispatch(getNoticesById(`${category}/${_id}`));
-                  }}
-                >
-                  Learn More
-                </NoticesButton>
+                <ButtonList>
+                  <NoticesButton
+                    disabled={isLoading}
+                    onClick={() => {
+                      dispatch(getNoticesById(`${category}/${_id}`));
+                    }}
+                  >
+                    Learn More
+                  </NoticesButton>
+
+                  {isOwner && isLoggedIn && (
+                    <NoticesButton onClick={() => dispatch(deleteNotices(_id))}>
+                      Delete
+                    </NoticesButton>
+                  )}
+                </ButtonList>
+
                 {/* 
                 {!favorite && isLoggedIn && (
                   <NoticesButton onClick={() => dispatch(addToFavorite(_id))}>
@@ -230,11 +239,6 @@ const NoticesCategoriesListSecond = () => {
                     add to favorite
                   </NoticesButton>
                 )} */}
-                {isOwner && isLoggedIn && (
-                  <NoticesButton onClick={() => dispatch(deleteNotices(_id))}>
-                    Delete
-                  </NoticesButton>
-                )}
               </NoticesDescription>
             </NoticesItem>
           )
@@ -243,10 +247,9 @@ const NoticesCategoriesListSecond = () => {
 
       {selectedNotice && (
         <Modal
-          // title={'notice'}
           type={'info'}
           onClose={toggleModal}
-          children={<NoticeInfoCard />}
+          children={<NoticesDetailsCard />}
         ></Modal>
       )}
     </>

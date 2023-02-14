@@ -5,7 +5,7 @@ export const Container = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-top: 15px;
+  margin-top: 28px;
 `;
 
 export const Label = styled.label`
@@ -29,6 +29,8 @@ export const CommentsField = styled.textarea`
   border: 1px solid rgba(245, 146, 86, 0.5);
   background-color: ${colors.background};
   outline: none;
+  resize: none;
+  overflow: hidden;
 
   transition: border-color 250ms ease-in-out;
 

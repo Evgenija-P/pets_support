@@ -19,7 +19,6 @@ const noticesInitialState = {
   isAdding: false,
   error: null,
   category: '',
-  // category: '',
   search: '',
   limit: 20,
 };
@@ -50,7 +49,10 @@ const handleFetchFavoriteNoticesSuccses = (state, action) => {
   state.limit = action.payload.limit;
 };
 const handleAddNoticesSuccses = (state, { payload }) => {
-  state.noticesList.unshift(payload);
+  if (state.category === payload.categoryName) {
+    state.noticesList.unshift(payload);
+  }
+
   state.error = null;
   state.isAdding = false;
 };
@@ -69,6 +71,7 @@ const handleDeleteNoticesSuccses = (state, action) => {
   );
   state.noticesList.splice(index, 1);
 };
+
 const handleGetNoticesByIdSuccses = (state, action) => {
   state.selectedNotice = action.payload;
 };
