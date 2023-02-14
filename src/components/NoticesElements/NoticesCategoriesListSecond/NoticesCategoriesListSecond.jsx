@@ -46,7 +46,7 @@ import { deleteNotices } from '../../../redux/notices/operations ';
 import Modal from '../../../components/Modal/Modal';
 import NoticeInfoCard from '../../../components/NoticesElements/NoticesDetailsCard/NoticeInfoCard';
 import { setSelectedNotice } from '../../../redux/notices/noticesSlice';
-import { useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 // import { useEffect } from 'react';
 const NoticesCategoriesListSecond = () => {
@@ -55,14 +55,14 @@ const NoticesCategoriesListSecond = () => {
     selectedNotice,
     search,
     favoriteNoticesList,
-    // isLoading,
+    isLoading,
     // error,
   } = useSelector(selectNoticesObj);
-  const { pathname } = useLocation();
+  // const { pathname } = useLocation();
   // const favorite = useSelector(selectFavoriteList);
   // console.log('pathname', pathname);
-  const noticesList =
-    pathname === '/notices/favorite' ? favoriteNoticesList : listNotices;
+  const noticesList = listNotices;
+  // pathname === '/notices/favorite' ? favoriteNoticesList : listNotices;
 
   const { _id } = useSelector(selectUser);
   const dispatch = useDispatch();
@@ -178,6 +178,7 @@ const NoticesCategoriesListSecond = () => {
                   )}
                   {isLoggedIn && (
                     <NoticesButtonFavoriteV2
+                      disabled={isLoading}
                       onClick={() => onFavoriteToggle(_id, favorite)}
                     >
                       <NoticesFavorite isfavorite={favorite.toString()} />
@@ -205,6 +206,7 @@ const NoticesCategoriesListSecond = () => {
                 </NoticesTags>
 
                 <NoticesButton
+                  disabled={isLoading}
                   onClick={() => {
                     dispatch(getNoticesById(`${category}/${_id}`));
                   }}

@@ -20,7 +20,7 @@ const noticesInitialState = {
   isLoading: false,
   isAdding: false,
   error: null,
-  // category: '/notices/',
+  category: '',
   // category: '',
   search: '',
   limit: 20,
@@ -76,10 +76,21 @@ const handleGetNoticesByIdSuccses = (state, action) => {
 };
 
 const handleAddToFavoriteNoticesSuccses = (state, action) => {
+  // if (state.category === 'favorite') {
+  //   state.noticesList.push(action.payload);
+
+  //   state.favoriteNoticesList.push(action.payload);
+  // }
   // state.favoriteNoticesList = action.payload;
   state.favoriteNoticesList.push(action.payload);
 };
 const handleRemoveFromFavoriteNoticesSuccses = (state, action) => {
+  if (state.category === 'favorite') {
+    const index = state.noticesList.findIndex(
+      notices => notices._id === action.payload
+    );
+    state.noticesList.splice(index, 1);
+  }
   const index = state.favoriteNoticesList.findIndex(
     notices => notices._id === action.payload
   );
@@ -94,9 +105,9 @@ export const noticesSlice = createSlice({
   name: 'notices',
   initialState: noticesInitialState,
   reducers: {
-    // setCategory(state, action) {
-    //   state.category = action.payload;
-    // },
+    setCategory(state, action) {
+      state.category = action.payload;
+    },
     setPage(state, action) {
       state.page = action.payload;
     },
@@ -160,7 +171,7 @@ export const noticesSlice = createSlice({
   },
 });
 export const {
-  // setCategory,
+  setCategory,
   setPage,
   deletefavoriteNotice,
   setSearch,
