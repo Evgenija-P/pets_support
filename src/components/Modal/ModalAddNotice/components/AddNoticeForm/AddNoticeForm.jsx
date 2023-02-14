@@ -45,7 +45,6 @@ const AddNoticeForm = ({ onClose }) => {
     if (price) {
       data['price'] = price;
     }
-    console.log('data', values);
     const formData = createFormData(data);
 
     dispatch(addNotices(formData))

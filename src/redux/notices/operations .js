@@ -34,7 +34,6 @@ export const addNotices = createAsyncThunk(
 
       return data.message;
     } catch (e) {
-      console.log(e);
       return thunkAPI.rejectWithValue(e.message);
     }
   }
