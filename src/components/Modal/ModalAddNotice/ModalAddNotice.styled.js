@@ -7,14 +7,16 @@ export const ModalWrapperNotices = styled.div`
   padding: 40px 20px;
   min-height: 530px;
   position: absolute;
-  top: 50%;
+  top: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 1%);
   border-radius: 20px;
   background: ${colors.white};
   z-index: 1000;
 
   ${media.tabletAndDesktop} {
+    transform: translate(-50%, -50%);
+    top: 50%;
     width: 608px;
     padding: 40px 80px;
   }
