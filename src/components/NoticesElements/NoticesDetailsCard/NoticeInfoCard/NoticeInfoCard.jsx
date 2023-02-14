@@ -135,6 +135,7 @@ const NoticeInfoCard = () => {
       <ButtonBlock>
         {own && (
           <NoticesButtonDelete
+            disabled={isLoading}
             onClick={() => {
               dispatch(deleteNotices(_id), dispatch(setSelectedNotice()));
             }}
@@ -145,6 +146,7 @@ const NoticeInfoCard = () => {
         )}
         {!Isfavorite && isLoggedIn && (
           <NoticesButtonFavorite
+            disabled={isLoading}
             onClick={onToggle}
             // onClick={() => onFavoriteToggle(_id, Isfavorite)}
           >

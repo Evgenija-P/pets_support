@@ -55,7 +55,7 @@ const NoticesCategoriesListSecond = () => {
     selectedNotice,
     search,
     favoriteNoticesList,
-    // isLoading,
+    isLoading,
     // error,
   } = useSelector(selectNoticesObj);
   const { pathname } = useLocation();
@@ -178,6 +178,7 @@ const NoticesCategoriesListSecond = () => {
                   )}
                   {isLoggedIn && (
                     <NoticesButtonFavoriteV2
+                      disabled={isLoading}
                       onClick={() => onFavoriteToggle(_id, favorite)}
                     >
                       <NoticesFavorite isfavorite={favorite.toString()} />
@@ -205,6 +206,7 @@ const NoticesCategoriesListSecond = () => {
                 </NoticesTags>
 
                 <NoticesButton
+                  disabled={isLoading}
                   onClick={() => {
                     dispatch(getNoticesById(`${category}/${_id}`));
                   }}
