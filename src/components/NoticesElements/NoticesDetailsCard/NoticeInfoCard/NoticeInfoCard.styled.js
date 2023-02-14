@@ -23,7 +23,7 @@ export const NoticesCategory = styled.span`
   border-radius: 0px 20px 20px 0px;
 
   background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(50px);
+  backdrop-filter: blur(5px);
 
   font-weight: ${fontWeights.bold};
   font-size: 12px;
@@ -56,7 +56,7 @@ export const NoticesInfo = styled.div`
   margin-top: 16px;
 
   ${media.tabletAndDesktop} {
-    /* margin-left: 20px; */
+    margin-left: 20px;
     margin-top: 0px;
   }
 `;
@@ -71,34 +71,53 @@ export const NoticesTitle = styled.h2`
   min-width: 321px;
 
   ${media.tabletAndDesktop} {
-    margin-left: 20px;
-    margin-bottom: 12px;
+    margin-bottom: 20px;
   }
 `;
 
 export const Notices = styled.div`
   display: flex;
-  justify-content: space-around;
-`;
-
-export const Tags = styled.div`
-  display: flex;
   flex-direction: column;
   gap: 8px;
+
+  white-space: nowrap;
+  font-size: 0;
+  /* display: flex; */
+  /* justify-content: space-around; */
 `;
 
-export const Text = styled.div`
+// export const Tags = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   gap: 8px;
+// `;
+
+// export const Text = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   gap: 8px;
+// `;
+
+export const NotiseColumn = styled.div`
+  /* display: flex; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+`;
+
+export const NoticesTag = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
-`;
+  flex-basis: 20%;
+  flex: 1;
 
-export const NoticesTag = styled.h3`
-  display: block;
+  /* display: block; */
 
   font-weight: 600;
   font-size: 14px;
   line-height: 19px;
+  /* width: 100px; */
 
   ${media.tabletAndDesktop} {
     font-size: 16px;
@@ -107,6 +126,11 @@ export const NoticesTag = styled.h3`
 `;
 
 export const NoticesText = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-basis: 80%;
+  flex: 2;
+
   font-weight: ${fontWeights.medium};
   font-size: 14px;
   line-height: 19px;
