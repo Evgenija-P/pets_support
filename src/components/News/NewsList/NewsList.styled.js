@@ -66,6 +66,11 @@ export const SearchNewsForm = styled.form`
   margin: 0px auto;
   width: 280px;
   height: 100%;
+  border-radius: 44px;
+  background-color: ${colors.white};
+  box-shadow: 7px 4px 15px 0px ${colors.shadow};
+  border: none;
+  outline: none;
 
   ${media.tabletAndDesktop} {
     width: 608px;
@@ -74,7 +79,7 @@ export const SearchNewsForm = styled.form`
 
 export const SearchNewsInput = styled.input`
   display: inline-block;
-  width: 100%;
+  width: 240px;
   height: 44px;
   padding: 8px 12px;
   border-radius: 44px;
@@ -87,7 +92,7 @@ export const SearchNewsInput = styled.input`
   letter-spacing: 0.04em;
 
   ${media.tabletAndDesktop} {
-    max-width: 610px;
+    width: 575px;
     height: 44px;
     padding: 8px 20px;
     font-size: 20px;
