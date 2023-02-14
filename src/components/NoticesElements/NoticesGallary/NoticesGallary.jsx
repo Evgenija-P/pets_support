@@ -58,7 +58,7 @@ const NoticesGallary = () => {
           favoriteList.length !== 0 && <NoticesCategoriesListSecond />
         : !errorNotices &&
           noticesList.length !== 0 && <NoticesCategoriesListSecond />}
-      {isLoading && <Spiner />}
+      {isLoading && isLoadingFavorite && <Spiner />}
       <GalleryPagination />
     </div>
   );
