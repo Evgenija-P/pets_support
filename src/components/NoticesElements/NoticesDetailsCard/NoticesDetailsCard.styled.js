@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { media, colors, fontWeights } from '../../../../styles/stylesLayout';
+import { media, colors, fontWeights } from '../../../styles/stylesLayout';
 
 export const NoticesBox = styled.div`
   margin-bottom: 28px;
