@@ -7,7 +7,10 @@ import { selectIsLoading } from '../../redux/auth/selectors';
 
 import { logIn } from '../../redux/auth/operations';
 
-import { emailRegex, passwordRegexp } from "../../helpers/regExpsHelpers";
+import {
+  // emailRegex,
+  passwordRegexp
+} from "../../helpers/regExpsHelpers";
 
 import Spinner from '../Spinner';
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
@@ -26,11 +29,12 @@ import {
   ErrorText,
 } from './LoginForm.styled';
 
-// const regexPassword = /^\S*$/;
+const emailRegex = /^[^-][a-zA-Z0-9_.-]{1,64}@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/
 
 const loginSchema = yup.object().shape({
   email: yup
     .string()
+    .email('Invalid email adress')    
     .matches(emailRegex, 'Invalid email adress')
     .required('Email is required'),
   password: yup
@@ -39,8 +43,7 @@ const loginSchema = yup.object().shape({
     .max(32, 'Password must be at most 32 characters')
     .matches(
       passwordRegexp,
-      'Must not contain spaces'
-      // 'The password must consist of Latin letters (A-z), numbers (0-9)'
+      'Must not contain spaces'      
     )
     .required('Password is required'),
 });
@@ -55,8 +58,6 @@ const LoginForm = () => {
     const { resetForm } = actions;
     const form = { email: values.email, password: values.password };
     const { error } = await dispatch(logIn(form));
-
-    // console.log(error);
 
     if (!error) {
       resetForm();

@@ -10,8 +10,6 @@ import {
 
 import { CloseButton } from '../Modal.styled';
 
-console.log(ModalWrapperNotices);
-
 const ModalAddNotice = ({ onClose, title }) => {
   return (
     <ModalWrapperNotices>

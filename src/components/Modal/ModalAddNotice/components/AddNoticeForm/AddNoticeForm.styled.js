@@ -5,7 +5,7 @@ import ClipLoader from 'react-spinners/ClipLoader';
 
 export const BtnGroup = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   justify-content: center;
   margin-top: 40px;
 

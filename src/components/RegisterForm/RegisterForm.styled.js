@@ -70,7 +70,6 @@ export const ShowPassword = styled.span`
   width: 25px;
   height: 25px;
   right: 15px;
-  /* top: 13px; */
 
   top: 50%;
   transform: translateY(-80%);

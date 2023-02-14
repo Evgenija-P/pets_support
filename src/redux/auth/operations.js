@@ -3,8 +3,8 @@ import { toast } from 'react-toastify';
 
 import axios from 'axios';
 
-// axios.defaults.baseURL = 'https://petly-brs3.onrender.com/api';
-axios.defaults.baseURL = 'http://localhost:3001/api';
+axios.defaults.baseURL = 'https://petly-brs3.onrender.com/api';
+
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
@@ -27,7 +27,6 @@ export const register = createAsyncThunk(
 
       return res.data;
     } catch ({ response }) {
-      console.log(response);
       const error = response.data.message;
       toast.error(error);
 
@@ -45,7 +44,6 @@ export const logIn = createAsyncThunk(
 
       return res.data;
     } catch ({ response }) {
-      // console.log(response);
       const error = response.data.message;
       toast.error(error);
       return thunkAPI.rejectWithValue(error);
@@ -58,7 +56,6 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
     await axios.post('/users/logout');
     clearAuthHeader();
   } catch ({ response }) {
-    // console.log(response);
     const error = response.data.message;
     toast.error(error);
 
@@ -81,7 +78,6 @@ export const refreshUser = createAsyncThunk(
       const res = await axios.get('/users/current');
       return res.data;
     } catch ({ response }) {
-      console.log(response);
       const error = response.data.message;
       toast.error(error);
       return thunkAPI.rejectWithValue(error);

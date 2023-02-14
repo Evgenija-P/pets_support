@@ -5,6 +5,7 @@ const media = {
   tabletAndDesktop: '@media(min-width: 767px)',
   desktop: '@media(min-width: 1280px)',
   desktopHeight: '@media(min-height: 788px)',
+  desktop2kHeight: '@media(min-height: 1000px)',
 };
 
 const colors = {
