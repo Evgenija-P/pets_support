@@ -125,7 +125,6 @@ const NoticeInfoCard = () => {
               <NoticesTag>Birthday: </NoticesTag>
               <NoticesText>{birthdate}</NoticesText>
             </NotiseColumn>
-
             <NotiseColumn>
               <NoticesTag>Breed: </NoticesTag>
               <NoticesText>{breed}</NoticesText>
