@@ -8,12 +8,16 @@ export const NoticesCategoriesContainer = styled.div`
 
   ${media.tabletAndDesktop} {
     display: flex;
-    flex-direction: row-reverse;
     align-items: center;
     justify-content: space-between;
 
     margin-top: 60px;
   }
+`;
+
+export const NoticesCategoriesList = styled.div`
+  display: flex;
+  gap: 12px;
 `;
 
 export const NoticesCategoriesListLink = styled.ul`
@@ -23,6 +27,10 @@ export const NoticesCategoriesListLink = styled.ul`
 
   ${media.tablet} {
     max-width: 500px;
+  }
+
+  ${media.desktop} {
+    flex-direction: row-reverse;
   }
 `;
 

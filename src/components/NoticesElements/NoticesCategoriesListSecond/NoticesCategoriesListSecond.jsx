@@ -13,6 +13,7 @@ import {
   NoticesButton,
   NoticesFavorite,
   NoticesButtonFavoriteV2,
+  ButtonList,
 } from './NoticesCategoriesListSecond.styled';
 import { toast } from 'react-toastify';
 import { optionsToast } from '../../..//styles/stylesLayout';
@@ -203,19 +204,41 @@ const NoticesCategoriesListSecond = () => {
                   )}
                 </NoticesTags>
 
-                <NoticesButton
-                  disabled={isLoading}
-                  onClick={() => {
-                    dispatch(getNoticesById(`${category}/${_id}`));
-                  }}
-                >
-                  Learn More
-                </NoticesButton>
-                {isOwner && isLoggedIn && (
-                  <NoticesButton onClick={() => dispatch(deleteNotices(_id))}>
-                    Delete
+                <ButtonList>
+                  <NoticesButton
+                    disabled={isLoading}
+                    onClick={() => {
+                      dispatch(getNoticesById(`${category}/${_id}`));
+                    }}
+                  >
+                    Learn More
+                  </NoticesButton>
+
+                  {isOwner && isLoggedIn && (
+                    <NoticesButton onClick={() => dispatch(deleteNotices(_id))}>
+                      Delete
+                    </NoticesButton>
+                  )}
+                </ButtonList>
+
+                {/* 
+                {!favorite && isLoggedIn && (
+                  <NoticesButton onClick={() => dispatch(addToFavorite(_id))}>
+                    add to favorite
+                  </NoticesButton>
+                )} */}
+                {/* {favorite && isLoggedIn && (
+                  <NoticesButton
+                    onClick={() => dispatch(removeFromFavorite(_id))}
+                  >
+                    remove from favorite
                   </NoticesButton>
                 )}
+                {!isLoggedIn && (
+                  <NoticesButton onClick={onFavoriteNotAuth}>
+                    add to favorite
+                  </NoticesButton>
+                )} */}
               </NoticesDescription>
             </NoticesItem>
           )
