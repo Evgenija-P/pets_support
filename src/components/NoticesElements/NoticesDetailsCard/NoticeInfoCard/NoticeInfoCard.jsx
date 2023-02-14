@@ -69,8 +69,6 @@ const NoticeInfoCard = () => {
   } = noticeReduced;
   const callNumber = 'tel:' + phone;
   const [Isfavorite, setIsfavorite] = useState(favorite);
-  // console.log('favorite', favorite);
-  // console.log('Isfavorite', Isfavorite);
 
   const onToggle = () => {
     setIsfavorite(prev => !prev);

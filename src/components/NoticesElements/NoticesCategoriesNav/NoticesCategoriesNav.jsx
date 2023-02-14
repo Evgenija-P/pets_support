@@ -31,8 +31,6 @@ const NoticesCategoriesNav = ({ notices }) => {
     }
   }
 
-  // console.log('isLoggedIn', isLoggedIn);
-
   return (
     <NoticesCategoriesContainer>
       <AddNoticeButton
