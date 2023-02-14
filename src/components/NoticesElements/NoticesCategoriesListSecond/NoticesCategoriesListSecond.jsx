@@ -37,7 +37,6 @@ import { getNoticesById } from '../../../redux/notices/operations ';
 //   removeFromFavorite,
 // } from '../../../redux/favorite/operations ';
 // import Spinner from '../../Spinner';
-// import NoticesLoader from '../NoticesLoader';
 import {
   addToFavoriteNotices,
   removeFromFavoriteNotices,
@@ -56,7 +55,7 @@ const NoticesCategoriesListSecond = () => {
     search,
     favoriteNoticesList,
     isLoading,
-    // error,
+    error,
   } = useSelector(selectNoticesObj);
   // const { pathname } = useLocation();
   // const favorite = useSelector(selectFavoriteList);
@@ -150,8 +149,8 @@ const NoticesCategoriesListSecond = () => {
   // console.log('sorted', sortedNotices);
   return (
     <>
-      {/* {isLoading && <Spinner />}
-      {(error || listNotices === 0) && <NoticesLoader>console</NoticesLoader>} */}
+      {/* {isLoading && <Spinner />} */}
+      {(error || favoriteNoticesList.lengt === 0) && <div>нет</div>}
 
       <NoticesList>
         {sortedNotices.map(
@@ -212,24 +211,6 @@ const NoticesCategoriesListSecond = () => {
                 >
                   Learn More
                 </NoticesButton>
-                {/* 
-                {!favorite && isLoggedIn && (
-                  <NoticesButton onClick={() => dispatch(addToFavorite(_id))}>
-                    add to favorite
-                  </NoticesButton>
-                )} */}
-                {/* {favorite && isLoggedIn && (
-                  <NoticesButton
-                    onClick={() => dispatch(removeFromFavorite(_id))}
-                  >
-                    remove from favorite
-                  </NoticesButton>
-                )}
-                {!isLoggedIn && (
-                  <NoticesButton onClick={onFavoriteNotAuth}>
-                    add to favorite
-                  </NoticesButton>
-                )} */}
                 {isOwner && isLoggedIn && (
                   <NoticesButton onClick={() => dispatch(deleteNotices(_id))}>
                     Delete
@@ -243,7 +224,6 @@ const NoticesCategoriesListSecond = () => {
 
       {selectedNotice && (
         <Modal
-          // title={'notice'}
           type={'info'}
           onClose={toggleModal}
           children={<NoticesDetailsCard />}
