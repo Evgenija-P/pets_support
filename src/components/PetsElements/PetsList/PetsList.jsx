@@ -76,7 +76,7 @@ const PetsList = () => {
               </PetTag>
               <PetTag>
                 <span>Comments:</span>
-                <p>{comments}</p>
+                {comments}
               </PetTag>
             </div>
           </PetDescription>

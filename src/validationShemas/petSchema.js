@@ -9,6 +9,7 @@ const addPetSchema = yup.object({
   name: yup.string().min(2).max(16).required(),
   birthday: yup
     .string()
+    .max(10, "birthdate must be a 'DD.MM.YYYY' format.")
     .matches(dateRegexp, "birthdate must be a 'DD.MM.YYYY' format.")
     .required(),
   breed: yup.string().min(2).max(16).required(),

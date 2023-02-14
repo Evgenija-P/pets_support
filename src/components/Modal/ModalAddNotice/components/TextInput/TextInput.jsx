@@ -15,7 +15,7 @@ const TextInut = ({ label, required, ...props }) => {
           label
         )}
       </styled.Label>
-      <styled.Input {...field} {...props} />
+      <styled.Input autoComplete="off" {...field} {...props} />
       {meta.error && meta.touched && <styled.Error>{meta.error}</styled.Error>}
     </styled.Container>
   );

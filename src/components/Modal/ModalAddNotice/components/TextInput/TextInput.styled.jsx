@@ -68,8 +68,10 @@ export const RequiredSign = styled.span`
 export const Error = styled.span`
   display: block;
   position: absolute;
-  bottom: -20px;
+  /* bottom: -20px; */
+  top: 100%;
   left: 0px;
   font-size: 14px;
+  line-height: 0.9;
   color: red;
 `;
