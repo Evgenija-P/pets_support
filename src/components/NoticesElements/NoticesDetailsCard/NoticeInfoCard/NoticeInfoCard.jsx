@@ -36,7 +36,7 @@ import { useState } from 'react';
 import { setSelectedNotice } from '../../../../redux/notices/noticesSlice';
 // import { useLocation } from 'react-router-dom';
 import { deleteNotices } from '../../../../redux/notices/operations ';
-// import Spinner from '../../../Spinner/Spinner';
+import Spinner from '../../../Spinner/Spinner';
 import { selectUser } from '../../../../redux/auth/selectors';
 // import { selectFavoriteObj } from '../../../../redux/favorite/selectors';
 import useAuth from '../../../../hooks/useAuth.js';
@@ -156,7 +156,7 @@ const NoticeInfoCard = () => {
       <NoticesComment>
         <strong>Comments: </strong> {comments}
       </NoticesComment>
-      {/* {isLoading && <Spinner />} */}
+      {isLoading && <Spinner />}
       <ButtonBlock>
         {own && (
           <NoticesButtonDelete
