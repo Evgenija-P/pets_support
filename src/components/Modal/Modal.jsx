@@ -28,7 +28,6 @@ import ModalUnauthorized from './ModalUnauthorized/ModalUnauthorized';
 const modalRoot = document.querySelector('#modal-root');
 
 const Modal = ({ children, onClose, title, type }) => {
-  console.log(type);
   useEffect(() => {
     function keyDown(e) {
       if (e.code !== 'Escape') {
