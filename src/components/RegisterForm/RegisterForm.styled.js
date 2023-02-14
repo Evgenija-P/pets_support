@@ -93,6 +93,7 @@ export const Input = styled(Field)`
   margin-bottom: 16px;
   &:focus,
   &:hover {
+    border-color: ${colors.hover};
     outline: none;
   }
   ${media.tabletAndDesktop} {
@@ -113,8 +114,10 @@ export const PhoneInput = styled(MaskedInput)`
   margin-bottom: 16px;
   &:focus,
   &:hover {
+    border-color: ${colors.hover};
     outline: none;
   }
+
   ${media.tabletAndDesktop} {
     width: 448px;
     padding: 14px 0 13px 32px;
