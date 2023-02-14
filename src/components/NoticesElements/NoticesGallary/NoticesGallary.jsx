@@ -7,7 +7,7 @@ import GalleryPagination from '../../NoticesElements/GalleryPagination';
 // import { selectFavoriteObj } from '../../../redux/favorite/selectors';
 
 import NoticesLoader from '../NoticesLoader';
-// import NoticeSpiner from '../NoticeSpiner';
+// import Spiner from '../../Spinner';
 import Spiner from '../../Spinner';
 // import Modal from '../../../components/Modal/Modal';
 // //import useAuth from '../../../hooks/useAuth.js';
@@ -58,7 +58,7 @@ const NoticesGallary = () => {
           favoriteList.length !== 0 && <NoticesCategoriesListSecond />
         : !errorNotices &&
           noticesList.length !== 0 && <NoticesCategoriesListSecond />}
-      {(isLoadingFavorite || isLoading) && <Spiner />}
+      {isLoading && <Spiner />}
       <GalleryPagination />
     </div>
   );

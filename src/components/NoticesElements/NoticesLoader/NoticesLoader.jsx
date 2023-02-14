@@ -14,6 +14,7 @@ import { useLocation } from 'react-router-dom';
 const NoticesLoader = () => {
   const { pathname } = useLocation();
   const { error, noticesList } = useSelector(selectNoticesObj);
+
   const { favoriteList, error: errorFavorite } = useSelector(selectFavoriteObj);
   return (
     <>

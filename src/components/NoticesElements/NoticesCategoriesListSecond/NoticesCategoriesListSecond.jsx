@@ -218,7 +218,7 @@ const NoticesCategoriesListSecond = () => {
           )
         )}
       </NoticesList>
-      {/* )} */}
+
       {selectedNotice && (
         <Modal
           // title={'notice'}
