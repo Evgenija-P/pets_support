@@ -151,7 +151,7 @@ const AddPetForm = ({ onClose }) => {
                 </styled.SecondaryBtn>
 
                 <styled.PrimaryBtn type="submit" disabled={isAdding}>
-                  done {isAdding && <styled.Loader size={25} color="white" />}
+                  Done {isAdding && <styled.Loader size={25} color="white" />}
                 </styled.PrimaryBtn>
               </styled.BtnGroup>
             </div>

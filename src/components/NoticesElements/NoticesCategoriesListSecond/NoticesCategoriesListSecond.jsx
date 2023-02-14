@@ -20,87 +20,70 @@ import {
   getOwnerNotices,
   getPetAge,
   getUserFavoriteNotices,
-  // onFavoriteNotAuth,
+  labelNotices,
 } from '../../../helpers/noticesHelpers';
 
 import notFoundNoticesImage from '../../../img/notFoundNoticesImage.jpg';
-// import { PER_PAGE } from '../../../redux/notices/operations ';
-// import { useSelector, useDispatch } from 'react-redux';
 import { useSelector, useDispatch } from 'react-redux';
 import useAuth from '../../../hooks/useAuth.js';
-import {
-  // selectNotices,
-  // selectFavoriteNotices,
-  selectNoticesObj,
-} from '../../../redux/notices/selectors';
-import { selectFavoriteList } from '../../../redux/favorite/selectors';
-// import { deletefavoriteNotice } from '../../../redux/notices/noticesSlice';
+import { selectNoticesObj } from '../../../redux/notices/selectors';
+// import { selectFavoriteList } from '../../../redux/favorite/selectors';
 import { selectUser } from '../../../redux/auth/selectors.js';
-// import { display, height } from '@mui/system';
 import { getNoticesById } from '../../../redux/notices/operations ';
-// import { useLocation } from 'react-router-dom';
-import {
-  addToFavorite,
-  removeFromFavorite,
-} from '../../../redux/favorite/operations ';
-import { deleteNotices } from '../../../redux/notices/operations ';
-// import { deleteNoticLoc } from '../../../redux/notices/noticesSlice';
+// import { fetchFavoriteNotices } from '../../../redux/notices/operations ';
 
-// // import LearnMoreButton from '../NoticesDetailsCard/NoticesButton/NoticesButton';
+// import {
+//   addToFavorite,
+//   removeFromFavorite,
+// } from '../../../redux/favorite/operations ';
+// import Spinner from '../../Spinner';
 // import NoticesLoader from '../NoticesLoader';
-// import Spinner from '../../Spinner/Spinner';
+import {
+  addToFavoriteNotices,
+  removeFromFavoriteNotices,
+} from '../../../redux/notices/operations ';
+import { deleteNotices } from '../../../redux/notices/operations ';
 import Modal from '../../../components/Modal/Modal';
 import NoticeInfoCard from '../../../components/NoticesElements/NoticesDetailsCard/NoticeInfoCard';
 import { setSelectedNotice } from '../../../redux/notices/noticesSlice';
-// import { Notices } from '../NoticesDetailsCard/NoticeInfoCard/NoticeInfoCard.styled';
-import { useLocation } from 'react-router-dom';
-// import { useRef } from 'react';
-// import { useNavigate } from 'react-router-dom';
-// import { fetchFavorite } from '../../../redux/favorite/operations ';
+// import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+// import { useEffect } from 'react';
 const NoticesCategoriesListSecond = () => {
   const {
     noticesList: listNotices,
     selectedNotice,
-    // page,
-    // totalHits,
-    // isLoading: isLoadingNotice,
-    // isAdding,
-    // error,
-    // limit,
     search,
+    favoriteNoticesList,
+    isLoading,
+    // error,
   } = useSelector(selectNoticesObj);
-  const { pathname } = useLocation();
-  const favorite = useSelector(selectFavoriteList);
+  // const { pathname } = useLocation();
+  // const favorite = useSelector(selectFavoriteList);
   // console.log('pathname', pathname);
-  const noticesList = pathname === '/notices/favorite' ? favorite : listNotices;
-  // const firstRender = useRef(true);
-  // const navigate = useNavigate();
-  // useEffect(() => {
-  //   if (firstRender) {
-  //     console.log('first render in Page Navigate ');
-  //     navigate('/notices/sell', { replace: true });
-  //     if (isLoggedIn) {
-  //       dispatch(fetchFavorite({}));
-  //     }
-  //     firstRender.current = false;
-
-  //     return;
-  //   }
-  // }, []);
+  const noticesList = listNotices;
+  // pathname === '/notices/favorite' ? favoriteNoticesList : listNotices;
 
   const { _id } = useSelector(selectUser);
   const dispatch = useDispatch();
   // const { pathname } = useLocation();
   const { isLoggedIn } = useAuth();
   let noticesUpdated = [];
+
   // const del = getUserFavoriteNotices(noticesList, favorite);
   // console.log('del', del);
+
   if (isLoggedIn) {
-    noticesUpdated = getPetAge(
-      getOwnerNotices(getUserFavoriteNotices(noticesList, favorite), _id)
+    noticesUpdated = labelNotices(
+      getPetAge(
+        getOwnerNotices(
+          getUserFavoriteNotices(noticesList, favoriteNoticesList),
+          _id
+        )
+      )
     );
   } else {
-    noticesUpdated = getPetAge(noticesList);
+    noticesUpdated = labelNotices(getPetAge(noticesList));
   }
 
   const onFavoriteToggle = (_id, favorite) => {
@@ -111,7 +94,8 @@ const NoticesCategoriesListSecond = () => {
       return;
     }
     if (favorite) {
-      dispatch(removeFromFavorite(_id));
+      // dispatch(removeFromFavorite(_id));
+      dispatch(removeFromFavoriteNotices(_id));
       // console.log('removeFromFavorite', _id);
       // if (pathname === '/notices/favorite') {
       //   console.log('delete', _id);
@@ -120,7 +104,8 @@ const NoticesCategoriesListSecond = () => {
 
       return;
     }
-    dispatch(addToFavorite(_id));
+    // dispatch(addToFavorite(_id));
+    dispatch(addToFavoriteNotices(_id));
   };
 
   const onFavoriteNotAuth = () => {
@@ -129,37 +114,45 @@ const NoticesCategoriesListSecond = () => {
   const toggleModal = () => {
     dispatch(setSelectedNotice());
   };
+  const { categoryName: category } = useParams();
+  // const notices = isLoggedIn ? noticesUpdated : noticesList;
+  const notices = noticesUpdated;
 
-  const notices = isLoggedIn ? noticesUpdated : noticesList;
+  // const filterFavoritrNotices = (notices, search) => {
+  //   // console.log('filtr', notices, search);
+  //   // const filterByComment = notices.filter(notice =>
+  //   //   notice.comments.toLowerCase().includes(search.toLowerCase())
+  //   // );
+  //   const filterByTitle = notices.filter(notice =>
+  //     notice.title.toLowerCase().includes(search.toLowerCase())
+  //   );
+  //   // const filterByBreed = notices.filter(notice =>
+  //   //   notice.breed.toLowerCase().includes(search.toLowerCase())
+  //   // );
+  //   // const newFilteredList = new Set(filterByTitle);
 
-  const filterNotices = (notices, search) => {
-    // console.log('filtr', notices, search);
-    // const filterByComment = notices.filter(notice =>
-    //   notice.comments.toLowerCase().includes(search.toLowerCase())
-    // );
-    const filterByTitle = notices.filter(notice =>
-      notice.title.toLowerCase().includes(search.toLowerCase())
-    );
-    // const filterByBreed = notices.filter(notice =>
-    //   notice.breed.toLowerCase().includes(search.toLowerCase())
-    // );
+  //   // return [...newFilteredList.add(filterByComment)];
+  //   return filterByTitle;
+  // };
 
-    return [...filterByTitle];
-  };
-
-  const NoticesRender = search ? filterNotices(notices, search) : notices;
+  // const NoticesRender = search && pathname === '/notices/favorite';
+  const filterNotices = notices;
+  // search && pathname === '/notices/favorite'
+  //   ? filterFavoritrNotices(notices, search)
+  //   : notices;
+  const NoticesRender = search ? filterNotices : notices;
   const sortedNotices = [...NoticesRender].sort(function (a, b) {
     var dateA = new Date(a.createdAt),
       dateB = new Date(b.createdAt);
     return dateB - dateA;
   });
-  console.log('not', NoticesRender);
-  console.log('sorted', sortedNotices);
+  // console.log('not', NoticesRender);
+  // console.log('sorted', sortedNotices);
   return (
     <>
-      {/* {isLoadingNotice && <Spinner />}
-      // {error && <NoticesLoader>console</NoticesLoader>}
-      {!isLoadingNotice && !error && ( */}
+      {/* {isLoading && <Spinner />}
+      {(error || listNotices === 0) && <NoticesLoader>console</NoticesLoader>} */}
+
       <NoticesList>
         {sortedNotices.map(
           ({
@@ -212,19 +205,20 @@ const NoticesCategoriesListSecond = () => {
                 </NoticesTags>
 
                 <NoticesButton
+                  disabled={isLoading}
                   onClick={() => {
-                    dispatch(getNoticesById(`${categoryName}/${_id}`));
+                    dispatch(getNoticesById(`${category}/${_id}`));
                   }}
                 >
                   Learn More
                 </NoticesButton>
-
+                {/* 
                 {!favorite && isLoggedIn && (
                   <NoticesButton onClick={() => dispatch(addToFavorite(_id))}>
                     add to favorite
                   </NoticesButton>
-                )}
-                {favorite && isLoggedIn && (
+                )} */}
+                {/* {favorite && isLoggedIn && (
                   <NoticesButton
                     onClick={() => dispatch(removeFromFavorite(_id))}
                   >
@@ -235,7 +229,7 @@ const NoticesCategoriesListSecond = () => {
                   <NoticesButton onClick={onFavoriteNotAuth}>
                     add to favorite
                   </NoticesButton>
-                )}
+                )} */}
                 {isOwner && isLoggedIn && (
                   <NoticesButton onClick={() => dispatch(deleteNotices(_id))}>
                     Delete
@@ -246,7 +240,7 @@ const NoticesCategoriesListSecond = () => {
           )
         )}
       </NoticesList>
-      {/* )} */}
+
       {selectedNotice && (
         <Modal
           // title={'notice'}

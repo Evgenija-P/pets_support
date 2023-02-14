@@ -83,8 +83,13 @@ export const UserInformationContainer = styled.div`
   &:last-child {
     margin-bottom: 0px;
   }
+  ${media.tabletAndDesktop} {
+    margin-bottom: 15px;
+  }
+  
 `
 export const UserKeyLabel = styled.label`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -104,8 +109,9 @@ export const UserKeyLabel = styled.label`
 `
 
 export const UserValueInput = styled(Field)`
+${prop => console.log(prop)}
   background: ${colors.background};
-  border: 1px solid rgba(245, 146, 86, 0.5);
+  border: ${ prop => prop.isvalid === 'true' ? "1px solid rgba(245, 146, 86, 0.5)" : '1px solid #e53e3e'};
   border-radius: 40px;
   font-weight: ${fontWeights.regular};
   font-size: 12px;
@@ -113,7 +119,7 @@ export const UserValueInput = styled(Field)`
   letter-spacing: 0.04em;
   color: ${colors.black};
   margin-left: 25px;
-  padding: 4px 0 4px 18px;
+  padding: 4px 0 1px 18px;
   width: 150px;
   ${media.tabletAndDesktop} {
     font-size: 18px;
@@ -333,5 +339,19 @@ export const UserWrapper = styled.div`
 export const AvatarWrapper = styled.div`
   ${media.desktop} {
     position: relative;
+  }
+`
+export const ErrBox = styled.div`
+  position: absolute;
+  top: 22px;
+  font-size: 6px;
+  font-style: ${fontWeights.regular};
+  line-height: 1.4;
+  letter-spacing: 0.03em;
+  color: #e53e3e;
+  ${media.tabletAndDesktop}{
+    top: 30px;
+    left: 100px;
+    font-size: 11px;
   }
 `

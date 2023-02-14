@@ -190,7 +190,7 @@ const AddNoticeForm = ({ onClose }) => {
                 </styled.SecondaryBtn>
 
                 <styled.PrimaryBtn type="submit" disabled={isNoticeAdding}>
-                  done{' '}
+                  Done
                   {isNoticeAdding && <styled.Loader size={25} color="white" />}
                 </styled.PrimaryBtn>
               </styled.BtnGroup>

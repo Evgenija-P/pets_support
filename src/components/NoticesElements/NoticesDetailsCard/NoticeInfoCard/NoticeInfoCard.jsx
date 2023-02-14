@@ -10,61 +10,47 @@ import {
   ButtonBlock,
   NoticesButtonFavorite,
   NoticesButtonContact,
-  Tags,
-  Text,
   Notices,
   NoticesButtonDelete,
+  NotiseColumn,
 } from './NoticeInfoCard.styled';
 
 import React from 'react';
 import { onFavoriteNotAuth } from '../../../../helpers/noticesHelpers';
 import { ReactComponent as HeartFavorite } from '../../../../img/icons/heartFavorite.svg';
 import { ReactComponent as Delete } from '../../../../img/icons/delete.svg';
-
 import defaultPhoto from '../../../../img/default.jpg';
 import { useDispatch, useSelector } from 'react-redux';
-// import useAuth from '../../../../hooks/useAuth';
-// import {
-//   selectNotices,
-//   // selectFavoriteNotices,
-//   selectNoticesObj,
-
 import { useState } from 'react';
-// import { selectFavoriteList } from '../../../redux/favorite/selectors';
-// import { deletefavoriteNotice } from '../../../redux/notices/noticesSlice';
-// import { selectUser } from '../../../../redux/auth/selectors';
-// import { display, height } from '@mui/system';
 import { setSelectedNotice } from '../../../../redux/notices/noticesSlice';
-// import { useLocation } from 'react-router-dom';
 import { deleteNotices } from '../../../../redux/notices/operations ';
 import Spinner from '../../../Spinner/Spinner';
 import { selectUser } from '../../../../redux/auth/selectors';
-import { selectFavoriteObj } from '../../../../redux/favorite/selectors';
 import useAuth from '../../../../hooks/useAuth.js';
 import {
   getIsOwnNotice,
   getIsFavoriteNotice,
 } from '../../../../helpers/currentHelpers';
 import {
-  removeFromFavorite,
-  addToFavorite,
-} from '../../../../redux/favorite/operations ';
+  addToFavoriteNotices,
+  removeFromFavoriteNotices,
+} from '../../../../redux/notices/operations ';
 import { selectNoticesObj } from '../../../../redux/notices/selectors';
+import { labelNotice } from '../../../../helpers/noticesHelpers';
 const NoticeInfoCard = () => {
-  // const { _id: user } = useSelector(selectUser);
   const dispatch = useDispatch();
-
   const { isLoggedIn } = useAuth();
-  const { selectedNotice } = useSelector(selectNoticesObj);
+  const { selectedNotice, favoriteNoticesList, isLoading } =
+    useSelector(selectNoticesObj);
   const { _id: userId } = useSelector(selectUser);
-  const { favoriteList, isLoading } = useSelector(selectFavoriteObj);
 
-  const noticeReduced = getIsFavoriteNotice(
-    favoriteList,
-    getIsOwnNotice(userId, selectedNotice)
+  const noticeReduced = labelNotice(
+    getIsFavoriteNotice(
+      favoriteNoticesList,
+      getIsOwnNotice(userId, selectedNotice)
+    )
   );
 
-  ////////////////////////////////////////////////////////////////////
   const {
     _id,
     petImageURL,
@@ -83,25 +69,17 @@ const NoticeInfoCard = () => {
   } = noticeReduced;
   const callNumber = 'tel:' + phone;
   const [Isfavorite, setIsfavorite] = useState(favorite);
-  console.log('favorite', favorite);
-  console.log('Isfavorite', Isfavorite);
+  // console.log('favorite', favorite);
+  // console.log('Isfavorite', Isfavorite);
 
-  // const onFavoriteToggle = (_id, favorite) => {
-  //   if (favorite) {
-  //     dispatch(removeFromFavorite(_id));
-
-  //     return;
-  //   }
-  //   dispatch(addToFavorite(_id));
-  // };
   const onToggle = () => {
     setIsfavorite(prev => !prev);
     if (Isfavorite) {
-      dispatch(removeFromFavorite(_id));
+      dispatch(removeFromFavoriteNotices(_id));
 
       return;
     }
-    dispatch(addToFavorite(_id));
+    dispatch(addToFavoriteNotices(_id));
   };
 
   return (
@@ -118,25 +96,34 @@ const NoticeInfoCard = () => {
           <NoticesTitle> {title} </NoticesTitle>
 
           <Notices>
-            <Tags>
+            <NotiseColumn>
               <NoticesTag>Name: </NoticesTag>
-              <NoticesTag>Birthday: </NoticesTag>
-              <NoticesTag>Breed: </NoticesTag>
-              <NoticesTag>Place: </NoticesTag>
-              <NoticesTag>The sex: </NoticesTag>
-              <NoticesTag>Email: </NoticesTag>
-              <NoticesTag>Phone: </NoticesTag>
-            </Tags>
-
-            <Text>
               <NoticesText>{name}</NoticesText>
+            </NotiseColumn>
+            <NotiseColumn>
+              <NoticesTag>Birthday: </NoticesTag>
               <NoticesText>{birthdate}</NoticesText>
+            </NotiseColumn>
+            <NotiseColumn>
+              <NoticesTag>Breed: </NoticesTag>
               <NoticesText>{breed}</NoticesText>
+            </NotiseColumn>
+            <NotiseColumn>
+              <NoticesTag>Place: </NoticesTag>
               <NoticesText>{location}</NoticesText>
+            </NotiseColumn>
+            <NotiseColumn>
+              <NoticesTag>The sex: </NoticesTag>
               <NoticesText>{sex}</NoticesText>
+            </NotiseColumn>
+            <NotiseColumn>
+              <NoticesTag>Email: </NoticesTag>
               <NoticesText>{email}</NoticesText>
+            </NotiseColumn>
+            <NotiseColumn>
+              <NoticesTag>Phone: </NoticesTag>
               <NoticesText>{phone}</NoticesText>
-            </Text>
+            </NotiseColumn>
           </Notices>
         </NoticesInfo>
       </NoticesBox>
@@ -148,6 +135,7 @@ const NoticeInfoCard = () => {
       <ButtonBlock>
         {own && (
           <NoticesButtonDelete
+            disabled={isLoading}
             onClick={() => {
               dispatch(deleteNotices(_id), dispatch(setSelectedNotice()));
             }}
@@ -157,20 +145,14 @@ const NoticeInfoCard = () => {
           </NoticesButtonDelete>
         )}
         {!Isfavorite && isLoggedIn && (
-          <NoticesButtonFavorite
-            onClick={onToggle}
-            // onClick={() => onFavoriteToggle(_id, Isfavorite)}
-          >
+          <NoticesButtonFavorite disabled={isLoading} onClick={onToggle}>
             Add to
             <HeartFavorite />
           </NoticesButtonFavorite>
         )}
 
         {Isfavorite && isLoggedIn && (
-          <NoticesButtonFavorite
-            // onClick={() => onFavoriteToggle(_id, Isfavorite)}
-            onClick={onToggle}
-          >
+          <NoticesButtonFavorite onClick={onToggle}>
             Remove from
             <HeartFavorite />
           </NoticesButtonFavorite>

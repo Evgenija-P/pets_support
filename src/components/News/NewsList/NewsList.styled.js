@@ -48,6 +48,18 @@ export const ConteinerNews = styled.div`
     margin-top: 40px;
   }
 `;
+
+export const ErrorTitle = styled.h2`
+  position: relative;
+  margin: 0px auto;
+  width: 280px;
+  height: 100%;
+
+  ${media.tabletAndDesktop} {
+    width: 515px;
+  }
+`;
+
 // =============== forma ====================
 export const SearchNewsForm = styled.form`
   position: relative;

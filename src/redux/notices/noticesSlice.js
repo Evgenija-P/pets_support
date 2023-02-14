@@ -4,22 +4,21 @@ import {
   addNotices,
   deleteNotices,
   getNoticesById,
-  // addToFavoriteNotices,
-  // removeFromFavoriteNotices,
-  // fetchFavoriteNotices,
+  addToFavoriteNotices,
+  removeFromFavoriteNotices,
+  fetchFavoriteNotices,
 } from './operations ';
-// import { nanoid } from 'nanoid';
-// import { persistReducer } from 'redux-persist';
-// import storage from 'redux-persist/lib/storage';
+
 const noticesInitialState = {
   noticesList: [],
+  favoriteNoticesList: [],
   selectedNotice: null,
   page: 1,
   totalHits: 0,
   isLoading: false,
   isAdding: false,
   error: null,
-  // category: '/notices/',
+  category: '',
   // category: '',
   search: '',
   limit: 20,
@@ -30,9 +29,9 @@ const extraActions = [
   deleteNotices,
   getNoticesById,
 
-  // addToFavoriteNotices,
-  // removeFromFavoriteNotices,
-  // fetchFavoriteNotices,
+  addToFavoriteNotices,
+  removeFromFavoriteNotices,
+  fetchFavoriteNotices,
 ];
 const getActions = type => extraActions.map(extraAction => extraAction[type]);
 
@@ -40,7 +39,14 @@ const handleFetchNoticesSuccses = (state, action) => {
   state.noticesList = action.payload.message;
   state.totalHits = action.payload.totalHits;
   state.page = action.payload.page;
-  state.search = action.payload.search;
+  // state.search = action.payload.search;
+  state.limit = action.payload.limit;
+};
+const handleFetchFavoriteNoticesSuccses = (state, action) => {
+  state.favoriteNoticesList = action.payload.message;
+  state.totalHits = action.payload.totalHits;
+  state.page = action.payload.page;
+  // state.search = action.payload.search;
   state.limit = action.payload.limit;
 };
 const handleAddNoticesSuccses = (state, { payload }) => {
@@ -67,9 +73,25 @@ const handleGetNoticesByIdSuccses = (state, action) => {
   state.selectedNotice = action.payload;
 };
 
-// const handleRemoveFromFavoriteNoticesSuccses = (state, action) => {
-//   state.favoriteNoticesList = action.payload;
-// };
+const handleAddToFavoriteNoticesSuccses = (state, action) => {
+  if (state.category === 'favorite') {
+    state.noticesList.push(action.payload);
+  }
+
+  state.favoriteNoticesList.push(action.payload);
+};
+const handleRemoveFromFavoriteNoticesSuccses = (state, action) => {
+  if (state.category === 'favorite') {
+    const index = state.noticesList.findIndex(
+      notices => notices._id === action.payload
+    );
+    state.noticesList.splice(index, 1);
+  }
+  const index = state.favoriteNoticesList.findIndex(
+    notices => notices._id === action.payload
+  );
+  state.favoriteNoticesList.splice(index, 1);
+};
 
 // const handleFetchFavoriteNoticesSuccses = (state, action) => {
 //   state.favoriteNoticesList = action.payload;
@@ -79,9 +101,9 @@ export const noticesSlice = createSlice({
   name: 'notices',
   initialState: noticesInitialState,
   reducers: {
-    // setCategory(state, action) {
-    //   state.category = action.payload;
-    // },
+    setCategory(state, action) {
+      state.category = action.payload;
+    },
     setPage(state, action) {
       state.page = action.payload;
     },
@@ -119,10 +141,18 @@ export const noticesSlice = createSlice({
       .addCase(deleteNotices.fulfilled, handleDeleteNoticesSuccses)
 
       .addCase(getNoticesById.fulfilled, handleGetNoticesByIdSuccses)
-      // .addCase(
-      //   fetchFavoriteNotices.fulfilled,
-      //   handleFetchFavoriteNoticesSuccses
-      // )
+      .addCase(
+        fetchFavoriteNotices.fulfilled,
+        handleFetchFavoriteNoticesSuccses
+      )
+      .addCase(
+        removeFromFavoriteNotices.fulfilled,
+        handleRemoveFromFavoriteNoticesSuccses
+      )
+      .addCase(
+        addToFavoriteNotices.fulfilled,
+        handleAddToFavoriteNoticesSuccses
+      )
       .addMatcher(isAnyOf(...getActions('pending')), state => {
         state.isLoading = true;
       })
@@ -137,7 +167,7 @@ export const noticesSlice = createSlice({
   },
 });
 export const {
-  // setCategory,
+  setCategory,
   setPage,
   deletefavoriteNotice,
   setSearch,

@@ -64,7 +64,7 @@ export const FriendsItem = styled.li`
   padding: 12px 4px;
 
   width: 280px;
-  height: 200px;
+  height: 230px;
   border-radius: 20px;
   background: ${colors.white};
 

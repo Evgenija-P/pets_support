@@ -5,7 +5,7 @@ export const Container = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-top: 28px;
+  margin-top: 15px;
 `;
 
 export const Label = styled.label`
@@ -21,7 +21,7 @@ export const Label = styled.label`
 `;
 
 export const CommentsField = styled.textarea`
-  height: 137px;
+  height: 100px;
   margin-top: 8px;
   padding: 12px 14px;
   font-size: 14px;
@@ -39,6 +39,10 @@ export const CommentsField = styled.textarea`
     ${media.tabletAndDesktop} {
       font-size: 16px;
       line-height: 1.65;
+    }
+
+    ${media.tabletAndDesktop} {
+      height: 130px;
     }
   }
 

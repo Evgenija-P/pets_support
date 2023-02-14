@@ -3,32 +3,43 @@ import {
   NoticesCategoriesLink,
 } from '../NoticesCategoriesNav/NoticesCategoriesNav.styled';
 import { useDispatch } from 'react-redux';
-
 import { fetchNotices } from '../../../redux/notices/operations ';
-import { useEffect } from 'react';
 
+import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const NoticesAuthNav = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { pathname } = useLocation();
+  const { categoryName } = useParams();
+
+  useEffect(() => {
+    if (!categoryName) {
+      navigate('/notices/sell');
+    }
+  }, [categoryName, navigate]);
+
   useEffect(() => {
     dispatch(fetchNotices({ category: pathname }));
   }, [pathname, dispatch]);
+
   return (
     <>
       <NoticesCategoriesListLink>
         <li>
-          <NoticesCategoriesLink to="sell">Sell</NoticesCategoriesLink>
+          <NoticesCategoriesLink to="sell">sell</NoticesCategoriesLink>
         </li>
         <li>
           <NoticesCategoriesLink to="lost-found">
-            Lost / Found
+            lost/found
           </NoticesCategoriesLink>
         </li>
         <li>
           <NoticesCategoriesLink to="for-free">
-            In good hands
+            in good hands
           </NoticesCategoriesLink>
         </li>
       </NoticesCategoriesListLink>

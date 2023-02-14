@@ -65,34 +65,8 @@ const App = () => {
             }
           >
             <Route
-              path="sell"
-              element={<RestrictedRoute component={<NoticesCategoriesNav />} />}
-            />
-            <Route
-              path="lost-found"
-              element={<RestrictedRoute component={<NoticesCategoriesNav />} />}
-            />
-            <Route
-              path="for-free"
-              element={<RestrictedRoute component={<NoticesCategoriesNav />} />}
-            />
-            <Route
-              path="favorite"
-              element={
-                <PrivateRoute
-                  redirectTo="/login"
-                  component={<NoticesCategoriesNav />}
-                />
-              }
-            />
-            <Route
-              path="own"
-              element={
-                <PrivateRoute
-                  redirectTo="/login"
-                  component={<NoticesCategoriesNav />}
-                />
-              }
+              path="/notices/:categoryName"
+              element={<NoticesCategoriesNav />}
             />
           </Route>
 
