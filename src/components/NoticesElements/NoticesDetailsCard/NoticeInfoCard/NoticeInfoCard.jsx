@@ -10,10 +10,9 @@ import {
   ButtonBlock,
   NoticesButtonFavorite,
   NoticesButtonContact,
-  Tags,
-  Text,
   Notices,
   NoticesButtonDelete,
+  NotiseColumn,
 } from './NoticeInfoCard.styled';
 
 import React from 'react';
@@ -118,25 +117,35 @@ const NoticeInfoCard = () => {
           <NoticesTitle> {title} </NoticesTitle>
 
           <Notices>
-            <Tags>
+            <NotiseColumn>
               <NoticesTag>Name: </NoticesTag>
-              <NoticesTag>Birthday: </NoticesTag>
-              <NoticesTag>Breed: </NoticesTag>
-              <NoticesTag>Place: </NoticesTag>
-              <NoticesTag>The sex: </NoticesTag>
-              <NoticesTag>Email: </NoticesTag>
-              <NoticesTag>Phone: </NoticesTag>
-            </Tags>
-
-            <Text>
               <NoticesText>{name}</NoticesText>
+            </NotiseColumn>
+            <NotiseColumn>
+              <NoticesTag>Birthday: </NoticesTag>
               <NoticesText>{birthdate}</NoticesText>
+            </NotiseColumn>
+
+            <NotiseColumn>
+              <NoticesTag>Breed: </NoticesTag>
               <NoticesText>{breed}</NoticesText>
+            </NotiseColumn>
+            <NotiseColumn>
+              <NoticesTag>Place: </NoticesTag>
               <NoticesText>{location}</NoticesText>
+            </NotiseColumn>
+            <NotiseColumn>
+              <NoticesTag>The sex: </NoticesTag>
               <NoticesText>{sex}</NoticesText>
+            </NotiseColumn>
+            <NotiseColumn>
+              <NoticesTag>Email: </NoticesTag>
               <NoticesText>{email}</NoticesText>
+            </NotiseColumn>
+            <NotiseColumn>
+              <NoticesTag>Phone: </NoticesTag>
               <NoticesText>{phone}</NoticesText>
-            </Text>
+            </NotiseColumn>
           </Notices>
         </NoticesInfo>
       </NoticesBox>
