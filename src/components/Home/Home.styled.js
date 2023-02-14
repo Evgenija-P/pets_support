@@ -23,7 +23,7 @@ export const ImgHpDesk = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 1;
+  z-index: -99;
 
   background: url(${backImgHpDesk}) no-repeat;
   background-size: contain;
@@ -55,7 +55,7 @@ export const MainBack = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 1;
+  z-index: -98;
 
   background: url(${main}) no-repeat;
   background-size: contain;
@@ -64,13 +64,13 @@ export const MainBack = styled.div`
 
   ${media.tablet} {
     background: url(${backMobileTablet2}) no-repeat;
-    background-size: contain;
+    background-size: cover;
     background-position-x: center;
     background-position-y: center;
   }
   ${media.mobile} {
     background: url(${backImgHpTablet}) no-repeat;
-    background-size: contain;
+    background-size: cover;
     background-position-x: center;
     background-position-y: center;
   }
