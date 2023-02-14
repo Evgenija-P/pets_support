@@ -68,10 +68,10 @@ export const NoticesTitle = styled.h2`
   letter-spacing: -0.01em;
 
   margin-bottom: 8px;
-  min-width: 321px;
 
   ${media.tabletAndDesktop} {
     margin-bottom: 20px;
+    min-width: 328px;
   }
 `;
 
@@ -79,27 +79,9 @@ export const Notices = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
-
-  white-space: nowrap;
-  font-size: 0;
-  /* display: flex; */
-  /* justify-content: space-around; */
 `;
 
-// export const Tags = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   gap: 8px;
-// `;
-
-// export const Text = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   gap: 8px;
-// `;
-
 export const NotiseColumn = styled.div`
-  /* display: flex; */
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -112,12 +94,9 @@ export const NoticesTag = styled.div`
   flex-basis: 20%;
   flex: 1;
 
-  /* display: block; */
-
   font-weight: 600;
   font-size: 14px;
   line-height: 19px;
-  /* width: 100px; */
 
   ${media.tabletAndDesktop} {
     font-size: 16px;
@@ -279,21 +258,3 @@ export const NoticesButtonDelete = styled.button`
     padding: 9px 15px;
   }
 `;
-
-// export const HeartIcon = styled.div`
-//   margin-left: 10px;
-//   margin-top: 5px;
-
-//   fill: currentColor;
-
-//   :hover {
-//     fill: currentColor;
-//   }
-// `;
-
-// export const DeleteIcon = styled.div`
-//   margin-left: 10px;
-//   margin-top: 5px;
-
-//   fill: currentColor;
-// `;
