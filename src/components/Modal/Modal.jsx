@@ -28,6 +28,8 @@ import ModalUnauthorized from './ModalUnauthorized/ModalUnauthorized';
 const modalRoot = document.querySelector('#modal-root');
 
 const Modal = ({ children, onClose, title, type }) => {
+  const isModalWithForm = type === 'pet' || type === 'addNotice';
+
   useEffect(() => {
     function keyDown(e) {
       if (e.code !== 'Escape') {
@@ -35,11 +37,15 @@ const Modal = ({ children, onClose, title, type }) => {
       }
       onClose();
     }
-    window.addEventListener('keydown', keyDown);
+    if (!isModalWithForm) {
+      window.addEventListener('keydown', keyDown);
+    }
     return () => {
-      window.removeEventListener('keydown', keyDown);
+      if (!isModalWithForm) {
+        window.removeEventListener('keydown', keyDown);
+      }
     };
-  }, [onClose]);
+  }, [onClose, isModalWithForm]);
 
   function handleOverlayClick(e) {
     if (e.target === e.currentTarget) {
@@ -50,7 +56,7 @@ const Modal = ({ children, onClose, title, type }) => {
 
   return createPortal(
     <RemoveScroll>
-      <Overlay onClick={handleOverlayClick}>
+      <Overlay onClick={!isModalWithForm ? handleOverlayClick : null}>
         {type === 'info' && <ModalInfo onClose={onClose}>{children}</ModalInfo>}
         {type === 'pet' && (
           <ModalAddMyPet onClose={onClose} title={title}>
