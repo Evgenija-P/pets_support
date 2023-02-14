@@ -24,69 +24,32 @@ import {
 } from '../../../helpers/noticesHelpers';
 
 import notFoundNoticesImage from '../../../img/notFoundNoticesImage.jpg';
-// import { PER_PAGE } from '../../../redux/notices/operations ';
-// import { useSelector, useDispatch } from 'react-redux';
 import { useSelector, useDispatch } from 'react-redux';
 import useAuth from '../../../hooks/useAuth.js';
-import {
-  // selectNotices,
-  // selectFavoriteNotices,
-  selectNoticesObj,
-} from '../../../redux/notices/selectors';
+import { selectNoticesObj } from '../../../redux/notices/selectors';
 import { selectFavoriteList } from '../../../redux/favorite/selectors';
-// import { deletefavoriteNotice } from '../../../redux/notices/noticesSlice';
 import { selectUser } from '../../../redux/auth/selectors.js';
-// import { display, height } from '@mui/system';
 import { getNoticesById } from '../../../redux/notices/operations ';
-// import { useLocation } from 'react-router-dom';
 import {
   addToFavorite,
   removeFromFavorite,
 } from '../../../redux/favorite/operations ';
 import { deleteNotices } from '../../../redux/notices/operations ';
-// import { deleteNoticLoc } from '../../../redux/notices/noticesSlice';
-
-// // import LearnMoreButton from '../NoticesDetailsCard/NoticesButton/NoticesButton';
-// import NoticesLoader from '../NoticesLoader';
-// import Spinner from '../../Spinner/Spinner';
 import Modal from '../../../components/Modal/Modal';
 import NoticeInfoCard from '../../../components/NoticesElements/NoticesDetailsCard/NoticeInfoCard';
 import { setSelectedNotice } from '../../../redux/notices/noticesSlice';
-// import { Notices } from '../NoticesDetailsCard/NoticeInfoCard/NoticeInfoCard.styled';
 import { useLocation } from 'react-router-dom';
-// import { useRef } from 'react';
-// import { useNavigate } from 'react-router-dom';
-// import { fetchFavorite } from '../../../redux/favorite/operations ';
+
 const NoticesCategoriesListSecond = () => {
   const {
     noticesList: listNotices,
     selectedNotice,
-    // page,
-    // totalHits,
-    // isLoading: isLoadingNotice,
-    // isAdding,
-    // error,
-    // limit,
     search,
   } = useSelector(selectNoticesObj);
   const { pathname } = useLocation();
   const favorite = useSelector(selectFavoriteList);
   // console.log('pathname', pathname);
   const noticesList = pathname === '/notices/favorite' ? favorite : listNotices;
-  // const firstRender = useRef(true);
-  // const navigate = useNavigate();
-  // useEffect(() => {
-  //   if (firstRender) {
-  //     console.log('first render in Page Navigate ');
-  //     navigate('/notices/sell', { replace: true });
-  //     if (isLoggedIn) {
-  //       dispatch(fetchFavorite({}));
-  //     }
-  //     firstRender.current = false;
-
-  //     return;
-  //   }
-  // }, []);
 
   const { _id } = useSelector(selectUser);
   const dispatch = useDispatch();
