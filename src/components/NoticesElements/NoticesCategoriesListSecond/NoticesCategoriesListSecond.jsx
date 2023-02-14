@@ -178,7 +178,6 @@ const NoticesCategoriesListSecond = () => {
                   )}
                   {isLoggedIn && (
                     <NoticesButtonFavoriteV2
-                      disabled={isLoading}
                       onClick={() => onFavoriteToggle(_id, favorite)}
                     >
                       <NoticesFavorite isfavorite={favorite.toString()} />

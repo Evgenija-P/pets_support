@@ -1,5 +1,5 @@
 const getIsOwnNotice = (_id, notice) => {
-  console.log('getOwn', _id, notice);
+  // console.log('getOwn', _id, notice);
   if (_id === notice.owner) {
     return { ...notice, own: true };
   }
@@ -8,15 +8,13 @@ const getIsOwnNotice = (_id, notice) => {
 };
 
 const getIsFavoriteNotice = (favoriteList, notice) => {
-  console.log(
-    'getIsFavorite',
-    favoriteList.findIndex(favorite => favorite === notice._id)
-  );
-  if (favoriteList.findIndex(favorite => favorite === notice._id) === -1) {
-    console.log('getIsFavoriteNotice', { ...notice, favorite: true });
+  // console.log('favoriteList', favoriteList);
+  // console.log('notice', favoriteList);
+  if (favoriteList.findIndex(favorite => favorite._id === notice._id) === -1) {
+    // console.log('getIsFavoriteNotice', { ...notice, favorite: true });
     return { ...notice, favorite: false };
   }
-  console.log('getIsFavoriteNotice', { ...notice, favorite: false });
+  // console.log('getIsFavoriteNotice', { ...notice, favorite: false });
   return { ...notice, favorite: true };
 };
 

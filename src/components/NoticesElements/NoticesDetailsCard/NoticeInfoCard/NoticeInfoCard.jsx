@@ -69,8 +69,8 @@ const NoticeInfoCard = () => {
   } = noticeReduced;
   const callNumber = 'tel:' + phone;
   const [Isfavorite, setIsfavorite] = useState(favorite);
-  console.log('favorite', favorite);
-  console.log('Isfavorite', Isfavorite);
+  // console.log('favorite', favorite);
+  // console.log('Isfavorite', Isfavorite);
 
   const onToggle = () => {
     setIsfavorite(prev => !prev);
@@ -145,21 +145,14 @@ const NoticeInfoCard = () => {
           </NoticesButtonDelete>
         )}
         {!Isfavorite && isLoggedIn && (
-          <NoticesButtonFavorite
-            disabled={isLoading}
-            onClick={onToggle}
-            // onClick={() => onFavoriteToggle(_id, Isfavorite)}
-          >
+          <NoticesButtonFavorite disabled={isLoading} onClick={onToggle}>
             Add to
             <HeartFavorite />
           </NoticesButtonFavorite>
         )}
 
         {Isfavorite && isLoggedIn && (
-          <NoticesButtonFavorite
-            // onClick={() => onFavoriteToggle(_id, Isfavorite)}
-            onClick={onToggle}
-          >
+          <NoticesButtonFavorite onClick={onToggle}>
             Remove from
             <HeartFavorite />
           </NoticesButtonFavorite>
