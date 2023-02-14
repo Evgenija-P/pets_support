@@ -8,12 +8,11 @@ import NoticesSearch from '../components/NoticesElements/NoticesSearch/NoticesSe
 import NoticesGallary from '../components/NoticesElements/NoticesGallary';
 // import NoticesCategoriesList from '../components/NoticesElements/NoticesCategoriesList';
 // import NoticeInfoCard from '../components/NoticesElements/NoticesDetailsCard/NoticeInfoCard';
-// import { useEffect, useRef } from 'react';
-// // import { useEffect } from 'react';
+// import { useEffect } from 'react';
+// import { useEffect } from 'react';
 // import { useNavigate } from 'react-router-dom';
-
+// import { useRef } from 'react';
 // import { fetchFavorite } from '../redux/favorite/operations ';
-
 // import { useDispatch } from 'react-redux';
 
 // import useAuth from '../hooks/useAuth.js';
@@ -27,23 +26,23 @@ const NoticesPage = () => {
   // const dispatch = useDispatch();
   // const { isLoggedIn } = useAuth();
 
-  // // const { pathname } = useLocation();
+  // const { pathname } = useLocation();
   // const navigate = useNavigate();
 
   // useEffect(() => {
   //   if (firstRender) {
-  //     console.log('first render in Page Navigate ');
+  //     // console.log('first render in Page Navigate ', firstRender);
   //     navigate('/notices/sell', { replace: true });
-  //     if (isLoggedIn) {
-  //       dispatch(fetchFavorite({}));
-  //     }
-  //     firstRender.current = false;
 
-  //     return;
+  //     firstRender.current = false;
   //   }
-  // }, [isLoggedIn]);
-  // console.log('Notices', noticesList);
-  ///////////////////////////////////////////
+
+  //   return;
+  //   // }
+  //   // console.log('Render Page Navigate ', firstRender);
+  // }, [navigate]);
+
+  /////////////////////////////////////////
   return (
     <>
       <Helmet>
