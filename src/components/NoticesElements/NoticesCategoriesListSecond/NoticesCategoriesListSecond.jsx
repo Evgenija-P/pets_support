@@ -36,8 +36,7 @@ import { getNoticesById } from '../../../redux/notices/operations ';
 //   addToFavorite,
 //   removeFromFavorite,
 // } from '../../../redux/favorite/operations ';
-import Spinner from '../../Spinner';
-import NoticesLoader from '../NoticesLoader';
+// import Spinner from '../../Spinner';
 import {
   addToFavoriteNotices,
   removeFromFavoriteNotices,
@@ -150,7 +149,7 @@ const NoticesCategoriesListSecond = () => {
   // console.log('sorted', sortedNotices);
   return (
     <>
-      {isLoading && <Spinner />}
+      {/* {isLoading && <Spinner />} */}
       {(error || favoriteNoticesList.lengt === 0) && <div>нет</div>}
 
       <NoticesList>
