@@ -79,12 +79,15 @@ export const UserForm = styled(Form)`
 export const UserInformationContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  margin-bottom: 12px;
+  margin-bottom: 8px;
+  align-items: center;
+  height: 24px;
   &:last-child {
     margin-bottom: 0px;
   }
   ${media.tabletAndDesktop} {
-    margin-bottom: 15px;
+    margin-bottom: 11px;
+    height: 32px;
   }
   
 `
@@ -93,6 +96,7 @@ export const UserKeyLabel = styled.label`
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 24px;
   font-weight: ${fontWeights.medium};
   font-size: 12px;
   line-height: 16px;
@@ -103,15 +107,16 @@ export const UserKeyLabel = styled.label`
     margin-bottom: 0px;
   }
   ${media.tabletAndDesktop} {
+    margin-bottom: 11px;
     font-size: 18px;
     line-height: 25px;
+    height: 32px;
   }
 `
 
 export const UserValueInput = styled(Field)`
-${prop => console.log(prop)}
   background: ${colors.background};
-  border: ${ prop => prop.isvalid === 'true' ? "1px solid rgba(245, 146, 86, 0.5)" : '1px solid #e53e3e'};
+  border: ${ prop => prop.isvalid === 'true' ? "1px solid rgba(245, 146, 86, 0.5)" : '2px solid #e53e3e'};
   border-radius: 40px;
   font-weight: ${fontWeights.regular};
   font-size: 12px;
@@ -119,7 +124,7 @@ ${prop => console.log(prop)}
   letter-spacing: 0.04em;
   color: ${colors.black};
   margin-left: 25px;
-  padding: 4px 0 1px 18px;
+  padding: 4px 0 4px 18px;
   width: 150px;
   ${media.tabletAndDesktop} {
     font-size: 18px;
@@ -343,15 +348,14 @@ export const AvatarWrapper = styled.div`
 `
 export const ErrBox = styled.div`
   position: absolute;
-  top: 22px;
+  top: 27px;
   font-size: 6px;
-  font-style: ${fontWeights.regular};
+  font-style: ${fontWeights.bold};
   line-height: 1.4;
   letter-spacing: 0.03em;
   color: #e53e3e;
   ${media.tabletAndDesktop}{
-    top: 30px;
-    left: 100px;
+    top: 33px;
     font-size: 11px;
   }
 `

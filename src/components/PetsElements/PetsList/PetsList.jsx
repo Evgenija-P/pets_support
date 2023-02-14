@@ -33,7 +33,7 @@ const PetsList = () => {
   function handleDeletePet(petId) {
     dispatch(deletePet(petId))
       .unwrap()
-      .then(() => toast.success('Pet was was deleted.', optionsToast))
+      .then(() => toast.success('Pet was deleted.', optionsToast))
       .catch(err => {
         console.log(err);
         toast.error('Error occured. Pet deleting not completed.', optionsToast);
@@ -76,7 +76,7 @@ const PetsList = () => {
               </PetTag>
               <PetTag>
                 <span>Comments:</span>
-                <p>{comments}</p>
+                {comments}
               </PetTag>
             </div>
           </PetDescription>

@@ -15,7 +15,11 @@ const PreviewPhoto = ({ label, photo, onDeletePreview }) => {
       <styled.Label>{label}</styled.Label>
       <styled.Wrapper>
         <styled.Photo src={preview} />
-        <styled.DelBtn type="button" onClick={onDeletePreview}>
+        <styled.DelBtn
+          type="button"
+          aria-label="delete selected file button "
+          onClick={onDeletePreview}
+        >
           <MdClose size={100} />
         </styled.DelBtn>
       </styled.Wrapper>

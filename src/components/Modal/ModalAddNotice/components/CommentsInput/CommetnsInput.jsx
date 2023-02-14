@@ -15,7 +15,7 @@ const CommentsInput = ({ label, required, ...props }) => {
           label
         )}
       </styled.Label>
-      <styled.CommentsField {...field} {...props} />
+      <styled.CommentsField autoComplete="off" {...field} {...props} />
       {meta.error && meta.touched && <styled.Error>{meta.error}</styled.Error>}
     </styled.Container>
   );
