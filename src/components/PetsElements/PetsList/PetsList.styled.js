@@ -59,6 +59,7 @@ export const PetImage = styled.img`
 `;
 
 export const PetDescription = styled.div`
+  width: 100%;
   position: relative;
   width: 100%;
 `;
