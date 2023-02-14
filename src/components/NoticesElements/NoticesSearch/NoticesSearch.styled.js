@@ -20,7 +20,7 @@ export const SearchInput = styled.input`
 
   width: 100%;
   height: 44px;
-  padding: 8px 12px;
+  padding: 8px 44px 8px 12px;
   border-radius: 44px;
 
   background-color: ${colors.white};
@@ -36,7 +36,7 @@ export const SearchInput = styled.input`
   ${media.tabletAndDesktop} {
     max-width: 610px;
     height: 44px;
-    padding: 8px 20px;
+    padding: 8px 52px 8px 20px;
 
     font-size: 20px;
   }
@@ -61,7 +61,7 @@ export const SearchInput = styled.input`
 export const SearchFormButton = styled.button`
   position: absolute;
   top: 8px;
-  right: 20px;
+  right: 12px;
 
   width: 32px;
   height: 32px;
@@ -69,6 +69,10 @@ export const SearchFormButton = styled.button`
   border-radius: 32px;
   border: none;
   outline: none;
+
+  ${media.tabletAndDesktop} {
+    right: 20px;
+  }
 
   background-color: transparent;
 

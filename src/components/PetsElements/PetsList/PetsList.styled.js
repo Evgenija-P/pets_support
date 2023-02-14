@@ -59,8 +59,8 @@ export const PetImage = styled.img`
 `;
 
 export const PetDescription = styled.div`
-  position: relative;
   width: 100%;
+  position: relative;
 `;
 
 export const PetTag = styled.p`

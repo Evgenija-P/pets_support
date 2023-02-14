@@ -29,7 +29,6 @@ export const NoticesItem = styled.li`
   box-shadow: 7px 4px 15px 0px ${colors.shadow};
 
   overflow: hidden;
-
   background-color: ${colors.white};
 
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -142,6 +141,7 @@ export const NoticesImage = styled.img`
 
 export const NoticesDescription = styled.div`
   padding: 20px 16px 32px 16px;
+  max-height: 420px;
 `;
 
 export const NoticesTitle = styled.h2`
@@ -154,8 +154,7 @@ export const NoticesTitle = styled.h2`
 `;
 
 export const NoticesTags = styled.div`
-  min-height: 100px;
-  margin-bottom: 50px;
+  min-height: 140px;
 `;
 
 export const NoticesTag = styled.p`
@@ -168,6 +167,8 @@ export const NoticesTag = styled.p`
 `;
 
 export const NoticesButton = styled.button`
+  margin-top: auto;
+
   width: 100%;
   padding: 8px 28px;
 
@@ -179,7 +180,6 @@ export const NoticesButton = styled.button`
   font-size: 16px;
   line-height: 1.375;
   letter-spacing: 0.04em;
-  margin-bottom: 10px;
   text-align: center;
   color: ${colors.accent};
 
@@ -190,5 +190,15 @@ export const NoticesButton = styled.button`
     color: ${colors.accentButton};
   }
 
+  :not(:last-child) {
+    margin-bottom: 12px;
+  }
+
   cursor: pointer;
+`;
+
+export const ButtonList = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 `;
