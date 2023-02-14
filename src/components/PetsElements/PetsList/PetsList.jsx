@@ -35,7 +35,6 @@ const PetsList = () => {
       .unwrap()
       .then(() => toast.success('Pet was deleted.', optionsToast))
       .catch(err => {
-        console.log(err);
         toast.error('Error occured. Pet deleting not completed.', optionsToast);
       });
   }

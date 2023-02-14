@@ -15,10 +15,15 @@ export const ModalWrapperNotices = styled.div`
   z-index: 1000;
 
   ${media.tabletAndDesktop} {
-    transform: translate(-50%, -50%);
-    top: 50%;
+    transform: translate(-50%, 0);
+    top: 0;
     width: 608px;
     padding: 40px 80px;
+  }
+
+  ${media.desktop2kHeight} {
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
 `;
 

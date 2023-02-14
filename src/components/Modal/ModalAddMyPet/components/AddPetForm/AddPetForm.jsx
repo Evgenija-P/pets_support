@@ -33,12 +33,9 @@ const AddPetForm = ({ onClose }) => {
   const [isFirstStep, setIsFirstStep] = useState(true);
 
   async function handleFormSubmit({ petPhoto, ...values }) {
-    console.log('values', values);
     const data = petPhoto ? { ...values, petPhoto } : { ...values };
 
-    console.log('data', data);
     const formData = createFormData(data);
-    console.log('formData: ', formData.name);
     dispatch(addNewPet(formData))
       .unwrap()
       .then(() => {
@@ -46,7 +43,6 @@ const AddPetForm = ({ onClose }) => {
         onClose();
       })
       .catch(err => {
-        console.log(err);
         toast.error('Error occured. Pet addition not completed.', optionsToast);
       });
   }
@@ -95,7 +91,6 @@ const AddPetForm = ({ onClose }) => {
                 <styled.PrimaryBtn
                   type={'button'}
                   onClick={async () => {
-                    console.log('next', values);
                     const errors = await validateForm();
                     const isValid = FIRST_STEP_FORM_FIELDS.every(
                       field => !errors[field]

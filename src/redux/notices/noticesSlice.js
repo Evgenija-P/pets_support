@@ -71,6 +71,7 @@ const handleDeleteNoticesSuccses = (state, action) => {
   );
   state.noticesList.splice(index, 1);
 };
+
 const handleGetNoticesByIdSuccses = (state, action) => {
   state.selectedNotice = action.payload;
 };
