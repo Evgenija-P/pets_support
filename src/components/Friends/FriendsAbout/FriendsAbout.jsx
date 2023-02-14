@@ -51,7 +51,7 @@ const FriendsAbout = ({ item }) => {
             </>
           ) : (
             <Active>
-              <p>Addres: </p>
+              <p>Address: </p>
               <a href={addressUrl} target="_blank" rel="noreferrer">
                 {address}
               </a>
