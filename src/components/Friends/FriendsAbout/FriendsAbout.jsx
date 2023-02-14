@@ -46,7 +46,7 @@ const FriendsAbout = ({ item }) => {
         <AboutItem>
           {address === undefined || address === null ? (
             <>
-              <p>Addres: </p>
+              <p>Address: </p>
               <p>Інформація відсутня</p>
             </>
           ) : (
