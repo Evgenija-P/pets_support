@@ -10,6 +10,10 @@ import {
 } from './NewsItem.styled';
 
 const NewsItem = ({ title, description, date, url }) => {
+  const dateSlash = date.replaceAll('-', '/');
+
+  const dateRevers = dateSlash.split('/').reverse().join('/');
+
   return (
     <CardNews>
       <BoxBand>
@@ -18,7 +22,7 @@ const NewsItem = ({ title, description, date, url }) => {
 
       <DescriptionCardNews>{description}</DescriptionCardNews>
       <CardButtonNews>
-        <DateCardNews>{date}</DateCardNews>
+        <DateCardNews>{dateRevers}</DateCardNews>
         <UrlCardNews href={url} target="_blank">
           Read more
         </UrlCardNews>

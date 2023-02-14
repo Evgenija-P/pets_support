@@ -14,6 +14,7 @@ import {
   SearchNewsForm,
   SearchNewsInput,
   SearchNewsButton,
+  ErrorTitle,
 } from './NewsList.styled';
 
 const NewsList = () => {
@@ -51,7 +52,6 @@ const NewsList = () => {
   };
 
   const handleChange = evt => {
-    evt.preventDefault();
     setValue(evt.target.value);
   };
 
@@ -72,6 +72,8 @@ const NewsList = () => {
   const filterNews = news.filter(news => {
     return news.title.toLowerCase().includes(request.toLowerCase());
   });
+
+  console.log(filterNews);
 
   return (
     <ConteinerNews>
@@ -110,6 +112,11 @@ const NewsList = () => {
               />
             </ItemNews>
           ))
+        )}
+        {filterNews.length === 0 && (
+          <ErrorTitle>
+            Nothing found for your search, please try again
+          </ErrorTitle>
         )}
       </ListNews>
     </ConteinerNews>
