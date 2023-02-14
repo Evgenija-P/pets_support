@@ -6,11 +6,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 16px;
-
-  ${media.tabletAndDesktop} {
-    margin-top: 28px;
-  }
+  margin-top: 28px;
 `;
 
 export const Label = styled.div`
