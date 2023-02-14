@@ -15,7 +15,11 @@ console.log(ModalWrapperNotices);
 const ModalAddNotice = ({ onClose, title }) => {
   return (
     <ModalWrapperNotices>
-      <CloseButton type="button" onClick={onClose}>
+      <CloseButton
+        type="button"
+        aria-label="close modal button"
+        onClick={onClose}
+      >
         <IconClose />
       </CloseButton>
       {title ? <ModalTitleAddNotices>{title}</ModalTitleAddNotices> : null}

@@ -33,7 +33,7 @@ const initialValues = {
 
 const PET_GENDER = ['male', 'female'];
 const FIRST_STEP_FORM_FIELDS = ['title', 'name', 'birthDate', 'breed'];
-const NOTICE_CATEGORIES = ['for-free', 'lost-found', 'sell'];
+const NOTICE_CATEGORIES = ['lost-found', 'for-free', 'sell'];
 
 const AddNoticeForm = ({ onClose }) => {
   const dispatch = useDispatch();

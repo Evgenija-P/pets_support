@@ -11,9 +11,10 @@ const addNoticeSchema = yup.object({
 
   birthdate: yup
     .string()
+    .max(10, "birthdate must be a 'DD.MM.YYYY' format.")
     .matches(dateRegexp, "birthdate must be a 'DD.MM.YYYY' format."),
 
-  breed: yup.string().min(2).max(24),
+  breed: yup.string().min(2).max(16),
 
   sex: yup.string().oneOf(['male', 'female']).required(),
 
@@ -30,7 +31,10 @@ const addNoticeSchema = yup.object({
 
   location: yup
     .string()
-    .matches(cityRegexp, "location must be a 'city,region' format.")
+    .matches(
+      cityRegexp,
+      "location must be only latin letters and a 'city,region' format."
+    )
     .required(),
 
   price: yup

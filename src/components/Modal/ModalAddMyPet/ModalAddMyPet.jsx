@@ -11,7 +11,11 @@ import AddPetForm from './components/AddPetForm';
 const ModalAddMyPet = ({ children, onClose, title }) => {
   return (
     <ModalWrapperAddMyPet>
-      <CloseButton type="button" onClick={onClose}>
+      <CloseButton
+        type="button"
+        aria-label="close modal button"
+        onClick={onClose}
+      >
         <IconClose />
       </CloseButton>
       {title ? <ModalTitleAddMyPet>{title}</ModalTitleAddMyPet> : null}
