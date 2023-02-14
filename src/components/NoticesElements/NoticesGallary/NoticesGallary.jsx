@@ -1,4 +1,4 @@
-import NoticesCategoriesListSecond from '../../NoticesElements/NoticesCategoriesListSecond';
+import NoticesCategoriesList from '../NoticesCategoriesList';
 import { selectNoticesObj } from '../../../redux/notices/selectors';
 import { useSelector } from 'react-redux';
 import GalleryPagination from '../../NoticesElements/GalleryPagination';
@@ -20,7 +20,7 @@ const NoticesGallary = () => {
       {(error || noticesList.length === 0) &&
         !isLoading &&
         pathname !== '/notices/favorite' && <NoticesLoader />}
-      <NoticesCategoriesListSecond />
+      <NoticesCategoriesList />
       <GalleryPagination />
     </div>
   );
