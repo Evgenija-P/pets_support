@@ -4,14 +4,13 @@ import {
 } from '../NoticesCategoriesNav/NoticesCategoriesNav.styled';
 import { useDispatch } from 'react-redux';
 import { fetchNotices } from '../../../redux/notices/operations ';
-import { fetchFavorite } from '../../../redux/favorite/operations ';
 import { useEffect } from 'react';
 import { selectNoticesObj } from '../../../redux/notices/selectors';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-
+import { fetchFavoriteNotices } from '../../../redux/notices/operations ';
 const NoticesAuthNav = () => {
   const dispatch = useDispatch();
   const { categoryName } = useParams();
@@ -27,13 +26,14 @@ const NoticesAuthNav = () => {
 
   useEffect(() => {
     if (pathname === '/notices/favorite') {
+      dispatch(fetchFavoriteNotices({}));
       return;
     }
     dispatch(fetchNotices({ category: pathname, search }));
   }, [pathname, dispatch, search]);
 
   useEffect(() => {
-    dispatch(fetchFavorite({}));
+    dispatch(fetchFavoriteNotices({}));
   }, [dispatch]);
 
   return (
