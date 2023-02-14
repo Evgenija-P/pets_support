@@ -76,11 +76,11 @@ const handleGetNoticesByIdSuccses = (state, action) => {
 };
 
 const handleAddToFavoriteNoticesSuccses = (state, action) => {
-  // if (state.category === 'favorite') {
-  //   state.noticesList.push(action.payload);
+  if (state.category === 'favorite') {
+    state.noticesList.push(action.payload);
 
-  //   state.favoriteNoticesList.push(action.payload);
-  // }
+    // state.favoriteNoticesList.push(action.payload);
+  }
   // state.favoriteNoticesList = action.payload;
   state.favoriteNoticesList.push(action.payload);
 };

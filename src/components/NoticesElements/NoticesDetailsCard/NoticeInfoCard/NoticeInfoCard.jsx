@@ -50,7 +50,13 @@ const NoticeInfoCard = () => {
       getIsOwnNotice(userId, selectedNotice)
     )
   );
-
+  // console.log(
+  //   'select!!!!',
+  //   getIsFavoriteNotice(favoriteNoticesList, selectedNotice)
+  // );
+  // const noticeReduced = labelNotice(
+  //   getIsFavoriteNotice(favoriteNoticesList, selectedNotice)
+  // );
   const {
     _id,
     petImageURL,
@@ -69,8 +75,8 @@ const NoticeInfoCard = () => {
   } = noticeReduced;
   const callNumber = 'tel:' + phone;
   const [Isfavorite, setIsfavorite] = useState(favorite);
-  console.log('favorite', favorite);
-  console.log('Isfavorite', Isfavorite);
+  // console.log('favorite', favorite);
+  // console.log('Isfavorite', Isfavorite);
 
   const onToggle = () => {
     setIsfavorite(prev => !prev);
