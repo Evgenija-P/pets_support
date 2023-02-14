@@ -47,9 +47,9 @@ const NoticesSearch = () => {
       dispatch(setSearch(''));
       setformStste('');
       setisInSearch(false);
-      if (pathname !== '/notices/favorite') {
-        dispatch(fetchNotices({ category: pathname }));
-      }
+      // if (pathname !== '/notices/favorite') {
+      dispatch(fetchNotices({ category: pathname }));
+      // }
       return;
     }
     setformStste(evt.target.value);
@@ -65,9 +65,9 @@ const NoticesSearch = () => {
     evt.preventDefault();
     dispatch(setSearch(formStste));
     setisInSearch(true);
-    if (pathname !== '/notices/favorite') {
-      dispatch(fetchNotices({ category: pathname, search: formStste }));
-    }
+    // if (pathname !== '/notices/favorite') {
+    dispatch(fetchNotices({ category: pathname, search: formStste }));
+    // }
   };
 
   // const handleChange = evt => {

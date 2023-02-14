@@ -4,6 +4,7 @@ import {
 } from '../NoticesCategoriesNav/NoticesCategoriesNav.styled';
 import { useDispatch } from 'react-redux';
 import { fetchNotices } from '../../../redux/notices/operations ';
+
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useParams } from 'react-router-dom';

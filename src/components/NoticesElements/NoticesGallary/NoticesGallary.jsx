@@ -6,17 +6,17 @@ import GalleryPagination from '../../NoticesElements/GalleryPagination';
 
 // import { selectFavoriteObj } from '../../../redux/favorite/selectors';
 
-import NoticesLoader from '../NoticesLoader';
-// import NoticeSpiner from '../NoticeSpiner';
+// import NoticesLoader from '../NoticesLoader';
+// import Spiner from '../../Spinner';
 import Spiner from '../../Spinner';
 // import Modal from '../../../components/Modal/Modal';
 // //import useAuth from '../../../hooks/useAuth.js';
 // import { setSelectedNotice } from '../../../redux/notices/noticesSlice';
 
-import { selectFavoriteObj } from '../../../redux/favorite/selectors';
+// import { selectFavoriteObj } from '../../../redux/favorite/selectors';
 // import { selectUser } from '../../../redux/auth/selectors';
 // import { useNavigate } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 // import { useRef } from 'react';
 
 const NoticesGallary = () => {
@@ -28,18 +28,20 @@ const NoticesGallary = () => {
     // search,
     isLoading,
     error: errorNotices,
-    noticesList,
+    // noticesList,
+    // noticesFavoriteList,
+
     // selectedNotice,
   } = useSelector(selectNoticesObj);
-  const {
-    favoriteList,
+  // const {
+  //   favoriteList,
 
-    isLoading: isLoadingFavorite,
-    error: errorFavorite,
-  } = useSelector(selectFavoriteObj);
+  //   isLoading: isLoadingFavorite,
+  //   error: errorFavorite,
+  // } = useSelector(selectFavoriteObj);
   // const { isLoading: isLoadingFavorite } = useSelector(selectFavoriteObj);
   // const { isLoggedIn } = useAuth();
-  const { pathname } = useLocation();
+  // const { pathname } = useLocation();
   // const dispatch = useDispatch();
   // const firstRender = useRef(true);
 
@@ -50,15 +52,24 @@ const NoticesGallary = () => {
 
   return (
     <div>
-      {pathname === '/notices/favorite'
-        ? (errorFavorite || favoriteList.length === 0) && <NoticesLoader />
-        : (errorNotices || noticesList.length === 0) && <NoticesLoader />}
-      {pathname === '/notices/favorite'
-        ? !errorFavorite &&
+      {/* {(errorNotices ||
+        noticesList.length === 0 
+       ) && <NoticesLoader />} */}
+      {/* {!errorNotices && noticesList.length !== 0 && (
+        <NoticesCategoriesListSecond />
+      )} */}
+      {/* {pathname === '/notices/favorite'
+        ? (errorNotices || noticesFavoriteList.length === 0) && (
+            <NoticesLoader />
+          )
+        : (errorNotices || noticesList.length === 0) && <NoticesLoader />} */}
+      {/* {pathname === '/notices/favorite'
+        ? !errorNotices &&
           favoriteList.length !== 0 && <NoticesCategoriesListSecond />
         : !errorNotices &&
-          noticesList.length !== 0 && <NoticesCategoriesListSecond />}
-      {(isLoadingFavorite || isLoading) && <Spiner />}
+          noticesList.length !== 0 && <NoticesCategoriesListSecond />} */}
+      {!errorNotices && <NoticesCategoriesListSecond />}
+      {isLoading && <Spiner />}
       <GalleryPagination />
     </div>
   );

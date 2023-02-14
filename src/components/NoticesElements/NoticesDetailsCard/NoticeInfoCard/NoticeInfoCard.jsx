@@ -36,18 +36,18 @@ import { useState } from 'react';
 import { setSelectedNotice } from '../../../../redux/notices/noticesSlice';
 // import { useLocation } from 'react-router-dom';
 import { deleteNotices } from '../../../../redux/notices/operations ';
-import Spinner from '../../../Spinner/Spinner';
+// import Spinner from '../../../Spinner/Spinner';
 import { selectUser } from '../../../../redux/auth/selectors';
-import { selectFavoriteObj } from '../../../../redux/favorite/selectors';
+// import { selectFavoriteObj } from '../../../../redux/favorite/selectors';
 import useAuth from '../../../../hooks/useAuth.js';
 import {
   getIsOwnNotice,
   getIsFavoriteNotice,
 } from '../../../../helpers/currentHelpers';
 import {
-  removeFromFavorite,
-  addToFavorite,
-} from '../../../../redux/favorite/operations ';
+  addToFavoriteNotices,
+  removeFromFavoriteNotices,
+} from '../../../../redux/notices/operations ';
 import { selectNoticesObj } from '../../../../redux/notices/selectors';
 import { labelNotice } from '../../../../helpers/noticesHelpers';
 const NoticeInfoCard = () => {
@@ -55,12 +55,16 @@ const NoticeInfoCard = () => {
   const dispatch = useDispatch();
 
   const { isLoggedIn } = useAuth();
-  const { selectedNotice } = useSelector(selectNoticesObj);
+  const { selectedNotice, favoriteNoticesList, isLoading } =
+    useSelector(selectNoticesObj);
   const { _id: userId } = useSelector(selectUser);
-  const { favoriteList, isLoading } = useSelector(selectFavoriteObj);
+  // const { favoriteList, isLoading } = useSelector(selectFavoriteObj);
 
   const noticeReduced = labelNotice(
-    getIsFavoriteNotice(favoriteList, getIsOwnNotice(userId, selectedNotice))
+    getIsFavoriteNotice(
+      favoriteNoticesList,
+      getIsOwnNotice(userId, selectedNotice)
+    )
   );
 
   ////////////////////////////////////////////////////////////////////
@@ -96,11 +100,11 @@ const NoticeInfoCard = () => {
   const onToggle = () => {
     setIsfavorite(prev => !prev);
     if (Isfavorite) {
-      dispatch(removeFromFavorite(_id));
+      dispatch(removeFromFavoriteNotices(_id));
 
       return;
     }
-    dispatch(addToFavorite(_id));
+    dispatch(addToFavoriteNotices(_id));
   };
 
   return (
@@ -152,7 +156,7 @@ const NoticeInfoCard = () => {
       <NoticesComment>
         <strong>Comments: </strong> {comments}
       </NoticesComment>
-      {isLoading && <Spinner />}
+      {/* {isLoading && <Spinner />} */}
       <ButtonBlock>
         {own && (
           <NoticesButtonDelete

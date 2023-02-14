@@ -27,29 +27,41 @@ import notFoundNoticesImage from '../../../img/notFoundNoticesImage.jpg';
 import { useSelector, useDispatch } from 'react-redux';
 import useAuth from '../../../hooks/useAuth.js';
 import { selectNoticesObj } from '../../../redux/notices/selectors';
-import { selectFavoriteList } from '../../../redux/favorite/selectors';
+// import { selectFavoriteList } from '../../../redux/favorite/selectors';
 import { selectUser } from '../../../redux/auth/selectors.js';
 import { getNoticesById } from '../../../redux/notices/operations ';
+// import { fetchFavoriteNotices } from '../../../redux/notices/operations ';
+
+// import {
+//   addToFavorite,
+//   removeFromFavorite,
+// } from '../../../redux/favorite/operations ';
+// import Spinner from '../../Spinner';
+// import NoticesLoader from '../NoticesLoader';
 import {
-  addToFavorite,
-  removeFromFavorite,
-} from '../../../redux/favorite/operations ';
+  addToFavoriteNotices,
+  removeFromFavoriteNotices,
+} from '../../../redux/notices/operations ';
 import { deleteNotices } from '../../../redux/notices/operations ';
 import Modal from '../../../components/Modal/Modal';
 import NoticeInfoCard from '../../../components/NoticesElements/NoticesDetailsCard/NoticeInfoCard';
 import { setSelectedNotice } from '../../../redux/notices/noticesSlice';
 import { useLocation } from 'react-router-dom';
-
+// import { useEffect } from 'react';
 const NoticesCategoriesListSecond = () => {
   const {
     noticesList: listNotices,
     selectedNotice,
     search,
+    favoriteNoticesList,
+    // isLoading,
+    // error,
   } = useSelector(selectNoticesObj);
   const { pathname } = useLocation();
-  const favorite = useSelector(selectFavoriteList);
+  // const favorite = useSelector(selectFavoriteList);
   // console.log('pathname', pathname);
-  const noticesList = pathname === '/notices/favorite' ? favorite : listNotices;
+  const noticesList =
+    pathname === '/notices/favorite' ? favoriteNoticesList : listNotices;
 
   const { _id } = useSelector(selectUser);
   const dispatch = useDispatch();
@@ -58,10 +70,14 @@ const NoticesCategoriesListSecond = () => {
   let noticesUpdated = [];
   // const del = getUserFavoriteNotices(noticesList, favorite);
   // console.log('del', del);
+
   if (isLoggedIn) {
     noticesUpdated = labelNotices(
       getPetAge(
-        getOwnerNotices(getUserFavoriteNotices(noticesList, favorite), _id)
+        getOwnerNotices(
+          getUserFavoriteNotices(noticesList, favoriteNoticesList),
+          _id
+        )
       )
     );
   } else {
@@ -76,7 +92,8 @@ const NoticesCategoriesListSecond = () => {
       return;
     }
     if (favorite) {
-      dispatch(removeFromFavorite(_id));
+      // dispatch(removeFromFavorite(_id));
+      dispatch(removeFromFavoriteNotices(_id));
       // console.log('removeFromFavorite', _id);
       // if (pathname === '/notices/favorite') {
       //   console.log('delete', _id);
@@ -85,7 +102,8 @@ const NoticesCategoriesListSecond = () => {
 
       return;
     }
-    dispatch(addToFavorite(_id));
+    // dispatch(addToFavorite(_id));
+    dispatch(addToFavoriteNotices(_id));
   };
 
   const onFavoriteNotAuth = () => {
@@ -95,30 +113,31 @@ const NoticesCategoriesListSecond = () => {
     dispatch(setSelectedNotice());
   };
 
-  const notices = isLoggedIn ? noticesUpdated : noticesList;
+  // const notices = isLoggedIn ? noticesUpdated : noticesList;
+  const notices = noticesUpdated;
 
-  const filterFavoritrNotices = (notices, search) => {
-    // console.log('filtr', notices, search);
-    // const filterByComment = notices.filter(notice =>
-    //   notice.comments.toLowerCase().includes(search.toLowerCase())
-    // );
-    const filterByTitle = notices.filter(notice =>
-      notice.title.toLowerCase().includes(search.toLowerCase())
-    );
-    // const filterByBreed = notices.filter(notice =>
-    //   notice.breed.toLowerCase().includes(search.toLowerCase())
-    // );
-    // const newFilteredList = new Set(filterByTitle);
+  // const filterFavoritrNotices = (notices, search) => {
+  //   // console.log('filtr', notices, search);
+  //   // const filterByComment = notices.filter(notice =>
+  //   //   notice.comments.toLowerCase().includes(search.toLowerCase())
+  //   // );
+  //   const filterByTitle = notices.filter(notice =>
+  //     notice.title.toLowerCase().includes(search.toLowerCase())
+  //   );
+  //   // const filterByBreed = notices.filter(notice =>
+  //   //   notice.breed.toLowerCase().includes(search.toLowerCase())
+  //   // );
+  //   // const newFilteredList = new Set(filterByTitle);
 
-    // return [...newFilteredList.add(filterByComment)];
-    return filterByTitle;
-  };
+  //   // return [...newFilteredList.add(filterByComment)];
+  //   return filterByTitle;
+  // };
 
   // const NoticesRender = search && pathname === '/notices/favorite';
-  const filterNotices =
-    search && pathname === '/notices/favorite'
-      ? filterFavoritrNotices(notices, search)
-      : notices;
+  const filterNotices = notices;
+  // search && pathname === '/notices/favorite'
+  //   ? filterFavoritrNotices(notices, search)
+  //   : notices;
   const NoticesRender = search ? filterNotices : notices;
   const sortedNotices = [...NoticesRender].sort(function (a, b) {
     var dateA = new Date(a.createdAt),
@@ -129,9 +148,9 @@ const NoticesCategoriesListSecond = () => {
   // console.log('sorted', sortedNotices);
   return (
     <>
-      {/* {isLoadingNotice && <Spinner />}
-      // {error && <NoticesLoader>console</NoticesLoader>}
-      {!isLoadingNotice && !error && ( */}
+      {/* {isLoading && <Spinner />}
+      {(error || listNotices === 0) && <NoticesLoader>console</NoticesLoader>} */}
+
       <NoticesList>
         {sortedNotices.map(
           ({
@@ -218,7 +237,7 @@ const NoticesCategoriesListSecond = () => {
           )
         )}
       </NoticesList>
-      {/* )} */}
+
       {selectedNotice && (
         <Modal
           // title={'notice'}
