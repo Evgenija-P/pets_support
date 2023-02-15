@@ -1,9 +1,7 @@
 import { toast } from 'react-toastify';
 import { optionsToast } from '../../..//styles/stylesLayout';
-
 import { useState } from 'react';
 import useAuth from '../../../hooks/useAuth';
-
 import NoticesAuthNav from '../NoticesAuthNav';
 import NoticesUserNav from '../NoticesUserNav';
 import AddNoticeButton from '../AddNoticeButton';

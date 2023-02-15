@@ -1,10 +1,9 @@
 import styled from '@emotion/styled';
 import { media, colors, fontWeights } from '../../../styles/stylesLayout';
-
 import noticesFavoriteIcon from '../../../img/icons/noticesFavoriteIcon.svg';
-//import noticesFavoriteIconActive from '../../../img/icons/noticesFavoriteIconActive.svg';
 import { ReactComponent as FavoriteIcon } from '../../../img/icons/favoriteNotices.svg';
 import { ReactComponent as DeleteIcon } from '../../../img/icons/delete.svg';
+
 export const NoticesList = styled.ul`
   display: grid;
   grid-template-columns: repeat(1, minmax(200px, 1fr));
@@ -33,7 +32,7 @@ export const NoticesItem = styled.li`
   background-color: ${colors.white};
 
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  ///////////////////////////
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -262,10 +261,3 @@ export const NoticesIconDelete = styled(DeleteIcon)`
     stroke: ${colors.accentButton};
   }
 `;
-// .delete: hover {
-//     stroke: ${colors.accentButton};
-// }
-//   .button-close__icon {
-//   transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
-//   .
-//   }
