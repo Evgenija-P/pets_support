@@ -14,6 +14,10 @@ import {
   NoticesFavorite,
   NoticesButtonFavoriteV2,
   ButtonList,
+  BottonsWrapper,
+  Wrapper,
+  NoticesButtonDelete,
+  NoticesIconDelete,
 } from './NoticesCategoriesListSecond.styled';
 import { toast } from 'react-toastify';
 import { optionsToast } from '../../..//styles/stylesLayout';
@@ -23,7 +27,7 @@ import {
   getUserFavoriteNotices,
   labelNotices,
 } from '../../../helpers/noticesHelpers';
-
+// import { ReactComponent as Delete } from '../../../img/icons/delete.svg';
 import notFoundNoticesImage from '../../../img/notFoundNoticesImage.jpg';
 import { useSelector, useDispatch } from 'react-redux';
 import useAuth from '../../../hooks/useAuth.js';
@@ -168,42 +172,45 @@ const NoticesCategoriesListSecond = () => {
             isOwner,
           }) => (
             <NoticesItem key={_id}>
-              <NoticesTop>
-                <NoticesNav>
-                  <NoticesBadge>{categoryName}</NoticesBadge>
-                  {!isLoggedIn && (
-                    <NoticesButtonFavorite
-                      onClick={onFavoriteNotAuth}
-                    ></NoticesButtonFavorite>
-                  )}
-                  {isLoggedIn && (
-                    <NoticesButtonFavoriteV2
-                      onClick={() => onFavoriteToggle(_id, favorite)}
-                    >
-                      <NoticesFavorite isfavorite={favorite.toString()} />
-                    </NoticesButtonFavoriteV2>
-                  )}
-                </NoticesNav>
+              <Wrapper>
+                <NoticesTop>
+                  <NoticesNav>
+                    <NoticesBadge>{categoryName}</NoticesBadge>
+                    {!isLoggedIn && (
+                      <NoticesButtonFavorite
+                        onClick={onFavoriteNotAuth}
+                      ></NoticesButtonFavorite>
+                    )}
+                    {isLoggedIn && (
+                      <NoticesButtonFavoriteV2
+                        onClick={() => onFavoriteToggle(_id, favorite)}
+                      >
+                        <NoticesFavorite isfavorite={favorite.toString()} />
+                      </NoticesButtonFavoriteV2>
+                    )}
+                  </NoticesNav>
 
-                <NoticesImage
-                  src={petImageURL ? petImageURL : notFoundNoticesImage}
-                  alt={title}
-                />
-              </NoticesTop>
+                  <NoticesImage
+                    src={petImageURL ? petImageURL : notFoundNoticesImage}
+                    alt={title}
+                  />
+                </NoticesTop>
 
-              <NoticesDescription>
-                <NoticesTitle>{title}</NoticesTitle>
+                <NoticesDescription>
+                  <NoticesTitle>{title}</NoticesTitle>
 
-                <NoticesTags>
-                  {/* <NoticesTag>id: {_id}</NoticesTag> */}
-                  <NoticesTag>Breed: {breed}</NoticesTag>
-                  <NoticesTag>Place: {location}</NoticesTag>
-                  <NoticesTag>Age: {age}</NoticesTag>
-                  {categoryName === 'sell' && (
-                    <NoticesTag>Price: {price}$</NoticesTag>
-                  )}
-                </NoticesTags>
-
+                  <NoticesTags>
+                    {/* <NoticesTag>id: {_id}</NoticesTag> */}
+                    <NoticesTag>Breed: {breed}</NoticesTag>
+                    <NoticesTag>Place: {location}</NoticesTag>
+                    <NoticesTag>Age: {age}</NoticesTag>
+                    {categoryName === 'sell' && (
+                      <NoticesTag>Price: {price}$</NoticesTag>
+                    )}
+                  </NoticesTags>
+                </NoticesDescription>
+              </Wrapper>
+              <BottonsWrapper>
                 <ButtonList>
                   <NoticesButton
                     disabled={isLoading}
@@ -215,31 +222,15 @@ const NoticesCategoriesListSecond = () => {
                   </NoticesButton>
 
                   {isOwner && isLoggedIn && (
-                    <NoticesButton onClick={() => dispatch(deleteNotices(_id))}>
-                      Delete
-                    </NoticesButton>
+                    <NoticesButtonDelete
+                      className="delete"
+                      onClick={() => dispatch(deleteNotices(_id))}
+                    >
+                      Delete <NoticesIconDelete />
+                    </NoticesButtonDelete>
                   )}
                 </ButtonList>
-
-                {/* 
-                {!favorite && isLoggedIn && (
-                  <NoticesButton onClick={() => dispatch(addToFavorite(_id))}>
-                    add to favorite
-                  </NoticesButton>
-                )} */}
-                {/* {favorite && isLoggedIn && (
-                  <NoticesButton
-                    onClick={() => dispatch(removeFromFavorite(_id))}
-                  >
-                    remove from favorite
-                  </NoticesButton>
-                )}
-                {!isLoggedIn && (
-                  <NoticesButton onClick={onFavoriteNotAuth}>
-                    add to favorite
-                  </NoticesButton>
-                )} */}
-              </NoticesDescription>
+              </BottonsWrapper>
             </NoticesItem>
           )
         )}
