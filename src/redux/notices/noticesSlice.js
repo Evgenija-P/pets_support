@@ -27,7 +27,6 @@ const extraActions = [
   fetchNotices,
   deleteNotices,
   getNoticesById,
-
   addToFavoriteNotices,
   removeFromFavoriteNotices,
   fetchFavoriteNotices,
@@ -52,7 +51,9 @@ const handleAddNoticesSuccses = (state, { payload }) => {
   if (state.category === payload.categoryName) {
     state.noticesList.unshift(payload);
   }
-
+  if (state.category === 'own') {
+    state.noticesList.unshift(payload);
+  }
   state.error = null;
   state.isAdding = false;
 };

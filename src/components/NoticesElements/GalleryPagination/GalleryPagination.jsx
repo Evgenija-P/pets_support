@@ -17,10 +17,9 @@ const theme = createTheme({
     secondary: {
       main: colors.accent,
     },
-    neutral: {
-      main: '#166adf',
-      contrastText: '#fff',
-    },
+  },
+  typography: {
+    fontFamily: ['Manrope', 'sans-serif'].join(','),
   },
 });
 
@@ -56,6 +55,7 @@ const GalleryPagination = () => {
                 size="large"
                 onChange={(e, page) => OnPagination(page)}
                 color="primary"
+                sx={{ color: '#FF6101' }}
               />
             </PagginationWrapper>
           )}

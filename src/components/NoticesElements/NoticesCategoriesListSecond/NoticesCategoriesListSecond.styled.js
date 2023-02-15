@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 import { media, colors, fontWeights } from '../../../styles/stylesLayout';
-
 import noticesFavoriteIcon from '../../../img/icons/noticesFavoriteIcon.svg';
-//import noticesFavoriteIconActive from '../../../img/icons/noticesFavoriteIconActive.svg';
 import { ReactComponent as FavoriteIcon } from '../../../img/icons/favoriteNotices.svg';
+import { ReactComponent as DeleteIcon } from '../../../img/icons/delete.svg';
+
 export const NoticesList = styled.ul`
   display: grid;
   grid-template-columns: repeat(1, minmax(200px, 1fr));
@@ -33,6 +33,10 @@ export const NoticesItem = styled.li`
 
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* padding-bottom: 32px; */
   &:hover {
     transform: scale(1.03);
   }
@@ -201,4 +205,59 @@ export const ButtonList = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+`;
+export const BottonsWrapper = styled.div`
+  padding-bottom: 32px;
+  padding-left: 12px;
+  padding-right: 12px;
+
+  ${media.tablet} {
+    padding-left: 44px;
+    padding-right: 44px;
+  }
+
+  /* ${media.tabletAndDesktop} {
+    margin: 60px 0px;
+  } */
+
+  ${media.desktop} {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+`;
+export const Wrapper = styled.div``;
+
+export const NoticesButtonDelete = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: auto;
+
+  width: 100%;
+  padding: 8px 28px;
+
+  border-radius: 40px;
+  border: 2px solid ${colors.accent};
+  background-color: ${colors.white};
+
+  font-weight: ${fontWeights.medium};
+  font-size: 16px;
+  line-height: 1.375;
+  letter-spacing: 0.04em;
+  text-align: center;
+  color: ${colors.accent};
+
+  &:hover,
+  &:focus {
+    border-color: ${colors.accentButton};
+    outline-color: ${colors.accentButton};
+    color: ${colors.accentButton};
+  }
+`;
+export const NoticesIconDelete = styled(DeleteIcon)`
+  /* stroke: ${colors.accentButton}; */
+  fill: ${colors.accentButton};
+  .delete:hover & {
+    stroke: ${colors.accentButton};
+  }
 `;

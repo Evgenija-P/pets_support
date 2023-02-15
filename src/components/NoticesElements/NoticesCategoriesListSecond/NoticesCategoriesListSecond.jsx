@@ -1,3 +1,15 @@
+import * as React from 'react';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import useMediaQuery from '@mui/material/useMediaQuery';
+
+import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles';
+import { colors } from '../../../styles/stylesLayout';
 import {
   NoticesList,
   NoticesItem,
@@ -14,6 +26,10 @@ import {
   NoticesFavorite,
   NoticesButtonFavoriteV2,
   ButtonList,
+  BottonsWrapper,
+  Wrapper,
+  NoticesButtonDelete,
+  NoticesIconDelete,
 } from './NoticesCategoriesListSecond.styled';
 import { toast } from 'react-toastify';
 import { optionsToast } from '../../..//styles/stylesLayout';
@@ -23,21 +39,12 @@ import {
   getUserFavoriteNotices,
   labelNotices,
 } from '../../../helpers/noticesHelpers';
-
 import notFoundNoticesImage from '../../../img/notFoundNoticesImage.jpg';
 import { useSelector, useDispatch } from 'react-redux';
 import useAuth from '../../../hooks/useAuth.js';
 import { selectNoticesObj } from '../../../redux/notices/selectors';
-// import { selectFavoriteList } from '../../../redux/favorite/selectors';
 import { selectUser } from '../../../redux/auth/selectors.js';
 import { getNoticesById } from '../../../redux/notices/operations ';
-// import { fetchFavoriteNotices } from '../../../redux/notices/operations ';
-
-// import {
-//   addToFavorite,
-//   removeFromFavorite,
-// } from '../../../redux/favorite/operations ';
-// import Spinner from '../../Spinner';
 import {
   addToFavoriteNotices,
   removeFromFavoriteNotices,
@@ -46,32 +53,31 @@ import { deleteNotices } from '../../../redux/notices/operations ';
 import Modal from '../../../components/Modal/Modal';
 import NoticesDetailsCard from '../../../components/NoticesElements/NoticesDetailsCard';
 import { setSelectedNotice } from '../../../redux/notices/noticesSlice';
-// import { useLocation } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-// import { useEffect } from 'react';
-const NoticesCategoriesListSecond = () => {
-  const {
-    noticesList: listNotices,
-    selectedNotice,
-    search,
-    favoriteNoticesList,
-    isLoading,
-    error,
-  } = useSelector(selectNoticesObj);
-  // const { pathname } = useLocation();
-  // const favorite = useSelector(selectFavoriteList);
-  // console.log('pathname', pathname);
-  const noticesList = listNotices;
-  // pathname === '/notices/favorite' ? favoriteNoticesList : listNotices;
 
+const NoticesCategoriesListSecond = () => {
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: colors.accentButton,
+      },
+      secondary: {
+        main: colors.accent,
+      },
+    },
+    typography: {
+      fontFamily: ['Manrope', 'sans-serif'].join(','),
+    },
+  });
+  const { noticesList, selectedNotice, favoriteNoticesList, isLoading } =
+    useSelector(selectNoticesObj);
+
+  const [open, setOpen] = React.useState(false);
+  const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
   const { _id } = useSelector(selectUser);
   const dispatch = useDispatch();
-  // const { pathname } = useLocation();
   const { isLoggedIn } = useAuth();
   let noticesUpdated = [];
-
-  // const del = getUserFavoriteNotices(noticesList, favorite);
-  // console.log('del', del);
 
   if (isLoggedIn) {
     noticesUpdated = labelNotices(
@@ -94,17 +100,11 @@ const NoticesCategoriesListSecond = () => {
       return;
     }
     if (favorite) {
-      // dispatch(removeFromFavorite(_id));
       dispatch(removeFromFavoriteNotices(_id));
-      // console.log('removeFromFavorite', _id);
-      // if (pathname === '/notices/favorite') {
-      //   console.log('delete', _id);
-      //   dispatch(deletefavoriteNotice(_id));
-      // }
 
       return;
     }
-    // dispatch(addToFavorite(_id));
+
     dispatch(addToFavoriteNotices(_id));
   };
 
@@ -115,44 +115,26 @@ const NoticesCategoriesListSecond = () => {
     dispatch(setSelectedNotice());
   };
   const { categoryName: category } = useParams();
-  // const notices = isLoggedIn ? noticesUpdated : noticesList;
-  const notices = noticesUpdated;
 
-  // const filterFavoritrNotices = (notices, search) => {
-  //   // console.log('filtr', notices, search);
-  //   // const filterByComment = notices.filter(notice =>
-  //   //   notice.comments.toLowerCase().includes(search.toLowerCase())
-  //   // );
-  //   const filterByTitle = notices.filter(notice =>
-  //     notice.title.toLowerCase().includes(search.toLowerCase())
-  //   );
-  //   // const filterByBreed = notices.filter(notice =>
-  //   //   notice.breed.toLowerCase().includes(search.toLowerCase())
-  //   // );
-  //   // const newFilteredList = new Set(filterByTitle);
-
-  //   // return [...newFilteredList.add(filterByComment)];
-  //   return filterByTitle;
-  // };
-
-  // const NoticesRender = search && pathname === '/notices/favorite';
-  const filterNotices = notices;
-  // search && pathname === '/notices/favorite'
-  //   ? filterFavoritrNotices(notices, search)
-  //   : notices;
-  const NoticesRender = search ? filterNotices : notices;
-  const sortedNotices = [...NoticesRender].sort(function (a, b) {
+  const sortedNotices = [...noticesUpdated].sort(function (a, b) {
     var dateA = new Date(a.createdAt),
       dateB = new Date(b.createdAt);
     return dateB - dateA;
   });
-  // console.log('not', NoticesRender);
-  // console.log('sorted', sortedNotices);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleAgree = _id => {
+    dispatch(deleteNotices(_id));
+    setOpen(false);
+  };
   return (
     <>
-      {/* {isLoading && <Spinner />} */}
-      {(error || favoriteNoticesList.lengt === 0) && <div>нет</div>}
-
       <NoticesList>
         {sortedNotices.map(
           ({
@@ -168,42 +150,45 @@ const NoticesCategoriesListSecond = () => {
             isOwner,
           }) => (
             <NoticesItem key={_id}>
-              <NoticesTop>
-                <NoticesNav>
-                  <NoticesBadge>{categoryName}</NoticesBadge>
-                  {!isLoggedIn && (
-                    <NoticesButtonFavorite
-                      onClick={onFavoriteNotAuth}
-                    ></NoticesButtonFavorite>
-                  )}
-                  {isLoggedIn && (
-                    <NoticesButtonFavoriteV2
-                      onClick={() => onFavoriteToggle(_id, favorite)}
-                    >
-                      <NoticesFavorite isfavorite={favorite.toString()} />
-                    </NoticesButtonFavoriteV2>
-                  )}
-                </NoticesNav>
+              <Wrapper>
+                <NoticesTop>
+                  <NoticesNav>
+                    <NoticesBadge>{categoryName}</NoticesBadge>
+                    {!isLoggedIn && (
+                      <NoticesButtonFavorite
+                        onClick={onFavoriteNotAuth}
+                      ></NoticesButtonFavorite>
+                    )}
+                    {isLoggedIn && (
+                      <NoticesButtonFavoriteV2
+                        onClick={() => onFavoriteToggle(_id, favorite)}
+                      >
+                        <NoticesFavorite isfavorite={favorite.toString()} />
+                      </NoticesButtonFavoriteV2>
+                    )}
+                  </NoticesNav>
 
-                <NoticesImage
-                  src={petImageURL ? petImageURL : notFoundNoticesImage}
-                  alt={title}
-                />
-              </NoticesTop>
+                  <NoticesImage
+                    src={petImageURL ? petImageURL : notFoundNoticesImage}
+                    alt={title}
+                  />
+                </NoticesTop>
 
-              <NoticesDescription>
-                <NoticesTitle>{title}</NoticesTitle>
+                <NoticesDescription>
+                  <NoticesTitle>{title}</NoticesTitle>
 
-                <NoticesTags>
-                  {/* <NoticesTag>id: {_id}</NoticesTag> */}
-                  <NoticesTag>Breed: {breed}</NoticesTag>
-                  <NoticesTag>Place: {location}</NoticesTag>
-                  <NoticesTag>Age: {age}</NoticesTag>
-                  {categoryName === 'sell' && (
-                    <NoticesTag>Price: {price}$</NoticesTag>
-                  )}
-                </NoticesTags>
-
+                  <NoticesTags>
+                    {/* <NoticesTag>id: {_id}</NoticesTag> */}
+                    <NoticesTag>Breed: {breed}</NoticesTag>
+                    <NoticesTag>Place: {location}</NoticesTag>
+                    <NoticesTag>Age: {age}</NoticesTag>
+                    {categoryName === 'sell' && (
+                      <NoticesTag>Price: {price}$</NoticesTag>
+                    )}
+                  </NoticesTags>
+                </NoticesDescription>
+              </Wrapper>
+              <BottonsWrapper>
                 <ButtonList>
                   <NoticesButton
                     disabled={isLoading}
@@ -215,31 +200,55 @@ const NoticesCategoriesListSecond = () => {
                   </NoticesButton>
 
                   {isOwner && isLoggedIn && (
-                    <NoticesButton onClick={() => dispatch(deleteNotices(_id))}>
-                      Delete
-                    </NoticesButton>
+                    <NoticesButtonDelete
+                      className="delete"
+                      // onClick={() => {
+                      //   dispatch(deleteNotices(_id));
+                      // }}
+                      onClick={handleClickOpen}
+                    >
+                      Delete <NoticesIconDelete />
+                    </NoticesButtonDelete>
                   )}
+                  <StyledEngineProvider injectFirst>
+                    <ThemeProvider theme={theme}>
+                      <Dialog
+                        fullScreen={fullScreen}
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="deleting-dialog"
+                        slotProps={{
+                          backdrop: {
+                            style: {
+                              backgroundColor: 'rgba(17, 17, 17,0.3)',
+                            },
+                          },
+                        }}
+                      >
+                        <DialogTitle id="responsive-dialog-title">
+                          {'Deleting notice'}
+                        </DialogTitle>
+                        <DialogContent>
+                          <DialogContentText>
+                            Do you really want to delete ?
+                          </DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                          <Button autoFocus onClick={handleClose}>
+                            Disagree
+                          </Button>
+                          <Button
+                            onClick={() => dispatch(handleAgree(_id))}
+                            autoFocus
+                          >
+                            Agree
+                          </Button>
+                        </DialogActions>
+                      </Dialog>
+                    </ThemeProvider>
+                  </StyledEngineProvider>
                 </ButtonList>
-
-                {/* 
-                {!favorite && isLoggedIn && (
-                  <NoticesButton onClick={() => dispatch(addToFavorite(_id))}>
-                    add to favorite
-                  </NoticesButton>
-                )} */}
-                {/* {favorite && isLoggedIn && (
-                  <NoticesButton
-                    onClick={() => dispatch(removeFromFavorite(_id))}
-                  >
-                    remove from favorite
-                  </NoticesButton>
-                )}
-                {!isLoggedIn && (
-                  <NoticesButton onClick={onFavoriteNotAuth}>
-                    add to favorite
-                  </NoticesButton>
-                )} */}
-              </NoticesDescription>
+              </BottonsWrapper>
             </NoticesItem>
           )
         )}

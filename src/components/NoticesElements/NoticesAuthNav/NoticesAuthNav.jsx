@@ -16,7 +16,6 @@ import { fetchFavoriteNotices } from '../../../redux/notices/operations ';
 const NoticesAuthNav = () => {
   const dispatch = useDispatch();
   const { categoryName } = useParams();
-  console.log('category', categoryName);
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const { search } = useSelector(selectNoticesObj);
