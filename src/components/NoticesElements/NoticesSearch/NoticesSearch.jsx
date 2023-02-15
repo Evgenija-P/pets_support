@@ -13,13 +13,24 @@ import { ReactComponent as IconsCancel } from '../../../img/icons/IconsCancell.s
 import { setSearch } from '../../../redux/notices/noticesSlice';
 import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
+import { useEffect } from 'react';
+
 const NoticesSearch = () => {
   const dispatch = useDispatch();
-  const { search } = useSelector(selectNoticesObj);
+  const { search, category } = useSelector(selectNoticesObj);
 
   const [formStste, setformStste] = useState(search);
 
   const [isInSearch, setisInSearch] = useState(false);
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    if (pathname !== category) {
+      dispatch(setSearch(''));
+      setformStste('');
+      setisInSearch(false);
+    }
+  }, [category, dispatch, pathname]);
 
   const handleClear = evt => {
     evt.preventDefault();
@@ -29,7 +40,6 @@ const NoticesSearch = () => {
     dispatch(fetchNotices({ category: pathname }));
   };
 
-  const { pathname } = useLocation();
   const handleChange = evt => {
     if (evt.target.value === '') {
       dispatch(setSearch(''));

@@ -28,7 +28,11 @@ const NoticesAuthNav = () => {
   }, [categoryName, navigate]);
 
   useEffect(() => {
-    dispatch(fetchNotices({ category: pathname, search }));
+    if (pathname === '/notices/favorite') {
+      dispatch(fetchNotices({ category: pathname, search, limit: 1000 }));
+    } else {
+      dispatch(fetchNotices({ category: pathname, search }));
+    }
   }, [pathname, dispatch, search]);
 
   useEffect(() => {
