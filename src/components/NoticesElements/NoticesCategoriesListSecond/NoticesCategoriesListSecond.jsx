@@ -6,7 +6,6 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
-
 import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
 import { createTheme } from '@mui/material/styles';
 import { colors } from '../../../styles/stylesLayout';
