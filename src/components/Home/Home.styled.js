@@ -1,8 +1,10 @@
 import styled from '@emotion/styled';
 import backImgHpDesk from '../../img/Homepage/hp-desktop.png';
-import backImgHpTablet from '../../img/Homepage/mobileTablet.png';
-import backMobileTablet2 from '../../img/Homepage/mobileTablet4x.png';
+import backGirlMob from '../../img/Homepage/hp-mobile.png';
+import backGirlTabl from '../../img/Homepage/hp-tablet.png';
 import main from '../../img/Homepage/mainPast.png';
+import backVecTabl from '../../img/Homepage/Vector.png';
+import backVecMob from '../../img/Homepage/VectorMobile.png';
 import { media } from '../../styles/stylesLayout';
 
 export const Title = styled.h2`
@@ -15,7 +17,6 @@ export const Title = styled.h2`
     line-height: 44px;
   }
 `;
-
 
 export const ImgHpDesk = styled.div`
   position: absolute;
@@ -35,10 +36,16 @@ export const ImgHpDesk = styled.div`
   }
 
   ${media.tablet} {
-    background: none;
+    background: url(${backGirlTabl}) no-repeat;
+    background-size: 50vh;
+    background-position-x: center;
+    background-position-y: bottom;
   }
   ${media.mobile} {
-    background: none;
+    background: url(${backGirlMob}) no-repeat;
+    background-size: auto;
+    background-position-x: center;
+    background-position-y: bottom;
   }
 `;
 
@@ -47,7 +54,6 @@ export const Cont = styled.div`
   position: relative;
   margin-top: 60px;
 `;
-
 
 export const MainBack = styled.div`
   position: absolute;
@@ -63,15 +69,15 @@ export const MainBack = styled.div`
   background-position-y: bottom;
 
   ${media.tablet} {
-    background: url(${backMobileTablet2}) no-repeat;
-    background-size: cover;
+    background: url(${backVecTabl}) no-repeat;
+    background-size: 100% 100vh;
     background-position-x: center;
-    background-position-y: center;
+    background-position-y: bottom 100px;
   }
   ${media.mobile} {
-    background: url(${backImgHpTablet}) no-repeat;
-    background-size: cover;
+    background: url(${backVecMob}) no-repeat;
+    background-size: 100% 100vh;
     background-position-x: center;
-    background-position-y: center;
+    background-position-y: bottom 100px;
   }
 `;
