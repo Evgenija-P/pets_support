@@ -142,6 +142,7 @@ const NoticeInfoCard = () => {
             <Delete />
           </NoticesButtonDelete>
         )}
+
         {!Isfavorite && isLoggedIn && (
           <NoticesButtonFavorite disabled={isLoading} onClick={onToggle}>
             Add to

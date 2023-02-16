@@ -240,13 +240,15 @@ export const NoticesButtonDelete = styled.button`
   letter-spacing: 0.04em;
 
   color: ${colors.black};
-  fill: currentColor;
+  fill: ${colors.accent};
+  fill-opacity: 1;
 
   &:hover,
   &:focus {
     background-color: ${colors.accent};
 
     color: ${colors.white};
+    fill: ${colors.white};
   }
 
   cursor: pointer;
