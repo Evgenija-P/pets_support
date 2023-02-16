@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useFormik, Formik, /* getActiveElement */ } from 'formik';
+import { useFormik, Formik /* getActiveElement */ } from 'formik';
 import { object, string, ref } from 'yup';
 import Spinner from '../Spinner';
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
@@ -29,29 +29,27 @@ import {
   BoxText,
 } from './RegisterForm.styled';
 
-const emailRegex = /^[^-][a-zA-Z0-9_.-]{1,64}@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/
+const emailRegex = /^[^-][a-zA-Z0-9_.-]{1,64}@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 
 const phoneNumberMask = [
   '+',
-  '3',
-  '8',
-  '0',
-  // '(',
-  /\d/,
-  /\d/,
-  // ')',
   /\d/,
   /\d/,
   /\d/,
-  // '-',
+
   /\d/,
   /\d/,
-  // '-',
+
+  /\d/,
+  /\d/,
+  /\d/,
+
+  /\d/,
+  /\d/,
+
   /\d/,
   /\d/,
 ];
-
-
 
 const registerSchema = object().shape({
   password: string()
@@ -128,7 +126,7 @@ const RegisterForm = () => {
     formik.values.confirmPassword === ''
       ? true
       : false;
-      
+
   const showPassword = () => {
     setShowPass(!showPass);
   };
@@ -141,9 +139,7 @@ const RegisterForm = () => {
         <Spinner />
       ) : (
         <FormContainer>
-          <Formik 
-              validationSchema={registerSchema}
-          >
+          <Formik validationSchema={registerSchema}>
             <FormRegister onSubmit={formik.handleSubmit} autoComplete="off">
               <Title>Register</Title>
               {isShown && (
@@ -156,7 +152,7 @@ const RegisterForm = () => {
                       validate={registerSchema.email}
                       onChange={formik.handleChange}
                       value={formik.values.email}
-                      onBlur={formik.handleBlur}                        
+                      onBlur={formik.handleBlur}
                     />
 
                     {formik.errors.email || formik.touched.email ? (
@@ -252,8 +248,7 @@ const RegisterForm = () => {
               {!isShown && (
                 <>
                   <div>
-                      <PhoneInput
-                      
+                    <PhoneInput
                       mask={phoneNumberMask}
                       id="phone"
                       type="phone"
