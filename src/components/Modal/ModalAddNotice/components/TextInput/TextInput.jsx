@@ -1,7 +1,7 @@
 import { useField } from 'formik';
 import * as styled from './TextInput.styled';
 
-const TextInut = ({ label, required, ...props }) => {
+const TextInut = ({ label, required, mask = false, ...props }) => {
   const [field, meta] = useField(props);
 
   return (
@@ -15,7 +15,7 @@ const TextInut = ({ label, required, ...props }) => {
           label
         )}
       </styled.Label>
-      <styled.Input autoComplete="off" {...field} {...props} />
+      <styled.Input autoComplete="off" mask={mask} {...field} {...props} />
       {meta.error && meta.touched && <styled.Error>{meta.error}</styled.Error>}
     </styled.Container>
   );
