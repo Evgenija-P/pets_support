@@ -77,8 +77,7 @@ export const UserForm = styled(Form)`
 `
 
 export const UserInformationContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
   margin-bottom: 8px;
   align-items: center;
   height: 24px;
@@ -118,18 +117,24 @@ export const UserValueInput = styled(Field)`
   background: ${colors.background};
   border: ${ prop => prop.isvalid === 'true' ? "1px solid rgba(245, 146, 86, 0.5)" : '2px solid #e53e3e'};
   border-radius: 40px;
+  font-family: 'Manrope';
   font-weight: ${fontWeights.regular};
   font-size: 12px;
   line-height: 16px;
   letter-spacing: 0.04em;
   color: ${colors.black};
-  margin-left: 25px;
-  padding: 4px 0 4px 18px;
-  width: 150px;
+  margin-left: 8px;
+  padding: 4px 0 4px 17.5px;
+  width: 159px;
   ${media.tabletAndDesktop} {
+    margin-left: 24px;
+    padding: 4px 0 4px 11.5px;
     font-size: 18px;
     line-height: 25px;
-    width: 200px;
+    width: 216px;
+  }
+  ${media.desktop}{
+    margin-left: 12px;
   }
 `
 export const UserInformationEdited = styled(BsCheckLg)`
@@ -151,9 +156,18 @@ export const UserKey = styled.p`
   line-height: 16px;
   letter-spacing: 0.04em;
   color: ${colors.black};
+  width: 56px;
   ${media.tabletAndDesktop} {
+    width: 83px;
     font-size: 18px;
     line-height: 25px;
+  }
+`
+
+export const UserKeyEdit = styled.p`
+  width: 56px;
+  ${media.tabletAndDesktop} {
+    width: 83px;
   }
 `
 
@@ -163,9 +177,43 @@ export const UserValue = styled.p`
   line-height: 16px;
   letter-spacing: 0.04em;
   color: ${colors.black};
+  margin-left: 26px;
   ${media.tabletAndDesktop} {
+    margin-left: 36px;
     font-size: 18px;
     line-height: 25px;
+  }
+  ${media.desktop}{
+    margin-left: 24px;
+  
+  }
+`
+
+export const MobileEmailRef = styled.a`
+  font-weight: ${fontWeights.regular};
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.04em;
+  color: ${colors.black};
+  margin-left: 26px;
+  &:hover, :focus{
+    transform: scale(1.05);
+  }
+  @media(max-width: 350px){
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 134px;
+  }
+  ${media.tabletAndDesktop} {
+    margin-left: 36px;
+    font-size: 18px;
+    line-height: 25px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 192px;
+  }
+  ${media.desktop}{
+    margin-left: 24px;
   }
 `
 
