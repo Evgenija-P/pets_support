@@ -23,24 +23,31 @@ const NoticesAuthNav = () => {
   useEffect(() => {
     if (!categoryName) {
       navigate('/notices/sell');
+      // dispatch(fetchNotices({ category: '/notices/sell' }));
     }
-  }, [categoryName, navigate]);
+  }, [categoryName, dispatch, navigate, pathname]);
 
   useEffect(() => {
+    if (!categoryName) {
+      return;
+    }
     if (pathname === '/notices/favorite') {
       dispatch(fetchNotices({ category: pathname, search, limit: 1000 }));
     } else {
       dispatch(fetchNotices({ category: pathname, search }));
     }
-  }, [pathname, dispatch, search]);
+  }, [pathname, dispatch, search, categoryName]);
 
   useEffect(() => {
     dispatch(setCategory(categoryName));
   }, [dispatch, categoryName]);
 
   useEffect(() => {
+    if (!categoryName) {
+      return;
+    }
     dispatch(fetchFavoriteNotices({}));
-  }, [dispatch]);
+  }, [categoryName, dispatch]);
 
   return (
     <>

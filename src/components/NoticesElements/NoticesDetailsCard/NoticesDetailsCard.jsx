@@ -87,10 +87,10 @@ const NoticeInfoCard = () => {
   const dialogToggle = () => {
     setOpenDialog(prev => !prev);
   };
-  const handleDelete = () => {
-    dispatch(deleteNotices(_id));
+  const handleDelete = async () => {
+    await dispatch(deleteNotices(_id));
 
-    dispatch(setSelectedNotice());
+    await dispatch(setSelectedNotice());
 
     dialogToggle();
     toast.success('Notice successfully deleted...', optionsToast);
@@ -179,7 +179,6 @@ const NoticeInfoCard = () => {
           title={'Deleting notice'}
           onClose={dialogToggle}
           onDelete={handleDelete}
-          _id={_id}
         ></Modal>
       )}
     </>

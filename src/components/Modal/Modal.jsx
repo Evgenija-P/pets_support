@@ -28,9 +28,8 @@ import ModalAddNotice from '../../components/Modal/ModalAddNotice';
 import ModalUnauthorized from './ModalUnauthorized/ModalUnauthorized';
 const modalRoot = document.querySelector('#modal-root');
 
-const Modal = ({ children, onClose, title, type, onDelete, _id }) => {
+const Modal = ({ children, onClose, title, type, onDelete }) => {
   const isModalWithForm = type === 'pet' || type === 'addNotice';
-
   useEffect(() => {
     function keyDown(e) {
       if (e.code !== 'Escape') {
@@ -78,7 +77,6 @@ const Modal = ({ children, onClose, title, type, onDelete, _id }) => {
             onClose={onClose}
             title={title}
             onDelete={onDelete}
-            _id={_id}
           />
         )}
       </Overlay>

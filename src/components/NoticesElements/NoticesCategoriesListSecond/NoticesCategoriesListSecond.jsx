@@ -42,15 +42,15 @@ import Modal from '../../../components/Modal/Modal';
 import NoticesDetailsCard from '../../../components/NoticesElements/NoticesDetailsCard';
 import { setSelectedNotice } from '../../../redux/notices/noticesSlice';
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
-const NoticesCategoriesListSecond = () => {
+// import { useState } from 'react';
+const NoticesCategoriesListSecond = ({ onPresDel }) => {
   const { noticesList, selectedNotice, favoriteNoticesList, isLoading } =
     useSelector(selectNoticesObj);
-  const [openDialog, setOpenDialog] = useState(false);
+  // const [openDialog, setOpenDialog] = useState(false);
 
-  const dialogToggle = () => {
-    setOpenDialog(prev => !prev);
-  };
+  // const dialogToggle = onDelete => {
+  //   setOpenDialog(prev => !prev);
+  // };
 
   const { _id } = useSelector(selectUser);
   const dispatch = useDispatch();
@@ -100,11 +100,13 @@ const NoticesCategoriesListSecond = () => {
     return dateB - dateA;
   });
 
-  const handleDelete = _id => {
-    dispatch(deleteNotices(_id));
-    dialogToggle();
-    toast.success('Notice successfully deleted...', optionsToast);
-  };
+  // const handleDelete = async id => {
+  //   console.log('delete', id);
+  //   await dispatch(deleteNotices(id));
+  //   dialogToggle();
+  //   toast.success('Notice successfully deleted...', optionsToast);
+  // };
+  // console.log('on del', onPresDel);
   return (
     <>
       <NoticesList>
@@ -150,7 +152,7 @@ const NoticesCategoriesListSecond = () => {
                   <NoticesTitle>{title}</NoticesTitle>
 
                   <NoticesTags>
-                    {/* <NoticesTag>id: {_id}</NoticesTag> */}
+                    <NoticesTag>id: {_id}</NoticesTag>
                     <NoticesTag>Breed: {breed}</NoticesTag>
                     <NoticesTag>Place: {location}</NoticesTag>
                     <NoticesTag>Age: {age}</NoticesTag>
@@ -174,25 +176,20 @@ const NoticesCategoriesListSecond = () => {
                   {isOwner && isLoggedIn && (
                     <NoticesButtonDelete
                       className="delete"
-                      // onClick={() => {
-                      //   dispatch(deleteNotices(_id));
-                      // }}
+                      onClick={() => {
+                        dispatch(deleteNotices(_id));
+                      }}
                       // onClick={handleClickOpen}
-                      onClick={dialogToggle}
+                      // onClick={() => {
+                      //   console.log(_id);
+                      //   onPresDel(_id);
+                      // }}
                     >
                       Delete <NoticesIconDelete />
                     </NoticesButtonDelete>
                   )}
                 </ButtonList>
               </BottonsWrapper>
-              {openDialog && (
-                <Modal
-                  type={'deleteDialog'}
-                  onClose={dialogToggle}
-                  onDelete={handleDelete}
-                  _id={_id}
-                ></Modal>
-              )}
             </NoticesItem>
           )
         )}

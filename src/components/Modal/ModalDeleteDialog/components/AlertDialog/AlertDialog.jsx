@@ -1,6 +1,6 @@
 import * as styled from './AlertDialog.styled';
 
-const AlertDialog = ({ onClose, onDelete, _id }) => {
+const AlertDialog = ({ onClose, onDelete }) => {
   return (
     <styled.DialogWrapper>
       <div>
@@ -9,7 +9,7 @@ const AlertDialog = ({ onClose, onDelete, _id }) => {
         </styled.DialogContentText>
       </div>
       <styled.ButtonWrapper>
-        <styled.PrimaryBtn type="button" onClick={() => onDelete(_id)}>
+        <styled.PrimaryBtn type="button" onClick={() => onDelete()}>
           Delete
         </styled.PrimaryBtn>
 
