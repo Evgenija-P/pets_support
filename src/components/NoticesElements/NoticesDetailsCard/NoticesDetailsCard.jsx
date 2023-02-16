@@ -14,7 +14,8 @@ import {
   NoticesButtonDelete,
   NotiseColumn,
 } from './NoticesDetailsCard.styled';
-
+import { toast } from 'react-toastify';
+import { optionsToast } from '../../..//styles/stylesLayout';
 import React from 'react';
 import { onFavoriteNotAuth } from '../../../helpers/noticesHelpers';
 import { ReactComponent as HeartFavorite } from '../../../img/icons/heartFavorite.svg';
@@ -37,7 +38,11 @@ import {
 } from '../../../redux/notices/operations ';
 import { selectNoticesObj } from '../../../redux/notices/selectors';
 import { labelNotice } from '../../../helpers/noticesHelpers';
+
+import Modal from '../../Modal/Modal';
 const NoticeInfoCard = () => {
+  const [openDialog, setOpenDialog] = useState(false);
+
   const dispatch = useDispatch();
   const { isLoggedIn } = useAuth();
   const { selectedNotice, favoriteNoticesList, isLoading } =
@@ -79,7 +84,17 @@ const NoticeInfoCard = () => {
     }
     dispatch(addToFavoriteNotices(_id));
   };
+  const dialogToggle = () => {
+    setOpenDialog(prev => !prev);
+  };
+  const handleDelete = () => {
+    dispatch(deleteNotices(_id));
 
+    dispatch(setSelectedNotice());
+
+    dialogToggle();
+    toast.success('Notice successfully deleted...', optionsToast);
+  };
   return (
     <>
       <NoticesBox>
@@ -132,12 +147,7 @@ const NoticeInfoCard = () => {
       {isLoading && <Spinner />}
       <ButtonBlock>
         {own && (
-          <NoticesButtonDelete
-            disabled={isLoading}
-            onClick={() => {
-              dispatch(deleteNotices(_id), dispatch(setSelectedNotice()));
-            }}
-          >
+          <NoticesButtonDelete disabled={isLoading} onClick={dialogToggle}>
             Delete
             <Delete />
           </NoticesButtonDelete>
@@ -163,6 +173,15 @@ const NoticeInfoCard = () => {
         )}
         <NoticesButtonContact href={callNumber}>Contact</NoticesButtonContact>
       </ButtonBlock>
+      {openDialog && (
+        <Modal
+          type={'deleteDialog'}
+          title={'Deleting notice'}
+          onClose={dialogToggle}
+          onDelete={handleDelete}
+          _id={_id}
+        ></Modal>
+      )}
     </>
   );
 };

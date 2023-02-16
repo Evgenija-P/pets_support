@@ -21,13 +21,14 @@ import { Overlay } from './Modal.styled';
 import ModalAddMyPet from './ModalAddMyPet/ModalAddMyPet';
 import ModalInfo from './ModalInfo/ModalInfo';
 import ModalNotice from './ModalNotice/ModalNotice';
+import ModalDeleteDialog from './ModalDeleteDialog';
 // import NoticeInfoCard from '../NoticesElements/NoticesDetailsCard/NoticeInfoCard';
 
 import ModalAddNotice from '../../components/Modal/ModalAddNotice';
 import ModalUnauthorized from './ModalUnauthorized/ModalUnauthorized';
 const modalRoot = document.querySelector('#modal-root');
 
-const Modal = ({ children, onClose, title, type }) => {
+const Modal = ({ children, onClose, title, type, onDelete, _id }) => {
   const isModalWithForm = type === 'pet' || type === 'addNotice';
 
   useEffect(() => {
@@ -72,6 +73,14 @@ const Modal = ({ children, onClose, title, type }) => {
           <ModalAddNotice onClose={onClose} title={title} />
         )}
         {type === 'unauth' && <ModalUnauthorized onClose={onClose} />}
+        {type === 'deleteDialog' && (
+          <ModalDeleteDialog
+            onClose={onClose}
+            title={title}
+            onDelete={onDelete}
+            _id={_id}
+          />
+        )}
       </Overlay>
     </RemoveScroll>,
     modalRoot
