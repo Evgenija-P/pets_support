@@ -37,20 +37,23 @@ import {
   addToFavoriteNotices,
   removeFromFavoriteNotices,
 } from '../../../redux/notices/operations ';
-import { deleteNotices } from '../../../redux/notices/operations ';
+
 import Modal from '../../../components/Modal/Modal';
 import NoticesDetailsCard from '../../../components/NoticesElements/NoticesDetailsCard';
 import { setSelectedNotice } from '../../../redux/notices/noticesSlice';
 import { useParams } from 'react-router-dom';
-// import { useState } from 'react';
-const NoticesCategoriesListSecond = ({ onPresDel }) => {
+import { useState } from 'react';
+const NoticesCategoriesListSecond = () => {
   const { noticesList, selectedNotice, favoriteNoticesList, isLoading } =
     useSelector(selectNoticesObj);
-  // const [openDialog, setOpenDialog] = useState(false);
-
-  // const dialogToggle = onDelete => {
-  //   setOpenDialog(prev => !prev);
-  // };
+  const [openDialog, setOpenDialog] = useState(false);
+  const [activeNotice, setActiveNotice] = useState(false);
+  const dialogToggle = _id => {
+    if (!openDialog) {
+      setActiveNotice(_id);
+    }
+    setOpenDialog(prev => !prev);
+  };
 
   const { _id } = useSelector(selectUser);
   const dispatch = useDispatch();
@@ -100,13 +103,6 @@ const NoticesCategoriesListSecond = ({ onPresDel }) => {
     return dateB - dateA;
   });
 
-  // const handleDelete = async id => {
-  //   console.log('delete', id);
-  //   await dispatch(deleteNotices(id));
-  //   dialogToggle();
-  //   toast.success('Notice successfully deleted...', optionsToast);
-  // };
-  // console.log('on del', onPresDel);
   return (
     <>
       <NoticesList>
@@ -152,7 +148,7 @@ const NoticesCategoriesListSecond = ({ onPresDel }) => {
                   <NoticesTitle>{title}</NoticesTitle>
 
                   <NoticesTags>
-                    <NoticesTag>id: {_id}</NoticesTag>
+                    {/* <NoticesTag>id: {_id}</NoticesTag> */}
                     <NoticesTag>Breed: {breed}</NoticesTag>
                     <NoticesTag>Place: {location}</NoticesTag>
                     <NoticesTag>Age: {age}</NoticesTag>
@@ -174,17 +170,7 @@ const NoticesCategoriesListSecond = ({ onPresDel }) => {
                   </NoticesButton>
 
                   {isOwner && isLoggedIn && (
-                    <NoticesButtonDelete
-                      className="delete"
-                      onClick={() => {
-                        dispatch(deleteNotices(_id));
-                      }}
-                      // onClick={handleClickOpen}
-                      // onClick={() => {
-                      //   console.log(_id);
-                      //   onPresDel(_id);
-                      // }}
-                    >
+                    <NoticesButtonDelete onClick={() => dialogToggle(_id)}>
                       Delete <NoticesIconDelete />
                     </NoticesButtonDelete>
                   )}
@@ -200,6 +186,14 @@ const NoticesCategoriesListSecond = ({ onPresDel }) => {
           type={'info'}
           onClose={toggleModal}
           children={<NoticesDetailsCard />}
+        ></Modal>
+      )}
+      {openDialog && (
+        <Modal
+          type={'deleteDialog'}
+          title={'Deleting notice'}
+          activeNotice={activeNotice}
+          onClose={dialogToggle}
         ></Modal>
       )}
     </>

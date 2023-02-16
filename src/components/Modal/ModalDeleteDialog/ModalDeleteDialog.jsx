@@ -8,7 +8,13 @@ import { CloseButton } from '../Modal.styled';
 
 import AlertDialog from './components/AlertDialog';
 
-const ModalDeleteDialog = ({ children, onClose, title, onDelete }) => {
+const ModalDeleteDialog = ({
+  children,
+  onClose,
+  title,
+  onDelete,
+  activeNotice,
+}) => {
   return (
     <ModalWrapperDeleteDialog>
       <CloseButton
@@ -19,7 +25,11 @@ const ModalDeleteDialog = ({ children, onClose, title, onDelete }) => {
         <IconClose />
       </CloseButton>
       {title ? <ModalTitleDeleteDialog>{title}</ModalTitleDeleteDialog> : null}
-      <AlertDialog onClose={onClose} onDelete={onDelete} />
+      <AlertDialog
+        onClose={onClose}
+        onDelete={onDelete}
+        activeNotice={activeNotice}
+      />
     </ModalWrapperDeleteDialog>
   );
 };

@@ -16,7 +16,7 @@ import {
   NoticesLink,
 } from './NoticesDetailsCard.styled';
 import { toast } from 'react-toastify';
-import { optionsToast } from '../../..//styles/stylesLayout';
+import { optionsToast } from '../../../styles/stylesLayout';
 import React from 'react';
 import { onFavoriteNotAuth } from '../../../helpers/noticesHelpers';
 import { ReactComponent as HeartFavorite } from '../../../img/icons/heartFavorite.svg';

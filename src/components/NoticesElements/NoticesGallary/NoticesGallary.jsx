@@ -12,7 +12,7 @@ import { useLocation } from 'react-router-dom';
 const NoticesGallary = () => {
   const { isLoading, error, noticesList } = useSelector(selectNoticesObj);
   const { pathname } = useLocation();
-  const [activeNotice, setActiveNotice] = useState(true);
+  // const [activeNotice, setActiveNotice] = useState(true);
   // const dispatch = useDispatch();
   return (
     <div>
@@ -23,22 +23,8 @@ const NoticesGallary = () => {
       {(error || noticesList.length === 0) &&
         !isLoading &&
         pathname !== '/notices/favorite' && <NoticesLoader />}
-      <NoticesCategoriesListSecond
-        onPresDel={_id => {
-          setActiveNotice(_id);
-          console.log('select', activeNotice);
-        }}
-      />
+      <NoticesCategoriesListSecond />
       <GalleryPagination />
-      <button type="button" onClick={() => setActiveNotice(true)}></button>
-      {/* {activeNotice && (
-        <Modal
-          type={'deleteDialog'}
-          title={activeNotice}
-          activeNotice={activeNotice}
-          onClose={setActiveNotice(null)}
-        ></Modal>
-      )} */}
     </div>
   );
 };

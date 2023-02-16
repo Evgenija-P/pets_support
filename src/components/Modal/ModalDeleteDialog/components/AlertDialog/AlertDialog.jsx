@@ -1,6 +1,16 @@
 import * as styled from './AlertDialog.styled';
+import { deleteNotices } from '../../../../../redux/notices/operations ';
+import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
+import { optionsToast } from '../../../../../styles/stylesLayout';
+const AlertDialog = ({ onClose, onDelete, activeNotice }) => {
+  const dispatch = useDispatch();
 
-const AlertDialog = ({ onClose, onDelete }) => {
+  const handeleDelete = () => {
+    dispatch(deleteNotices(activeNotice));
+    toast.success('Notice successfully deleted...', optionsToast);
+    onClose();
+  };
   return (
     <styled.DialogWrapper>
       <div>
@@ -9,7 +19,10 @@ const AlertDialog = ({ onClose, onDelete }) => {
         </styled.DialogContentText>
       </div>
       <styled.ButtonWrapper>
-        <styled.PrimaryBtn type="button" onClick={() => onDelete()}>
+        <styled.PrimaryBtn
+          type="button"
+          onClick={() => (activeNotice ? handeleDelete() : onDelete())}
+        >
           Delete
         </styled.PrimaryBtn>
 
