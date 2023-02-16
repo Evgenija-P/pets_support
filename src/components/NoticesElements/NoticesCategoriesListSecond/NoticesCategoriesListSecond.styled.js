@@ -255,6 +255,8 @@ export const NoticesButtonDelete = styled.button`
   }
 `;
 export const NoticesIconDelete = styled(DeleteIcon)`
+  fill-opacity: 0.6;
+
   margin-left: 10px;
   /* stroke: ${colors.accentButton}; */
   fill: ${colors.accentButton};
