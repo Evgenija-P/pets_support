@@ -38,7 +38,9 @@ import {
   AvatarWrapper,
   ButtonEdit,
   LogOutIconWrapper,
-  ErrBox
+  ErrBox,
+  MobileEmailRef,
+  UserKeyEdit
 } from './UserInformation.styled';
 
 const userUpdateSchema = object().shape({
@@ -60,6 +62,7 @@ const userUpdateSchema = object().shape({
   birthday: string()
     .matches(dateRegexp, 'Error. Example: DD.MM.YYYY')
     .required('Birthday is required')
+    .max(10, 'Year must be 4 letters')
 });
 
 const UserInformation = () => {
@@ -125,8 +128,8 @@ const UserInformation = () => {
               <UserForm autoComplete="off">
                 {change === 'name' ? (
                   <UserKeyLabel>
-                    Name:
-                    <UserValueInput type="text" name="name" isvalid={isValid.toString()}/>
+                    <UserKeyEdit>Name:</UserKeyEdit>
+                    <UserValueInput type="text" name="name" isvalid={isValid.toString()} />
                     {errors.name || touched.name ? (
                       <ErrBox>{errors.name}</ErrBox>
                     ) : null}
@@ -139,7 +142,7 @@ const UserInformation = () => {
                     <UserKey>Name:</UserKey>
                     <UserValue>{`${initialValues.name}`}</UserValue>
                     <UserInformationEditWrapper
-                      disabled={!isValid}
+                      disabled={!isValid || change}
                       click={change}
                       onClick={() => setChange('name')}>
                       <UserInformationEdit />
@@ -149,8 +152,8 @@ const UserInformation = () => {
 
                 {change === 'email' ? (
                   <UserKeyLabel>
-                    Email:
-                    <UserValueInput type="email" name="email" isvalid={isValid.toString()}/>
+                    <UserKeyEdit>Email:</UserKeyEdit>
+                    <UserValueInput type="email" name="email" isvalid={isValid.toString()} />
                     {errors.email || touched.email ? (
                       <ErrBox>{errors.email}</ErrBox>
                     ) : null}
@@ -161,11 +164,11 @@ const UserInformation = () => {
                 ) : (
                   <UserInformationContainer>
                     <UserKey>Email:</UserKey>
-                    <UserValue>{`${initialValues.email}`}</UserValue>
+                    <MobileEmailRef href={`mailto:${initialValues.email}`}>{`${initialValues.email}`}</MobileEmailRef>
                     <UserInformationEditWrapper
                       click={change}
-                      disabled={!isValid}
-                      onClick={() =>  setChange('email')}>
+                      disabled={!isValid || change}
+                      onClick={() => setChange('email')}>
                       <UserInformationEdit />
                     </UserInformationEditWrapper>
                   </UserInformationContainer>
@@ -173,7 +176,7 @@ const UserInformation = () => {
 
                 {change === 'birthday' ? (
                   <UserKeyLabel>
-                    Birthday:
+                    <UserKeyEdit>Birthday:</UserKeyEdit>
                     <UserValueInput
                       type="text"
                       name="birthday"
@@ -193,7 +196,7 @@ const UserInformation = () => {
                     <UserValue>{!initialValues.birthday ? "00.00.0000" : `${initialValues.birthday}`}</UserValue>
                     <UserInformationEditWrapper
                       click={change}
-                      disabled={!isValid}
+                      disabled={!isValid || change}
                       onClick={() => setChange('birthday')}>
                       <UserInformationEdit />
                     </UserInformationEditWrapper>
@@ -202,7 +205,7 @@ const UserInformation = () => {
 
                 {change === 'phone' ? (
                   <UserKeyLabel>
-                    Phone:
+                    <UserKeyEdit>Phone:</UserKeyEdit>
                     <UserValueInput type="text" name="phone" isvalid={isValid.toString()} />
                     {errors.phone || touched.phone ? (
                       <ErrBox>{errors.phone}</ErrBox>
@@ -214,10 +217,10 @@ const UserInformation = () => {
                 ) : (
                   <UserInformationContainer>
                     <UserKey>Phone:</UserKey>
-                    <UserValue>{`${initialValues.phone}`}</UserValue>
+                    <MobileEmailRef href={`tel:${initialValues.phone}`}>{`${initialValues.phone}`}</MobileEmailRef>
                     <UserInformationEditWrapper
                       click={change}
-                      disabled={!isValid}
+                      disabled={!isValid || change}
                       onClick={() => setChange('phone')} >
                       <UserInformationEdit />
                     </UserInformationEditWrapper>
@@ -226,8 +229,8 @@ const UserInformation = () => {
 
                 {change === 'city' ? (
                   <UserKeyLabel>
-                    City:
-                    <UserValueInput type="text" name="city" isvalid={isValid.toString()}/>
+                    <UserKeyEdit>City:</UserKeyEdit>
+                    <UserValueInput type="text" name="city" isvalid={isValid.toString()} />
                     {errors.city || touched.city ? (
                       <ErrBox>{errors.city}</ErrBox>
                     ) : null}
@@ -241,7 +244,7 @@ const UserInformation = () => {
                     <UserValue>{`${initialValues.city}`}</UserValue>
                     <UserInformationEditWrapper
                       click={change}
-                      disabled={!isValid}
+                      disabled={!isValid || change}
                       onClick={() => setChange('city')}>
                       <UserInformationEdit />
                     </UserInformationEditWrapper>
