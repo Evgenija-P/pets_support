@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import ClockLoader from 'react-spinners/ClockLoader';
 import { toast } from 'react-toastify';
+import { AnimatePresence } from 'framer-motion';
 
 import { deletePet } from '../../../redux/pets/operations';
 import {
@@ -41,46 +42,48 @@ const PetsList = () => {
 
   return (
     <PetsContainer>
-      {pets.map(({ _id, photoURL, name, birthday, breed, comments }) => (
-        <PetsItem key={_id}>
-          <PetImage
-            src={photoURL ? photoURL : notFoundNoticesImage}
-            alt={name}
-          />
+      <AnimatePresence initial={false} position>
+        {pets.map(({ _id, photoURL, name, birthday, breed, comments }) => (
+          <PetsItem layout="position" key={_id}>
+            <PetImage
+              src={photoURL ? photoURL : notFoundNoticesImage}
+              alt={name}
+            />
 
-          <PetDescription>
-            <PetButtonDelete
-              onClick={() => handleDeletePet(_id)}
-              disabled={isDeleting && petToDeleteId === _id}
-            >
-              {isDeleting && petToDeleteId === _id ? (
-                <ClockLoader size={25} color={colors.accent} />
-              ) : (
-                <PetButtonIconDelete />
-              )}
-            </PetButtonDelete>
+            <PetDescription>
+              <PetButtonDelete
+                onClick={() => handleDeletePet(_id)}
+                disabled={isDeleting && petToDeleteId === _id}
+              >
+                {isDeleting && petToDeleteId === _id ? (
+                  <ClockLoader size={25} color={colors.accent} />
+                ) : (
+                  <PetButtonIconDelete />
+                )}
+              </PetButtonDelete>
 
-            <div>
-              <PetTag>
-                <span>Name:</span>
-                {name}
-              </PetTag>
-              <PetTag>
-                <span>Date of birth:</span>
-                {birthday}
-              </PetTag>
-              <PetTag>
-                <span>Breed:</span>
-                {breed}
-              </PetTag>
-              <PetTag>
-                <span>Comments:</span>
-                {comments}
-              </PetTag>
-            </div>
-          </PetDescription>
-        </PetsItem>
-      ))}
+              <div>
+                <PetTag>
+                  <span>Name:</span>
+                  {name}
+                </PetTag>
+                <PetTag>
+                  <span>Date of birth:</span>
+                  {birthday}
+                </PetTag>
+                <PetTag>
+                  <span>Breed:</span>
+                  {breed}
+                </PetTag>
+                <PetTag>
+                  <span>Comments:</span>
+                  {comments}
+                </PetTag>
+              </div>
+            </PetDescription>
+          </PetsItem>
+        ))}
+      </AnimatePresence>
     </PetsContainer>
   );
 };
