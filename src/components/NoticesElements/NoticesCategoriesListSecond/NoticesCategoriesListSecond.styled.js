@@ -158,7 +158,7 @@ export const NoticesTitle = styled.h2`
 `;
 
 export const NoticesTags = styled.div`
-  min-height: 140px;
+  min-height: 90px;
 `;
 
 export const NoticesTag = styled.p`
