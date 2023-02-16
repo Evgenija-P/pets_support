@@ -260,3 +260,10 @@ export const NoticesButtonDelete = styled.button`
     padding: 9px 15px;
   }
 `;
+
+export const NoticesLink = styled.a`
+  &:hover,
+  &:focus {
+    color: ${colors.accent};
+  }
+`;

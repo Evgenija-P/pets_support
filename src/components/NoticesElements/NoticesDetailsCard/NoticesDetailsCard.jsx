@@ -13,6 +13,7 @@ import {
   Notices,
   NoticesButtonDelete,
   NotiseColumn,
+  NoticesLink,
 } from './NoticesDetailsCard.styled';
 
 import React from 'react';
@@ -68,6 +69,8 @@ const NoticeInfoCard = () => {
     favorite,
   } = noticeReduced;
   const callNumber = 'tel:' + phone;
+  const emailLink = `mailto:` + email;
+
   const [Isfavorite, setIsfavorite] = useState(favorite);
 
   const onToggle = () => {
@@ -116,11 +119,18 @@ const NoticeInfoCard = () => {
             </NotiseColumn>
             <NotiseColumn>
               <NoticesTag>Email: </NoticesTag>
-              <NoticesText>{email}</NoticesText>
+
+              <NoticesText>
+                <NoticesLink href={emailLink} target="_blank" rel="noreferrer">
+                  {email}
+                </NoticesLink>
+              </NoticesText>
             </NotiseColumn>
             <NotiseColumn>
               <NoticesTag>Phone: </NoticesTag>
-              <NoticesText>{phone}</NoticesText>
+              <NoticesText>
+                <NoticesLink href={callNumber}>{phone}</NoticesLink>
+              </NoticesText>
             </NotiseColumn>
           </Notices>
         </NoticesInfo>
