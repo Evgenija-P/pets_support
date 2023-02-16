@@ -68,7 +68,6 @@ export const SearchNewsForm = styled.form`
   height: 100%;
   border-radius: 44px;
   background-color: ${colors.white};
-  box-shadow: 7px 4px 15px 0px ${colors.shadow};
   border: none;
   outline: none;
 
