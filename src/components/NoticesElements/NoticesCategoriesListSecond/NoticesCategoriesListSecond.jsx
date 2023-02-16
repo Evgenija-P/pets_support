@@ -1,14 +1,3 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
-import { createTheme } from '@mui/material/styles';
-import { colors } from '../../../styles/stylesLayout';
 import {
   NoticesList,
   NoticesItem,
@@ -48,31 +37,24 @@ import {
   addToFavoriteNotices,
   removeFromFavoriteNotices,
 } from '../../../redux/notices/operations ';
-import { deleteNotices } from '../../../redux/notices/operations ';
+
 import Modal from '../../../components/Modal/Modal';
 import NoticesDetailsCard from '../../../components/NoticesElements/NoticesDetailsCard';
 import { setSelectedNotice } from '../../../redux/notices/noticesSlice';
 import { useParams } from 'react-router-dom';
-
+import { useState } from 'react';
 const NoticesCategoriesListSecond = () => {
-  const theme = createTheme({
-    palette: {
-      primary: {
-        main: colors.accentButton,
-      },
-      secondary: {
-        main: colors.accent,
-      },
-    },
-    typography: {
-      fontFamily: ['Manrope', 'sans-serif'].join(','),
-    },
-  });
   const { noticesList, selectedNotice, favoriteNoticesList, isLoading } =
     useSelector(selectNoticesObj);
+  const [openDialog, setOpenDialog] = useState(false);
+  const [activeNotice, setActiveNotice] = useState(false);
+  const dialogToggle = _id => {
+    if (!openDialog) {
+      setActiveNotice(_id);
+    }
+    setOpenDialog(prev => !prev);
+  };
 
-  const [open, setOpen] = React.useState(false);
-  const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
   const { _id } = useSelector(selectUser);
   const dispatch = useDispatch();
   const { isLoggedIn } = useAuth();
@@ -121,17 +103,6 @@ const NoticesCategoriesListSecond = () => {
     return dateB - dateA;
   });
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-  const handleAgree = _id => {
-    dispatch(deleteNotices(_id));
-    setOpen(false);
-  };
   return (
     <>
       <NoticesList>
@@ -199,53 +170,10 @@ const NoticesCategoriesListSecond = () => {
                   </NoticesButton>
 
                   {isOwner && isLoggedIn && (
-                    <NoticesButtonDelete
-                      className="delete"
-                      // onClick={() => {
-                      //   dispatch(deleteNotices(_id));
-                      // }}
-                      onClick={handleClickOpen}
-                    >
+                    <NoticesButtonDelete onClick={() => dialogToggle(_id)}>
                       Delete <NoticesIconDelete />
                     </NoticesButtonDelete>
                   )}
-                  <StyledEngineProvider injectFirst>
-                    <ThemeProvider theme={theme}>
-                      <Dialog
-                        fullScreen={fullScreen}
-                        open={open}
-                        onClose={handleClose}
-                        aria-labelledby="deleting-dialog"
-                        slotProps={{
-                          backdrop: {
-                            style: {
-                              backgroundColor: 'rgba(17, 17, 17,0.3)',
-                            },
-                          },
-                        }}
-                      >
-                        <DialogTitle id="responsive-dialog-title">
-                          {'Deleting notice'}
-                        </DialogTitle>
-                        <DialogContent>
-                          <DialogContentText>
-                            Do you really want to delete ?
-                          </DialogContentText>
-                        </DialogContent>
-                        <DialogActions>
-                          <Button autoFocus onClick={handleClose}>
-                            Disagree
-                          </Button>
-                          <Button
-                            onClick={() => dispatch(handleAgree(_id))}
-                            autoFocus
-                          >
-                            Agree
-                          </Button>
-                        </DialogActions>
-                      </Dialog>
-                    </ThemeProvider>
-                  </StyledEngineProvider>
                 </ButtonList>
               </BottonsWrapper>
             </NoticesItem>
@@ -258,6 +186,14 @@ const NoticesCategoriesListSecond = () => {
           type={'info'}
           onClose={toggleModal}
           children={<NoticesDetailsCard />}
+        ></Modal>
+      )}
+      {openDialog && (
+        <Modal
+          type={'deleteDialog'}
+          title={'Deleting notice'}
+          activeNotice={activeNotice}
+          onClose={dialogToggle}
         ></Modal>
       )}
     </>
