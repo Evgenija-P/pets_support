@@ -1,12 +1,13 @@
 import { useField } from 'formik';
+
 import * as styled from './GenderRadioInput.styled';
 import { ReactComponent as IconFemale } from '../../../../../img/icons/female.svg';
 import { ReactComponent as IconMale } from '../../../../../img/icons/male.svg';
+import wordCapitalize from '../../../../../helpers/wordCapitalize';
 
 const PetGenderRadioInput = props => {
   const [field] = useField(props);
-  const btnLabel =
-    props.value.charAt(0).toLocaleUpperCase() + props.value.slice(1);
+  const btnLabel = wordCapitalize(props.value);
 
   return (
     <>

@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { media, colors, fontWeights } from '../../../styles/stylesLayout';
+import { motion } from 'framer-motion';
 
 export const PetsContainer = styled.ul`
   width: 100%;
@@ -9,7 +10,7 @@ export const PetsContainer = styled.ul`
   }
 `;
 
-export const PetsItem = styled.li`
+export const PetsItem = styled(motion.li)`
   position: relative;
 
   display: flex;
