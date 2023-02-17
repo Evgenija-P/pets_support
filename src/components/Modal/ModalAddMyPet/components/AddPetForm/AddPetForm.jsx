@@ -125,9 +125,9 @@ const AddPetForm = ({ onClose }) => {
                     id="petPhoto"
                     name="petPhoto"
                     label="Load the pet's image"
-                    onChange={async ({ target }) => {
-                      setFieldValue('petPhoto', target.files[0]);
-                    }}
+                    // onChange={async ({ target }) => {
+                    //   setFieldValue('petPhoto', target.files[0]);
+                    // }}
                   />
                 </>
               )}

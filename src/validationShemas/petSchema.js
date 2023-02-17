@@ -29,7 +29,7 @@ const addPetSchema = yup.object({
     )
     .test(
       'MIME_TYPE',
-      'file must be on of folowing formats: jpeg/jpg/png. ',
+      'file must be one of folowing formats: jpeg/jpg/png. ',
       value => (value ? ACCEPTABLE_MIMETYPES.includes(value.type) : true)
     ),
   comments: yup.string().min(8).max(120),
