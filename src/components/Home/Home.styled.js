@@ -52,9 +52,6 @@ export const ImgHpDesk = styled.div`
 export const Cont = styled.div`
   min-height: calc(100vh - 131px);
   margin-top: 60px;
-  ${media.mobileAndTablet}{
-	position: relative;
-  }
 `;
 
 export const MainBack = styled.div`
@@ -74,12 +71,18 @@ export const MainBack = styled.div`
     background: url(${backVecTabl}) no-repeat;
     background-size: 100% 100vh;
     background-position-x: center;
-    background-position-y: bottom 100px;
+    background-position-y: bottom;
+    ${media.tabletHeight} {
+      background-position-y: 200px;
+    }
   }
   ${media.mobile} {
     background: url(${backVecMob}) no-repeat;
     background-size: 100% 100vh;
     background-position-x: center;
     background-position-y: bottom 100px;
+    ${media.tabletHeight} {
+      background-position-y: 200px;
+    }
   }
 `;

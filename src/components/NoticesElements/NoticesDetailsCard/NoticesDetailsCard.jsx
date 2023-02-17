@@ -26,7 +26,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { setSelectedNotice } from '../../../redux/notices/noticesSlice';
 import { deleteNotices } from '../../../redux/notices/operations ';
-import Spinner from '../../Spinner/Spinner';
+// import Spinner from '../../Spinner/Spinner';
 import { selectUser } from '../../../redux/auth/selectors';
 import useAuth from '../../../hooks/useAuth.js';
 import {
@@ -154,7 +154,6 @@ const NoticeInfoCard = () => {
       <NoticesComment>
         <strong>Comments: </strong> {comments}
       </NoticesComment>
-      {isLoading && <Spinner />}
       <ButtonBlock>
         {own && (
           <NoticesButtonDelete disabled={isLoading} onClick={dialogToggle}>
