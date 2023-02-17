@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Loader = styled.div`
-  position: fixed;
+  position: 'absolute';
   z-index: 20;
   top: 50%;
   left: 50%;

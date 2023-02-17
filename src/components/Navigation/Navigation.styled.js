@@ -13,7 +13,7 @@ export const NavMobile = styled.div`
   position: fixed;
   top: 0;
   right: 0px;
-  z-index: 5;
+  z-index: 99999999;
   align-items: center;
   width: 100%;
   height: 100%;
