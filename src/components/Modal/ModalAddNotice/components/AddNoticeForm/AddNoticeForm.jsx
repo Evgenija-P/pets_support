@@ -168,9 +168,6 @@ const AddNoticeForm = ({ onClose }) => {
                     id="petImage"
                     name="petImage"
                     label="Load the pet's image"
-                    onChange={async ({ target }) => {
-                      setFieldValue('petImage', target.files[0]);
-                    }}
                   />
                 </>
               )}
