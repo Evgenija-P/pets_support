@@ -70,7 +70,7 @@ export const addToFavoriteNotices = createAsyncThunk(
   async (noticeId, thunkAPI) => {
     try {
       const response = await axios.post(`/notices/${noticeId}/favorite`);
-      console.log('addToFavoriteNotices', response.data.message);
+      // console.log('addToFavoriteNotices', response.data.message);
       return response.data.message;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
