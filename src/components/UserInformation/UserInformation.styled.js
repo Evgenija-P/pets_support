@@ -3,6 +3,8 @@ import { Form, Field } from 'formik';
 import { HiOutlineLogout } from 'react-icons/hi';
 import { MdModeEdit } from 'react-icons/md';
 import { BsCheckLg, BsCameraFill } from 'react-icons/bs';
+import "flatpickr/dist/flatpickr.min.css";
+import Flatpickr from "react-flatpickr";
 import { media, colors, fontWeights } from '../../styles/stylesLayout';
 
 export const Title = styled.h1`
@@ -137,6 +139,33 @@ export const UserValueInput = styled(Field)`
     margin-left: 12px;
   }
 `
+
+export const InputBirtday = styled(Flatpickr)`
+  background: ${colors.background};
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 40px;
+  font-family: 'Manrope';
+  font-weight: ${fontWeights.regular};
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.04em;
+  color: ${colors.black};
+  margin-left: 8px;
+  padding: 4px 0 4px 17.5px;
+  width: 159px;
+  ${media.tabletAndDesktop} {
+    margin-left: 24px;
+    padding: 4px 0 4px 11.5px;
+    font-size: 18px;
+    line-height: 25px;
+    width: 216px;
+  }
+  ${media.desktop}{
+    margin-left: 12px;
+  }
+`
+
+
 export const UserInformationEdited = styled(BsCheckLg)`
   width: 12, 5px;
   height: 12, 5px;

@@ -19,6 +19,7 @@
     "react-dom": "^18.1.0",
     "react-dropzone": "^14.2.3",
     "react-ellipsis-text": "^1.2.1",
+    "react-flatpickr": "^3.10.13",
     "react-helmet": "^6.1.0",
     "react-hot-toast": "^2.4.0",
     "react-icons": "^4.7.1",
