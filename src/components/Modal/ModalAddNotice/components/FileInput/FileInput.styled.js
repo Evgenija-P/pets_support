@@ -89,7 +89,12 @@ export const Error = styled.span`
   color: red;
 `;
 
-export const ErrorContainer = styled.div`
+export const LoadInstruction = styled.span`
+  display: block;
+  font-size: 14px;
+`;
+
+export const MetaDataContainer = styled.div`
   position: absolute;
   top: 100%;
   left: 0;

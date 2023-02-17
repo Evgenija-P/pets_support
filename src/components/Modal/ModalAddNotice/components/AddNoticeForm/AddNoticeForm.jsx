@@ -80,7 +80,7 @@ const AddNoticeForm = ({ onClose }) => {
           {isFirstStep && (
             <div>
               <styled.Texts>
-                Please select an ad category and fill in all fields.
+                Please select an ad category and fill necessary fields.
               </styled.Texts>
 
               <NoticeCategories categories={NOTICE_CATEGORIES} />
