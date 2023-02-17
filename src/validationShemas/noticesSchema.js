@@ -1,5 +1,6 @@
 import * as yup from 'yup';
 import { dateRegexp, priceRegexp, cityRegexp } from '../helpers/regExpsHelpers';
+import moment from 'moment/moment';
 
 const FILE_MAX_SIZE = 8388608;
 const ACCEPTABLE_MIMETYPES = ['image/jpg', 'image/jpeg', 'image/png'];
@@ -12,7 +13,15 @@ const addNoticeSchema = yup.object({
   birthdate: yup
     .string()
     .max(10, "birthdate must be a 'DD.MM.YYYY' format.")
-    .matches(dateRegexp, "birthdate must be a 'DD.MM.YYYY' format."),
+    .matches(dateRegexp, "birthdate must be a 'DD.MM.YYYY' format.")
+    .test(
+      'VALID_DATE',
+      'Date of birth must be less than current date.',
+      value =>
+        value
+          ? moment(value, 'DD.MM.YYYY').valueOf() < moment().valueOf()
+          : true
+    ),
 
   breed: yup.string().min(2).max(16),
 

@@ -14,6 +14,7 @@ import addPetSchema from '../../../../../validationShemas/petSchema';
 import { addNewPet } from '../../../../../redux/pets/operations';
 import createFormData from '../../../../../helpers/createFormData';
 import { selectIsAdding } from '../../../../../redux/pets/selectors';
+import { DATE_MASK } from '../../../../../helpers/inputMasks';
 
 import * as styled from './AddPetForm.styled';
 
@@ -71,6 +72,7 @@ const AddPetForm = ({ onClose }) => {
                 required
               />
               <TextInput
+                mask={DATE_MASK}
                 label="Date of birth"
                 name="birthday"
                 placeholder="dd.mm.yyyy"
