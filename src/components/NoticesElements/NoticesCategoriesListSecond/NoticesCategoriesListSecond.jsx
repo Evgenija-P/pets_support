@@ -43,11 +43,48 @@ import NoticesDetailsCard from '../../../components/NoticesElements/NoticesDetai
 import { setSelectedNotice } from '../../../redux/notices/noticesSlice';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
+// import { useBeforeunload } from 'react-beforeunload';
+// import { useEffect } from 'react';
+
 const NoticesCategoriesListSecond = () => {
   const { noticesList, selectedNotice, favoriteNoticesList, isLoading } =
     useSelector(selectNoticesObj);
   const [openDialog, setOpenDialog] = useState(false);
   const [activeNotice, setActiveNotice] = useState(false);
+  const { _id } = useSelector(selectUser);
+  const dispatch = useDispatch();
+  // useBeforeunload(event => {
+  //   console.log('before');
+  //   if (selectedNotice) {
+  //     console.log('before');
+  //     event.preventDefault();
+  //     dispatch(setSelectedNotice());
+  //   }
+  // });
+
+  // const useBeforeUnload = ({ when, message }) => {
+  //   useEffect(() => {
+  //     const handleBeforeUnload = event => {
+  //       console.log('event Before');
+  //       event.preventDefault();
+  //       // event.returnValue = message;
+  //       // return message;
+  //       dispatch(setSelectedNotice());
+  //     };
+
+  //     if (when) {
+  //       window.addEventListener('beforeunload', handleBeforeUnload);
+  //     }
+
+  //     return () =>
+  //       window.removeEventListener('beforeunload', handleBeforeUnload);
+  //   }, [when, message]);
+  // };
+
+  // useBeforeUnload({
+  //   when: true,
+  //   message: 'Are you sure you want to leave?',
+  // });
   const dialogToggle = _id => {
     if (!openDialog) {
       setActiveNotice(_id);
@@ -55,8 +92,6 @@ const NoticesCategoriesListSecond = () => {
     setOpenDialog(prev => !prev);
   };
 
-  const { _id } = useSelector(selectUser);
-  const dispatch = useDispatch();
   const { isLoggedIn } = useAuth();
   let noticesUpdated = [];
 

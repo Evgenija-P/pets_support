@@ -17,9 +17,11 @@ const NoticesAuthNav = () => {
   const dispatch = useDispatch();
   const { categoryName } = useParams();
   const navigate = useNavigate();
-  const { pathname } = useLocation();
+  // const { pathname } = useLocation();
   const { search } = useSelector(selectNoticesObj);
-
+  const location = useLocation();
+  // const backLinkHref = location.state?.from ?? '/home';
+  const { pathname } = location;
   useEffect(() => {
     if (!categoryName) {
       navigate('/notices/sell');

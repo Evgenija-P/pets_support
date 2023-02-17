@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { colors, media } from '../../../../../styles/stylesLayout';
+import MaskedInput from 'react-text-mask';
 
 export const Container = styled.div`
   position: relative;
@@ -24,7 +25,7 @@ export const Label = styled.label`
   }
 `;
 
-export const Input = styled.input`
+export const Input = styled(MaskedInput)`
   height: 40px;
   margin-top: 8px;
   padding: 12px 14px;

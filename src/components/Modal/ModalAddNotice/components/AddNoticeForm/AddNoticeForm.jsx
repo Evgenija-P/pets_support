@@ -15,6 +15,7 @@ import addNoticeSchema from '../../../../../validationShemas/noticesSchema';
 import { addNotices } from '../../../../../redux/notices/operations ';
 import createFormData from '../../../../../helpers/createFormData';
 import { selectIsAdding } from '../../../../../redux/notices/selectors';
+import { DATE_MASK } from '../../../../../helpers/inputMasks';
 
 import * as styled from './AddNoticeForm.styled';
 
@@ -97,10 +98,11 @@ const AddNoticeForm = ({ onClose }) => {
                 placeholder="Type name pet"
               />
               <TextInput
+                mask={DATE_MASK}
                 id="birthdate"
                 label="Date of birth"
                 name="birthdate"
-                placeholder="dd.mm.yyyy"
+                placeholder="DD.MM.YYYY"
               />
               <TextInput
                 id="breed"
@@ -166,9 +168,6 @@ const AddNoticeForm = ({ onClose }) => {
                     id="petImage"
                     name="petImage"
                     label="Load the pet's image"
-                    onChange={async ({ target }) => {
-                      setFieldValue('petImage', target.files[0]);
-                    }}
                   />
                 </>
               )}
