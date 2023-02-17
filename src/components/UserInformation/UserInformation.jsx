@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { object, string } from 'yup';
 import { selectUser } from '../../redux/auth/selectors';
+import { InputBirthday } from "./Flatpickr";
 import {
   logOut,
   addAvatar,
@@ -40,8 +41,10 @@ import {
   LogOutIconWrapper,
   ErrBox,
   MobileEmailRef,
-  UserKeyEdit
+  UserKeyEdit,
 } from './UserInformation.styled';
+
+
 
 const userUpdateSchema = object().shape({
   email: string()
@@ -181,7 +184,7 @@ const UserInformation = () => {
                       type="text"
                       name="birthday"
                       placeholder={!initialValues.birthday ? "00.00.0000" : ''}
-                      isvalid={isValid.toString()}
+                      component={InputBirthday}
                     />
                     {errors.birthday || touched.birthday ? (
                       <ErrBox>{errors.birthday}</ErrBox>

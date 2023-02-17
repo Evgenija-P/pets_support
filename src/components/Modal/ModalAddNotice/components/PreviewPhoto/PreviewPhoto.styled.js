@@ -27,7 +27,7 @@ export const Label = styled.div`
 export const Photo = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
 `;
 
 export const DelBtn = styled.button`
