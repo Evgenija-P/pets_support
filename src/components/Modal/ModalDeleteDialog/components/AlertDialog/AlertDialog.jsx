@@ -19,16 +19,15 @@ const AlertDialog = ({ onClose, onDelete, activeNotice }) => {
         </styled.DialogContentText>
       </div>
       <styled.ButtonWrapper>
+        <styled.SecondaryBtn type="button" onClick={() => onClose()}>
+          Cancel
+        </styled.SecondaryBtn>
         <styled.PrimaryBtn
           type="button"
           onClick={() => (activeNotice ? handeleDelete() : onDelete())}
         >
           Delete
         </styled.PrimaryBtn>
-
-        <styled.SecondaryBtn type="button" onClick={() => onClose()}>
-          Cancel
-        </styled.SecondaryBtn>
       </styled.ButtonWrapper>
     </styled.DialogWrapper>
   );
