@@ -6,6 +6,7 @@ import NoticesLoader from '../NoticesLoader';
 import Spinner from '../../Spinner';
 
 import { useLocation } from 'react-router-dom';
+
 const NoticesGallary = () => {
   const { isLoading, error, noticesList } = useSelector(selectNoticesObj);
   const { pathname } = useLocation();

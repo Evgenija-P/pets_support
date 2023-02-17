@@ -13,8 +13,10 @@ import {
   Notices,
   NoticesButtonDelete,
   NotiseColumn,
+  NoticesLink,
 } from './NoticesDetailsCard.styled';
-
+import { toast } from 'react-toastify';
+import { optionsToast } from '../../../styles/stylesLayout';
 import React from 'react';
 import { onFavoriteNotAuth } from '../../../helpers/noticesHelpers';
 import { ReactComponent as HeartFavorite } from '../../../img/icons/heartFavorite.svg';
@@ -37,7 +39,11 @@ import {
 } from '../../../redux/notices/operations ';
 import { selectNoticesObj } from '../../../redux/notices/selectors';
 import { labelNotice } from '../../../helpers/noticesHelpers';
+
+import Modal from '../../Modal/Modal';
 const NoticeInfoCard = () => {
+  const [openDialog, setOpenDialog] = useState(false);
+
   const dispatch = useDispatch();
   const { isLoggedIn } = useAuth();
   const { selectedNotice, favoriteNoticesList, isLoading } =
@@ -68,6 +74,8 @@ const NoticeInfoCard = () => {
     favorite,
   } = noticeReduced;
   const callNumber = 'tel:' + phone;
+  const emailLink = `mailto:` + email;
+
   const [Isfavorite, setIsfavorite] = useState(favorite);
 
   const onToggle = () => {
@@ -79,7 +87,17 @@ const NoticeInfoCard = () => {
     }
     dispatch(addToFavoriteNotices(_id));
   };
+  const dialogToggle = () => {
+    setOpenDialog(prev => !prev);
+  };
+  const handleDelete = async () => {
+    await dispatch(deleteNotices(_id));
 
+    await dispatch(setSelectedNotice());
+
+    dialogToggle();
+    toast.success('Notice successfully deleted...', optionsToast);
+  };
   return (
     <>
       <NoticesBox>
@@ -116,11 +134,18 @@ const NoticeInfoCard = () => {
             </NotiseColumn>
             <NotiseColumn>
               <NoticesTag>Email: </NoticesTag>
-              <NoticesText>{email}</NoticesText>
+
+              <NoticesText>
+                <NoticesLink href={emailLink} target="_blank" rel="noreferrer">
+                  {email}
+                </NoticesLink>
+              </NoticesText>
             </NotiseColumn>
             <NotiseColumn>
               <NoticesTag>Phone: </NoticesTag>
-              <NoticesText>{phone}</NoticesText>
+              <NoticesText>
+                <NoticesLink href={callNumber}>{phone}</NoticesLink>
+              </NoticesText>
             </NotiseColumn>
           </Notices>
         </NoticesInfo>
@@ -132,16 +157,12 @@ const NoticeInfoCard = () => {
       {isLoading && <Spinner />}
       <ButtonBlock>
         {own && (
-          <NoticesButtonDelete
-            disabled={isLoading}
-            onClick={() => {
-              dispatch(deleteNotices(_id), dispatch(setSelectedNotice()));
-            }}
-          >
+          <NoticesButtonDelete disabled={isLoading} onClick={dialogToggle}>
             Delete
             <Delete />
           </NoticesButtonDelete>
         )}
+
         {!Isfavorite && isLoggedIn && (
           <NoticesButtonFavorite disabled={isLoading} onClick={onToggle}>
             Add to
@@ -163,6 +184,14 @@ const NoticeInfoCard = () => {
         )}
         <NoticesButtonContact href={callNumber}>Contact</NoticesButtonContact>
       </ButtonBlock>
+      {openDialog && (
+        <Modal
+          type={'deleteDialog'}
+          title={'Deleting notice'}
+          onClose={dialogToggle}
+          onDelete={handleDelete}
+        ></Modal>
+      )}
     </>
   );
 };

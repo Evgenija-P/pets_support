@@ -158,7 +158,7 @@ export const NoticesTitle = styled.h2`
 `;
 
 export const NoticesTags = styled.div`
-  min-height: 140px;
+  min-height: 90px;
 `;
 
 export const NoticesTag = styled.p`
@@ -230,7 +230,7 @@ export const Wrapper = styled.div``;
 export const NoticesButtonDelete = styled.button`
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
   margin-top: auto;
 
   width: 100%;
@@ -255,6 +255,9 @@ export const NoticesButtonDelete = styled.button`
   }
 `;
 export const NoticesIconDelete = styled(DeleteIcon)`
+  fill-opacity: 0.6;
+
+  margin-left: 10px;
   /* stroke: ${colors.accentButton}; */
   fill: ${colors.accentButton};
   .delete:hover & {
