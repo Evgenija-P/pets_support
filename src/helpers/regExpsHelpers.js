@@ -16,7 +16,11 @@ const userNameRegexp = /^([a-zA-Z]{1}|([a-zA-Z]{1,}['-]?[a-zA-Z])+)+$/;
 
 const passwordRegexp = /^\S*$/;
 
+const breedRegexp =
+  /^([a-zA-Zа-яА-Я]{1}|([a-zA-Zа-яА-Я]{1,}['-]?[a-zA-Zа-яА-Я][\s]?)+)+$/;
+
 export {
+  breedRegexp,
   phoneRegexp,
   emailRegex,
   dateRegexp,
