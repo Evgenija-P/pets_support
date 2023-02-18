@@ -1,15 +1,11 @@
 import { useSelector, useDispatch } from 'react-redux';
-import ClockLoader from 'react-spinners/ClockLoader';
 import { toast } from 'react-toastify';
 import { AnimatePresence } from 'framer-motion';
 
 import { deletePet } from '../../../redux/pets/operations';
-import {
-  selectPets,
-  selectIsDeleting,
-  selectPetToDeleteId,
-} from '../../../redux/pets/selectors';
-import { optionsToast, colors } from '../../../styles/stylesLayout';
+import { selectPets, selectIsDeleting } from '../../../redux/pets/selectors';
+import { optionsToast } from '../../../styles/stylesLayout';
+import OperationConfirmationPopUp from '../../Modal/operationConfirmationPopUp';
 
 import {
   PetsContainer,
@@ -22,22 +18,27 @@ import {
 
 import { ReactComponent as PetButtonIconDelete } from '../../../img/icons/petButtonDelete.svg';
 import notFoundNoticesImage from '../../../img/notFoundNoticesImage.jpg';
+import { useState } from 'react';
 
 const PetsList = () => {
   const { pets } = useSelector(selectPets);
+  const [petToDeleteId, setPetToDeleteId] = useState(null);
+  const [isConfirmationPopUpShow, setIsConfirmationPopUpShow] = useState(false);
 
   const isDeleting = useSelector(selectIsDeleting);
-  const petToDeleteId = useSelector(selectPetToDeleteId);
-
   const dispatch = useDispatch();
 
-  function handleDeletePet(petId) {
-    dispatch(deletePet(petId))
-      .unwrap()
-      .then(() => toast.success('Pet was deleted.', optionsToast))
-      .catch(err => {
-        toast.error('Error occured. Pet deleting not completed.', optionsToast);
-      });
+  function toggleOperationConfirmationPopUp() {
+    setIsConfirmationPopUpShow(prevState => !prevState);
+  }
+
+  async function handlePetDelete(petId) {
+    try {
+      await dispatch(deletePet(petId)).unwrap();
+      toast.success('Pet was deleted.', optionsToast);
+    } catch {
+      toast.error('Error occured. Pet deleting not completed.', optionsToast);
+    }
   }
 
   return (
@@ -52,14 +53,12 @@ const PetsList = () => {
 
             <PetDescription>
               <PetButtonDelete
-                onClick={() => handleDeletePet(_id)}
-                disabled={isDeleting && petToDeleteId === _id}
+                onClick={() => {
+                  setPetToDeleteId(_id);
+                  toggleOperationConfirmationPopUp();
+                }}
               >
-                {isDeleting && petToDeleteId === _id ? (
-                  <ClockLoader size={25} color={colors.accent} />
-                ) : (
-                  <PetButtonIconDelete />
-                )}
+                <PetButtonIconDelete />
               </PetButtonDelete>
 
               <div>
@@ -84,6 +83,15 @@ const PetsList = () => {
           </PetsItem>
         ))}
       </AnimatePresence>
+      {isConfirmationPopUpShow && (
+        <OperationConfirmationPopUp
+          title="Pet deleting"
+          executeOperation={handlePetDelete}
+          elementId={petToDeleteId}
+          onClose={toggleOperationConfirmationPopUp}
+          isExecuting={isDeleting}
+        />
+      )}
     </PetsContainer>
   );
 };
