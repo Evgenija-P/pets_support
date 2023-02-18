@@ -10,23 +10,12 @@ import desktopBackground from '../../img/Auth/bg-auth-desctop.png';
 export const Container = styled.div`
   padding-top: 42px;
 
-  background-image: url(${mobileBackground});
-  background-position: center bottom;
-  background-size: contain;
-  background-repeat: no-repeat;
-  height: calc(100vh - 68px);
-
   ${media.tablet} {
     padding-top: 204px;
-
-    background-image: url(${tabletBackground});
-    height: calc(100vh - 71px);
   }
 
   ${media.desktop} {
     padding-top: 80px;
-
-    background-image: url(${desktopBackground});
   }
 `;
 
@@ -111,7 +100,7 @@ export const Input = styled(Field)`
 
   color: ${colors.black};
 
-  background: transparent;
+  background: ${colors.background};
   border: 1px solid rgba(245, 146, 86, 0.5);
 
   border-radius: 40px;
@@ -282,5 +271,28 @@ export const ErrorText = styled.div`
 
   ${media.tabletAndDesktop} {
     left: 32px;
+  }
+`;
+
+export const Background = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -100;
+
+  background-image: url(${mobileBackground});
+  background-position: center bottom;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 100vh;
+
+  ${media.tablet} {
+    background-image: url(${tabletBackground});
+  }
+
+  ${media.desktop} {
+    background-image: url(${desktopBackground});
   }
 `;
