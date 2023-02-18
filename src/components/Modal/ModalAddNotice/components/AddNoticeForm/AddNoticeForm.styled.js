@@ -1,8 +1,6 @@
 import styled from '@emotion/styled';
 import { colors, media } from '../../../../../styles/stylesLayout';
 
-import ClipLoader from 'react-spinners/ClipLoader';
-
 export const BtnGroup = styled.div`
   display: flex;
   flex-direction: column-reverse;
@@ -56,8 +54,8 @@ export const PrimaryBtn = styled(Btn)`
 
   :hover,
   :focus {
-    background-color: ${colors.hover};
-    border-color: ${colors.hover};
+    background-color: ${p => (p.disabled ? colors.accent : colors.hover)};
+    border-color: ${p => (p.disabled ? colors.accent : colors.hover)};
   }
 `;
 
@@ -76,7 +74,15 @@ export const Texts = styled.p`
   }
 `;
 
-export const Loader = styled(ClipLoader)`
-  position: absolute;
-  right: 30px;
+export const LoaderWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15px;
+  height: 15px;
+
+  ${media.tabletAndDesktop} {
+    width: 25px;
+    height: 25px;
+  }
 `;

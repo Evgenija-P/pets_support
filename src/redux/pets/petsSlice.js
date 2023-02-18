@@ -6,26 +6,22 @@ const petsInitialState = {
   isLoading: false,
   isDeleting: false,
   isAdding: false,
-  petToDeleteId: null,
   error: null,
 };
 
 // delete pet handlers
 
-const handleDeletePetPending = (state, { meta }) => {
+const handleDeletePetPending = state => {
   state.isDeleting = true;
-  state.petToDeleteId = meta.arg;
 };
 
 const handleDeletePetSuccess = (state, { payload }) => {
-  state.petToDeleteId = null;
   state.isDeleting = false;
   state.error = null;
   state.pets = [...state.pets].filter(pet => pet._id !== payload);
 };
 
 const handleDeletePetRejected = (state, { payload }) => {
-  state.petToDeleteId = null;
   state.isDeleting = false;
 };
 
