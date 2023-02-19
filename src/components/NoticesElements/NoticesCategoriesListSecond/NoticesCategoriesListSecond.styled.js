@@ -35,9 +35,10 @@ export const NoticesItem = styled.li`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* padding-bottom: 32px; */
-  &:hover {
-    transform: scale(1.03);
+  ${media.tabletAndDesktop} {
+    &:hover {
+      transform: scale(1.03);
+    }
   }
 `;
 
