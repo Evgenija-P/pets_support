@@ -47,26 +47,16 @@ import NoticesDetailsCard from '../../../components/NoticesElements/NoticesDetai
 import { setSelectedNotice } from '../../../redux/notices/noticesSlice';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
-// import { useEffect } from 'react';
-// import { useLocation } from 'react-router-dom';
+
 const NoticesCategoriesListSecond = () => {
-  const {
-    noticesList,
-    selectedNotice,
-    favoriteNoticesList,
-    // search,
-    // page,
-    // totalHits,
-    // limit,
-  } = useSelector(selectNoticesObj);
+  const { noticesList, selectedNotice, favoriteNoticesList } =
+    useSelector(selectNoticesObj);
 
   const [openDialog, setOpenDialog] = useState(false);
 
   const [activeNotice, setActiveNotice] = useState(false);
 
   const [disabledButtons, setDisabledButtons] = useState([]);
-
-  // const [disabledLMButtons, setDisabledLMButtons] = useState([]);
 
   const { categoryName: category } = useParams();
 
@@ -175,7 +165,7 @@ const NoticesCategoriesListSecond = () => {
                   <NoticesTitle>{title}</NoticesTitle>
 
                   <NoticesTags>
-                    <NoticesTag>id: {_id}</NoticesTag>
+                    {/* <NoticesTag>id: {_id}</NoticesTag> */}
                     <NoticesTag>Breed: {breed}</NoticesTag>
                     <NoticesTag>Place: {location}</NoticesTag>
                     <NoticesTag>Age: {age}</NoticesTag>
