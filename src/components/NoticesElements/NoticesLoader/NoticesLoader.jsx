@@ -9,18 +9,16 @@ import {
 } from './NoticesLoader.styled';
 
 const NoticesLoader = () => {
-  const { error, noticesList, favoriteNoticesList, page } =
+  const { error, noticesList, favoriteNoticesList } =
     useSelector(selectNoticesObj);
 
   return (
     <LoaderWrapper>
       {error && <NoticesError>{error}</NoticesError>}
       {error && <NoticeErrorIcon />}
-      {((noticesList.length === 0 && page === 1) ||
-        (favoriteNoticesList.length === 0 && page === 1)) &&
+      {(noticesList.length === 0 || favoriteNoticesList.length === 0) &&
         !error && <NoticesMessage> Notices not found...</NoticesMessage>}
-      {((noticesList.length === 0 && page === 1) ||
-        (favoriteNoticesList.length === 0 && page === 1)) &&
+      {(noticesList.length === 0 || favoriteNoticesList.length === 0) &&
         !error && <NoticesIcon />}
     </LoaderWrapper>
   );
