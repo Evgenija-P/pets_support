@@ -175,7 +175,7 @@ const NoticesCategoriesListSecond = () => {
                   <NoticesTitle>{title}</NoticesTitle>
 
                   <NoticesTags>
-                    <NoticesTag>id: {_id}</NoticesTag>
+                    {/* <NoticesTag>id: {_id}</NoticesTag> */}
                     <NoticesTag>Breed: {breed}</NoticesTag>
                     <NoticesTag>Place: {location}</NoticesTag>
                     <NoticesTag>Age: {age}</NoticesTag>
