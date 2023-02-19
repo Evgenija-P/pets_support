@@ -59,7 +59,7 @@ const OperationConfirmationPopUp = props => {
               <styled.PrimaryBtn
                 type="button"
                 onClick={async () => {
-                  console.log('elementId', elementId);
+                  // console.log('elementId', elementId);
                   await executeOperation(elementId);
                   onClose();
                 }}

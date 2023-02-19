@@ -29,6 +29,7 @@ const GalleryPagination = () => {
   const dispatch = useDispatch();
 
   const OnPagination = page => {
+
     dispatch(fetchNotices({ category: pathname, page, search }));
   };
 
