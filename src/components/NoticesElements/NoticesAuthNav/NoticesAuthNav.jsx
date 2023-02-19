@@ -60,6 +60,11 @@ const NoticesAuthNav = () => {
     console.log('noticesList.length', noticesList.length);
     console.log('totalHits', totalHits);
     console.log('page', page);
+    if (noticesList.length === limit - 1 && totalHits > limit) {
+      // setPage(page - 1);
+      console.log('-1 on page');
+      dispatch(fetchNotices({ category: pathname, page, search }));
+    }
     if (noticesList.length === 0 && totalHits > limit && page > 1) {
       // setPage(page - 1);
       console.log('page-1');
