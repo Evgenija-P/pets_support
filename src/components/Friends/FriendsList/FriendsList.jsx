@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import ClipLoader from 'react-spinners/ClipLoader';
 import { nanoid } from 'nanoid';
 import { toast } from 'react-toastify';
 import { optionsToast } from '../../../styles/stylesLayout';
@@ -6,7 +7,7 @@ import { optionsToast } from '../../../styles/stylesLayout';
 import BASE_URL from '../../../servises/api';
 import FriendsAbout from '../FriendsAbout/FriendsAbout';
 import defaultImage from '../../../img/default.jpg';
-import Spinner from '../../Spinner/Spinner';
+
 import {
   FriendsContainer,
   FriendsError,
@@ -45,7 +46,9 @@ const FriendsList = () => {
   return (
     <>
       {isLoading ? (
-        <Spinner />
+        <FriendsError>
+          <ClipLoader size={80} color="#F59256" />
+        </FriendsError>
       ) : (
         <>
           <FriendsContainer>
@@ -58,7 +61,7 @@ const FriendsList = () => {
                   <a
                     href={`${item.url}`}
                     target="_blank"
-                    without
+                    without="true"
                     rel="noreferrer"
                   >
                     <FriendsImg
