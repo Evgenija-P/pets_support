@@ -22,7 +22,7 @@ const FileInput = ({ label, ...props }) => {
         aria-label="select file button "
         {...getRootProps({ isDragActive })}
       >
-        {console.log('isDragActive', isDragActive)}
+        {/* {console.log('isDragActive', isDragActive)} */}
         {isDragActive ? <styled.DnDIcon /> : <VscAdd size="50%" />}
       </styled.UploadBtn>
       <styled.Input

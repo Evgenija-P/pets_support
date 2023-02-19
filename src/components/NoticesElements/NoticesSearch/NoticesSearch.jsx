@@ -49,7 +49,7 @@ const NoticesSearch = () => {
       return;
     }
     setformStste(evt.target.value);
-    console.log('onClick', formStste);
+    // console.log('onClick', formStste);
   };
 
   const handlelupa = evt => {

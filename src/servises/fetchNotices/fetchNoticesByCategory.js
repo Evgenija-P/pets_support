@@ -8,7 +8,7 @@ import axios from 'axios';
 async function getNoticesByCategory(category) {
   const response = await axios.get(category);
 
-  console.log(response.data.message);
+  // console.log(response.data.message);
   return response.data;
 }
 

@@ -105,7 +105,7 @@ const RegisterForm = () => {
       }),
       hideForm()
     );
-    console.log(values);
+    // console.log(values);
   };
   const formik = useFormik({
     initialValues: {

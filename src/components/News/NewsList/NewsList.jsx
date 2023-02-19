@@ -73,7 +73,7 @@ const NewsList = () => {
     return news.title.toLowerCase().includes(request.toLowerCase());
   });
 
-  console.log(filterNews);
+  // console.log(filterNews);
 
   return (
     <ConteinerNews>
