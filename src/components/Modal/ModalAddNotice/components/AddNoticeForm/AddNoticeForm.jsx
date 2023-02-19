@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import { toast } from 'react-toastify';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 import TextInput from '../TextInput';
 import FileInput from '../FileInput';
@@ -80,7 +81,7 @@ const AddNoticeForm = ({ onClose }) => {
           {isFirstStep && (
             <div>
               <styled.Texts>
-                Please select an ad category and fill in all fields.
+                Please select an ad category and fill necessary fields.
               </styled.Texts>
 
               <NoticeCategories categories={NOTICE_CATEGORIES} />
@@ -189,7 +190,11 @@ const AddNoticeForm = ({ onClose }) => {
 
                 <styled.PrimaryBtn type="submit" disabled={isNoticeAdding}>
                   Done
-                  {isNoticeAdding && <styled.Loader size={25} color="white" />}
+                  {isNoticeAdding && (
+                    <styled.LoaderWrapper>
+                      <ClipLoader size="100%" color="white" />
+                    </styled.LoaderWrapper>
+                  )}
                 </styled.PrimaryBtn>
               </styled.BtnGroup>
             </div>

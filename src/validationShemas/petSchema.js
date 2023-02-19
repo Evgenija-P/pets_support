@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 import moment from 'moment/moment';
 
-import { dateRegexp } from '../helpers/regExpsHelpers';
+import { dateRegexp, breedRegexp } from '../helpers/regExpsHelpers';
 
 const FILE_MAX_SIZE = 8388608;
 const ACCEPTABLE_MIMETYPES = ['image/jpg', 'image/jpeg', 'image/png'];
@@ -21,7 +21,12 @@ const addPetSchema = yup.object({
           : true
     )
     .required(),
-  breed: yup.string().min(2).max(16).required(),
+  breed: yup
+    .string()
+    .min(2)
+    .max(35)
+    .matches(breedRegexp, 'breed must be only letters.')
+    .required(),
   petPhoto: yup
     .mixed()
     .test('FILE_SIZE', 'file must be less than 8 mb.', value =>
@@ -29,7 +34,7 @@ const addPetSchema = yup.object({
     )
     .test(
       'MIME_TYPE',
-      'file must be on of folowing formats: jpeg/jpg/png. ',
+      'file must be one of folowing formats: jpeg/jpg/png. ',
       value => (value ? ACCEPTABLE_MIMETYPES.includes(value.type) : true)
     ),
   comments: yup.string().min(8).max(120),

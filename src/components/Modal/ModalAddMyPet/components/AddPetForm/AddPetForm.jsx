@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import { toast } from 'react-toastify';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 // import FileInput from '../../../ModalAddNotice/components/FileInput';
 import FileInput from '../FileInput';
@@ -125,9 +126,9 @@ const AddPetForm = ({ onClose }) => {
                     id="petPhoto"
                     name="petPhoto"
                     label="Load the pet's image"
-                    onChange={async ({ target }) => {
-                      setFieldValue('petPhoto', target.files[0]);
-                    }}
+                    // onChange={async ({ target }) => {
+                    //   setFieldValue('petPhoto', target.files[0]);
+                    // }}
                   />
                 </>
               )}
@@ -148,7 +149,12 @@ const AddPetForm = ({ onClose }) => {
                 </styled.SecondaryBtn>
 
                 <styled.PrimaryBtn type="submit" disabled={isAdding}>
-                  Done {isAdding && <styled.Loader size={25} color="white" />}
+                  Done{' '}
+                  {isAdding && (
+                    <styled.LoaderWrapper>
+                      <ClipLoader size="100%" color="white" />
+                    </styled.LoaderWrapper>
+                  )}
                 </styled.PrimaryBtn>
               </styled.BtnGroup>
             </div>

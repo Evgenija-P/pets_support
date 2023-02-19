@@ -29,6 +29,8 @@ import {
   BoxText,
 } from './RegisterForm.styled';
 
+import { Background } from "../LoginForm/LoginForm.styled";
+
 const emailRegex = /^[^-][a-zA-Z0-9_.-]{1,64}@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 
 const phoneNumberMask = [
@@ -276,7 +278,8 @@ const RegisterForm = () => {
                 <StyledLink to="/login">Login</StyledLink>
               </BoxText>
             </FormRegister>
-          </Formik>
+            </Formik>
+            <Background></Background>
         </FormContainer>
       )}
     </>

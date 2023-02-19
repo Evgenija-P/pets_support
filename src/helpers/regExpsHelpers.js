@@ -12,11 +12,17 @@ const cityRegexp =
 
 const priceRegexp = /^[1-9]+[0-9]*$/;
 
-const userNameRegexp = /^([a-zA-Z]{1}|([a-zA-Z]{1,}['-]?[a-zA-Z])+)+$/;
+const userNameRegexp =
+  /^([a-zA-Zа-яА-Я]{1}|([a-zA-Zа-яА-Я]{1,}['-]?[a-zA-Zа-яА-Я][\s]?)+)+$/;
+// /^([a-zA-Z]{1}|([a-zA-Z]{1,}['-]?[a-zA-Z])+)+$/;
 
 const passwordRegexp = /^\S*$/;
 
+const breedRegexp =
+  /^([a-zA-Zа-яА-Я]{1}|([a-zA-Zа-яА-Я]{1,}['-]?[a-zA-Zа-яА-Я][\s]?)+)+$/;
+
 export {
+  breedRegexp,
   phoneRegexp,
   emailRegex,
   dateRegexp,

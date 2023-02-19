@@ -1,5 +1,10 @@
 import * as yup from 'yup';
-import { dateRegexp, priceRegexp, cityRegexp } from '../helpers/regExpsHelpers';
+import {
+  dateRegexp,
+  priceRegexp,
+  cityRegexp,
+  breedRegexp,
+} from '../helpers/regExpsHelpers';
 import moment from 'moment/moment';
 
 const FILE_MAX_SIZE = 8388608;
@@ -23,7 +28,11 @@ const addNoticeSchema = yup.object({
           : true
     ),
 
-  breed: yup.string().min(2).max(16),
+  breed: yup
+    .string()
+    .min(2)
+    .max(35)
+    .matches(breedRegexp, 'breed must be only letters.'),
 
   sex: yup.string().oneOf(['male', 'female']).required(),
 
@@ -34,7 +43,7 @@ const addNoticeSchema = yup.object({
     )
     .test(
       'MIME_TYPE',
-      'file must be on of folowing formats: jpeg/jpg/png. ',
+      'file must be one of folowing formats: jpeg/jpg/png. ',
       value => (value ? ACCEPTABLE_MIMETYPES.includes(value.type) : true)
     ),
 

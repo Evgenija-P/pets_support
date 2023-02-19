@@ -3,27 +3,15 @@ import { media, colors, fontWeights } from '../../styles/stylesLayout';
 import { Form, Field } from 'formik';
 import { Link } from 'react-router-dom';
 import MaskedInput from 'react-text-mask';
-import mobileBackground from '../../img/Auth/bg-auth-mobile.png';
-import tabletBackground from '../../img/Auth/bg-auth-tablet.png';
-import desktopBackground from '../../img/Auth/bg-auth-desctop.png';
 
 export const FormContainer = styled.div`
   width: 100%;
-  min-height: calc(100vh - 58px);
-  background-image: url(${mobileBackground});
-  background-position: bottom;
-  background-repeat: no-repeat;
-  background-size: contain;
+
   ${media.tabletAndDesktop} {
-    background-image: url(${tabletBackground});
-    padding-top: 184px;
-    padding-bottom: 268px;
-    min-height: calc(100vh - 64px);
+    padding-top: 170px;
   }
   ${media.desktop} {
-    background-image: url(${desktopBackground});
     padding-top: 50px;
-    padding-bottom: 147px;
   }
 `;
 export const Title = styled.h2`
@@ -141,6 +129,7 @@ export const Button = styled.button`
   position: relative;
   overflow-x: hidden;
   overflow-y: hidden;
+
   :hover,
   :focus {
     transform: scale(1.05);

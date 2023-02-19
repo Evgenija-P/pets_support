@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { colors, media } from '../../../../../styles/stylesLayout';
+import { ReactComponent as DragAndDropIcon } from '../../../../../img/icons/DnD.svg';
 
 export const Container = styled.div`
   position: relative;
@@ -38,7 +39,7 @@ export const Input = styled.input`
   pointer-events: none;
 `;
 
-export const UploadBtn = styled.label`
+export const UploadBtn = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
@@ -48,8 +49,24 @@ export const UploadBtn = styled.label`
   height: 116px;
   margin-top: 8px;
   border-radius: 20px;
+  border: 1px solid ${colors.background};
 
   background-color: ${colors.background};
+
+  border-color: ${p => (p.isDragActive ? colors.hover : colors.background)};
+
+  color: ${p => (p.isDragActive ? 'tomato' : 'black')};
+
+  outline: none;
+
+  transition: color 250ms ease-in-out, border-color 250ms ease-in-out,
+    fill 250ms ease-in-out;
+
+  :focus,
+  :hover {
+    color: ${colors.hover};
+    border-color: ${colors.hover};
+  }
 
   ${media.tabletAndDesktop} {
     width: 140px;
@@ -58,13 +75,25 @@ export const UploadBtn = styled.label`
   }
 `;
 
+export const DnDIcon = styled(DragAndDropIcon)`
+  width: 50%;
+  height: 50%;
+
+  fill: ${colors.hover};
+`;
+
 export const Error = styled.span`
   display: block;
   font-size: 14px;
   color: red;
 `;
 
-export const ErrorContainer = styled.div`
+export const LoadInstruction = styled.span`
+  display: block;
+  font-size: 14px;
+`;
+
+export const MetaDataContainer = styled.div`
   position: absolute;
   top: 100%;
 `;

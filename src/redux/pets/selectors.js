@@ -6,6 +6,4 @@ export const selectError = state => state.pets.erorr;
 
 export const selectIsDeleting = state => state.pets.isDeleting;
 
-export const selectPetToDeleteId = state => state.pets.petToDeleteId;
-
 export const selectIsAdding = state => state.pets.isAdding;
