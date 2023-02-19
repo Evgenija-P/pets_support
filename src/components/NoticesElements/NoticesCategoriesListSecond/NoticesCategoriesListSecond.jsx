@@ -18,9 +18,9 @@ import {
   Wrapper,
   NoticesButtonDelete,
   NoticesIconDelete,
-  LoaderWrapper,
+  // LoaderWrapper,
 } from './NoticesCategoriesListSecond.styled';
-import ClipLoader from 'react-spinners/ClipLoader';
+// import ClipLoader from 'react-spinners/ClipLoader';
 import { toast } from 'react-toastify';
 import { optionsToast } from '../../..//styles/stylesLayout';
 import {
@@ -34,7 +34,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import useAuth from '../../../hooks/useAuth.js';
 import { selectNoticesObj } from '../../../redux/notices/selectors';
 import { selectUser } from '../../../redux/auth/selectors.js';
-import { getNoticesById } from '../../../redux/notices/operations ';
+import {
+  fetchNotices,
+  getNoticesById,
+} from '../../../redux/notices/operations ';
 import {
   addToFavoriteNotices,
   removeFromFavoriteNotices,
@@ -44,10 +47,18 @@ import NoticesDetailsCard from '../../../components/NoticesElements/NoticesDetai
 import { setSelectedNotice } from '../../../redux/notices/noticesSlice';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
-
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 const NoticesCategoriesListSecond = () => {
-  const { noticesList, selectedNotice, favoriteNoticesList } =
-    useSelector(selectNoticesObj);
+  const {
+    noticesList,
+    selectedNotice,
+    favoriteNoticesList,
+    search,
+    page,
+    totalHits,
+    limit,
+  } = useSelector(selectNoticesObj);
 
   const [openDialog, setOpenDialog] = useState(false);
 
@@ -55,7 +66,7 @@ const NoticesCategoriesListSecond = () => {
 
   const [disabledButtons, setDisabledButtons] = useState([]);
 
-  const [disabledLMButtons, setDisabledLMButtons] = useState([]);
+  // const [disabledLMButtons, setDisabledLMButtons] = useState([]);
 
   const { categoryName: category } = useParams();
 
@@ -66,6 +77,23 @@ const NoticesCategoriesListSecond = () => {
   const { isLoggedIn } = useAuth();
 
   let noticesUpdated = [];
+
+  const { pathname } = useLocation();
+  // useEffect(() => {
+  //   // console.log('useEffect',page);
+  //   // if (noticesList.length === 0 && page > 1) {
+  //   //   console.log('useEffect');
+  //   //   fetchNotices({ category: pathname, page: page - 1, search });
+  //   // }
+  //   console.log('useEffect');
+  //   console.log('limit', limit);
+  //   console.log('noticesList.length', noticesList.length);
+  //   console.log('totalHits', totalHits);
+
+  //   if (noticesList.length < limit && totalHits > limit) {
+  //     dispatch(fetchNotices({ category: pathname, page: page, search }));
+  //   }
+  // }, [dispatch, limit, noticesList, page, pathname, search, totalHits]);
 
   if (isLoggedIn) {
     noticesUpdated = labelNotices(
@@ -87,7 +115,7 @@ const NoticesCategoriesListSecond = () => {
     setOpenDialog(prev => !prev);
   };
 
-  const onFavoriteToggle = (_id, favorite) => {
+  const onFavoriteToggle = async (_id, favorite) => {
     if (!isLoggedIn) {
       toast.info('You must login or register to add to favorites', {
         optionsToast,
@@ -96,13 +124,13 @@ const NoticesCategoriesListSecond = () => {
     }
     if (favorite) {
       setDisabledButtons([...disabledButtons, _id]);
-      dispatch(removeFromFavoriteNotices(_id));
+      await dispatch(removeFromFavoriteNotices(_id));
       setDisabledButtons(prev => prev.filter(item => item !== _id));
 
       return;
     }
     setDisabledButtons([...disabledButtons, _id]);
-    dispatch(addToFavoriteNotices(_id));
+    await dispatch(addToFavoriteNotices(_id));
     setDisabledButtons(prev => prev.filter(item => item !== _id));
   };
 
@@ -184,7 +212,6 @@ const NoticesCategoriesListSecond = () => {
               <BottonsWrapper>
                 <ButtonList>
                   <NoticesButton
-                    disabled={disabledLMButtons.includes(_id)}
                     // onClick={() => {
                     //   dispatch(getNoticesById(`${category}/${_id}`));
                     // }}
@@ -193,11 +220,11 @@ const NoticesCategoriesListSecond = () => {
                     }}
                   >
                     Learn More
-                    {disabledLMButtons.includes(_id) && (
+                    {/* {disabledLMButtons.includes(_id) && (
                       <LoaderWrapper>
                         <ClipLoader size="100%" color="#000000" />
                       </LoaderWrapper>
-                    )}
+                    )} */}
                   </NoticesButton>
 
                   {isOwner && isLoggedIn && (
