@@ -35,7 +35,7 @@ import useAuth from '../../../hooks/useAuth.js';
 import { selectNoticesObj } from '../../../redux/notices/selectors';
 import { selectUser } from '../../../redux/auth/selectors.js';
 import {
-  fetchNotices,
+  // fetchNotices,
   getNoticesById,
 } from '../../../redux/notices/operations ';
 import {
@@ -47,17 +47,17 @@ import NoticesDetailsCard from '../../../components/NoticesElements/NoticesDetai
 import { setSelectedNotice } from '../../../redux/notices/noticesSlice';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+// import { useEffect } from 'react';
+// import { useLocation } from 'react-router-dom';
 const NoticesCategoriesListSecond = () => {
   const {
     noticesList,
     selectedNotice,
     favoriteNoticesList,
-    search,
-    page,
-    totalHits,
-    limit,
+    // search,
+    // page,
+    // totalHits,
+    // limit,
   } = useSelector(selectNoticesObj);
 
   const [openDialog, setOpenDialog] = useState(false);
@@ -77,23 +77,6 @@ const NoticesCategoriesListSecond = () => {
   const { isLoggedIn } = useAuth();
 
   let noticesUpdated = [];
-
-  const { pathname } = useLocation();
-  // useEffect(() => {
-  //   // console.log('useEffect',page);
-  //   // if (noticesList.length === 0 && page > 1) {
-  //   //   console.log('useEffect');
-  //   //   fetchNotices({ category: pathname, page: page - 1, search });
-  //   // }
-  //   console.log('useEffect');
-  //   console.log('limit', limit);
-  //   console.log('noticesList.length', noticesList.length);
-  //   console.log('totalHits', totalHits);
-
-  //   if (noticesList.length < limit && totalHits > limit) {
-  //     dispatch(fetchNotices({ category: pathname, page: page, search }));
-  //   }
-  // }, [dispatch, limit, noticesList, page, pathname, search, totalHits]);
 
   if (isLoggedIn) {
     noticesUpdated = labelNotices(
@@ -133,13 +116,6 @@ const NoticesCategoriesListSecond = () => {
     await dispatch(addToFavoriteNotices(_id));
     setDisabledButtons(prev => prev.filter(item => item !== _id));
   };
-
-  // const onLearnMore = async ({ path, _id }) => {
-  //   console.log('LM', path, _id);
-  //   setDisabledLMButtons(...disabledLMButtons, _id);
-  //   await dispatch(getNoticesById(path));
-  //   setDisabledLMButtons(prev => prev.filter(item => item !== _id));
-  // };
 
   const onFavoriteNotAuth = () => {
     toast.warning('You need Login first....', optionsToast);

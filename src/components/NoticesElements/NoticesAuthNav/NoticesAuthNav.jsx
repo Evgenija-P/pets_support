@@ -13,7 +13,7 @@ import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { fetchFavoriteNotices } from '../../../redux/notices/operations ';
 import { useRef } from 'react';
-import { setPage } from '../../../redux/notices/noticesSlice';
+// import { setPage } from '../../../redux/notices/noticesSlice';
 const NoticesAuthNav = () => {
   const dispatch = useDispatch();
   const { categoryName } = useParams();
@@ -55,19 +55,19 @@ const NoticesAuthNav = () => {
     //   console.log('useEffect');
     //   fetchNotices({ category: pathname, page: page - 1, search });
     // }
-    console.log('useEffect');
-    console.log('limit', limit);
-    console.log('noticesList.length', noticesList.length);
-    console.log('totalHits', totalHits);
-    console.log('page', page);
+    // console.log('useEffect');
+    // console.log('limit', limit);
+    // console.log('noticesList.length', noticesList.length);
+    // console.log('totalHits', totalHits);
+    // console.log('page', page);
     if (noticesList.length === limit - 1 && totalHits > limit) {
       // setPage(page - 1);
-      console.log('-1 on page');
+      // console.log('-1 on page');
       dispatch(fetchNotices({ category: pathname, page, search }));
     }
     if (noticesList.length === 0 && totalHits > limit && page > 1) {
       // setPage(page - 1);
-      console.log('page-1');
+      // console.log('page-1');
       dispatch(
         fetchNotices({ category: pathname, page: Number(page) - 1, search })
       );
