@@ -8,7 +8,6 @@ import { fetchNotices } from '../../../redux/notices/operations ';
 import { selectNoticesObj } from '../../../redux/notices/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-
 const theme = createTheme({
   palette: {
     primary: {
@@ -30,15 +29,17 @@ const GalleryPagination = () => {
   const dispatch = useDispatch();
 
   const OnPagination = page => {
-    // console.log('OnPagination', { category: pathname, page, search });
+
     dispatch(fetchNotices({ category: pathname, page, search }));
   };
+
   const countPages = Math.ceil(totalHits / limit);
 
   return (
     <ThemeProvider theme={theme}>
       <StyledEngineProvider injectFirst>
-        {countPages > 1 && pathname !== '/notices/favorite' && (
+        {/* {countPages > 1 && pathname !== '/notices/favorite' && ( */}
+        {countPages > 1 && (
           <PagginationWrapper>
             <Pagination
               // boundaryCount={5}

@@ -3,7 +3,7 @@ import { selectNoticesObj } from '../../../redux/notices/selectors';
 import { useSelector } from 'react-redux';
 import GalleryPagination from '../../NoticesElements/GalleryPagination';
 import NoticesLoader from '../NoticesLoader';
-
+import NoticesSpinner from '../NoticesSpіnner';
 import { useLocation } from 'react-router-dom';
 
 const NoticesGallary = () => {
@@ -12,6 +12,7 @@ const NoticesGallary = () => {
 
   return (
     <div>
+      <NoticesSpinner />
       {(error || noticesList.length === 0) &&
         !isLoading &&
         pathname === '/notices/favorite' && <NoticesLoader />}
