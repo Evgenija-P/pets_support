@@ -30,7 +30,6 @@ const GalleryPagination = () => {
   const dispatch = useDispatch();
 
   const OnPagination = page => {
-    console.log('OnPagination', { category: pathname, page, search });
     dispatch(fetchNotices({ category: pathname, page, search }));
   };
   const countPages = Math.ceil(totalHits / limit);

@@ -141,9 +141,7 @@ export const noticesSlice = createSlice({
       .addCase(addNotices.pending, handleAddNoticesPending)
       .addCase(addNotices.fulfilled, handleAddNoticesSuccses)
       .addCase(addNotices.rejected, handleAddNoticesReject)
-
       .addCase(deleteNotices.fulfilled, handleDeleteNoticesSuccses)
-
       .addCase(getNoticesById.fulfilled, handleGetNoticesByIdSuccses)
       .addCase(
         fetchFavoriteNotices.fulfilled,

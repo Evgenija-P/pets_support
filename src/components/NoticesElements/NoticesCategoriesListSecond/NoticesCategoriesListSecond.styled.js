@@ -263,3 +263,15 @@ export const NoticesIconDelete = styled(DeleteIcon)`
     stroke: ${colors.accentButton};
   }
 `;
+export const LoaderWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15px;
+  height: 15px;
+
+  ${media.tabletAndDesktop} {
+    width: 25px;
+    height: 25px;
+  }
+`;

@@ -18,7 +18,9 @@ import {
   Wrapper,
   NoticesButtonDelete,
   NoticesIconDelete,
+  LoaderWrapper,
 } from './NoticesCategoriesListSecond.styled';
+import ClipLoader from 'react-spinners/ClipLoader';
 import { toast } from 'react-toastify';
 import { optionsToast } from '../../..//styles/stylesLayout';
 import {
@@ -37,40 +39,34 @@ import {
   addToFavoriteNotices,
   removeFromFavoriteNotices,
 } from '../../../redux/notices/operations ';
-
 import Modal from '../../../components/Modal/Modal';
 import NoticesDetailsCard from '../../../components/NoticesElements/NoticesDetailsCard';
 import { setSelectedNotice } from '../../../redux/notices/noticesSlice';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
-// import { useBeforeunload } from 'react-beforeunload';
-
-import { useEffect } from 'react';
 
 const NoticesCategoriesListSecond = () => {
-  const { noticesList, selectedNotice, favoriteNoticesList, isLoading } =
+  const { noticesList, selectedNotice, favoriteNoticesList } =
     useSelector(selectNoticesObj);
+
   const [openDialog, setOpenDialog] = useState(false);
+
   const [activeNotice, setActiveNotice] = useState(false);
+
+  const [disabledButtons, setDisabledButtons] = useState([]);
+
+  const [disabledLMButtons, setDisabledLMButtons] = useState([]);
+
+  const { categoryName: category } = useParams();
+
   const { _id } = useSelector(selectUser);
+
   const dispatch = useDispatch();
 
-  const dialogToggle = _id => {
-    if (!openDialog) {
-      setActiveNotice(_id);
-    }
-    setOpenDialog(prev => !prev);
-  };
-
   const { isLoggedIn } = useAuth();
+
   let noticesUpdated = [];
-  useEffect(() => {
-    console.log('favoriteNoticesList', favoriteNoticesList);
-    console.log(
-      'add to fav',
-      getUserFavoriteNotices(noticesList, favoriteNoticesList)
-    );
-  }, [favoriteNoticesList, noticesList]);
+
   if (isLoggedIn) {
     noticesUpdated = labelNotices(
       getPetAge(
@@ -83,26 +79,39 @@ const NoticesCategoriesListSecond = () => {
   } else {
     noticesUpdated = labelNotices(getPetAge(noticesList));
   }
-  const [disabledButtons, setDisabledButtons] = useState([]);
-  const onFavoriteToggle = async (_id, favorite) => {
+
+  const dialogToggle = _id => {
+    if (!openDialog) {
+      setActiveNotice(_id);
+    }
+    setOpenDialog(prev => !prev);
+  };
+
+  const onFavoriteToggle = (_id, favorite) => {
     if (!isLoggedIn) {
       toast.info('You must login or register to add to favorites', {
         optionsToast,
       });
       return;
     }
-
     if (favorite) {
       setDisabledButtons([...disabledButtons, _id]);
-      await dispatch(removeFromFavoriteNotices(_id));
+      dispatch(removeFromFavoriteNotices(_id));
       setDisabledButtons(prev => prev.filter(item => item !== _id));
 
       return;
     }
     setDisabledButtons([...disabledButtons, _id]);
-    await dispatch(addToFavoriteNotices(_id));
+    dispatch(addToFavoriteNotices(_id));
     setDisabledButtons(prev => prev.filter(item => item !== _id));
   };
+
+  // const onLearnMore = async ({ path, _id }) => {
+  //   console.log('LM', path, _id);
+  //   setDisabledLMButtons(...disabledLMButtons, _id);
+  //   await dispatch(getNoticesById(path));
+  //   setDisabledLMButtons(prev => prev.filter(item => item !== _id));
+  // };
 
   const onFavoriteNotAuth = () => {
     toast.warning('You need Login first....', optionsToast);
@@ -110,7 +119,6 @@ const NoticesCategoriesListSecond = () => {
   const toggleModal = () => {
     dispatch(setSelectedNotice());
   };
-  const { categoryName: category } = useParams();
 
   const sortedNotices = [...noticesUpdated].sort(function (a, b) {
     var dateA = new Date(a.createdAt),
@@ -176,12 +184,20 @@ const NoticesCategoriesListSecond = () => {
               <BottonsWrapper>
                 <ButtonList>
                   <NoticesButton
-                    disabled={disabledButtons.includes(_id)}
+                    disabled={disabledLMButtons.includes(_id)}
+                    // onClick={() => {
+                    //   dispatch(getNoticesById(`${category}/${_id}`));
+                    // }}
                     onClick={() => {
                       dispatch(getNoticesById(`${category}/${_id}`));
                     }}
                   >
                     Learn More
+                    {disabledLMButtons.includes(_id) && (
+                      <LoaderWrapper>
+                        <ClipLoader size="100%" color="#000000" />
+                      </LoaderWrapper>
+                    )}
                   </NoticesButton>
 
                   {isOwner && isLoggedIn && (

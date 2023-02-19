@@ -27,7 +27,7 @@ const NoticesAuthNav = () => {
       navigate('/notices/sell');
       // dispatch(fetchNotices({ category: '/notices/sell' }));
     }
-  }, [categoryName, dispatch, navigate, pathname]);
+  }, [categoryName, dispatch, navigate]);
 
   useEffect(() => {
     if (!categoryName) {
@@ -45,12 +45,8 @@ const NoticesAuthNav = () => {
   }, [dispatch, categoryName]);
 
   useEffect(() => {
-    if (!categoryName) {
-      return;
-    }
     dispatch(fetchFavoriteNotices({}));
-  }, [categoryName, dispatch]);
-
+  }, [dispatch]);
   return (
     <>
       <NoticesCategoriesListLink>
