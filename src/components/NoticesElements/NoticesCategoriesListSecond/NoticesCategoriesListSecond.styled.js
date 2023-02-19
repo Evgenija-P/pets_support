@@ -3,21 +3,20 @@ import { media, colors, fontWeights } from '../../../styles/stylesLayout';
 import noticesFavoriteIcon from '../../../img/icons/noticesFavoriteIcon.svg';
 import { ReactComponent as FavoriteIcon } from '../../../img/icons/favoriteNotices.svg';
 import { ReactComponent as DeleteIcon } from '../../../img/icons/delete.svg';
-
 export const NoticesList = styled.ul`
   display: grid;
   grid-template-columns: repeat(1, minmax(200px, 1fr));
   gap: 32px;
 
-  margin: 30px 0px;
+  /* margin: 30px 0px; */
 
   ${media.tablet} {
     grid-template-columns: repeat(2, minmax(200px, 1fr));
   }
 
-  ${media.tabletAndDesktop} {
+  /* ${media.tabletAndDesktop} {
     margin: 60px 0px;
-  }
+  } */
 
   ${media.desktop} {
     grid-template-columns: repeat(4, minmax(200px, 1fr));

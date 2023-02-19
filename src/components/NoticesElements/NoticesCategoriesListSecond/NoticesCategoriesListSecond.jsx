@@ -44,7 +44,8 @@ import { setSelectedNotice } from '../../../redux/notices/noticesSlice';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 // import { useBeforeunload } from 'react-beforeunload';
-// import { useEffect } from 'react';
+
+import { useEffect } from 'react';
 
 const NoticesCategoriesListSecond = () => {
   const { noticesList, selectedNotice, favoriteNoticesList, isLoading } =
@@ -53,38 +54,7 @@ const NoticesCategoriesListSecond = () => {
   const [activeNotice, setActiveNotice] = useState(false);
   const { _id } = useSelector(selectUser);
   const dispatch = useDispatch();
-  // useBeforeunload(event => {
-  //   console.log('before');
-  //   if (selectedNotice) {
-  //     console.log('before');
-  //     event.preventDefault();
-  //     dispatch(setSelectedNotice());
-  //   }
-  // });
 
-  // const useBeforeUnload = ({ when, message }) => {
-  //   useEffect(() => {
-  //     const handleBeforeUnload = event => {
-  //       console.log('event Before');
-  //       event.preventDefault();
-  //       // event.returnValue = message;
-  //       // return message;
-  //       dispatch(setSelectedNotice());
-  //     };
-
-  //     if (when) {
-  //       window.addEventListener('beforeunload', handleBeforeUnload);
-  //     }
-
-  //     return () =>
-  //       window.removeEventListener('beforeunload', handleBeforeUnload);
-  //   }, [when, message]);
-  // };
-
-  // useBeforeUnload({
-  //   when: true,
-  //   message: 'Are you sure you want to leave?',
-  // });
   const dialogToggle = _id => {
     if (!openDialog) {
       setActiveNotice(_id);
@@ -94,7 +64,13 @@ const NoticesCategoriesListSecond = () => {
 
   const { isLoggedIn } = useAuth();
   let noticesUpdated = [];
-
+  useEffect(() => {
+    console.log('favoriteNoticesList', favoriteNoticesList);
+    console.log(
+      'add to fav',
+      getUserFavoriteNotices(noticesList, favoriteNoticesList)
+    );
+  }, [favoriteNoticesList, noticesList]);
   if (isLoggedIn) {
     noticesUpdated = labelNotices(
       getPetAge(
@@ -107,21 +83,25 @@ const NoticesCategoriesListSecond = () => {
   } else {
     noticesUpdated = labelNotices(getPetAge(noticesList));
   }
-
-  const onFavoriteToggle = (_id, favorite) => {
+  const [disabledButtons, setDisabledButtons] = useState([]);
+  const onFavoriteToggle = async (_id, favorite) => {
     if (!isLoggedIn) {
       toast.info('You must login or register to add to favorites', {
         optionsToast,
       });
       return;
     }
+
     if (favorite) {
-      dispatch(removeFromFavoriteNotices(_id));
+      setDisabledButtons([...disabledButtons, _id]);
+      await dispatch(removeFromFavoriteNotices(_id));
+      setDisabledButtons(prev => prev.filter(item => item !== _id));
 
       return;
     }
-
-    dispatch(addToFavoriteNotices(_id));
+    setDisabledButtons([...disabledButtons, _id]);
+    await dispatch(addToFavoriteNotices(_id));
+    setDisabledButtons(prev => prev.filter(item => item !== _id));
   };
 
   const onFavoriteNotAuth = () => {
@@ -166,13 +146,13 @@ const NoticesCategoriesListSecond = () => {
                     )}
                     {isLoggedIn && (
                       <NoticesButtonFavoriteV2
+                        disabled={disabledButtons.includes(_id)}
                         onClick={() => onFavoriteToggle(_id, favorite)}
                       >
                         <NoticesFavorite isfavorite={favorite.toString()} />
                       </NoticesButtonFavoriteV2>
                     )}
                   </NoticesNav>
-
                   <NoticesImage
                     src={petImageURL ? petImageURL : notFoundNoticesImage}
                     alt={title}
@@ -183,7 +163,7 @@ const NoticesCategoriesListSecond = () => {
                   <NoticesTitle>{title}</NoticesTitle>
 
                   <NoticesTags>
-                    {/* <NoticesTag>id: {_id}</NoticesTag> */}
+                    <NoticesTag>id: {_id}</NoticesTag>
                     <NoticesTag>Breed: {breed}</NoticesTag>
                     <NoticesTag>Place: {location}</NoticesTag>
                     <NoticesTag>Age: {age}</NoticesTag>
@@ -196,7 +176,7 @@ const NoticesCategoriesListSecond = () => {
               <BottonsWrapper>
                 <ButtonList>
                   <NoticesButton
-                    disabled={isLoading}
+                    disabled={disabledButtons.includes(_id)}
                     onClick={() => {
                       dispatch(getNoticesById(`${category}/${_id}`));
                     }}
@@ -205,7 +185,10 @@ const NoticesCategoriesListSecond = () => {
                   </NoticesButton>
 
                   {isOwner && isLoggedIn && (
-                    <NoticesButtonDelete onClick={() => dialogToggle(_id)}>
+                    <NoticesButtonDelete
+                      onClick={() => dialogToggle(_id)}
+                      disabled={disabledButtons.includes(_id)}
+                    >
                       Delete <NoticesIconDelete />
                     </NoticesButtonDelete>
                   )}

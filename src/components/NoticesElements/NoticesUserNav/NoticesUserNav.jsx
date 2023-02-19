@@ -22,8 +22,11 @@ const NoticesAuthNav = () => {
   }, [categoryName, navigate]);
 
   useEffect(() => {
+    if (!categoryName) {
+      return;
+    }
     dispatch(fetchNotices({ category: pathname }));
-  }, [pathname, dispatch]);
+  }, [pathname, dispatch, categoryName]);
 
   return (
     <>

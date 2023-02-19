@@ -38,7 +38,8 @@ const GalleryPagination = () => {
   return (
     <ThemeProvider theme={theme}>
       <StyledEngineProvider injectFirst>
-        {countPages > 1 && pathname !== '/notices/favorite' && (
+        {/* {countPages > 1 && pathname !== '/notices/favorite' && ( */}
+        {countPages > 1 && (
           <PagginationWrapper>
             <Pagination
               // boundaryCount={5}

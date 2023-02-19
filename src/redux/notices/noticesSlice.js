@@ -41,7 +41,7 @@ const handleFetchNoticesSuccses = (state, action) => {
   state.limit = action.payload.limit;
 };
 const handleFetchFavoriteNoticesSuccses = (state, action) => {
-  state.favoriteNoticesList = action.payload.message;
+  state.favoriteNoticesList = action.payload.favoriteList;
   state.totalHits = action.payload.totalHits;
   state.page = action.payload.page;
   // state.search = action.payload.search;
