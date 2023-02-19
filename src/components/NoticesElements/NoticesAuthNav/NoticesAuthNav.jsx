@@ -59,11 +59,13 @@ const NoticesAuthNav = () => {
     console.log('limit', limit);
     console.log('noticesList.length', noticesList.length);
     console.log('totalHits', totalHits);
-
+    console.log('page', page);
     if (noticesList.length === 0 && totalHits > limit && page > 1) {
-      setPage(page - 1);
+      // setPage(page - 1);
       console.log('page-1');
-      dispatch(fetchNotices({ category: pathname, page, search }));
+      dispatch(
+        fetchNotices({ category: pathname, page: Number(page) - 1, search })
+      );
     }
   }, [dispatch, limit, noticesList, page, pathname, search, totalHits]);
 
