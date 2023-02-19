@@ -3,21 +3,20 @@ import { media, colors, fontWeights } from '../../../styles/stylesLayout';
 import noticesFavoriteIcon from '../../../img/icons/noticesFavoriteIcon.svg';
 import { ReactComponent as FavoriteIcon } from '../../../img/icons/favoriteNotices.svg';
 import { ReactComponent as DeleteIcon } from '../../../img/icons/delete.svg';
-
 export const NoticesList = styled.ul`
   display: grid;
   grid-template-columns: repeat(1, minmax(200px, 1fr));
   gap: 32px;
 
-  margin: 30px 0px;
+  /* margin: 30px 0px; */
 
   ${media.tablet} {
     grid-template-columns: repeat(2, minmax(200px, 1fr));
   }
 
-  ${media.tabletAndDesktop} {
+  /* ${media.tabletAndDesktop} {
     margin: 60px 0px;
-  }
+  } */
 
   ${media.desktop} {
     grid-template-columns: repeat(4, minmax(200px, 1fr));
@@ -36,9 +35,10 @@ export const NoticesItem = styled.li`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* padding-bottom: 32px; */
-  &:hover {
-    transform: scale(1.03);
+  ${media.tabletAndDesktop} {
+    &:hover {
+      transform: scale(1.03);
+    }
   }
 `;
 
@@ -262,5 +262,17 @@ export const NoticesIconDelete = styled(DeleteIcon)`
   fill: ${colors.accentButton};
   .delete:hover & {
     stroke: ${colors.accentButton};
+  }
+`;
+export const LoaderWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15px;
+  height: 15px;
+
+  ${media.tabletAndDesktop} {
+    width: 25px;
+    height: 25px;
   }
 `;

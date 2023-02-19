@@ -18,7 +18,9 @@ import {
   Wrapper,
   NoticesButtonDelete,
   NoticesIconDelete,
+  // LoaderWrapper,
 } from './NoticesCategoriesListSecond.styled';
+// import ClipLoader from 'react-spinners/ClipLoader';
 import { toast } from 'react-toastify';
 import { optionsToast } from '../../..//styles/stylesLayout';
 import {
@@ -32,67 +34,48 @@ import { useSelector, useDispatch } from 'react-redux';
 import useAuth from '../../../hooks/useAuth.js';
 import { selectNoticesObj } from '../../../redux/notices/selectors';
 import { selectUser } from '../../../redux/auth/selectors.js';
-import { getNoticesById } from '../../../redux/notices/operations ';
+import {
+  // fetchNotices,
+  getNoticesById,
+} from '../../../redux/notices/operations ';
 import {
   addToFavoriteNotices,
   removeFromFavoriteNotices,
 } from '../../../redux/notices/operations ';
-
 import Modal from '../../../components/Modal/Modal';
 import NoticesDetailsCard from '../../../components/NoticesElements/NoticesDetailsCard';
 import { setSelectedNotice } from '../../../redux/notices/noticesSlice';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
-// import { useBeforeunload } from 'react-beforeunload';
 // import { useEffect } from 'react';
-
+// import { useLocation } from 'react-router-dom';
 const NoticesCategoriesListSecond = () => {
-  const { noticesList, selectedNotice, favoriteNoticesList, isLoading } =
-    useSelector(selectNoticesObj);
+  const {
+    noticesList,
+    selectedNotice,
+    favoriteNoticesList,
+    // search,
+    // page,
+    // totalHits,
+    // limit,
+  } = useSelector(selectNoticesObj);
+
   const [openDialog, setOpenDialog] = useState(false);
+
   const [activeNotice, setActiveNotice] = useState(false);
+
+  const [disabledButtons, setDisabledButtons] = useState([]);
+
+  // const [disabledLMButtons, setDisabledLMButtons] = useState([]);
+
+  const { categoryName: category } = useParams();
+
   const { _id } = useSelector(selectUser);
+
   const dispatch = useDispatch();
-  // useBeforeunload(event => {
-  //   console.log('before');
-  //   if (selectedNotice) {
-  //     console.log('before');
-  //     event.preventDefault();
-  //     dispatch(setSelectedNotice());
-  //   }
-  // });
-
-  // const useBeforeUnload = ({ when, message }) => {
-  //   useEffect(() => {
-  //     const handleBeforeUnload = event => {
-  //       console.log('event Before');
-  //       event.preventDefault();
-  //       // event.returnValue = message;
-  //       // return message;
-  //       dispatch(setSelectedNotice());
-  //     };
-
-  //     if (when) {
-  //       window.addEventListener('beforeunload', handleBeforeUnload);
-  //     }
-
-  //     return () =>
-  //       window.removeEventListener('beforeunload', handleBeforeUnload);
-  //   }, [when, message]);
-  // };
-
-  // useBeforeUnload({
-  //   when: true,
-  //   message: 'Are you sure you want to leave?',
-  // });
-  const dialogToggle = _id => {
-    if (!openDialog) {
-      setActiveNotice(_id);
-    }
-    setOpenDialog(prev => !prev);
-  };
 
   const { isLoggedIn } = useAuth();
+
   let noticesUpdated = [];
 
   if (isLoggedIn) {
@@ -108,7 +91,14 @@ const NoticesCategoriesListSecond = () => {
     noticesUpdated = labelNotices(getPetAge(noticesList));
   }
 
-  const onFavoriteToggle = (_id, favorite) => {
+  const dialogToggle = _id => {
+    if (!openDialog) {
+      setActiveNotice(_id);
+    }
+    setOpenDialog(prev => !prev);
+  };
+
+  const onFavoriteToggle = async (_id, favorite) => {
     if (!isLoggedIn) {
       toast.info('You must login or register to add to favorites', {
         optionsToast,
@@ -116,12 +106,15 @@ const NoticesCategoriesListSecond = () => {
       return;
     }
     if (favorite) {
-      dispatch(removeFromFavoriteNotices(_id));
+      setDisabledButtons([...disabledButtons, _id]);
+      await dispatch(removeFromFavoriteNotices(_id));
+      setDisabledButtons(prev => prev.filter(item => item !== _id));
 
       return;
     }
-
-    dispatch(addToFavoriteNotices(_id));
+    setDisabledButtons([...disabledButtons, _id]);
+    await dispatch(addToFavoriteNotices(_id));
+    setDisabledButtons(prev => prev.filter(item => item !== _id));
   };
 
   const onFavoriteNotAuth = () => {
@@ -130,7 +123,6 @@ const NoticesCategoriesListSecond = () => {
   const toggleModal = () => {
     dispatch(setSelectedNotice());
   };
-  const { categoryName: category } = useParams();
 
   const sortedNotices = [...noticesUpdated].sort(function (a, b) {
     var dateA = new Date(a.createdAt),
@@ -166,13 +158,13 @@ const NoticesCategoriesListSecond = () => {
                     )}
                     {isLoggedIn && (
                       <NoticesButtonFavoriteV2
+                        disabled={disabledButtons.includes(_id)}
                         onClick={() => onFavoriteToggle(_id, favorite)}
                       >
                         <NoticesFavorite isfavorite={favorite.toString()} />
                       </NoticesButtonFavoriteV2>
                     )}
                   </NoticesNav>
-
                   <NoticesImage
                     src={petImageURL ? petImageURL : notFoundNoticesImage}
                     alt={title}
@@ -183,7 +175,7 @@ const NoticesCategoriesListSecond = () => {
                   <NoticesTitle>{title}</NoticesTitle>
 
                   <NoticesTags>
-                    {/* <NoticesTag>id: {_id}</NoticesTag> */}
+                    <NoticesTag>id: {_id}</NoticesTag>
                     <NoticesTag>Breed: {breed}</NoticesTag>
                     <NoticesTag>Place: {location}</NoticesTag>
                     <NoticesTag>Age: {age}</NoticesTag>
@@ -196,16 +188,26 @@ const NoticesCategoriesListSecond = () => {
               <BottonsWrapper>
                 <ButtonList>
                   <NoticesButton
-                    disabled={isLoading}
+                    // onClick={() => {
+                    //   dispatch(getNoticesById(`${category}/${_id}`));
+                    // }}
                     onClick={() => {
                       dispatch(getNoticesById(`${category}/${_id}`));
                     }}
                   >
                     Learn More
+                    {/* {disabledLMButtons.includes(_id) && (
+                      <LoaderWrapper>
+                        <ClipLoader size="100%" color="#000000" />
+                      </LoaderWrapper>
+                    )} */}
                   </NoticesButton>
 
                   {isOwner && isLoggedIn && (
-                    <NoticesButtonDelete onClick={() => dialogToggle(_id)}>
+                    <NoticesButtonDelete
+                      onClick={() => dialogToggle(_id)}
+                      disabled={disabledButtons.includes(_id)}
+                    >
                       Delete <NoticesIconDelete />
                     </NoticesButtonDelete>
                   )}

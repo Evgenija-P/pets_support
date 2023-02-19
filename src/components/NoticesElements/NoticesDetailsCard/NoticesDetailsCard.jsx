@@ -78,14 +78,15 @@ const NoticeInfoCard = () => {
 
   const [Isfavorite, setIsfavorite] = useState(favorite);
 
-  const onToggle = () => {
+  const onToggle = async () => {
     setIsfavorite(prev => !prev);
     if (Isfavorite) {
-      dispatch(removeFromFavoriteNotices(_id));
-
+      await dispatch(removeFromFavoriteNotices(_id));
+      toast.success('Removed from favorites', optionsToast);
       return;
     }
-    dispatch(addToFavoriteNotices(_id));
+    await dispatch(addToFavoriteNotices(_id));
+    toast.success('Good choice, added to favorites', optionsToast);
   };
   const dialogToggle = () => {
     setOpenDialog(prev => !prev);
