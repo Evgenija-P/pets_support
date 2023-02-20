@@ -172,7 +172,9 @@ export const NoticesTag = styled.p`
 
 export const NoticesButton = styled.button`
   margin-top: auto;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   padding: 8px 28px;
 
@@ -270,6 +272,7 @@ export const LoaderWrapper = styled.div`
   align-items: center;
   width: 15px;
   height: 15px;
+  margin-left: 20px;
 
   ${media.tabletAndDesktop} {
     width: 25px;
