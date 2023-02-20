@@ -4,7 +4,8 @@ export const GalleryWrapper = styled.div`
   flex-direction: column;
   align-items: center;
 `;
-export const Wrapper = styled.div`
-  height: 50px;
-  width: 50px;
+export const WrapperSpiner = styled.div`
+  height: 80px;
+  width: auto;
+  padding-top: 80px;
 `;
