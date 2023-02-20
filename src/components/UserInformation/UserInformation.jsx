@@ -40,7 +40,6 @@ import {
   ButtonEdit,
   LogOutIconWrapper,
   ErrBox,
-  MobileEmailRef,
   UserKeyEdit,
 } from './UserInformation.styled';
 
@@ -167,7 +166,7 @@ const UserInformation = () => {
                 ) : (
                   <UserInformationContainer>
                     <UserKey>Email:</UserKey>
-                    <MobileEmailRef href={`mailto:${initialValues.email}`}>{`${initialValues.email}`}</MobileEmailRef>
+                    <UserValue href={`mailto:${initialValues.email}`}>{`${initialValues.email}`}</UserValue>
                     <UserInformationEditWrapper
                       click={change}
                       disabled={!isValid || change}
@@ -220,7 +219,7 @@ const UserInformation = () => {
                 ) : (
                   <UserInformationContainer>
                     <UserKey>Phone:</UserKey>
-                    <MobileEmailRef href={`tel:${initialValues.phone}`}>{`${initialValues.phone}`}</MobileEmailRef>
+                    <UserValue href={`tel:${initialValues.phone}`}>{`${initialValues.phone}`}</UserValue>
                     <UserInformationEditWrapper
                       click={change}
                       disabled={!isValid || change}
