@@ -15,8 +15,8 @@ import {
   SearchNewsInput,
   SearchNewsButton,
   ErrorTitle,
+  SpinnerWrapper,
 } from './NewsList.styled';
-import { FriendsError } from '../../Friends/FriendsList/FriendsList.styles';
 
 const NewsList = () => {
   const [newsItem, setNewsItem] = useState([]);
@@ -98,9 +98,9 @@ const NewsList = () => {
 
       <ListNews>
         {isLoading ? (
-          <FriendsError>
+          <SpinnerWrapper>
             <ClipLoader size={80} color="#F59256" />
-          </FriendsError>
+          </SpinnerWrapper>
         ) : (
           filterNews.map(({ title, description, date, url }) => (
             <ItemNews key={nanoid()}>
