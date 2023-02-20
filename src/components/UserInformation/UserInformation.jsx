@@ -48,8 +48,8 @@ import {
 
 const userUpdateSchema = object().shape({
   email: string()
-    .matches(emailRegex, 'Invalid email adress')
-    // .email('Invalid email adress')
+    .matches(emailRegex, 'Invalid email address')
+    // .email('Invalid email address')
     .required('Email is required'),
   name: string()
     .min(2, 'Min 2 symbols')
