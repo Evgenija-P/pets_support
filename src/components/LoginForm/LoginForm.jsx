@@ -28,7 +28,6 @@ import {
   Link,
   ErrorText,
   Background,
-  SpinnerWrapper,
 } from './LoginForm.styled';
 
 const emailRegex = /^[^-][a-zA-Z0-9_.-]{1,64}@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
@@ -76,9 +75,7 @@ const LoginForm = () => {
   return (
     <>
       {isLoading ? (
-        <SpinnerWrapper>
-          <Spinner />
-        </SpinnerWrapper>
+        <Spinner />
       ) : (
         <Container>
           <Formik
