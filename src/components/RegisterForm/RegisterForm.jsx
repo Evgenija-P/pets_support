@@ -29,7 +29,7 @@ import {
   BoxText,
 } from './RegisterForm.styled';
 
-import { Background } from "../LoginForm/LoginForm.styled";
+import { Background } from '../LoginForm/LoginForm.styled';
 
 const emailRegex = /^[^-][a-zA-Z0-9_.-]{1,64}@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 
@@ -61,10 +61,10 @@ const registerSchema = object().shape({
     .required('Password is required'),
   confirmPassword: string()
     .required('Please confirm your password')
-    .oneOf([ref('password')], 'Passwords does not match'),
+    .oneOf([ref('password')], 'Passwords do not match'),
   email: string()
-    .email('Invalid email adress')
-    .matches(emailRegex, 'Invalid email adress')
+    .email('Invalid email address')
+    .matches(emailRegex, 'Invalid email address')
     .required('Email is required'),
   name: string()
     .min(2, 'Min 2 symbols')
@@ -278,8 +278,8 @@ const RegisterForm = () => {
                 <StyledLink to="/login">Login</StyledLink>
               </BoxText>
             </FormRegister>
-            </Formik>
-            <Background></Background>
+          </Formik>
+          <Background></Background>
         </FormContainer>
       )}
     </>

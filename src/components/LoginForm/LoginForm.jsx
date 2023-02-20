@@ -35,8 +35,8 @@ const emailRegex = /^[^-][a-zA-Z0-9_.-]{1,64}@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/
 const loginSchema = yup.object().shape({
   email: yup
     .string()
-    .email('Invalid email adress')    
-    .matches(emailRegex, 'Invalid email adress')
+    .email('Invalid email address')    
+    .matches(emailRegex, 'Invalid email address')
     .required('Email is required'),
   password: yup
     .string()
