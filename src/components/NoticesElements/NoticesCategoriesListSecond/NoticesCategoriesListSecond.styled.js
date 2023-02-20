@@ -8,15 +8,15 @@ export const NoticesList = styled.ul`
   grid-template-columns: repeat(1, minmax(200px, 1fr));
   gap: 32px;
 
-  /* margin: 30px 0px; */
+  margin: 30px 0px;
 
   ${media.tablet} {
     grid-template-columns: repeat(2, minmax(200px, 1fr));
   }
 
-  /* ${media.tabletAndDesktop} {
+  ${media.tabletAndDesktop} {
     margin: 60px 0px;
-  } */
+  }
 
   ${media.desktop} {
     grid-template-columns: repeat(4, minmax(200px, 1fr));

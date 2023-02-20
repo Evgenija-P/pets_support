@@ -1,4 +1,4 @@
-import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import {
   fetchNotices,
   addNotices,
@@ -15,23 +15,17 @@ const noticesInitialState = {
   selectedNotice: null,
   page: 1,
   totalHits: 0,
-  isLoading: false,
+  isLoadingNotices: false,
+  isLoadingFavorite: false,
+  isLoadingSelected: false,
   isAdding: false,
-  error: null,
+  errorNotices: null,
+  errorFavorite: null,
+  errorSelected: null,
   category: '',
   search: '',
   limit: 20,
 };
-
-const extraActions = [
-  fetchNotices,
-  deleteNotices,
-  getNoticesById,
-  addToFavoriteNotices,
-  removeFromFavoriteNotices,
-  fetchFavoriteNotices,
-];
-const getActions = type => extraActions.map(extraAction => extraAction[type]);
 
 const handleFetchNoticesSuccses = (state, action) => {
   state.noticesList = action.payload.message;
@@ -39,14 +33,34 @@ const handleFetchNoticesSuccses = (state, action) => {
   state.page = action.payload.page;
   // state.search = action.payload.search;
   state.limit = action.payload.limit;
+  state.isLoadingNotices = false;
+  state.errorNotices = null;
 };
+const handleFetchNoticesPending = (state, action) => {
+  state.isLoadingNotices = true;
+};
+const handleFetchNoticesReject = (state, action) => {
+  state.isLoadingNotices = false;
+  state.errorNotices = action.payload;
+};
+/////////////////////////////////////////////////////
 const handleFetchFavoriteNoticesSuccses = (state, action) => {
   state.favoriteNoticesList = action.payload.favoriteList;
   state.totalHits = action.payload.totalHits;
   state.page = action.payload.page;
   // state.search = action.payload.search;
   state.limit = action.payload.limit;
+  state.isLoadingFavorite = false;
+  state.errorFavorite = null;
 };
+const handleFetchFavoriteNoticesPending = (state, action) => {
+  state.isLoadingFavorite = true;
+};
+const handleFetchFavoriteNoticesReject = (state, action) => {
+  state.isLoadingFavorite = false;
+  state.errorFavorite = action.payload;
+};
+/////////////////////////////////////////////////////////////////////////
 const handleAddNoticesSuccses = (state, { payload }) => {
   if (state.category === payload.categoryName) {
     state.noticesList.unshift(payload);
@@ -54,7 +68,7 @@ const handleAddNoticesSuccses = (state, { payload }) => {
   if (state.category === 'own') {
     state.noticesList.unshift(payload);
   }
-  state.error = null;
+  state.errorNotices = null;
   state.isAdding = false;
 };
 
@@ -65,25 +79,53 @@ const handleAddNoticesPending = state => {
 const handleAddNoticesReject = state => {
   state.isAdding = false;
 };
-
+///////////////////////////////////////////////////////////////////////////
 const handleDeleteNoticesSuccses = (state, action) => {
   const index = state.noticesList.findIndex(
     notices => notices._id === action.payload._id
   );
   state.noticesList.splice(index, 1);
+  state.isLoadingNotices = false;
+  state.errorNotices = null;
 };
-
+const handleDeleteNoticesPending = (state, action) => {
+  state.isLoadingNotices = true;
+};
+const handleDeleteNoticesReject = (state, action) => {
+  state.isLoadingNotices = false;
+  state.errorNotices = action.payload;
+};
+//////////////////////////////////////////////////////////////////
 const handleGetNoticesByIdSuccses = (state, action) => {
   state.selectedNotice = action.payload;
+  state.isLoadingSelected = false;
+  state.errorSelected = null;
 };
-
+const handleGetNoticesByIdPending = (state, action) => {
+  state.isLoadingSelected = true;
+};
+const handleGetNoticesByIdReject = (state, action) => {
+  state.isLoadingSelected = false;
+  state.errorSelected = action.payload;
+};
+////////////////////////////////////////////////////////////////////
 const handleAddToFavoriteNoticesSuccses = (state, action) => {
   if (state.category === 'favorite') {
     state.noticesList.push(action.payload);
   }
 
   state.favoriteNoticesList.push(action.payload);
+  state.isLoadingFavorite = false;
+  state.errorFavorite = null;
 };
+const handleAddToFavoriteNoticesPending = (state, action) => {
+  state.isLoadingFavorite = true;
+};
+const handleAddToFavoriteNoticesReject = (state, action) => {
+  state.isLoadingFavorite = false;
+  state.errorFavorite = action.payload;
+};
+///////////////////////////////////////////////////////////////////////////////
 const handleRemoveFromFavoriteNoticesSuccses = (state, action) => {
   if (state.category === 'favorite') {
     const index = state.noticesList.findIndex(
@@ -95,12 +137,17 @@ const handleRemoveFromFavoriteNoticesSuccses = (state, action) => {
     notices => notices._id === action.payload
   );
   state.favoriteNoticesList.splice(index, 1);
+  state.isLoadingFavorite = false;
+  state.errorFavorite = null;
 };
-
-// const handleFetchFavoriteNoticesSuccses = (state, action) => {
-//   state.favoriteNoticesList = action.payload;
-// };
-
+const handleRemoveFromFavoriteNoticesPending = (state, action) => {
+  state.isLoadingFavorite = true;
+};
+const handleRemoveFromFavoriteNoticesReject = (state, action) => {
+  state.isLoadingFavorite = false;
+  state.errorFavorite = action.payload;
+};
+////////////////////////////////////////////////////////////////////////////////
 export const noticesSlice = createSlice({
   name: 'notices',
   initialState: noticesInitialState,
@@ -137,35 +184,43 @@ export const noticesSlice = createSlice({
   ///////////////////////////////////////////////
   extraReducers: builder => {
     builder
+
+      .addCase(fetchNotices.pending, handleFetchNoticesPending)
+      .addCase(fetchNotices.rejected, handleFetchNoticesReject)
       .addCase(fetchNotices.fulfilled, handleFetchNoticesSuccses)
       .addCase(addNotices.pending, handleAddNoticesPending)
       .addCase(addNotices.fulfilled, handleAddNoticesSuccses)
       .addCase(addNotices.rejected, handleAddNoticesReject)
       .addCase(deleteNotices.fulfilled, handleDeleteNoticesSuccses)
+      .addCase(deleteNotices.pending, handleDeleteNoticesPending)
+      .addCase(deleteNotices.rejected, handleDeleteNoticesReject)
       .addCase(getNoticesById.fulfilled, handleGetNoticesByIdSuccses)
+      .addCase(getNoticesById.rejected, handleGetNoticesByIdReject)
+      .addCase(getNoticesById.pending, handleGetNoticesByIdPending)
       .addCase(
         fetchFavoriteNotices.fulfilled,
         handleFetchFavoriteNoticesSuccses
       )
+      .addCase(fetchFavoriteNotices.pending, handleFetchFavoriteNoticesPending)
+      .addCase(fetchFavoriteNotices.rejected, handleFetchFavoriteNoticesReject)
       .addCase(
         removeFromFavoriteNotices.fulfilled,
         handleRemoveFromFavoriteNoticesSuccses
       )
       .addCase(
+        removeFromFavoriteNotices.pending,
+        handleRemoveFromFavoriteNoticesPending
+      )
+      .addCase(
+        removeFromFavoriteNotices.rejected,
+        handleRemoveFromFavoriteNoticesReject
+      )
+      .addCase(
         addToFavoriteNotices.fulfilled,
         handleAddToFavoriteNoticesSuccses
       )
-      .addMatcher(isAnyOf(...getActions('pending')), state => {
-        state.isLoading = true;
-      })
-      .addMatcher(isAnyOf(...getActions('rejected')), (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      })
-      .addMatcher(isAnyOf(...getActions('fulfilled')), (state, action) => {
-        state.isLoading = false;
-        state.error = null;
-      });
+      .addCase(addToFavoriteNotices.pending, handleAddToFavoriteNoticesPending)
+      .addCase(addToFavoriteNotices.rejected, handleAddToFavoriteNoticesReject);
   },
 });
 export const {

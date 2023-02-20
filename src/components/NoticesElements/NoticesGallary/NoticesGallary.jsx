@@ -3,25 +3,41 @@ import { selectNoticesObj } from '../../../redux/notices/selectors';
 import { useSelector } from 'react-redux';
 import GalleryPagination from '../../NoticesElements/GalleryPagination';
 import NoticesLoader from '../NoticesLoader';
-import NoticesSpinner from '../NoticesSpіnner';
+import { GalleryWrapper } from './NoticesGallary.styled';
 import { useLocation } from 'react-router-dom';
-
+import Spinner from '../../Spinner';
+// import { Wrapper } from '../NoticesCategoriesListSecond/NoticesCategoriesListSecond.styled';
+// import { positions } from '@mui/system';
 const NoticesGallary = () => {
-  const { isLoading, error, noticesList } = useSelector(selectNoticesObj);
+  const {
+    isLoadingNotices,
+    isLoadingFavorite,
+    isLoadingSelected,
+    isAdding,
+    errorNotices,
+    errorFavorit,
+    errorSelected,
+    noticesList,
+  } = useSelector(selectNoticesObj);
   const { pathname } = useLocation();
 
   return (
-    <div>
-      <NoticesSpinner />
-      {(error || noticesList.length === 0) &&
-        !isLoading &&
-        pathname === '/notices/favorite' && <NoticesLoader />}
-      {(error || noticesList.length === 0) &&
-        !isLoading &&
-        pathname !== '/notices/favorite' && <NoticesLoader />}
-      <NoticesCategoriesListSecond />
-      <GalleryPagination />
-    </div>
+    <GalleryWrapper>
+      {isLoadingNotices ? (
+        <Spinner />
+      ) : (
+        <>
+          {(errorNotices || noticesList.length === 0) &&
+            !isLoadingNotices &&
+            pathname === '/notices/favorite' && <NoticesLoader />}
+          {(errorNotices || noticesList.length === 0) &&
+            !isLoadingNotices &&
+            pathname !== '/notices/favorite' && <NoticesLoader />}
+          <NoticesCategoriesListSecond />
+          <GalleryPagination />
+        </>
+      )}
+    </GalleryWrapper>
   );
 };
 export default NoticesGallary;
