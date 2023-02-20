@@ -296,3 +296,10 @@ export const Background = styled.div`
     background-image: url(${desktopBackground});
   }
 `;
+
+export const SpinnerWrapper = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;

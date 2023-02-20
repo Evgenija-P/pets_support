@@ -13,6 +13,7 @@ import {
   SearchNewsForm,
   SearchNewsInput,
   SearchNewsButton,
+  SpinnerWrapper,
 } from './NewsList.styled';
 
 const NewsList = () => {
@@ -91,8 +92,10 @@ const NewsList = () => {
 
       <ListNews>
         {error && <p>{error}</p>}
-        {isLoading ? (
-          <Spinner />
+        {!isLoading ? (
+          <SpinnerWrapper>
+            <Spinner />
+          </SpinnerWrapper>
         ) : (
           filterNews.map(({ title, description, date, url }) => (
             <ItemNews key={nanoid()}>
