@@ -231,3 +231,9 @@ export const BoxText = styled.div`
   text-align: center;
   font-size: 12px;
 `;
+export const SpinerWrapper = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
