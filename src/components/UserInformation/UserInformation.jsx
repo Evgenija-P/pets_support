@@ -63,7 +63,6 @@ const userUpdateSchema = object().shape({
     .required('City is required'),
   birthday: string()
     .matches(dateRegexp, 'Error. Example: DD.MM.YYYY')
-    .required('Birthday is required')
     .max(10, 'Year must be 4 letters')
 });
 
