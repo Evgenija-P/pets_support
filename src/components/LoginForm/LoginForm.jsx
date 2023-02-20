@@ -9,8 +9,8 @@ import { logIn } from '../../redux/auth/operations';
 
 import {
   // emailRegex,
-  passwordRegexp
-} from "../../helpers/regExpsHelpers";
+  passwordRegexp,
+} from '../../helpers/regExpsHelpers';
 
 import Spinner from '../Spinner';
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
@@ -30,22 +30,19 @@ import {
   Background,
 } from './LoginForm.styled';
 
-const emailRegex = /^[^-][a-zA-Z0-9_.-]{1,64}@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/
+const emailRegex = /^[^-][a-zA-Z0-9_.-]{1,64}@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 
 const loginSchema = yup.object().shape({
   email: yup
     .string()
-    .email('Invalid email address')    
+    .email('Invalid email address')
     .matches(emailRegex, 'Invalid email address')
     .required('Email is required'),
   password: yup
     .string()
     .min(7, 'Password must be at least 7 characters')
     .max(32, 'Password must be at most 32 characters')
-    .matches(
-      passwordRegexp,
-      'Must not contain spaces'      
-    )
+    .matches(passwordRegexp, 'Must not contain spaces')
     .required('Password is required'),
 });
 
@@ -137,8 +134,8 @@ const LoginForm = () => {
                 </span>
               </Text>
             </FormLogin>
-            </Formik>
-            <Background></Background>
+          </Formik>
+          <Background></Background>
         </Container>
       )}
     </>
