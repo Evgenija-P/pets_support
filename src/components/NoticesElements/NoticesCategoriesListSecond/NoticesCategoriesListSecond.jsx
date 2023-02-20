@@ -60,6 +60,8 @@ const NoticesCategoriesListSecond = () => {
 
   const [disabledButtons, setDisabledButtons] = useState([]);
 
+  const [disabledLMButtons, setDisabledLMButtons] = useState([]);
+
   const { categoryName: category } = useParams();
 
   const { _id } = useSelector(selectUser);
@@ -180,20 +182,17 @@ const NoticesCategoriesListSecond = () => {
               <BottonsWrapper>
                 <ButtonList>
                   <NoticesButton
-                    // onClick={() => {
-                    //   dispatch(getNoticesById(`${category}/${_id}`));
-                    // }}
-                    disabled={disabledButtons.includes(_id)}
+                    disabled={disabledLMButtons.includes(_id)}
                     onClick={async () => {
-                      setDisabledButtons([...disabledButtons, _id]);
+                      setDisabledLMButtons([...disabledLMButtons, _id]);
                       await dispatch(getNoticesById(`${category}/${_id}`));
-                      setDisabledButtons(prev =>
+                      setDisabledLMButtons(prev =>
                         prev.filter(item => item !== _id)
                       );
                     }}
                   >
                     Learn More
-                    {isLoadingSelected && disabledButtons.includes(_id) && (
+                    {isLoadingSelected && disabledLMButtons.includes(_id) && (
                       <LoaderWrapper>
                         <ClipLoader size="100%" color={colors.accentButton} />
                       </LoaderWrapper>
@@ -201,10 +200,7 @@ const NoticesCategoriesListSecond = () => {
                   </NoticesButton>
 
                   {isOwner && isLoggedIn && (
-                    <NoticesButtonDelete
-                      onClick={() => dialogToggle(_id)}
-                      disabled={disabledButtons.includes(_id)}
-                    >
+                    <NoticesButtonDelete onClick={() => dialogToggle(_id)}>
                       Delete <NoticesIconDelete />
                     </NoticesButtonDelete>
                   )}
