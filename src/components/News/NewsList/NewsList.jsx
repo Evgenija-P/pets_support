@@ -97,7 +97,6 @@ const NewsList = () => {
       </SearchNewsForm>
 
       <ListNews>
-        {error && <p>{error}</p>}
         {isLoading ? (
           <FriendsError>
             <ClipLoader size={80} color="#F59256" />
@@ -114,11 +113,11 @@ const NewsList = () => {
             </ItemNews>
           ))
         )}
-        {filterNews.length === 0 && (
+        {filterNews.length === 0 || error ? (
           <ErrorTitle>
             Nothing found for your search, please try again
           </ErrorTitle>
-        )}
+        ) : null}
       </ListNews>
     </ConteinerNews>
   );
