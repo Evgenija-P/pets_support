@@ -96,7 +96,7 @@ const NewsList = () => {
       </SearchNewsForm>
 
       <ListNews>
-        {!isLoading ? (
+        {isLoading ? (
           <Spinner />
         ) : (
           filterNews.map(({ title, description, date, url }) => (
