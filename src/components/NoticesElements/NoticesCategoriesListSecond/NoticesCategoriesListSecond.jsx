@@ -29,6 +29,7 @@ import {
   getUserFavoriteNotices,
   labelNotices,
 } from '../../../helpers/noticesHelpers';
+import Spinner from '../../../components/Spinner';
 import notFoundNoticesImage from '../../../img/notFoundNoticesImage.jpg';
 import { useSelector, useDispatch } from 'react-redux';
 import useAuth from '../../../hooks/useAuth.js';
@@ -49,7 +50,7 @@ import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 
 const NoticesCategoriesListSecond = () => {
-  const { noticesList, selectedNotice, favoriteNoticesList } =
+  const { noticesList, selectedNotice, favoriteNoticesList, isLoading } =
     useSelector(selectNoticesObj);
 
   const [openDialog, setOpenDialog] = useState(false);
