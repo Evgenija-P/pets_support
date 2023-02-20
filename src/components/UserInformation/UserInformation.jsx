@@ -40,7 +40,6 @@ import {
   ButtonEdit,
   LogOutIconWrapper,
   ErrBox,
-  MobileEmailRef,
   UserKeyEdit,
 } from './UserInformation.styled';
 
@@ -48,8 +47,8 @@ import {
 
 const userUpdateSchema = object().shape({
   email: string()
-    .matches(emailRegex, 'Invalid email adress')
-    // .email('Invalid email adress')
+    .matches(emailRegex, 'Invalid email address')
+    // .email('Invalid email address')
     .required('Email is required'),
   name: string()
     .min(2, 'Min 2 symbols')
@@ -167,7 +166,7 @@ const UserInformation = () => {
                 ) : (
                   <UserInformationContainer>
                     <UserKey>Email:</UserKey>
-                    <MobileEmailRef href={`mailto:${initialValues.email}`}>{`${initialValues.email}`}</MobileEmailRef>
+                    <UserValue href={`mailto:${initialValues.email}`}>{`${initialValues.email}`}</UserValue>
                     <UserInformationEditWrapper
                       click={change}
                       disabled={!isValid || change}
@@ -220,7 +219,7 @@ const UserInformation = () => {
                 ) : (
                   <UserInformationContainer>
                     <UserKey>Phone:</UserKey>
-                    <MobileEmailRef href={`tel:${initialValues.phone}`}>{`${initialValues.phone}`}</MobileEmailRef>
+                    <UserValue href={`tel:${initialValues.phone}`}>{`${initialValues.phone}`}</UserValue>
                     <UserInformationEditWrapper
                       click={change}
                       disabled={!isValid || change}

@@ -207,28 +207,7 @@ export const UserValue = styled.p`
   letter-spacing: 0.04em;
   color: ${colors.black};
   margin-left: 26px;
-  ${media.tabletAndDesktop} {
-    margin-left: 36px;
-    font-size: 18px;
-    line-height: 25px;
-  }
-  ${media.desktop}{
-    margin-left: 24px;
-  
-  }
-`
-
-export const MobileEmailRef = styled.a`
-  font-weight: ${fontWeights.regular};
-  font-size: 12px;
-  line-height: 16px;
-  letter-spacing: 0.04em;
-  color: ${colors.black};
-  margin-left: 26px;
-  &:hover, :focus{
-    transform: scale(1.05);
-  }
-  @media(max-width: 350px){
+    @media(max-width: 350px){
     overflow: hidden;
     text-overflow: ellipsis;
     width: 134px;
@@ -237,12 +216,13 @@ export const MobileEmailRef = styled.a`
     margin-left: 36px;
     font-size: 18px;
     line-height: 25px;
-    overflow: hidden;
+      overflow: hidden;
     text-overflow: ellipsis;
     width: 192px;
   }
   ${media.desktop}{
     margin-left: 24px;
+  
   }
 `
 

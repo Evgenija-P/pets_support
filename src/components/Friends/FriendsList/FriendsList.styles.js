@@ -72,7 +72,7 @@ export const FriendsItem = styled.li`
 
   ${media.tablet} {
     width: 336px;
-    height: 250px;
+    height: 270px;
     padding: 16px 4px;
   }
 
