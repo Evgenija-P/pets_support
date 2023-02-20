@@ -14,6 +14,7 @@ import {
   SearchNewsInput,
   SearchNewsButton,
   ErrorTitle,
+  SpinerWrapper,
 } from './NewsList.styled';
 import Spinner from '../../Spinner';
 
@@ -97,7 +98,9 @@ const NewsList = () => {
 
       <ListNews>
         {isLoading ? (
-          <Spinner />
+          <SpinerWrapper>
+            <Spinner />
+          </SpinerWrapper>
         ) : (
           filterNews.map(({ title, description, date, url }) => (
             <ItemNews key={nanoid()}>

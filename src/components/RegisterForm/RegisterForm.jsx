@@ -27,6 +27,7 @@ import {
   ShowPassword,
   StyledLink,
   BoxText,
+  SpinerWrapper,
 } from './RegisterForm.styled';
 
 import { Background } from '../LoginForm/LoginForm.styled';
@@ -138,7 +139,9 @@ const RegisterForm = () => {
   return (
     <>
       {loading ? (
-        <Spinner />
+        <SpinerWrapper>
+          <Spinner />
+        </SpinerWrapper>
       ) : (
         <FormContainer>
           <Formik validationSchema={registerSchema}>

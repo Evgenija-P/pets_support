@@ -14,6 +14,7 @@ import {
   FriendsData,
   FriendsImg,
   FriendsItemTitle,
+  SpinerWrapper,
 } from './FriendsList.styles';
 import Spinner from '../../Spinner';
 
@@ -46,7 +47,9 @@ const FriendsList = () => {
   return (
     <>
       {isLoading ? (
-        <Spinner />
+        <SpinerWrapper>
+          <Spinner />
+        </SpinerWrapper>
       ) : (
         <>
           <FriendsContainer>
