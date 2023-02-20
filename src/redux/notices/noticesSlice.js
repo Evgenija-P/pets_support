@@ -18,6 +18,7 @@ const noticesInitialState = {
   isLoadingNotices: false,
   isLoadingFavorite: false,
   isLoadingSelected: false,
+  isLoadingDelete: false,
   isAdding: false,
   errorNotices: null,
   errorFavorite: null,
@@ -85,14 +86,14 @@ const handleDeleteNoticesSuccses = (state, action) => {
     notices => notices._id === action.payload._id
   );
   state.noticesList.splice(index, 1);
-  state.isLoadingNotices = false;
+  state.isLoadingDelete = false;
   state.errorNotices = null;
 };
 const handleDeleteNoticesPending = (state, action) => {
-  state.isLoadingNotices = true;
+  state.isLoadingDelete = true;
 };
 const handleDeleteNoticesReject = (state, action) => {
-  state.isLoadingNotices = false;
+  state.isLoadingDelete = false;
   state.errorNotices = action.payload;
 };
 //////////////////////////////////////////////////////////////////

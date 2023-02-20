@@ -18,9 +18,9 @@ import {
   Wrapper,
   NoticesButtonDelete,
   NoticesIconDelete,
-  // LoaderWrapper,
+  LoaderWrapper,
 } from './NoticesCategoriesListSecond.styled';
-// import ClipLoader from 'react-spinners/ClipLoader';
+import ClipLoader from 'react-spinners/ClipLoader';
 import { toast } from 'react-toastify';
 import { optionsToast } from '../../..//styles/stylesLayout';
 import {
@@ -29,16 +29,13 @@ import {
   getUserFavoriteNotices,
   labelNotices,
 } from '../../../helpers/noticesHelpers';
-import Spinner from '../../../components/Spinner';
+
 import notFoundNoticesImage from '../../../img/notFoundNoticesImage.jpg';
 import { useSelector, useDispatch } from 'react-redux';
 import useAuth from '../../../hooks/useAuth.js';
 import { selectNoticesObj } from '../../../redux/notices/selectors';
 import { selectUser } from '../../../redux/auth/selectors.js';
-import {
-  // fetchNotices,
-  getNoticesById,
-} from '../../../redux/notices/operations ';
+import { getNoticesById } from '../../../redux/notices/operations ';
 import {
   addToFavoriteNotices,
   removeFromFavoriteNotices,
@@ -48,10 +45,14 @@ import NoticesDetailsCard from '../../../components/NoticesElements/NoticesDetai
 import { setSelectedNotice } from '../../../redux/notices/noticesSlice';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
-
+import { colors } from '../../../styles/stylesLayout';
 const NoticesCategoriesListSecond = () => {
-  const { noticesList, selectedNotice, favoriteNoticesList, isLoading } =
-    useSelector(selectNoticesObj);
+  const {
+    noticesList,
+    selectedNotice,
+    favoriteNoticesList,
+    isLoadingSelected,
+  } = useSelector(selectNoticesObj);
 
   const [openDialog, setOpenDialog] = useState(false);
 
@@ -182,16 +183,21 @@ const NoticesCategoriesListSecond = () => {
                     // onClick={() => {
                     //   dispatch(getNoticesById(`${category}/${_id}`));
                     // }}
-                    onClick={() => {
-                      dispatch(getNoticesById(`${category}/${_id}`));
+                    disabled={disabledButtons.includes(_id)}
+                    onClick={async () => {
+                      setDisabledButtons([...disabledButtons, _id]);
+                      await dispatch(getNoticesById(`${category}/${_id}`));
+                      setDisabledButtons(prev =>
+                        prev.filter(item => item !== _id)
+                      );
                     }}
                   >
                     Learn More
-                    {/* {disabledLMButtons.includes(_id) && (
+                    {isLoadingSelected && disabledButtons.includes(_id) && (
                       <LoaderWrapper>
-                        <ClipLoader size="100%" color="#000000" />
+                        <ClipLoader size="100%" color={colors.accentButton} />
                       </LoaderWrapper>
-                    )} */}
+                    )}
                   </NoticesButton>
 
                   {isOwner && isLoggedIn && (

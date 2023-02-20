@@ -11,12 +11,12 @@ import Spinner from '../../Spinner';
 const NoticesGallary = () => {
   const {
     isLoadingNotices,
-    isLoadingFavorite,
-    isLoadingSelected,
-    isAdding,
+    // isLoadingFavorite,
+    // isLoadingSelected,
+    // isAdding,
     errorNotices,
-    errorFavorit,
-    errorSelected,
+    // errorFavorit,
+    // errorSelected,
     noticesList,
   } = useSelector(selectNoticesObj);
   const { pathname } = useLocation();
