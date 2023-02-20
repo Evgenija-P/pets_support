@@ -3,7 +3,7 @@ import { selectNoticesObj } from '../../../redux/notices/selectors';
 import { useSelector } from 'react-redux';
 import GalleryPagination from '../../NoticesElements/GalleryPagination';
 import NoticesLoader from '../NoticesLoader';
-import { GalleryWrapper } from './NoticesGallary.styled';
+import { GalleryWrapper, WrapperSpiner } from './NoticesGallary.styled';
 import { useLocation } from 'react-router-dom';
 import Spinner from '../../Spinner';
 // import { Wrapper } from '../NoticesCategoriesListSecond/NoticesCategoriesListSecond.styled';
@@ -24,7 +24,9 @@ const NoticesGallary = () => {
   return (
     <GalleryWrapper>
       {isLoadingNotices ? (
-        <Spinner />
+        <WrapperSpiner>
+          <Spinner />
+        </WrapperSpiner>
       ) : (
         <>
           {(errorNotices || noticesList.length === 0) &&
