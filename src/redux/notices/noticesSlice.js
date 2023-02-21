@@ -129,15 +129,17 @@ const handleAddToFavoriteNoticesReject = (state, action) => {
 ///////////////////////////////////////////////////////////////////////////////
 const handleRemoveFromFavoriteNoticesSuccses = (state, action) => {
   if (state.category === 'favorite') {
-    const index = state.noticesList.findIndex(
-      notices => notices._id === action.payload
-    );
-    state.noticesList.splice(index, 1);
+    // const index = state.noticesList.findIndex(
+    //   notices => notices._id === action.payload
+    // );
+    // state.noticesList.splice(index, 1);
+    state.noticesList = action.payload.favoriteList;
   }
-  const index = state.favoriteNoticesList.findIndex(
-    notices => notices._id === action.payload
-  );
-  state.favoriteNoticesList.splice(index, 1);
+  // const index = state.favoriteNoticesList.findIndex(
+  //   notices => notices._id === action.payload
+  // );
+  // state.favoriteNoticesList.splice(index, 1);
+  state.favoriteNoticesList = action.payload.favoriteList;
   state.isLoadingFavorite = false;
   state.errorFavorite = null;
 };
