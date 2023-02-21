@@ -53,7 +53,7 @@ const NoticesSearch = () => {
   };
 
   const handlelupa = evt => {
-    if (formStste === '') {
+    if (formStste === '' || formStste === '?') {
       evt.preventDefault();
       toast.warning('Enter the title of notice!', optionsToast);
       return;
