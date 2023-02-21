@@ -113,11 +113,11 @@ const NewsList = () => {
             </ItemNews>
           ))
         )}
-        {filterNews.length === 0 || error ? (
+        {(filterNews.length === 0 || error) && !isLoading && (
           <ErrorTitle>
             Nothing found for your search, please try again
           </ErrorTitle>
-        ) : null}
+        )}
       </ListNews>
     </ConteinerNews>
   );
