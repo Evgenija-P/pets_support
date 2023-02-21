@@ -35,7 +35,7 @@ const NoticesGallary = () => {
           {(errorNotices || noticesList.length === 0) &&
             !isLoadingNotices &&
             pathname !== '/notices/favorite' && <NoticesLoader />}
-          <NoticesCategoriesListSecond />
+          {!errorNotices && <NoticesCategoriesListSecond />}
           <GalleryPagination />
         </>
       )}

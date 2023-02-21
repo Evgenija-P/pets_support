@@ -4,10 +4,7 @@ export const PER_PAGE = 20;
 
 export const fetchNotices = createAsyncThunk(
   'notices/fetchAll',
-  async (
-    { category = '/notices', search = '', page = 1, limit = PER_PAGE },
-    thunkAPI
-  ) => {
+  async ({ category, search, page = 1, limit = PER_PAGE }, thunkAPI) => {
     const params = {
       limit,
       page,
@@ -91,7 +88,7 @@ export const removeFromFavoriteNotices = createAsyncThunk(
 export const fetchFavoriteNotices = createAsyncThunk(
   'notices/fetchFavoriteNotices',
   async (
-    { category = '/notices/favorite', search = '', page = 1, limit = PER_PAGE },
+    { category = '/notices/favorite', search, page = 1, limit = PER_PAGE },
     thunkAPI
   ) => {
     const params = {
