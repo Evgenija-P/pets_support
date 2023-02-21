@@ -88,7 +88,7 @@ export const removeFromFavoriteNotices = createAsyncThunk(
 export const fetchFavoriteNotices = createAsyncThunk(
   'notices/fetchFavoriteNotices',
   async (
-    { category = '/notices/favorite', search = '', page = 1, limit = PER_PAGE },
+    { category = '/notices/favorite', search, page = 1, limit = PER_PAGE },
     thunkAPI
   ) => {
     const params = {
