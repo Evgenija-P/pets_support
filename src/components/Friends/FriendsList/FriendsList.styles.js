@@ -119,3 +119,10 @@ export const FriendsItemTitle = styled.a`
     margin-bottom: 16px;
   }
 `;
+
+export const SpinerWrapper = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;

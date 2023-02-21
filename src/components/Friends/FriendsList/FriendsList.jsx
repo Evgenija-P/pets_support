@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import ClipLoader from 'react-spinners/ClipLoader';
 import { nanoid } from 'nanoid';
 import { toast } from 'react-toastify';
 import { optionsToast } from '../../../styles/stylesLayout';
@@ -15,7 +14,9 @@ import {
   FriendsData,
   FriendsImg,
   FriendsItemTitle,
+  SpinerWrapper,
 } from './FriendsList.styles';
+import Spinner from '../../Spinner';
 
 const FriendsList = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -46,9 +47,9 @@ const FriendsList = () => {
   return (
     <>
       {isLoading ? (
-        <FriendsError>
-          <ClipLoader size={80} color="#F59256" />
-        </FriendsError>
+        <SpinerWrapper>
+          <Spinner />
+        </SpinerWrapper>
       ) : (
         <>
           <FriendsContainer>
@@ -76,7 +77,9 @@ const FriendsList = () => {
           </FriendsContainer>
         </>
       )}
-      {error && <FriendsError>{error}</FriendsError>}
+      {(error || friendsItems.length === 0) && !isLoading && (
+        <FriendsError>{error}</FriendsError>
+      )}
     </>
   );
 };

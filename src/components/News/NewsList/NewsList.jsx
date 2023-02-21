@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import ClipLoader from 'react-spinners/ClipLoader';
 import BASE_URL from '../../../servises/api';
 import NewsItem from '../NewsItem/NewsItem';
 import { nanoid } from 'nanoid';
@@ -15,8 +14,9 @@ import {
   SearchNewsInput,
   SearchNewsButton,
   ErrorTitle,
+  SpinerWrapper,
 } from './NewsList.styled';
-import { FriendsError } from '../../Friends/FriendsList/FriendsList.styles';
+import Spinner from '../../Spinner';
 
 const NewsList = () => {
   const [newsItem, setNewsItem] = useState([]);
@@ -98,9 +98,9 @@ const NewsList = () => {
 
       <ListNews>
         {isLoading ? (
-          <FriendsError>
-            <ClipLoader size={80} color="#F59256" />
-          </FriendsError>
+          <SpinerWrapper>
+            <Spinner />
+          </SpinerWrapper>
         ) : (
           filterNews.map(({ title, description, date, url }) => (
             <ItemNews key={nanoid()}>
@@ -113,11 +113,11 @@ const NewsList = () => {
             </ItemNews>
           ))
         )}
-        {filterNews.length === 0 || error ? (
+        {(filterNews.length === 0 || error) && !isLoading && (
           <ErrorTitle>
             Nothing found for your search, please try again
           </ErrorTitle>
-        ) : null}
+        )}
       </ListNews>
     </ConteinerNews>
   );
