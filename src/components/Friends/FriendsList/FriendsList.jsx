@@ -77,7 +77,9 @@ const FriendsList = () => {
           </FriendsContainer>
         </>
       )}
-      {error && <FriendsError>{error}</FriendsError>}
+      {(error || friendsItems.length === 0) && !isLoading && (
+        <FriendsError>{error}</FriendsError>
+      )}
     </>
   );
 };
